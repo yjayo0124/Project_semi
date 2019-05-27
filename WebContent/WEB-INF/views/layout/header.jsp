@@ -49,7 +49,7 @@
 	<div><span></span></div>
 	<ul class="gnb">
 		<li id="st01">
-			<a href="#">사이트소개</a>
+			<a href="#">사이트소                                      개</a>
 			<div>
 				<ul>
 				<li><a href="#">낚시모아소개</a></li>

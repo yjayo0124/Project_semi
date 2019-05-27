@@ -114,7 +114,7 @@ body {
 
 	<div class="MainMenu">
 		<ul class="menu">
-			<li><span>Menu01</span>
+			<li><span>메뉴</span>
 				<ul class="SubMenu">
 					<li id="nop">sub01</li>
 					<li id="nop">sub02</li>

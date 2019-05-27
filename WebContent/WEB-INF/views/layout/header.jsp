@@ -12,14 +12,6 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.2.4.js"></script>
 
-<!-- Bootstrap 3 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <script type="text/javascript">
 	$(document).on('mouseover', '.MainMenu span', function() {
 		$('.SubMenu').slideDown(300);
@@ -92,6 +84,8 @@ body {
 </head>
 <body>
 
+	<br>
+	<div class="right">
 		<c:if test="${empty login }">
 			<a href="/member/login">로그인</a>
 			&nbsp;&nbsp;&nbsp;
@@ -103,59 +97,56 @@ body {
 			&nbsp;&nbsp;&nbsp;
 			<a href="/member/mypage">마이페이지</a>
 			&nbsp;&nbsp;&nbsp;
-		</c:if>
-
-  
+		</c:if>  
 	</div>
+  
+	<br>
 	<div>
 		<h1><a href="/main" style="text-decoration: none; color: black;">낚시모아</a></h1>
 		<br><br><br>
 	</div>
 
+	<hr>
 	<div class="MainMenu">
 		<ul class="menu">
-			<li><span>메뉴</span>
+			<li><span>사이트소개</span>
 				<ul class="SubMenu">
-					<li id="nop">sub01</li>
-					<li id="nop">sub02</li>
-					<li id="nop">sub03</li>
-					<li id="nop">sub04</li>
-					<li id="nop">sub05</li>
+					<li id="nop">낚시모아 소개</li>
+					<li id="nop">공지사항</li>
+					<li id="nop">모아이벤트</li>
+					<li id="nop">&nbsp;</li>
 				</ul></li>
-			<li><span>Menu02</span>
+			<li><span>낚시정보</span>
 				<ul class="SubMenu">
-					<li id="nop">sub01</li>
-					<li id="nop">sub02</li>
-					<li id="nop">sub03</li>
-					<li id="nop">sub04</li>
-					<li id="nop">sub05</li>
+					<li id="nop">낚시터 정보 검색</li>
+					<li id="nop">물고기 정보</li>
+					<li id="nop">부품 정보</li>
+					<li id="nop">대회 & 축제</li>
 				</ul></li>
-			<li><span>Menu03</span>
+			<li><span>낚시장터</span>
 				<ul class="SubMenu">
-					<li id="nop">sub01</li>
-					<li id="nop">sub02</li>
-					<li id="nop">sub03</li>
-					<li id="nop">sub04</li>
-					<li id="nop">sub05</li>
+					<li id="nop">삽니다 게시판</li>
+					<li id="nop">팝니다 게시판</li>
+					<li id="nop">&nbsp;</li>
+					<li id="nop">&nbsp;</li>
 				</ul></li>
-			<li><span>Menu04</span>
+			<li><span>커뮤니티</span>
 				<ul class="SubMenu">
-					<li id="nop">sub01</li>
-					<li id="nop">sub02</li>
-					<li id="nop">sub03</li>
-					<li id="nop">sub04</li>
-					<li id="nop">sub05</li>
+					<li id="nop">자유게시판</li>
+					<li id="nop">자랑게시판</li>
+					<li id="nop">동호회 게시판</li>
+					<li id="nop">&nbsp;</li>
 				</ul></li>
-			<li><span>Menu05</span>
+				<li><span>마이페이지</span>
 				<ul class="SubMenu">
-					<li id="nop">sub01</li>
-					<li id="nop">sub02</li>
-					<li id="nop">sub03</li>
-					<li id="nop">sub04</li>
-					<li id="nop">sub05</li>
+					<li id="nop">&nbsp;</li>
+					<li id="nop">&nbsp;</li>
+					<li id="nop">&nbsp;</li>
+					<li id="nop">&nbsp;</li>
 				</ul></li>
 		</ul>
 	</div>
+	<hr>
 
 </body>
 </html>

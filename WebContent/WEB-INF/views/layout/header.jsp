@@ -91,7 +91,7 @@ body {
 </style>
 </head>
 <body>
-	<div class="right">
+
 		<c:if test="${empty login }">
 			<a href="/member/login">로그인</a>
 			&nbsp;&nbsp;&nbsp;
@@ -104,6 +104,8 @@ body {
 			<a href="/member/mypage">마이페이지</a>
 			&nbsp;&nbsp;&nbsp;
 		</c:if>
+
+  
 	</div>
 	<div>
 		<h1><a href="/main" style="text-decoration: none; color: black;">낚시모아</a></h1>
@@ -154,9 +156,6 @@ body {
 				</ul></li>
 		</ul>
 	</div>
-
-
-
 
 </body>
 </html>

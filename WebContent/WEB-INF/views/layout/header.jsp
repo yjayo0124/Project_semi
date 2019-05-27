@@ -1,96 +1,161 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- jQuery 2.2.4 -->
 <script type="text/javascript"
- src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-<style type="text/css">
-
-
-
-</style>
-
-<script type="text/javascript">
-
-
-
-</script>
+	src="http://code.jquery.com/jquery-2.2.4.js"></script>
 
 <!-- Bootstrap 3 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+	$(document).on('mouseover', '.MainMenu span', function() {
+		$('.SubMenu').slideDown(300);
+	});
+	$(document).on('mouseover', 'div', function() {
+		if (!$(this).hasClass('MainMenu')) {
+			$('.SubMenu').slideUp(300);
+		}
+	});
+</script>
+
+<style type="text/css">
+h1 {
+	text-align: center;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+.right {
+	text-align: right;
+}
+
+li {
+	list-style: none;
+}
+
+body {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.MainMenu {
+	position: relative;
+	width: 100%;
+	margin-bottom: 20px;
+	text-align: center;
+	height: 40px;
+}
+
+.MainMenu:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.menu>li {
+	float: left;
+	width: 20%;
+	line-height: 40px;
+}
+
+.menu span {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.SubMenu {
+	position: absolute;
+	top: 40px;
+	display: none;
+	width: 20%;
+	padding: 20px 0;
+	border-bottom: 1px solid #ccc;
+	background: #fff;
+}
+</style>
 </head>
 <body>
 
-<div id="bar">
-<div id="bar_logo" class="text-center">
-<a href="/main" class="h2">낚시모아asdfsadf</a>
-	<a class="h4 text-light">
 		<c:if test="${empty login }">
-			<a href="/member/join">회원가입</a>
 			<a href="/member/login">로그인</a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="/member/join">회원가입</a>
+			&nbsp;&nbsp;&nbsp;
 		</c:if>
 		<c:if test="${login }">
-			<a href="/member/mypage">마이페이지</a>
 			<a href="/member/logout">로그아웃</a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="/member/mypage">마이페이지</a>
+			&nbsp;&nbsp;&nbsp;
 		</c:if>
-	<a/>
-</div>
 
-<div class="menubar" class="gnb-bar">
-	<div><span></span></div>
-	<ul class="gnb">
-		<li id="st01">
-			<a href="#">사이트소       개</a>
-			<div>
-				<ul>
-				<li><a href="#">낚시모아소개</a></li>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">모아이벤트</a></li>
-				</ul>
-			</div>
-		</li>
-		<li id="st02">
-			<a href="#">낚시정보</a>
-			<div>
-				<ul>
-				<li><a href="#">낚시터 검색</a></li>
-				<li><a href="#">물고기 정보</a></li>
-				<li><a href="#">낚시 축제</a></li>
-				</ul>
-			</div>	
-		</li>
-		<li id="st03">
-			<a href="#">낚시장터</a>	
-			<div>
-				<ul>
-				<li><a href="#">삽니다</a></li>
-				<li><a href="#">팝니다</a></li>
-				</ul>
-			</div>
-		</li>
-		<li id="st04">
-			<a href="#">커뮤니티</a>	
-			<div>
-				<ul>
-				<li><a href="#">자유게시판</a></li>
-				<li><a href="#">자랑게시판</a></li>
-				<li><a href="#">동호회게시판</a></li>
-				</ul>
-			</div>
-		</li>
-	</ul>
-</div>
+  
+	</div>
+	<div>
+		<h1><a href="/main" style="text-decoration: none; color: black;">낚시모아</a></h1>
+		<br><br><br>
+	</div>
 
-</div>
+	<div class="MainMenu">
+		<ul class="menu">
+			<li><span>Menu01</span>
+				<ul class="SubMenu">
+					<li id="nop">sub01</li>
+					<li id="nop">sub02</li>
+					<li id="nop">sub03</li>
+					<li id="nop">sub04</li>
+					<li id="nop">sub05</li>
+				</ul></li>
+			<li><span>Menu02</span>
+				<ul class="SubMenu">
+					<li id="nop">sub01</li>
+					<li id="nop">sub02</li>
+					<li id="nop">sub03</li>
+					<li id="nop">sub04</li>
+					<li id="nop">sub05</li>
+				</ul></li>
+			<li><span>Menu03</span>
+				<ul class="SubMenu">
+					<li id="nop">sub01</li>
+					<li id="nop">sub02</li>
+					<li id="nop">sub03</li>
+					<li id="nop">sub04</li>
+					<li id="nop">sub05</li>
+				</ul></li>
+			<li><span>Menu04</span>
+				<ul class="SubMenu">
+					<li id="nop">sub01</li>
+					<li id="nop">sub02</li>
+					<li id="nop">sub03</li>
+					<li id="nop">sub04</li>
+					<li id="nop">sub05</li>
+				</ul></li>
+			<li><span>Menu05</span>
+				<ul class="SubMenu">
+					<li id="nop">sub01</li>
+					<li id="nop">sub02</li>
+					<li id="nop">sub03</li>
+					<li id="nop">sub04</li>
+					<li id="nop">sub05</li>
+				</ul></li>
+		</ul>
+	</div>
 
 </body>
 </html>

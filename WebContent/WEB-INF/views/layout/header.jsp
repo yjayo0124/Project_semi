@@ -32,7 +32,7 @@
 
 <div id="bar">
 <div id="bar_logo" class="text-center">
-<a href="/main" class="h2">낚시모아zzz####~</a>
+<a href="/main" class="h2">낚시모아asdfsadf</a>
 	<a class="h4 text-light">
 		<c:if test="${empty login }">
 			<a href="/member/join">회원가입</a>
@@ -49,7 +49,7 @@
 	<div><span></span></div>
 	<ul class="gnb">
 		<li id="st01">
-			<a href="#">사이트소                                      개</a>
+			<a href="#">사이트소       개</a>
 			<div>
 				<ul>
 				<li><a href="#">낚시모아소개</a></li>

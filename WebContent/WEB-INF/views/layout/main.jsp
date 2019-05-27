@@ -19,7 +19,7 @@
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
 <div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 
 </body>

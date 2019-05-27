@@ -32,7 +32,7 @@
 
 <div id="bar">
 <div id="bar_logo" class="text-center">
-<a href="/main" class="h2">ㅎㅎㅎㅎ</a>
+<a href="/main" class="h2">ㅎㅎㅎ</a>
 	<a class="h4 text-light">
 		<c:if test="${empty login }">
 			<a href="/member/join">회원가입</a>

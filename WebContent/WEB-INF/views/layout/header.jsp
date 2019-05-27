@@ -21,9 +21,9 @@
 <body>
 
 <div id="bar">
-<div id="bar_logo">
+<div id="bar_logo" class="text-center">
 <a href="/main" class="h2">낚시모아</a>
-	<h4 class="text-light">
+	<a class="h4 text-light">
 		<c:if test="${empty login }">
 			<a href="/member/join">회원가입</a>
 			<a href="/member/login">로그인</a>
@@ -32,8 +32,40 @@
 			<a href="/member/mypage">마이페이지</a>
 			<a href="/member/logout">로그아웃</a>
 		</c:if>
-	</h4>
+	<a/>
 </div>
+<div class="menubar">
+	<ul>
+	<li><a href="#">사이트소개</a>
+		<ul>
+			<li><a href="#">낚시모아소개</a></li>
+			<li><a href="#">공지사항</a></li>
+			<li><a href="#">모아이벤트</a></li>
+		</ul>
+	</li>
+	<li><a href="#">낚시정보</a>
+		<ul>
+			<li><a href="#">낚시터 검색</a></li>
+			<li><a href="#">물고기 정보</a></li>
+			<li><a href="#">낚시 축제</a></li>
+		</ul>
+	</li>
+	<li><a href="#">낚시장터</a>
+		<ul>
+			<li><a href="#">삽니다</a></li>
+			<li><a href="#">팝니다</a></li>
+		</ul>
+	</li>
+	<li><a href="#">커뮤니티</a>
+		<ul>
+			<li><a href="#">자유게시판</a></li>
+			<li><a href="#">자랑게시판</a></li>
+			<li><a href="#">동호회게시판</a></li>
+		</ul>
+	</li>
+	</ul>
+</div>
+
 </div>
 
 </body>

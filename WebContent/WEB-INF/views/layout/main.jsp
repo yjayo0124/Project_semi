@@ -19,9 +19,7 @@
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
 <div>
-asdddddddddddddddddddddddddddddddddddd
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 
 </body>

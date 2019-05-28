@@ -3,26 +3,13 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- jQuery 2.2.4 -->
 <script type="text/javascript"
  src="http://code.jquery.com/jquery-2.2.4.js"></script>
+
  
-<style type="text/css">
-</style>
-</head>
-<body>
+ <style type="text/css">
+ </style>
+
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<div>
-asdddddddddddddddddddddddddddddddddddd
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-</div>
-
-</body>
-</html>
+<c:import url="/WEB-INF/views/layout/footer.jsp" />

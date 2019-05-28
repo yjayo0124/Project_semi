@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import web.dto.Member;
+import web.dto.MemberDetail;
 import web.service.member.MemberService;
 import web.service.member.MemberServiceImpl;
 
@@ -34,7 +34,7 @@ public class MemberLoginController extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		//로그인 정보 얻기
-		Member member = memberService.getLoginMember(req);
+		MemberDetail member = memberService.getLoginMember(req);
 		
 		//로그인 인증
 		boolean login = memberService.login(member);

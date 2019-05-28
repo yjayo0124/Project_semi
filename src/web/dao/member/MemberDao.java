@@ -1,11 +1,19 @@
 package web.dao.member;
 
-import web.dto.Member;
+import web.dto.MemberDetail;
 
 public interface MemberDao {
 
-	public int selectCntMemberByMemberidAndMemberpw(Member member);
+	public int selectCntMemberByMemberidAndMemberpw(MemberDetail member);
 
-	public Member selectMemberByMemberid(Member member);
+	public MemberDetail selectMemberByMemberid(MemberDetail member);
+
+	/**
+	 * 회원가입
+	 * 
+	 * @param member - 회원가입 정보
+	 */
+	public void insert(MemberDetail member);
+
 
 }

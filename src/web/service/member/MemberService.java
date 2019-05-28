@@ -2,13 +2,27 @@ package web.service.member;
 
 import javax.servlet.http.HttpServletRequest;
 
-import web.dto.Member;
+import web.dto.MemberDetail;
 
 public interface MemberService {
 
-	public Member getLoginMember(HttpServletRequest req);
+	public MemberDetail getLoginMember(HttpServletRequest req);
 	
-	boolean login(Member member);
 	
-	public Member getMemberByMemberid(Member member);
+	boolean login(MemberDetail MemberDetail);
+	
+	
+	public MemberDetail getMemberByMemberid(MemberDetail MemberDetail);
+	
+
+	public MemberDetail getJoinMember(HttpServletRequest req);
+
+	
+	/**
+	 * 회원가입
+	 * 
+	 * @param MemberDetail - 회원가입 정보 객체
+	 */
+	public void join(MemberDetail MemberDetail);
+
 }

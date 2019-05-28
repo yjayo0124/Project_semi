@@ -3,14 +3,16 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-   
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>   
     
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<div class="wrap">
+<div class="wrap" >
 <h3 class="text-center">회원가입</h3>
 
-<div class="container" style="width: 60%;">
+<div class="container  text-center" style="width: 60%;">
 <hr>
 <form action="/member/join" method="post">
 	<div class="form-group">

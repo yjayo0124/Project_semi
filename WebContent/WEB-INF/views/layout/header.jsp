@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -19,72 +19,72 @@
 	
 
 <script type="text/javascript">
-	$(document).on('mouseover', '.MainMenu span', function() {
-		$('.SubMenu').slideDown(300);
-	});
-	$(document).on('mouseover', 'div', function() {
-		if (!$(this).hasClass('MainMenu')) {
-			$('.SubMenu').slideUp(300);
-		}
-	});
+   $(document).on('mouseover', '.MainMenu span', function() {
+      $('.SubMenu').slideDown(300);
+   });
+   $(document).on('mouseover', 'div', function() {
+      if (!$(this).hasClass('MainMenu')) {
+         $('.SubMenu').slideUp(300);
+      }
+   });
 </script>
 
 <style type="text/css">
 h1 {
-	text-align: center;
+   text-align: center;
 }
 
 a {
-	color: black;
-	text-decoration: none;
+   color: black;
+   text-decoration: none;
 }
 
 .right {
-	text-align: right;
+   text-align: right;
 }
 
 li {
-	list-style: none;
+   list-style: none;
 }
 
 body {
-	width: 90%;
-	margin: 0 auto;
+   width: 90%;
+   margin: 0 auto;
 }
 
 .MainMenu {
-	position: relative;
-	width: 100%;
-	margin-bottom: 20px;
-	text-align: center;
-	height: 40px;
+   position: relative;
+   width: 100%;
+   margin-bottom: 20px;
+   text-align: center;
+   height: 40px;
 }
 
 .MainMenu:after {
-	content: "";
-	display: block;
-	clear: both;
+   content: "";
+   display: block;
+   clear: both;
 }
 
 .menu>li {
-	float: left;
-	width: 20%;
-	line-height: 40px;
+   float: left;
+   width: 20%;
+   line-height: 40px;
 }
 
 .menu span {
-	font-size: 20px;
-	font-weight: bold;
+   font-size: 20px;
+   font-weight: bold;
 }
 
 .SubMenu {
-	position: absolute;
-	top: 40px;
-	display: none;
-	width: 20%;
-	padding: 20px 0;
-	border-bottom: 1px solid #ccc;
-	background: #fff;
+   position: absolute;
+   top: 40px;
+   display: none;
+   width: 20%;
+   padding: 20px 0;
+   border-bottom: 1px solid #ccc;
+   background: #fff;
 }
 </style>
 </head>
@@ -117,7 +117,7 @@ body {
 		<ul class="menu">
 			<li><span>사이트소개</span>
 				<ul class="SubMenu">
-					<li id="nop">낚시모아 소개</li>
+          <li id="nop"><a herf="/site">낚시모아 소개</a></li>
 					<li id="nop">공지사항</li>
 					<li id="nop">모아이벤트</li>
 					<li id="nop">&nbsp;</li>
@@ -153,6 +153,3 @@ body {
 		</ul>
 	</div>
 	<hr>
-
-</body>
-</html>

@@ -1,41 +1,45 @@
 package web.controller.board.free;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class FreeViewController
- */
-@WebServlet("/FreeViewController")
+import web.dto.FreeBoard;
+import web.service.board.free.FreeService;
+import web.service.board.free.FreeServiceImpl;
+
+@WebServlet("/board/free/view")
 public class FreeViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FreeViewController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
+	private FreeService boardService = new FreeServiceImpl();
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//게시글 번호 파싱
+		FreeBoard viewBoard = boardService.getBoardno(req);
+		
+		//게시글 조회
+		viewBoard = boardService.view(viewBoard);
+
+		//MODEL로 게시글 전달
+		req.setAttribute("viewBoard", viewBoard);
+		
+		//첨부파일 전달
+		FreeBoardFile boardFile = boardService.viewFile(viewBoard);
+		req.setAttribute("boardFile", boardFile);
+		
+		//VIEW 지정
+		req.getRequestDispatcher("/WEB-INF/views/board/view.jsp").forward(req, resp);
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+	
+	
 }

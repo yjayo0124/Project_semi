@@ -11,27 +11,27 @@
 #sub1 {
 	font-size : 20px ;
 	float: left ;
-	margin-left: 370 ;
+	margin-left: 370px ;
 }
 #sub2 {
 	font-size : 20px ;
 	float: left ;
-	margin-left: 100 ;
+	margin-left: 100px ;
 }
 #sub3 {
 	font-size : 20px ;
 	float: left ;
-	margin-left: 100 ;
+	margin-left: 100px ;
 }
 #sub4 {
 	font-size : 20px ;
 	float: left ;
-	margin-left: 100 ;
+	margin-left: 100px ;
 }
 #sub5 {
 	font-size : 20px ;
 	float: left ;
-	margin-left: 100 ;
+	margin-left: 100px ;
 }
 #footer {
 	background-color: 666666 ;
@@ -39,8 +39,8 @@
 	
 }
 #ftext {
-	margin-left: 20% ;
-	margin-right: 20% ;
+	margin-left: 300px ;
+	margin-right: 300px ;
 }
 
 a:link { text-decoration: none ; }
@@ -72,7 +72,7 @@ a:active { text-decoration: none ; color: black;}
 이상이 사라지지 바이며, 새 인간은 보배를 위하여서.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;노년에게서 피어나는 얼마나 그들을 관현악이며, 사막이다.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;창공에 길을 산야에 얼마나 밝은 힘있다.
-</div>
+</div><div style="clear: both;"></div>
 </footer>
 
 </body>

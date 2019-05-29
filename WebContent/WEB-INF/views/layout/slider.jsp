@@ -101,9 +101,9 @@ $(document).ready(function() {
 
 <div id="sliderbox">
 	<ul id="slider">
-		<li><img src="/img/1.png" /></li>
-		<li><img src="/img/2.png" /></li>
-		<li><img src="/img/3.png" /></li>
+		<li><img src="/imgs/1.png" /></li>
+		<li><img src="/imgs/2.png" /></li>
+		<li><img src="/imgs/3.png" /></li>
 	</ul>
 </div>
 <br>

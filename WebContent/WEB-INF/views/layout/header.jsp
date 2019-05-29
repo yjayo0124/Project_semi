@@ -120,7 +120,7 @@ body {
 			<li><span>사이트소개</span>
 				<ul class="SubMenu">
 					<li id="nop"><a href="/site">낚시모아 소개</a></li>
-					<li id="nop">공지사항</li>
+					<li id="nop"><a href="/board/notice/list">공지사항</a></li>
 					<li id="nop">&nbsp;</li>
 				</ul></li>
 			<li><span>낚시정보</span>

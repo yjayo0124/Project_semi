@@ -14,6 +14,7 @@
 
 <!-- Bootstrap 3 -->
 <link rel="stylesheet"
+
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -21,8 +22,10 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
+
 <!-- 썸머 노트 -->
 <!-- include libraries(jQuery, bootstrap) -->
+
 <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> --> 
 <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>  -->
@@ -31,7 +34,9 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 <!-- summer note korean language pack -->
+
 <script src="resources/summernote/lang/summernote-ko-KR.js"></script>
+
 
 
 <script type="text/javascript">
@@ -162,7 +167,7 @@ body {
 				</ul></li>
 			<li><span>낚시장터</span>
 				<ul class="SubMenu">
-					<li id="nop">삽니다 게시판</li>
+					<li id="nop"><a href="/buy/list">삽니다 게시판</a></li>
 					<li id="nop">팝니다 게시판</li>
 					<li id="nop">&nbsp;</li>
 				</ul></li>

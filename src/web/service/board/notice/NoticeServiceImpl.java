@@ -78,7 +78,24 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public void writeNotice(HttpServletRequest req) {
-		// TODO Auto-generated method stub
+		
+		//공지사항 객체 선언
+		Notice notice = new Notice();
+		
+		String notice_writer = (String) req.getSession().getAttribute("member_nick");  //세션객체에서 닉네임가져와서 공지사항 글쓴이에 넣고
+		String notice_writer_id = (String) req.getSession().getAttribute("member_id"); //세션객체에서 id가져와서 공지사항을 쓴 사람 id에 넣는다.
+		//parameter를 통해 값을 위 객체에 넣는다
+		notice.setNotice_no(noticeDao.selectNoticeno());
+		notice.setNotice_title(req.getParameter("notice_title"));
+		notice.setNotice_writer(notice_writer); //글쓴 닉네임
+		notice.setNotice_content(req.getParameter("notice_content"));
+		notice.setMember_id(notice_writer_id); //글쓴사람 id
+		
+		
+		//값을 넣은 객체를 insert메소드로 보낸다.
+		noticeDao.insert(notice);
+		
+		
 		
 	}
 

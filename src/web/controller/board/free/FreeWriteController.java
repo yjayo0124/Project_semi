@@ -8,35 +8,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.dto.FreeBoard;
 import web.service.board.free.FreeService;
 import web.service.board.free.FreeServiceImpl;
 
-@WebServlet("/board/free/view")
-public class FreeViewController extends HttpServlet {
+@WebServlet("/board/free/write")
+public class FreeWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	
 	private FreeService boardService = new FreeServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//게시글 번호 파싱
-		FreeBoard viewBoard = boardService.getBoardno(req);
-		
-		//게시글 조회
-		viewBoard = boardService.view(viewBoard);
-
-		//MODEL로 게시글 전달
-		req.setAttribute("viewBoard", viewBoard);
-		
-		//첨부파일 전달
-//		FreeFile boardFile = boardService.viewFile(viewBoard);
-//		req.setAttribute("boardFile", boardFile);
+		//로그인 되어있지 않으면 리다이렉트 
+		if( req.getSession().getAttribute("login") == null ) {
+			resp.sendRedirect("/main");
+			return;
+		}
 		
 		//VIEW 지정
-		req.getRequestDispatcher("/WEB-INF/views/board/free/view.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/board/free/write.jsp")
+			.forward(req, resp);
+		
+	}
+	
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//작성글 삽입
+		boardService.write(req);
+		
+		//목록으로 리다이렉션
+		resp.sendRedirect("/board/free/list");
 		
 	}
 

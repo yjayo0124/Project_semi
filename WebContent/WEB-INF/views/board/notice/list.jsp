@@ -49,10 +49,11 @@ table, th {
 <hr>
 
 
-<!-- if문걸어서 관리자에게만 버튼 보이도록 구현하기  -->
-<div id="btnBox" class="text-right">
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
+<c:if test="${res eq 1 }"><!-- 1이면 보이는 버튼  -->
+<div style="padding-right:50px;">
+		<button style="float: right;" id="btnWrite">글쓰기</button>
 </div>
+</c:if>
 
 <br>
 <table class="table table-hover table-condensed ">

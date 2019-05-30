@@ -4,19 +4,25 @@ import java.sql.Date;
 
 public class FishInfo {
 	private int fish_no ;
+	private String fish_name ;
 	private String fish_type ;
 	private String fish_sesson ;
-	private String fish_length ;
+	private String fish_min_length ;
 	private String fish_care ;
 	private String fish_content ;
 	private Date fish_written_date ;
-	private int fish_file_idx ;
 	private String member_id ;
 	public int getFish_no() {
 		return fish_no;
 	}
 	public void setFish_no(int fish_no) {
 		this.fish_no = fish_no;
+	}
+	public String getFish_name() {
+		return fish_name;
+	}
+	public void setFish_name(String fish_name) {
+		this.fish_name = fish_name;
 	}
 	public String getFish_type() {
 		return fish_type;
@@ -30,11 +36,11 @@ public class FishInfo {
 	public void setFish_sesson(String fish_sesson) {
 		this.fish_sesson = fish_sesson;
 	}
-	public String getFish_length() {
-		return fish_length;
+	public String getFish_min_length() {
+		return fish_min_length;
 	}
-	public void setFish_length(String fish_length) {
-		this.fish_length = fish_length;
+	public void setFish_min_length(String fish_length) {
+		this.fish_min_length = fish_length;
 	}
 	public String getFish_care() {
 		return fish_care;
@@ -54,12 +60,6 @@ public class FishInfo {
 	public void setFish_written_date(Date fish_written_date) {
 		this.fish_written_date = fish_written_date;
 	}
-	public int getFish_file_idx() {
-		return fish_file_idx;
-	}
-	public void setFish_file_idx(int fish_file_idx) {
-		this.fish_file_idx = fish_file_idx;
-	}
 	public String getMember_id() {
 		return member_id;
 	}
@@ -68,12 +68,11 @@ public class FishInfo {
 	}
 	@Override
 	public String toString() {
-		return "FishInfo [fish_no=" + fish_no + ", fish_type=" + fish_type + ", fish_sesson=" + fish_sesson
-				+ ", fish_length=" + fish_length + ", fish_care=" + fish_care + ", fish_content=" + fish_content
-				+ ", fish_written_date=" + fish_written_date + ", fish_file_idx=" + fish_file_idx + ", member_id="
+		return "FishInfo [fish_no=" + fish_no + ", fish_name=" + fish_name + ", fish_type=" + fish_type
+				+ ", fish_sesson=" + fish_sesson + ", fish_length=" + fish_min_length + ", fish_care=" + fish_care
+				+ ", fish_content=" + fish_content + ", fish_written_date=" + fish_written_date + ", member_id="
 				+ member_id + "]";
 	}
-	
 	
 	
 	

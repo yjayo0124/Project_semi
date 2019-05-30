@@ -51,7 +51,7 @@ $(document).ready(function() {
 <tr><td class="info">닉네임</td><td>${member_nick }</td></tr>
 <tr><td class="info">제목</td><td><input type="text" name="free_board_title" style="width:100%"/></td></tr>
 <tr><td class="info" colspan="2">본문</td></tr>
-<tr><td colspan="2"><textarea id="free_board_content" name="free_board_content" rows="10" cols="100"></textarea></td></tr>
+<tr><td colspan="2"><textarea id="summernote" name="free_board_content" rows="10" cols="100"></textarea></td></tr>
 </table>
 
 <label>첨부파일 : <input type="file" name="file" /></label>

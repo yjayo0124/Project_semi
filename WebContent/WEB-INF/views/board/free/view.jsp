@@ -14,10 +14,13 @@ $(document).ready(function() {
 	
 	//수정버튼 동작
 	$("#btnUpdate").click(function() {
+		$(location).attr("href", "/board/free/update?free_board_no=${viewBoard.free_board_no }");
 	});
 
 	//삭제버튼 동작
 	$("#btnDelete").click(function() {
+		$(location).attr("href", "/board/free/delete?free_board_no=${viewBoard.free_board_no }");
+
 	});
 	
 });
@@ -59,15 +62,21 @@ $(document).ready(function() {
 
 <tr><td colspan="4">${viewBoard.free_board_content }</td></tr>
 
+<tr>
+<td class="info">첨부파일</td><td colspan="3"><a href="/board/free/download?fileno=${boardFile.free_board_file_no }">${boardFile.free_board_file_origin_name }</a>
+</td>
+</tr>
+
 </table>
 
-<div>
-<a href="/file/download?fileno=${boardFile.fileno }">${boardFile.originName }</a>
+<%-- <div>
+<h2>파일</h2>
+<a href="/board/free/download?fileno=${boardFile.free_board_file_no }">${boardFile.free_board_file_origin_name }</a>
 </div>
-
+ --%>
 <div class="text-center">	
 	<button id="btnList" class="btn btn-primary">목록</button>
-	<c:if test="${writer eq viewBoard.free_board_writer }">
+	<c:if test="${member_id eq viewBoard.free_board_writer }">
 	<button id="btnUpdate" class="btn btn-info">수정</button>
 	<button id="btnDelete" class="btn btn-danger">삭제</button>
 	</c:if>

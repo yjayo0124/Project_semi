@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import web.dto.FreeBoard;
+import web.dto.FreeFile;
 import web.util.Paging;
 
 public interface FreeService {
@@ -47,7 +48,7 @@ public interface FreeService {
 	 */
 	public FreeBoard view(FreeBoard viewBoard);
 
-	public void write(HttpServletRequest req);
+	
 	
 	/**
 	 * 게시글 작성
@@ -58,6 +59,25 @@ public interface FreeService {
 	 * @param req - 요청정보 객체(게시글내용 + 첨부파일)
 	 * 
 	 */
+	public void write(HttpServletRequest req);
+
+	
+	
+	
+	/**
+	 * 첨부파일 얻기
+	 * 
+	 * @param board - 첨부파일을 조회할 게시글 번호 객체
+	 * @return BoardFile - 게시글에 첨부된 파일 정보
+	 */
+	public FreeFile viewFile(FreeBoard viewBoard);
+
+	public boolean checkWriter(HttpServletRequest req);
+
+	public void update(HttpServletRequest req);
+
+	public void delete(FreeBoard board);
+	
 
 	
 }

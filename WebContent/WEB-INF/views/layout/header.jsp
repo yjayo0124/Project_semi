@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- jQuery 2.2.4 -->
+
 <script type="text/javascript"
    src="http://code.jquery.com/jquery-2.2.4.js"></script>
 
@@ -24,20 +24,23 @@
 <!-- 썸머 노트 -->
 <!-- include libraries(jQuery, bootstrap) -->
 <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
-<!--  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>   -->
+
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> --> 
+
 <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>  -->
 
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 <!-- summer note korean language pack -->
-<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 
-
+<script src="resources/summernote/lang/summernote-ko-KR.js"></script>
 
 
 
 <script type="text/javascript">
+
+
 	$(document).on('mouseover', '.MainMenu span', function() {
 		$('.SubMenu').slideDown(300);
 	});
@@ -47,20 +50,22 @@
 		}
 	});
 	
-	
+
 	$(document).ready(function() {
-        
-        $('#summernote').summernote({
-           height: 300,          // 기본 높이값
-            minHeight: null,      // 최소 높이값(null은 제한 없음)
-            maxHeight: null,      // 최대 높이값(null은 제한 없음)
-            focus: true,          // 페이지가 열릴때 포커스를 지정함
-            lang: 'ko-KR'         // 한국어 지정(기본값은 en-US)
-        });
-        
-     }) 
+		
+		$('#summernote').summernote({
+			height: 300,          // 기본 높이값
+		    minHeight: null,      // 최소 높이값(null은 제한 없음)
+		    maxHeight: null,      // 최대 높이값(null은 제한 없음)
+		    focus: true,          // 페이지가 열릴때 포커스를 지정함
+		    lang: 'ko-KR'         // 한국어 지정(기본값은 en-US)
+		});
+		
+	})
+
 	
-	
+
+
 </script>
 
 <style type="text/css">

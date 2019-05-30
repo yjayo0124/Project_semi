@@ -1,6 +1,6 @@
-package web.util;
+package web.util.festival;
 
-public class Festival_Paging {
+public class FestivalPaging {
 	private int curPage;	//현재 페이지 번호 (현재 선택한 페이지)
 
 	private int totalCount;	//총 게시글 수 (DB 조회 결과로 얻어옴)
@@ -18,7 +18,7 @@ public class Festival_Paging {
 	//	curPage == 1
 	//	pageCount == 10
 	//	listCount == 10
-	public Festival_Paging(int totalCount) {
+	public FestivalPaging(int totalCount) {
 		this.setTotalCount(totalCount);
 		
 		makePaging();
@@ -27,7 +27,7 @@ public class Festival_Paging {
 	// 총 게시글 수와 현재 페이지를 입력하는 생성자
 	//	pageCount == 10
 	//	listCount == 10
-	public Festival_Paging(int totalCount, int curPage) {
+	public FestivalPaging(int totalCount, int curPage) {
 		this.setTotalCount(totalCount);
 		this.setCurPage(curPage);
 		
@@ -36,7 +36,7 @@ public class Festival_Paging {
 
 	// 총 게시글 수와 현재 페이지, 보여지는 게시글 수를 입력하는 생성자
 	//	pageCount == 10
-	public Festival_Paging(int totalCount, int curPage, int listCount) {
+	public FestivalPaging(int totalCount, int curPage, int listCount) {
 		this.setTotalCount(totalCount);
 		this.setCurPage(curPage);
 		this.setListCount(listCount);
@@ -45,7 +45,7 @@ public class Festival_Paging {
 	}
 
 	// 총 게시글 수와 현재 페이지, 보여지는 게시글 수, 페이지 수를 입력하는 생성자
-	public Festival_Paging(int totalCount, int curPage, int listCount, int pageCount) {
+	public FestivalPaging(int totalCount, int curPage, int listCount, int pageCount) {
 		this.setTotalCount(totalCount);
 		this.setCurPage(curPage);
 		this.setListCount(listCount);
@@ -61,7 +61,7 @@ public class Festival_Paging {
 		// 기본값 설정
 		if(curPage == 0)	setCurPage(1);	//기본값으로 첫 페이지(1) 세팅
 		if(pageCount == 0)	setPageCount(10); //한 화면에 보이는 페이지수 기본값(10) 세팅
-		if(listCount == 0)	setListCount(10); //한 화면에 보이는 게시글수 기본값(10) 세팅
+		if(listCount == 0)	setListCount(5); //한 화면에 보이는 게시글수 기본값(10) 세팅
 		
 		// 총 페이지수 계산
 		totalPage = totalCount / listCount;

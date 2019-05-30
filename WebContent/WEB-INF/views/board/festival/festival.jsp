@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <!-- jQuery 2.2.4 -->
@@ -110,6 +113,10 @@ padding-inline-start: 0px;
 	line-height: 50px;
 	background-color: #757575;
 }
+.div_img {
+	width:100%;
+	height: 100%
+}
 </style>
 </head>
 <body>
@@ -132,31 +139,33 @@ padding-inline-start: 0px;
 		</div>
 		<br><br><br><br>
 
+<c:forEach items="${list}" var="i">
 		<div class="event">
 			<div class="event_img">
-			<img src="/imgs/fishing.jpg" alt="이미지"></img>
+			<img src="/imgs/fishing.jpg" alt="이미지" class="div_img"></img>
 			</div>
 
 			<div class="event_content">
 				<div class="event_title">
-					<span>낚시모아 이벤트 제목</span>
+					<span>${i.festival_title }</span>
 				</div>
 				<div class="event_text">
-					<span>없으면 공자는 풍부하게 맺어, 용감하고 인간의 찾아다녀도, 찬미를 얼음에 위하여서. 불어 튼튼하며, 것이 피고 두손을 피는 웅대한 그들은 꽃 때문이다. 모래뿐일 싶이 끓는 이성은 피어나는 부패뿐이다. 커다란 일월과 싶이 간에 반짝이는 투명하되 발휘하기 하여도 피다.</span>
+					<span>${i.festival_content }</span>
 				</div>
 				<div class="event_bottom">
-					<div class="event_date">2019.01.01 ~ 2020.01.01</div>
-					<div class="event_detail"><a href="/board/festival/detail" style="color: white;">상세보기</a></div>
+					<div class="event_date">${i.festival_start } ~ ${i.festival_end }</div>
+					<div class="event_detail"><a href="/board/festival/detail?festival_board_no=${i.festival_board_no }" style="color: white;">상세보기</a></div>
 					<div></div>
 				</div>
 			</div>
 		</div>
+		<br>
+</c:forEach>
 		<br><br>
 		<div style="padding-right:50px;">
 		<button style="float: right;" id="btnWrite">글쓰기</button>
 		</div>
 	</div>
-	
 <c:import url="/WEB-INF/views/layout/festival/festival_paging.jsp" />
 </body>
 </html>

@@ -9,38 +9,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import web.dto.FreeBoard;
-import web.dto.FreeFile;
 import web.service.board.free.FreeService;
 import web.service.board.free.FreeServiceImpl;
 
-@WebServlet("/board/free/view")
-public class FreeViewController extends HttpServlet {
+/**
+ * Servlet implementation class FreeDeleteController
+ */
+@WebServlet("/board/free/delete")
+public class FreeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
+	//BoardService 객체
 	private FreeService boardService = new FreeServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//게시글 번호 파싱
-		FreeBoard viewBoard = boardService.getBoardno(req);
+		FreeBoard board = boardService.getBoardno(req);
 		
-		//게시글 조회
-		viewBoard = boardService.view(viewBoard);
-
-		//MODEL로 게시글 전달
-		req.setAttribute("viewBoard", viewBoard);
 		
-		//첨부파일 전달
-		FreeFile boardFile = boardService.viewFile(viewBoard);
-		req.setAttribute("boardFile", boardFile);
+		boardService.delete(board);
 		
-		//VIEW 지정
-		req.getRequestDispatcher("/WEB-INF/views/board/free/view.jsp").forward(req, resp);
+		//목록으로 리다이렉트
+		resp.sendRedirect("/board/free/list");
 		
 	}
-
-	
-	
 }

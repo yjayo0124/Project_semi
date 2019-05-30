@@ -60,4 +60,12 @@ public interface FreeDao {
 	
 	public FreeFile selectFile(FreeBoard board);
 
+	public FreeFile selectByFileno(int fileno);
+
+	public void update(FreeBoard board);
+
+	public void delete(FreeBoard board);
+
+	public void deleteFile(FreeBoard board);
+
 }

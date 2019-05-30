@@ -162,7 +162,7 @@ public class FreeDaoImpl implements FreeDao {
 				viewBoard.setFree_board_hit( rs.getInt("free_board_hit") );
 				viewBoard.setFree_board_written_date( rs.getDate("free_board_written_date") );
 				viewBoard.setFree_board_comment_no( rs.getInt("free_board_comment_no") );
-				viewBoard.setFree_board_file_idx( rs.getInt("free_board_comment_no") );
+				viewBoard.setFree_board_file_idx( rs.getInt("free_board_file_idx") );
 				viewBoard.setMember_id( rs.getString("member_id") );
 				
 			}
@@ -225,7 +225,7 @@ public class FreeDaoImpl implements FreeDao {
 		String sql = "";
 		sql += "INSERT INTO Free_board ( free_board_no, free_board_title, free_board_content, free_board_writer, ";
 		sql	+= " free_board_hit, free_board_written_date, free_board_comment_no, free_board_file_idx, member_id) ";
-		sql += " VALUES (?, ?, ?, ?, 0, ?, ?, ?, ?)";
+		sql += " VALUES (?, ?, ?, ?, 0, sysdate, ?, ?, ?)";
 		
 		try {
 			//DB작업
@@ -234,10 +234,9 @@ public class FreeDaoImpl implements FreeDao {
 			ps.setString(2, board.getFree_board_title());
 			ps.setString(3, board.getFree_board_content());
 			ps.setString(4, board.getFree_board_writer());
-			ps.setDate(5,(java.sql.Date) board.getFree_board_written_date());
-			ps.setInt(6, board.getFree_board_comment_no());
-			ps.setInt(7, board.getFree_board_file_idx());
-			ps.setString(8, board.getMember_id());
+			ps.setInt(5, board.getFree_board_comment_no());
+			ps.setInt(6, board.getFree_board_file_idx());
+			ps.setString(7, board.getMember_id());
 
 
 			ps.executeUpdate();
@@ -260,10 +259,9 @@ public class FreeDaoImpl implements FreeDao {
 	public void insertFile(FreeFile boardFile) {
 		//다음 게시글 번호 조회 쿼리
 		String sql = "";
-		sql += "INSERT INTO Free_File (  free_board_file_idx,free_board_file_no, free_board_file_origin_name, ";
+		sql += "INSERT INTO Free_File ( free_board_file_idx,free_board_file_no, free_board_file_origin_name, ";
 		sql	+= " free_board_file_stored_name, free_board_file_upload_date,  free_board_no)";  
-				
-		sql += " VALUES (Freefile_seq.nextval, ?, ?, ?, ?, ?)";
+		sql += " VALUES (Free_File_seq.nextval, ?, ?, ?, sysdate, ?)";
 		
 		try {
 			//DB작업
@@ -271,7 +269,7 @@ public class FreeDaoImpl implements FreeDao {
 			ps.setInt(1, boardFile.getFree_board_file_no());
 			ps.setString(2, boardFile.getFree_board_file_origin_name());
 			ps.setString(3, boardFile.getFree_board_file_stored_name());
-			ps.setDate(4, (java.sql.Date) boardFile.getFree_board_file_upload_date());
+			ps.setInt(4, boardFile.getFree_board_no());
 
 			ps.executeUpdate();
 			
@@ -310,7 +308,7 @@ public class FreeDaoImpl implements FreeDao {
 				boardFile.setFree_board_file_no( rs.getInt("free_board_file_no") );
 				boardFile.setFree_board_file_origin_name( rs.getString("free_board_file_origin_name") );
 				boardFile.setFree_board_file_stored_name( rs.getString("free_board_file_stored_name") );
-				boardFile.setFree_board_file_upload_date( rs.getDate("free_board_file_written_date") );
+				boardFile.setFree_board_file_upload_date( rs.getDate("free_board_file_upload_date") );
 				boardFile.setFree_board_no( rs.getInt("free_board_no") );
 				
 			}
@@ -332,4 +330,152 @@ public class FreeDaoImpl implements FreeDao {
 		
 	}
 
+	@Override
+	public FreeFile selectByFileno(int fileno) {
+	
+		String sql = "";
+		sql += "SELECT * FROM Free_File";
+		sql += " WHERE free_board_file_no = ?";
+		
+		//DB 객체
+		PreparedStatement ps = null; 
+		ResultSet rs = null;
+		
+		FreeFile boardFile = new FreeFile();
+		
+		try {
+			//DB작업
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, fileno);
+
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+			
+				boardFile.setFree_board_file_no( rs.getInt("free_board_file_no") );
+				boardFile.setFree_board_no( rs.getInt("free_board_no") );
+				boardFile.setFree_board_file_origin_name( rs.getString("free_board_file_origin_name") );
+				boardFile.setFree_board_file_stored_name( rs.getString("free_board_file_stored_name") );
+				boardFile.setFree_board_file_upload_date( rs.getDate("free_board_file_upload_date") );
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				//DB객체 닫기
+				if(ps!=null)	ps.close();
+				if(rs!=null)	rs.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return boardFile;
+	}
+
+	@Override
+	public void update(FreeBoard board) {
+//		System.out.println(board);
+		//다음 게시글 번호 조회 쿼리
+		String sql = "";
+		sql += "UPDATE Free_Board";
+		sql += " SET free_board_title = ?,";
+		sql += " 	free_board_content = ?";
+		sql += " WHERE free_board_no = ?";
+		
+		//DB 객체
+		PreparedStatement ps = null; 
+		
+		try {
+			//DB작업
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, board.getFree_board_title());
+			ps.setString(2, board.getFree_board_content());
+			ps.setInt(3, board.getFree_board_no());
+
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				//DB객체 닫기
+				if(ps!=null)	ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void delete(FreeBoard board) {
+		String sql = "";
+		sql += "DELETE Free_Board";
+		sql += " WHERE free_board_no = ?";
+		
+		//DB 객체
+		PreparedStatement ps = null; 
+		
+		try {
+			//DB작업
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, board.getFree_board_no());
+
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				//DB객체 닫기
+				if(ps!=null)	ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	@Override
+	public void deleteFile(FreeBoard board) {
+		String sql = "";
+		sql += "DELETE Free_File";
+		sql += " WHERE free_board_no = ?";
+		
+		//DB 객체
+		PreparedStatement ps = null; 
+		
+		try {
+			//DB작업
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, board.getFree_board_no());
+
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				//DB객체 닫기
+				if(ps!=null)	ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+
+	
 }
+
+

@@ -13,15 +13,23 @@ import web.dto.FreeFile;
 import web.service.board.free.FreeService;
 import web.service.board.free.FreeServiceImpl;
 
-@WebServlet("/board/free/view")
-public class FreeViewController extends HttpServlet {
+/**
+ * Servlet implementation class FreeUpdateController
+ */
+@WebServlet("/board/free/update")
+public class FreeUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	
+	//BoardService 객체
 	private FreeService boardService = new FreeServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//로그인한 사람의 글이 아니면 중단하고 목록으로 리다이렉트
+//		if( !boardService.checkWriter(req) ) {
+//			resp.sendRedirect("/board/free/list");
+//			return;
+//		}
 		
 		//게시글 번호 파싱
 		FreeBoard viewBoard = boardService.getBoardno(req);
@@ -36,11 +44,21 @@ public class FreeViewController extends HttpServlet {
 		FreeFile boardFile = boardService.viewFile(viewBoard);
 		req.setAttribute("boardFile", boardFile);
 		
+		
 		//VIEW 지정
-		req.getRequestDispatcher("/WEB-INF/views/board/free/view.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/board/free/update.jsp").forward(req, resp);
 		
 	}
-
 	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//요청 파라미터 한글 인코딩 설정 : UTF-8
+		req.setCharacterEncoding("UTF-8");
+
+		boardService.update(req);
+		
+		resp.sendRedirect("/board/free/list");		
+	}
+
 	
 }

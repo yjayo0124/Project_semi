@@ -8,10 +8,11 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import web.dao.board.free.FreeDao;
 import web.dao.board.free.FreeDaoImpl;
@@ -38,10 +39,10 @@ public class FreeServiceImpl implements FreeService{
 			curPage = Integer.parseInt(param);
 		}
 		
-		// 전체 게시글 수
+		// �쟾泥� 寃뚯떆湲� �닔
 		int totalCount = freeDao.selectCntAll();
 		
-		// 페이징 객체 생성
+		// �럹�씠吏� 媛앹껜 �깮�꽦
 		Paging paging = new Paging(totalCount, curPage);
 //		System.out.println(paging); //TEST
 		
@@ -51,14 +52,14 @@ public class FreeServiceImpl implements FreeService{
 	@Override
 	public FreeBoard getBoardno(HttpServletRequest req) {
 		
-		// 전달파라미터 boardno 파싱
+		// �쟾�떖�뙆�씪誘명꽣 boardno �뙆�떛
 		String param = req.getParameter("free_board_no");
 		int boardno = 0;
 		if( param!=null && !"".equals(param) ) {
 			boardno = Integer.parseInt(param);
 		}
 		
-		//Board 객체 생성
+		//Board 媛앹껜 �깮�꽦
 		FreeBoard board = new FreeBoard();
 		board.setFree_board_no(boardno);
 		
@@ -68,10 +69,10 @@ public class FreeServiceImpl implements FreeService{
 	@Override
 	public FreeBoard view(FreeBoard viewBoard) {
 		
-		//게시글 조회수 +1
+		//寃뚯떆湲� 議고쉶�닔 +1
 		freeDao.updateHit(viewBoard);
 		
-		//게시글 조회 반환
+		//寃뚯떆湲� 議고쉶 諛섑솚
 		return freeDao.selectBoardByBoardno(viewBoard);
 	}
 
@@ -86,55 +87,55 @@ public class FreeServiceImpl implements FreeService{
 			return;
 			
 		} else {
-			//파일업로드를 사용하고 있을 경우
+			//�뙆�씪�뾽濡쒕뱶瑜� �궗�슜�븯怨� �엳�쓣 寃쎌슦
 			board = new FreeBoard();
 
-			//디스크팩토리
+			//�뵒�뒪�겕�뙥�넗由�
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 
-			//메모리처리 사이즈
+			//硫붾え由ъ쿂由� �궗�씠利�
 			factory.setSizeThreshold(1 * 1024 * 1024); //1MB
 
-			//임시 저장소
+			//�엫�떆 ���옣�냼
 			File repository=new File(req.getServletContext().getRealPath("tmp"));
 			factory.setRepository(repository);
 			
-			//업로드 객체 생성
+			//�뾽濡쒕뱶 媛앹껜 �깮�꽦
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			
-			//용량 제한 설정 : 10MB
+			//�슜�웾 �젣�븳 �꽕�젙 : 10MB
 			upload.setFileSizeMax(10 * 1024 * 1024);
 			
-			//form-data 추출 
+			//form-data 異붿텧 
 			List<FileItem> items = null;
 			try {
-				items = upload.parseRequest(req);
+				items = upload.parseRequest((RequestContext) req);
 				
 			} catch (FileUploadException e) {
 				e.printStackTrace();
 			}
 			
-			//파싱된 데이터 처리 반복자
+			//�뙆�떛�맂 �뜲�씠�꽣 泥섎━ 諛섎났�옄
 			Iterator<FileItem> iter = items.iterator();
 			
-			//요청정보 처리
+			//�슂泥��젙蹂� 泥섎━
 			while( iter.hasNext() ) {
 				FileItem item = iter.next();
 				
-				// 빈 파일 처리
+				// 鍮� �뙆�씪 泥섎━
 				if( item.getSize() <= 0 )	continue;
 				
-				// 빈 파일이 아닐 경우
+				// 鍮� �뙆�씪�씠 �븘�땺 寃쎌슦
 				if( item.isFormField() ) {
 					
 					try {
 						
-						//제목 처리
+						//�젣紐� 泥섎━
 						if( "free_board_title".equals( item.getFieldName() ) ) {
 								board.setFree_board_title( item.getString("utf-8") );
 						}
 						
-						//본문 처리
+						//蹂몃Ц 泥섎━
 						if( "free_board_content".equals( item.getFieldName() ) ) {
 							board.setFree_board_content( item.getString("utf-8") );
 						}
@@ -143,7 +144,7 @@ public class FreeServiceImpl implements FreeService{
 						e.printStackTrace();
 					}
 					
-					//작성자id 처리
+					//�옉�꽦�옄id 泥섎━
 					board.setFree_board_writer((String) req.getSession().getAttribute("member_id"));
 					
 				} else {
@@ -154,7 +155,7 @@ public class FreeServiceImpl implements FreeService{
 					System.out.println(u);
 					// -----------------
 					
-					//로컬 저장소 파일
+					//濡쒖뺄 ���옣�냼 �뙆�씪
 					String stored = item.getName() + "_" + u;
 					File up = new File(
 						req.getServletContext().getRealPath("upload")
@@ -166,10 +167,10 @@ public class FreeServiceImpl implements FreeService{
 //					boardFile.setFilesize(item.getSize());
 					
 					try {
-						// 실제 업로드
+						// �떎�젣 �뾽濡쒕뱶
 						item.write(up);
 						
-						// 임시 파일 삭제
+						// �엫�떆 �뙆�씪 �궘�젣
 						item.delete();
 						
 					} catch (Exception e) {
@@ -186,9 +187,9 @@ public class FreeServiceImpl implements FreeService{
 			board.setFree_board_no(boardno);
 			
 			if(board.getFree_board_title()==null || "".equals(board.getFree_board_title())) {
-				board.setFree_board_title("(제목없음)");
+				board.setFree_board_title("(�젣紐⑹뾾�쓬)");
 
-				//작성자id 처리
+				//�옉�꽦�옄id 泥섎━
 				board.setFree_board_writer((String) req.getSession().getAttribute("member_id"));
 			}
 

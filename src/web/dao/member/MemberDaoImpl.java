@@ -23,7 +23,7 @@ public class MemberDaoImpl implements MemberDao{
 			return -1;
 		} 
 
-		//쿼리 작성
+		//荑쇰━ �옉�꽦
 		String sql = "";
 		sql += "SELECT COUNT(*) FROM Member_Detail";
 		sql += " WHERE 1=1";
@@ -32,7 +32,7 @@ public class MemberDaoImpl implements MemberDao{
 		
 		int cnt = -1;
 		try {
-			//DB작업
+			//DB�옉�뾽
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, member.getMember_id());
 			ps.setString(2, member.getMember_pw());
@@ -48,7 +48,7 @@ public class MemberDaoImpl implements MemberDao{
 			e.printStackTrace();
 		} finally {
 			try {
-				//DB객체 닫기
+				//DB媛앹껜 �떕湲�
 				if(rs!=null)	rs.close();
 				if(ps!=null)	ps.close();
 				
@@ -68,14 +68,14 @@ public class MemberDaoImpl implements MemberDao{
 			return null;
 		}
 
-		//쿼리 작성
+		//荑쇰━ �옉�꽦
 		String sql = "";
 		sql += "SELECT * FROM Member_Detail";
 		sql += " WHERE 1=1";
 		sql += " AND member_id = ?";
 		
 		try {
-			//DB작업
+			//DB�옉�뾽
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, member.getMember_id());
 		
@@ -93,7 +93,7 @@ public class MemberDaoImpl implements MemberDao{
 			e.printStackTrace();
 		} finally {
 			try {
-				//DB객체 닫기
+				//DB媛앹껜 �떕湲�
 				if(rs!=null)	rs.close();
 				if(ps!=null)	ps.close();
 				
@@ -109,14 +109,14 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public void insert(MemberDetail member) {
 		
-		//쿼리작성
+		//荑쇰━�옉�꽦
 		String sql = "";
 		sql += "INSERT INTO Member_Detail ( member_id, member_pw, member_nick, member_code, member_name,";
 		sql += " member_gender, member_birthday, member_email, member_phone )";
 		sql += " VALUES( ?, ?, ?, Member_Detail_seq.nextval, ?, ?, ?, ?, ? )";
 		
 		try {
-			//DB작업
+			//DB�옉�뾽
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, member.getMember_id());
 			ps.setString(2, member.getMember_pw());
@@ -133,13 +133,42 @@ public class MemberDaoImpl implements MemberDao{
 			e.printStackTrace();
 		} finally {
 			try {
-				//DB객체 닫기
+				//DB媛앹껜 �떕湲�
 				if(ps!=null)	ps.close();
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+		
+	}
+
+	@Override
+	public int checkMemberCode(int member_code) {
+		
+		
+		String sql = " ";
+		sql = " SELECT member_group FROM member_detail WHERE member_code = ? ";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, member_code);
+			
+			rs = ps.executeQuery();
+		
+			while( rs.next() ) {
+				res = rs.getInt(1);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
 		
 	}
 

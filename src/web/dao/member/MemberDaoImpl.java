@@ -171,6 +171,38 @@ public class MemberDaoImpl implements MemberDao{
 		return res;
 		
 	}
-
+	public boolean idCheck(MemberDetail member) {
+		boolean check = false; 
+		String sql = "";
+		int count=0;
+		sql += " SELECT COUNT(*) FROM member_Detail";
+		sql += " WHERE member_id =?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getMember_id());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				count = rs.getInt(1);
+			} 
+			if(count==0) {
+				check = true; 
+			}
+			else {
+				check = false;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps !=null) ps.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return check; // 데이터베이스 오류
+	}
 	
 }

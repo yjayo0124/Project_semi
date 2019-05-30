@@ -20,4 +20,5 @@ public interface MemberDao {
 	//리턴값이 1이면 관리자 / 0이면 일반사용자!!!
 	public int checkMemberCode(int member_code);
 	
+	public boolean idCheck(MemberDetail member);
 }

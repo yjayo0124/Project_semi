@@ -13,6 +13,7 @@
  	margin-right: 300px ;
  	font-weight: 600px ;
  	font-size: 30px ;
+ 	width: 1300px ;
  }
  
  #img {
@@ -37,8 +38,8 @@
 <br>
 
 <div style="width: 1600px;">
-	<div style="width: 600px; height: 600px" id = img>
-	<img src="imgs\fishing.jpg" alt="Fishing" width="600px" height="600px">
+	<div style="width: 600px; height: 600px" id = "img">
+	<img src="/imgs/fishing.jpg" alt="Fishing" width="600px" height="600px">
 	</div>
 	<div style="width: 550px; height: 600px" id = text align="center">
 	<br><h2>소개글</h2><br>

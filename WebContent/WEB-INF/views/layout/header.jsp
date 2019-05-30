@@ -166,7 +166,7 @@ body {
 			<li><span>낚시정보</span>
 				<ul class="SubMenu">
 					<li id="nop"><a href="/board/search">낚시터 정보 검색</a></li>
-					<li id="nop">물고기 정보</li>
+					<li id="nop"><a href="/board/fish/info">물고기 정보</a></li>
 					<li id="nop"><a href="/board/festival">대회 & 축제</a></li>
 				</ul></li>
 			<li><span>낚시장터</span>

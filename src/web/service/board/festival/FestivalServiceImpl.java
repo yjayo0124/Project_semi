@@ -38,13 +38,28 @@ public class FestivalServiceImpl implements FestivalService{
 	@Override
 	public FestivalBoard getBoardno(HttpServletRequest req) {
 		
-		return null;
+		String param = req.getParameter("festival_board_no");
+		int boardno = 0;
+		if(param!=null && !"".contentEquals(param)) {
+			boardno = Integer.parseInt(param);
+		}
+		FestivalBoard board = new FestivalBoard();
+		board.setFestival_board_no(boardno);
+		return board;
 	}
 
 	@Override
 	public FestivalBoard view(FestivalBoard board) {
 		
-		return null;
+		return festivalDao.selectBoardByBoardno(board);
+	}
+
+	@Override
+	public void write(FestivalBoard board) {
+
+
+		festivalDao.insert(board);
+		
 	}
 
 }

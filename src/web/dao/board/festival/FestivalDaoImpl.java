@@ -82,6 +82,60 @@ public class FestivalDaoImpl implements FestivalDao{
 			return totalCount;
 	}
 
+	@Override
+	public FestivalBoard selectBoardByBoardno(FestivalBoard board) {
+		
+		String sql ="";
+		sql += "SELECT festival_board_no, festival_title, festival_content, festival_start, festival_end, festival_phone, festival_web, festival_host, festival_fee, festival_writtendate";
+		sql += " FROM festival_board";
+		sql += " WHERE festival_board_no = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, board.getFestival_board_no());
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				board.setFestival_board_no( rs.getInt("festival_board_no") );
+				board.setFestival_title(rs.getString("festival_title"));
+				board.setFestival_content(rs.getString("festival_content"));
+				board.setFestival_start(rs.getDate("festival_start"));
+				board.setFestival_end(rs.getDate("festival_end"));
+				board.setFestival_phone(rs.getString("festival_phone"));
+				board.setFestival_web(rs.getString("festival_web"));
+				board.setFestival_host(rs.getString("festival_host"));
+				board.setFestival_fee(rs.getString("festival_fee"));
+				board.setFestival_writtendate(rs.getDate("festival_writtendate"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return board;
+	}
+
+	@Override
+	public void insert(FestivalBoard board) {
+		
+		String sql ="";
+		sql += "INSERT INTO festival_board( festival_board_no, festival_title, festival_content, festival_start, festival_end, festival_phone, festival_web, festival_host, festival_fee, festival_writtendate )";
+		sql += " VALUES (Festival_Board_seq.nextval, '"+board.getFestival_title()+"', '"+board.getFestival_content()+"', '"+board.getFestival_start()+"', '"+board.getFestival_end()+"', '"+board.getFestival_phone()+"', '"+board.getFestival_web()+"', '"+board.getFestival_host()+"', '"+board.getFestival_fee()+"' )";
+
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.executeUpdate(sql);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	
 
 }

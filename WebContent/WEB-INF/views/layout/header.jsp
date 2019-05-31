@@ -37,7 +37,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 <!-- summer note korean language pack -->
 
-<script src="resources/summernote/lang/summernote-ko-KR.js"></script>
+<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 
 
 

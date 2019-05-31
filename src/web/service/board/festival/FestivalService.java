@@ -17,5 +17,7 @@ public interface FestivalService {
 	public FestivalBoard getBoardno(HttpServletRequest req);
 
 	public FestivalBoard view(FestivalBoard board);
+	
+	public void write(FestivalBoard board);
 
 }

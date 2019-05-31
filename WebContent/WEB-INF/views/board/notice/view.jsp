@@ -62,8 +62,10 @@ $(document).ready(function(){
 <br>
 <div class="text-center">	
 	<button id="btnList" class="btn btn-primary">목록</button>
-	<button id="btnUpdate" class="btn btn-info">수정</button>
-	<button id="btnDelete" class="btn btn-danger">삭제</button>
+	<c:if test="${writer_check eq true }">
+		<button id="btnUpdate" class="btn btn-info">수정</button>
+		<button id="btnDelete" class="btn btn-danger">삭제</button>
+	</c:if>
 </div>
 
 

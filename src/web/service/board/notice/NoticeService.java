@@ -21,8 +21,8 @@ public interface NoticeService {
 	
 	public void deleteNotice(Notice notice);
 	
-	public void updateNotice(HttpServletRequest req);
+	public void updateNotice(Notice notice);
 	
-	public boolean CheckWriter(HttpServletRequest req);
+	public boolean CheckWriter(String writer, HttpServletRequest req);
 	
 }

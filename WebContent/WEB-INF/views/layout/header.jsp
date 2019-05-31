@@ -64,6 +64,13 @@
 		    lang: 'ko-KR'         // 한국어 지정(기본값은 en-US)
 		});
 		
+		
+		
+		$("#btnDeLeteList").click(function() {
+			$(location).attr("href", "/board/notice/list");
+		});
+
+		
 	})
 
 	
@@ -72,6 +79,16 @@
 </script>
 
 <style type="text/css">
+
+html {
+
+    position: relative;
+	min-height: 100%;
+	margin: 0;
+
+
+}
+
 h1 {
 	text-align: center;
 }
@@ -93,6 +110,9 @@ body {
 	width: 100%;
 	min-width: 1000px;
 	margin: 0 auto;
+	min-heigh: 100%;
+	margin-bottom: 50px;
+	
 }
 
 .MainMenu {
@@ -130,6 +150,35 @@ body {
 	border-bottom: 1px solid #ccc;
 	background: #fff;
 }
+
+.footer{
+	
+	position : absolute;
+	left: 0;
+	height:0px;
+	bottom: 0;
+	width: 100%;
+	padding: 1px 0;
+	
+	border-top: 1px solid #d9d9d9;
+	background-color: #e7e7e7;
+	
+	
+}
+
+
+.footer .inner {
+    position: relative;
+    max-width: 960px;
+    width: 960px;
+    margin: 0 auto;
+    min-height: 40px;
+    padding: 15px 0;
+}
+
+}
+
+
 </style>
 </head>
 <body>

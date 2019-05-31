@@ -149,6 +149,7 @@ public class NoticeDaoImpl implements NoticeDao {
 				res.setNotice_content(rs.getString("notice_content"));
 				res.setNotice_hit(rs.getInt("notice_hit"));
 				res.setNotice_written_date(rs.getDate("notice_written_date"));
+				res.setMember_id(rs.getString("Member_id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -239,7 +240,7 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		String sql = " ";
 		sql += " UPDATE notice ";
-		sql += " SET title= ?, content= ? ";
+		sql += " SET notice_title= ?, notice_content= ? ";
 		sql += " WHERE notice_no = ? ";
 		
 		try {
@@ -294,5 +295,8 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		
 	}
+
+
+
 
 }

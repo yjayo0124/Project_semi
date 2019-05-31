@@ -8,46 +8,40 @@
  
  <style type="text/css">
  
-#title {
- 	margin-left: 320px ;
- 	margin-right: 300px ;
- 	font-weight: 600px ;
- 	font-size: 30px ;
- 	width: 1300px ;
- }
- 
- #img {
- 	margin-left : 360px ;
- 	float: left ;
- }
- 
- #text {
- 	margin-left : 90px ;
- 	float: left ;
- }
+img{
+	width: 500px;
+	height: 500px;
+	float: center;
+}
  
 </style>
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<br><br>
-<div id = "title">
-&nbsp;&nbsp;&nbsp;&nbsp;낚시모아를 소개합니다
-<hr>
-</div>
-<br>
+<div class="wrap">
 
-<div style="width: 1600px;">
-	<div style="width: 600px; height: 600px" id = "img">
-	<img src="/imgs/fishing.jpg" alt="Fishing" width="600px" height="600px">
+<div class="container" style="width: 1000px;">
+<div class="row" style="margin-bottom: 100px;">
+	<div class="col-md-12" id="text">
+	<h2>낚시모아를 소개합니다.</h2>
+	<hr>
 	</div>
-	<div style="width: 550px; height: 600px" id = text align="center">
-	<br><h2>소개글</h2><br>
-	장식하는 위하여 인간이 굳세게 그들의 귀는 온갖 것이다. 얼음 우리 가슴이 이는 것이다.<br><br>
-	미인을 따뜻한 인간은 말이다. 구하지 일월과 희망의 우리 그들에게 청춘의 칼이다.<br><br>
-	같지 대중을 만천하의 대한 귀는 이것이다. 그들을 불러 거친 자신과 때문이다. 있는 하여도 원대하고, 피어나기 청춘의 부패뿐이다. 얼음과 같이, 풀이 생명을 어디 작고 때문이다.
-	</div><div style="clear: both;"></div>
+	<!-- 제목  -->
+	<div class="col-md-6" id="img" style="padding : 10px;">
+	<img src="imgs/fishing.jpg" />
+	</div>
+	<!-- 사진  -->
+	<div class="col-md-6">
+		<h3><mark>낚시모아는요</mark></h3>
+		<br><br>
+		<br><br>
+		<p>낚시를 좋아하고 낚시를 사랑하는 사람들을 위한 커뮤니티 사이트입니다.</p>
+	</div>
+</div>
 </div>
 
-<br><br>
+</div>
+
+
+
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

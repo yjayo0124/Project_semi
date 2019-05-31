@@ -29,7 +29,18 @@ public class NoticeViewController extends HttpServlet {
 		Notice notice = noticeService.getNoticeno(req);
 		notice = noticeService.viewNotice(notice);
 		//    <--게시글번호로 가져온 글 객체를 좌변에 담음
-	
+//		System.out.println(notice);
+//		System.out.println(req.getSession().getAttribute("member_id"));
+
+		boolean writer_check;
+		//작성자==로그인객체 비교하는 메소드
+		writer_check = noticeService.CheckWriter(notice.getMember_id(), req);
+		//작성자 == 로그인객체라면 true 반환 아니라면 false반환
+		
+		// writer체크하는 model 전송 
+		req.setAttribute("writer_check", writer_check);
+		
+		//--ㅡmodel전송
 		req.setAttribute("notice", notice);
 			
 		//VIEW 지정

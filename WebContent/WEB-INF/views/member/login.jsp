@@ -38,7 +38,7 @@
 	<div class="text-left">
 		<div class="col-md-10">아직 낚시모아의 회원이 아니신가요?</div>
 		<div class="col-md-2">
-		<button type="button" class="btn btn-default btn-xs" onclick="location='/memeber/join'">회원가입 가기</button>
+		<button type="button" class="btn btn-default btn-xs" onclick="location='/member/join'">회원가입 가기</button>
 		</div>
 	</div>
 	

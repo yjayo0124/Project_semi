@@ -47,7 +47,7 @@ public class NoticeListController extends HttpServlet {
 		//관리자인이 일반사용자인지 확인한뒤 parameter로 값 보내기
 		int res = 0;
 			
-		System.out.println(req.getSession().getAttribute("member_id"));
+//		System.out.println(req.getSession().getAttribute("member_id"));
 		
 		if( req.getSession().getAttribute("member_id") != null) {
 		

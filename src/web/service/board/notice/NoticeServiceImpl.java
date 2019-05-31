@@ -13,8 +13,6 @@ public class NoticeServiceImpl implements NoticeService{
 
 	private NoticeDao noticeDao = new NoticeDaoImpl();
 	
-	
-	
 	@Override
 	public List getList(Paging paging) {
 	
@@ -101,35 +99,41 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public void deleteNotice(Notice notice) {
-		// TODO Auto-generated method stub
+		
+		
+		noticeDao.delete(notice);
+		
 		
 	}
 
 	@Override
-	public void updateNotice(HttpServletRequest req) {
-		// TODO Auto-generated method stub
+	public void updateNotice(Notice notice) {
+		
+		
+		
+		noticeDao.update(notice);
+		
+		
 		
 	}
 
 	@Override
-	public boolean CheckWriter(HttpServletRequest req) {
-		
-		//로그인한 세션 ID 얻기
-		String loginId = (String) req.getSession().getAttribute("member");
+	public boolean CheckWriter(String writer, HttpServletRequest req) {
 
-		//작성한 게시글 번호 얻기
-		Notice notice = getNoticeno(req);
+	
+		String loginId = (String) req.getSession().getAttribute("member_id");
 		
-		//게시글 얻어오기
-		notice = noticeDao.selectNoticeByNoticeno(notice);
-		
-		//게시글의 작성자와 로그인 아이디 비교
-		if( !loginId.equals(notice.getNotice_writer()) ) {
+		if( !loginId.equals(writer)) {
+			
 			return false;
-		}
+			//로그인아이디랑 글쓴이랑 다르다면
+			
+		} 
 		
 		return true;
-		
+		//로그인 아이디랑 글쓴이랑 같다면 
+
 	}
+	
 
 }

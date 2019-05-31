@@ -28,4 +28,6 @@ public interface NoticeDao {
 	
 	public void delete(Notice notice);
 	
+	
+	
 }

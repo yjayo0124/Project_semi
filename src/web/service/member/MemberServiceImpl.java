@@ -47,7 +47,7 @@ public class MemberServiceImpl implements MemberService{
 		MemberDetail member = new MemberDetail();
 		
 		member.setMember_id(req.getParameter("member_id"));
-		member.setMember_pw(req.getParameter("member_pw"));
+		member.setMember_pw(req.getParameter("member_pw2"));
 		member.setMember_nick(req.getParameter("member_nick"));
 		member.setMember_name(req.getParameter("member_name"));
 		member.setMember_gender(req.getParameter("member_gender"));

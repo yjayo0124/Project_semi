@@ -1,21 +1,21 @@
 package web.util;
 
 public class Paging {
-	private int curPage;	//ÇöÀç ÆäÀÌÁö ¹øÈ£ (ÇöÀç ¼±ÅÃÇÑ ÆäÀÌÁö)
+	private int curPage;	//í˜„ìž¬ íŽ˜ì´ì§€ ë²ˆí˜¸ (í˜„ìž¬ ì„ íƒí•œ íŽ˜ì´ì§€)
 
-	private int totalCount;	//ÃÑ °Ô½Ã±Û ¼ö (DB Á¶È¸ °á°ú·Î ¾ò¾î¿È)
-	private int listCount;	//ÇÑ ÆäÀÌÁö´ç Ãâ·ÂµÉ °Ô½Ã±Û ¼ö (Á÷Á¢ ¼³Á¤ÇÔ)
-	private int totalPage;	//ÃÑ ÆäÀÌÁö ¼ö (°è»êÀ¸·Î ¾Ë¾Æ³¿)
+	private int totalCount;	//ì´ ê²Œì‹œê¸€ ìˆ˜ (DB ì¡°íšŒ ê²°ê³¼ë¡œ ì–»ì–´ì˜´)
+	private int listCount;	//í•œ íŽ˜ì´ì§€ë‹¹ ì¶œë ¥ë  ê²Œì‹œê¸€ ìˆ˜ (ì§ì ‘ ì„¤ì •í•¨)
+	private int totalPage;	//ì´ íŽ˜ì´ì§€ ìˆ˜ (ê³„ì‚°ìœ¼ë¡œ ì•Œì•„ëƒ„)
 
-	private int pageCount;	//ÇÑ È­¸é¿¡ Ãâ·ÂµÉ ÆäÀÌÁö ¼ö (Á÷Á¢ ¼³Á¤ÇÔ)
-	private int startPage;	//È­¸é¿¡ º¸ÀÌ´Â ½ÃÀÛ ÆäÀÌÁö (°è»êÀ¸·Î ¾Ë¾Æ³¿)
-	private int endPage;	//È­¸é¿¡ º¸ÀÌ´Â ³¡ ÆäÀÌÁö (°è»êÀ¸·Î ¾Ë¾Æ³¿)
+	private int pageCount;	//í•œ í™”ë©´ì— ì¶œë ¥ë  íŽ˜ì´ì§€ ìˆ˜ (ì§ì ‘ ì„¤ì •í•¨)
+	private int startPage;	//í™”ë©´ì— ë³´ì´ëŠ” ì‹œìž‘ íŽ˜ì´ì§€ (ê³„ì‚°ìœ¼ë¡œ ì•Œì•„ëƒ„)
+	private int endPage;	//í™”ë©´ì— ë³´ì´ëŠ” ë íŽ˜ì´ì§€ (ê³„ì‚°ìœ¼ë¡œ ì•Œì•„ëƒ„)
 	
-	private int startNo;	//°Ô½Ã¹°¸®½ºÆ® Ã¹ ¹øÈ£
-	private int endNo;	//°Ô½Ã¹°¸®½ºÆ® ¸¶Áö¸· ¹øÈ£
+	private int startNo;	//ê²Œì‹œë¬¼ë¦¬ìŠ¤íŠ¸ ì²« ë²ˆí˜¸
+	private int endNo;	//ê²Œì‹œë¬¼ë¦¬ìŠ¤íŠ¸ ë§ˆì§€ë§‰ ë²ˆí˜¸
 	
 	
-	private String search; //°Ë»ö¾î 
+	private String search; //ê²€ìƒ‰ì–´ 
 	
 	public String getSearch() {
 		return search;
@@ -27,7 +27,7 @@ public class Paging {
 	
 	
 	
-	// ÃÑ °Ô½Ã±Û ¼ö¸¸ ÀÔ·ÂÇÏ´Â »ý¼ºÀÚ
+	// ì´ ê²Œì‹œê¸€ ìˆ˜ë§Œ ìž…ë ¥í•˜ëŠ” ìƒì„±ìž
 	//	curPage == 1
 	//	pageCount == 10
 	//	listCount == 10
@@ -37,7 +37,7 @@ public class Paging {
 		makePaging();
 	}
 
-	// ÃÑ °Ô½Ã±Û ¼ö¿Í ÇöÀç ÆäÀÌÁö¸¦ ÀÔ·ÂÇÏ´Â »ý¼ºÀÚ
+	// ì´ ê²Œì‹œê¸€ ìˆ˜ì™€ í˜„ìž¬ íŽ˜ì´ì§€ë¥¼ ìž…ë ¥í•˜ëŠ” ìƒì„±ìž
 	//	pageCount == 10
 	//	listCount == 10
 	public Paging(int totalCount, int curPage) {
@@ -47,7 +47,7 @@ public class Paging {
 		makePaging();
 	}
 
-	// ÃÑ °Ô½Ã±Û ¼ö¿Í ÇöÀç ÆäÀÌÁö, º¸¿©Áö´Â °Ô½Ã±Û ¼ö¸¦ ÀÔ·ÂÇÏ´Â »ý¼ºÀÚ
+	// ì´ ê²Œì‹œê¸€ ìˆ˜ì™€ í˜„ìž¬ íŽ˜ì´ì§€, ë³´ì—¬ì§€ëŠ” ê²Œì‹œê¸€ ìˆ˜ë¥¼ ìž…ë ¥í•˜ëŠ” ìƒì„±ìž
 	//	pageCount == 10
 	public Paging(int totalCount, int curPage, int listCount) {
 		this.setTotalCount(totalCount);
@@ -57,7 +57,7 @@ public class Paging {
 		makePaging();
 	}
 
-	// ÃÑ °Ô½Ã±Û ¼ö¿Í ÇöÀç ÆäÀÌÁö, º¸¿©Áö´Â °Ô½Ã±Û ¼ö, ÆäÀÌÁö ¼ö¸¦ ÀÔ·ÂÇÏ´Â »ý¼ºÀÚ
+	// ì´ ê²Œì‹œê¸€ ìˆ˜ì™€ í˜„ìž¬ íŽ˜ì´ì§€, ë³´ì—¬ì§€ëŠ” ê²Œì‹œê¸€ ìˆ˜, íŽ˜ì´ì§€ ìˆ˜ë¥¼ ìž…ë ¥í•˜ëŠ” ìƒì„±ìž
 	public Paging(int totalCount, int curPage, int listCount, int pageCount) {
 		this.setTotalCount(totalCount);
 		this.setCurPage(curPage);
@@ -67,36 +67,36 @@ public class Paging {
 		makePaging();
 	}
 
-	// ÆäÀÌÂ¡ Á¤º¸ »ý¼º
+	// íŽ˜ì´ì§• ì •ë³´ ìƒì„±
 	private void makePaging() {
-		if(totalCount == 0)	return; //°Ô½Ã±ÛÀÌ ¾ø´Â °æ¿ì
+		if(totalCount == 0)	return; //ê²Œì‹œê¸€ì´ ì—†ëŠ” ê²½ìš°
 		
-		// ±âº»°ª ¼³Á¤
-		if(curPage == 0)	setCurPage(1);	//±âº»°ªÀ¸·Î Ã¹ ÆäÀÌÁö(1) ¼¼ÆÃ
-		if(listCount == 0)	setListCount(10); //ÇÑ È­¸é¿¡ º¸ÀÌ´Â °Ô½Ã±Û¼ö ±âº»°ª(10) ¼¼ÆÃ
-		if(pageCount == 0)	setPageCount(10); //ÇÑ È­¸é¿¡ º¸ÀÌ´Â ÆäÀÌÁö¼ö ±âº»°ª(10) ¼¼ÆÃ
+		// ê¸°ë³¸ê°’ ì„¤ì •
+		if(curPage == 0)	setCurPage(1);	//ê¸°ë³¸ê°’ìœ¼ë¡œ ì²« íŽ˜ì´ì§€(1) ì„¸íŒ…
+		if(listCount == 0)	setListCount(10); //í•œ í™”ë©´ì— ë³´ì´ëŠ” ê²Œì‹œê¸€ìˆ˜ ê¸°ë³¸ê°’(10) ì„¸íŒ…
+		if(pageCount == 0)	setPageCount(10); //í•œ í™”ë©´ì— ë³´ì´ëŠ” íŽ˜ì´ì§€ìˆ˜ ê¸°ë³¸ê°’(10) ì„¸íŒ…
 		
-		// ÃÑ ÆäÀÌÁö¼ö °è»ê
+		// ì´ íŽ˜ì´ì§€ìˆ˜ ê³„ì‚°
 		totalPage = totalCount / listCount;
 		if( totalCount % listCount > 0 )	totalPage++;
 
-		// ÇöÀç ÆäÀÌÁö°¡ ÃÑ ÆäÀÌÁöº¸´Ù Å©°Ô ÀÔ·ÂµÇ¸é
-		// °­Á¦·Î ¸¶Áö¸·ÆäÀÌÁö °íÁ¤
+		// í˜„ìž¬ íŽ˜ì´ì§€ê°€ ì´ íŽ˜ì´ì§€ë³´ë‹¤ í¬ê²Œ ìž…ë ¥ë˜ë©´
+		// ê°•ì œë¡œ ë§ˆì§€ë§‰íŽ˜ì´ì§€ ê³ ì •
 		if (totalPage < curPage)	curPage = totalPage;
 		
 		
-		// È­¸é¿¡ º¸ÀÏ ½ÃÀÛ ÆäÀÌÁö & ³¡ ÆäÀÌÁö ¼³Á¤ 
+		// í™”ë©´ì— ë³´ì¼ ì‹œìž‘ íŽ˜ì´ì§€ & ë íŽ˜ì´ì§€ ì„¤ì • 
 		startPage = ((curPage-1)/pageCount)*pageCount+1;
 		endPage = startPage+pageCount-1;
 
-		// °è»êµÈ ¸¶Áö¸· ÆäÀÌÁö°¡ totalPageº¸´Ù Ä¿Áú °æ¿ì
-		// °­Á¦·Î ÃÖÁ¾ ÆäÀÌÁö±îÁö¸¸ º¸ÀÌµµ·Ï ¼³Á¤
+		// ê³„ì‚°ëœ ë§ˆì§€ë§‰ íŽ˜ì´ì§€ê°€ totalPageë³´ë‹¤ ì»¤ì§ˆ ê²½ìš°
+		// ê°•ì œë¡œ ìµœì¢… íŽ˜ì´ì§€ê¹Œì§€ë§Œ ë³´ì´ë„ë¡ ì„¤ì •
 		if(endPage > totalPage)	endPage = totalPage;
 		
 		
-		// °Ô½Ã±Û ½ÃÀÛ¹øÈ£
+		// ê²Œì‹œê¸€ ì‹œìž‘ë²ˆí˜¸
 		startNo = (curPage-1)*listCount+1;
-		// °Ô½Ã±Û ³¡¹øÈ£
+		// ê²Œì‹œê¸€ ëë²ˆí˜¸
 		endNo = curPage*listCount;
 	}
 

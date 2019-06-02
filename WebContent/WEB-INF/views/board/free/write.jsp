@@ -7,17 +7,17 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <!-- 스마트 에디터 라이브러리 추가 -->
-<script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-
+<!-- <script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+ -->
 <script type="text/javascript">
 $(document).ready(function() {
 	
 	//작성버튼 동작
 	$("#btnWrite").click(function() {
 		
-		//스마트 에디터의 내용으로 <textarea> 에 적용시키기
+/* 		//스마트 에디터의 내용으로 <textarea> 에 적용시키기
 		submitContents($("#btnWrite"));
-		
+ */		
 		//form submit 수행		
 		$("form").submit();
 	});
@@ -55,7 +55,6 @@ $(document).ready(function() {
 </table>
 
 <label>첨부파일 : <input type="file" name="file" /></label>
-<button>제출</button>
 </form>
 </div>
 

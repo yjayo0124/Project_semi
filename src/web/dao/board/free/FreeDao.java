@@ -21,7 +21,7 @@ public interface FreeDao {
 	 * 
 	 * @return 테이블 전체 행 수 조회 결과
 	 */
-	public int selectCntAll();
+	public int selectCntAll(String search);
 	
 
 	

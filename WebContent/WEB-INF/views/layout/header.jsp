@@ -193,7 +193,7 @@ body {
 		<c:if test="${login }">
 			<a href="/member/logout">로그아웃</a>
 			&nbsp;&nbsp;&nbsp;
-			<a href="/member/mypage">마이페이지</a>
+			<a href="/member/mypage?member_id=${member_id }">마이페이지</a>
 			&nbsp;&nbsp;&nbsp;
 		</c:if>
 	</div>

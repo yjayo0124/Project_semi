@@ -55,7 +55,7 @@ $(document).ready(function() {
 </tr>
 
 <tr>
-<td class="info">작성일</td><td colspan="3">${viewBoard.free_board_written_date }</td>
+<td class="info">작성일</td><td colspan="2">${viewBoard.free_board_written_date }</td>
 </tr>
 
 <tr><td class="info"  colspan="4">본문</td></tr>

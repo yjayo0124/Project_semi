@@ -14,6 +14,11 @@ $(document).ready(function() {
 		location.href="/board/free/write";
 	});
 	
+	$("#btnSearch").click(function() {
+		location.href="/board/free/list?search="+$("#search").val();
+	});
+
+	
 });
 </script>
 
@@ -34,6 +39,8 @@ table, th {
 	height: 40px;
 	margin: auto;
 }
+
+/* 검색창 css */
 
 </style>
 
@@ -67,12 +74,20 @@ table, th {
 </table>
 
 <div id="pagingBox">
-<c:import url="/WEB-INF/views/layout/paging.jsp" />
+<c:import url="/WEB-INF/views/layout/freepaging/paging.jsp" />
 
 <div id="btnBox">
 	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
 </div>
 </div>
+
+<div class="form-inline text-center">
+	<input class="form-control" type="text" id="search" />
+	<button id="btnSearch" class="btn">검색</button>
+</div> 
+
+
+
 
   
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

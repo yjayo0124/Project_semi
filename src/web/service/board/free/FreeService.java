@@ -71,9 +71,18 @@ public interface FreeService {
 	 * @return BoardFile - 게시글에 첨부된 파일 정보
 	 */
 	public FreeFile viewFile(FreeBoard viewBoard);
-
+	
+	
+	/**
+	 * 글 작성자인지 판단하기
+	 * 
+	 * @param req - 요청 정보 객체
+	 * @return boolean - true : 로그인한 사람이 글 작성자
+	 */
 	public boolean checkWriter(HttpServletRequest req);
 
+	
+	
 	public void update(HttpServletRequest req);
 
 	public void delete(FreeBoard board);

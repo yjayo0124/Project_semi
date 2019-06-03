@@ -25,22 +25,45 @@ public class BuyDaoImpl implements BuyDao{
 	@Override
 	public List selectAll(Paging paging) {
 		//게시글 목록 조회쿼리
+				
+		
 				String sql = "";
-				sql += "SELECT * FROM (";
-				sql += " 	SELECT rownum rnum, B.* FROM (";
-				sql += " 		SELECT buy_board_no, buy_board_title, buy_board_writer, buy_board_hit, buy_board_written_date FROM Buy_Board";
-				sql += " 		ORDER BY buy_board_no DESC";
-				sql += " 	) B";
-				sql += " 	ORDER BY rnum";
-				sql += " ) Buy_BOARD";
-				sql += " WHERE rnum BETWEEN ? AND ?";
-			
+				// System.out.println(paging.getSelect());
+				
+				if ("".equals(paging.getSelect()) || paging.getSelect() == null || paging.getSelect().equals("buy_board_title")) {
+					sql += "SELECT * FROM (";
+					sql += " 	SELECT rownum rnum, B.* FROM (";
+					sql += " 		SELECT buy_board_no, buy_board_title, buy_board_writer, buy_board_hit, buy_board_written_date FROM Buy_Board";
+					sql += " WHERE buy_board_title LIKE '%'||?||'%'";
+					sql += " 		ORDER BY buy_board_no DESC";
+					sql += " 	) B";
+					sql += " 	ORDER BY rnum";
+					sql += " ) ";
+					sql += " WHERE rnum BETWEEN ? AND ?";
+					
+					
+				} else if (paging.getSelect().equals("buy_board_content")) {
+					sql += "SELECT * FROM (";
+					sql += " 	SELECT rownum rnum, B.* FROM (";
+					sql += " 		SELECT buy_board_no, buy_board_title, buy_board_writer, buy_board_hit, buy_board_written_date FROM Buy_Board";
+					sql += " WHERE buy_board_content LIKE '%'||?||'%'";
+					sql += " 		ORDER BY buy_board_no DESC";
+					sql += " 	) B";
+					sql += " 	ORDER BY rnum";
+					sql += " ) ";
+					sql += " WHERE rnum BETWEEN ? AND ?";
+
+				}
+				
 				List list = new ArrayList();
 				try {
+					
 					ps = conn.prepareStatement(sql);
 					
-					ps.setInt(1, paging.getStartNo());
-					ps.setInt(2, paging.getEndNo());
+					
+					ps.setString(1, paging.getSearch());
+					ps.setInt(2, paging.getStartNo());
+					ps.setInt(3, paging.getEndNo());
 					
 					rs = ps.executeQuery();
 					
@@ -74,22 +97,41 @@ public class BuyDaoImpl implements BuyDao{
 	}
 
 	@Override
-	public int selectCntAll() {
+	public int selectCntAll(String select, String search) {
 		//전체 게시글 수 조회 쿼리
 				String sql = "";
-				sql+="SELECT count(*)";
-				sql+=" FROM Buy_Board";
-			
+				
+				
+				
+				// System.out.println(select);
+				if ("".equals(select) || select == null || select.equals("buy_board_title")) {
+					sql+="SELECT count(*)";
+					sql+=" FROM Buy_Board";
+					sql+=" WHERE buy_board_title LIKE '%'||?||'%'";
+				
+				} else if(select.equals("buy_board_content")) {
+					
+					sql+="SELECT count(*)";
+					sql+=" FROM Buy_Board";
+					sql+=" WHERE buy_board_content LIKE '%'||?||'%'";
+				}
+				
+				
+				
+				
+				
 				int totalCount = 0;
 				try {
 					ps = conn.prepareStatement(sql);
 					
+					
+					ps.setString(1, search);
 					rs = ps.executeQuery();
 					
-					while( rs.next() ) {
+					 rs.next();  
 						totalCount = rs.getInt(1);
-					}
-
+					
+						
 				} catch (SQLException e) {
 					e.printStackTrace();
 				} finally {
@@ -102,6 +144,7 @@ public class BuyDaoImpl implements BuyDao{
 					}
 				}
 						
+				
 				return totalCount;
 				
 			}

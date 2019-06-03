@@ -48,7 +48,10 @@ public class MemberLoginController extends HttpServlet {
 			session.setAttribute("login", login);
 			session.setAttribute("member_id", member.getMember_id());
 			session.setAttribute("member_nick", member.getMember_nick());
+			session.setAttribute("member_phone", member.getMember_phone());
 			session.setAttribute("member_code", member.getMember_code());
+			session.setAttribute("member_email", member.getMember_email());
+			
 			session.setAttribute("member_group", member.getMember_group());
 		}
 		

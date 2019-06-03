@@ -14,7 +14,7 @@ public interface BuyDao {
 	 */
 	public List selectAll(Paging paging);
 	
-	public int selectCntAll();
+	public int selectCntAll(String select, String search);
 	
 	public void updateHit(BuyBoard viewBoard);
 	

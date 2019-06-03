@@ -11,7 +11,13 @@ $(document).ready(function() {
 	//글쓰기 버튼 누르면 이동
 	$("#btnWrite").click(function() {
 		location.href="/buy/write";
+		
 	});
+	
+	$("#btnSearch").click(function() {
+		location.href="/buy/list?select=" +$("#select").val() +"&search="+$("#search").val();
+	});
+	
 	
 });
 </script>
@@ -34,15 +40,21 @@ table, th {
 	margin: auto;
 }
 
+select {
+	width: 100px;
+	height: 100px;
+}
 
 </style>
 
 
 <h1>삽니다 게시판</h1>
 <hr>
+<div id="btnBox">
+	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
+</div>
 
-
-
+<br><br><br>
 <table class="table table-striped table-hover table-condensed">
 
 <thead>
@@ -72,11 +84,18 @@ table, th {
 <div id="pagingBox">
 <c:import url="/WEB-INF/views/layout/buypaging/paging.jsp" />
 
-<div id="btnBox">
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
-</div>
+
 </div>
 
+
+<div class="form-inline text-center">
+<select class="form-control form-control-sm" name="select" id="select">
+	<option value="buy_board_title" selected>제목</option>
+	<option value="buy_board_content">내용</option>
+</select>
+	<input class="form-control" type="text" id="search" />
+	<button id="btnSearch" class="btn">검색</button>
+</div> 
 
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

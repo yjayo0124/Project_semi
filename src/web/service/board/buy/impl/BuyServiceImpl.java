@@ -35,6 +35,7 @@ public class BuyServiceImpl implements BuyService{
 	@Override
 	public Paging getCurPage(HttpServletRequest req) {
 		
+		
 		// 전달파라미터 curPage 파싱
 		String param = req.getParameter("curPage");
 		int curPage = 0;
@@ -42,11 +43,21 @@ public class BuyServiceImpl implements BuyService{
 			curPage = Integer.parseInt(param);
 		}
 		
+		// 검색어
+		String select = (String)req.getParameter("select");
+		String search = (String)req.getParameter("search");
+		
+		
+		
 		// 전체 게시글 수
-		int totalCount = buyDao.selectCntAll();
+		int totalCount = buyDao.selectCntAll(select, search);
 		
 		// 페이징 객체 생성
 		Paging paging = new Paging(totalCount, curPage);
+		
+		// 검색어
+		paging.setSelect(select);
+		paging.setSearch(search);
 //		System.out.println(paging); //TEST
 		
 		return paging;
@@ -141,6 +152,8 @@ public class BuyServiceImpl implements BuyService{
 							buyboard.setContent( item.getString("utf-8") );
 						}
 						
+						
+						
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
 					}
@@ -193,7 +206,7 @@ public class BuyServiceImpl implements BuyService{
 				//작성자id 처리
 				buyboard.setWriter((String) req.getSession().getAttribute("member_id"));
 			}
-
+			
 			buyDao.insert(buyboard);
 		}
 		

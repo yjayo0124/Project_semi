@@ -36,7 +36,7 @@ table, th {
 	top: 0;
 	bottom: 0;
 	right: 0;
-	height: 40px;
+	height: 100px;
 	margin: auto;
 }
 
@@ -54,7 +54,7 @@ select {
 	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
 </div>
 
-<br><br><br>
+<br><br>
 <table class="table table-striped table-hover table-condensed">
 
 <thead>

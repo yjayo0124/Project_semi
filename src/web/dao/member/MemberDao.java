@@ -21,4 +21,9 @@ public interface MemberDao {
 	public int checkMemberCode(int member_code);
 	
 	public boolean idCheck(MemberDetail member);
+
+	
+	public MemberDetail selectMemberByMemberpw(MemberDetail member);
+
+	public void deleteMember(MemberDetail member);
 }

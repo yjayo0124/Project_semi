@@ -13,7 +13,9 @@ public interface MemberService {
 	
 	
 	public MemberDetail getMemberByMemberid(MemberDetail MemberDetail);
-	
+
+	public MemberDetail getMemberByMemberpw(MemberDetail MemberDetail);
+
 
 	public MemberDetail getJoinMember(HttpServletRequest req);
 
@@ -24,5 +26,8 @@ public interface MemberService {
 	 * @param MemberDetail - 회원가입 정보 객체
 	 */
 	public void join(MemberDetail MemberDetail);
+
+
+	public void deleteMemberByMemberid(MemberDetail member);
 
 }

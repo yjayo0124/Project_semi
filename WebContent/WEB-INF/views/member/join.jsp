@@ -3,7 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:import url="/WEB-INF/views/layout/header.jsp" />
+<c:import url="/WEB-INF/views/layout/header.jsp" /> 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.2.4.js"></script>
 <style>
@@ -79,17 +79,16 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		//페이지 첫 접속 시 입력창으로 포커스 이동
-		$("input").eq(0).focus();
-
-		//가입 버튼 클릭 시 form submit
-		$("#btnJoin").click(function() {
-			$(this).parents("form").submit();
-		})
-
-	});
-
+var i =0;
+var ch_id = 0;
+var ch_pw = 0;
+var ch_pw2 = 0;
+var ch_name = 0;
+var ch_nick = 0;
+var ch_birthday = 0;
+var ch_gender = 0;
+var ch_email = 0;
+var ch_phone = 0;
 	//id체크
 	function idcheck() {
 		var memId = $('#member_id').val();
@@ -101,15 +100,13 @@
 			},
 			dataType : 'json',
 			success : function(data) {
-				console.log(1)
 				if( data.check ) {
-					console.log(2)
 					$('#idMsg').html("사용가능한 아이디입니다").css("color", "blue");
+					++i;
+					++ch_id;
 				} else {
-					console.log(3)
 					$('#idMsg').html("중복되거나 이미 있는 아이디입니다").css("color", "red");				
 				}
-				console.log(4)
 			
 // 				if ((data.check) == true) {
 // 					$('#idMsg').html("사용가능한 아이디입니다").css("color", "blue");
@@ -135,22 +132,33 @@
  		
  		$('#member_id').blur(
 				function() {
+					var idok = /[a-z0-9]{5,20}$/;
 				$('#idMsg').show();
 					if ($('#member_id').val() === ''
 							|| $('#member_id').val() === null) {
-						$('#idMsg').html("필수 정보입니다").css("color", "red");	
-					} else {
+						 $('#idMsg').html("필수 정보입니다").css("color", "red");	 
+					}else if(!idok.test($('#member_id').val())){
+						$('#idMsg').html("5~20자의 영문 소문자, 숫자만 사용 가능합니다.").css("color","red");
+					}
+					else {
 						idcheck();
 					}
 				}) 
 
-		$('#member_pw1').blur(
+		$('#member_pw').blur(
 				function() {
-					if ($('#member_pw1').val() === ''
-							|| $('#member_pw1').val() === null) {
+					var pwok1  = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
 						$('#pwMsg1').show();
-					} else {
+					if ($('#member_pw').val() === ''
+							|| $('#member_pw').val() === null) {
+						$('#pwMsg1').html("필수 정보입니다").css("color", "red");
+					}else if(!pwok1.test($('#member_pw').val())){
+						$('#pwMsg1').html("8~20자의 특수문자, 영문 소문자, 숫자만 사용 가능합니다.").css("color","red");
+					} 
+					else {
 						$('#pwMsg1').hide();
+						++i;
+						++ch_pw;
 					}
 				})
 
@@ -165,6 +173,8 @@
 						$('#nameMsg').show();
 					} else {
 						$('#nameMsg').hide();
+						++i;
+						++ch_name;
 					}
 				})
 		$('#member_nick').blur(
@@ -174,6 +184,8 @@
 						$('#nickMsg').show();
 					} else {
 						$('#nickMsg').hide();
+						++i;
+						++ch_nick;
 					}
 				})
 		$('#member_birthday').blur(
@@ -183,6 +195,8 @@
 						$('#birthdayMsg').show();
 					} else {
 						$('#birthdayMsg').hide();
+						++i;
+						++ch_birthday;
 					}
 				})
 		$('#member_gender').blur(function() {
@@ -191,6 +205,8 @@
 				$('#genderMsg').show();
 			} else {
 				$('#genderMsg').hide();
+				++i;
+				++ch_gender;
 			}
 		})
 		$('#member_email').blur(
@@ -200,6 +216,8 @@
 						$('#emailMsg').show();
 					} else {
 						$('#emailMsg').hide();
+						++i;
+						++ch_email;
 					}
 				})
 		$('#member_phone').blur(
@@ -209,6 +227,8 @@
 						$('#phoneMsg').show();
 					} else {
 						$('#phoneMsg').hide();
+						++i;
+						++ch_phone;
 					}
 				})
 
@@ -217,10 +237,10 @@
 	$(function() {
 
 		//비밀번호 확인
-		$('#member_pw2')
-				.blur(
+		$('#member_pw2').blur(
 						function() {
-							if ($('#member_pw1').val() != $('#member_pw2')
+							var pwok2  = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+							if ($('#member_pw').val() != $('#member_pw2')
 									.val()) {
 								$('#pwMsg2').html("위 비밀번호와 일치하지 않습니다").css(
 										"color", "red");
@@ -229,21 +249,39 @@
 									|| $('#member_pw2').val() === null) {
 								$('#pwMsg2').html("필수 정보입니다").css("color",
 										"red");
-							} else {
-								$('#pwMsg2').html("두 비밀번호가 일치합니다").css("color",
-										"blue");
+							}else if(!pwok2.test($('#member_pw').val())){
+								$('#pwMsg2').html("8~20자의 특수문자, 영문 소문자, 숫자만 사용 가능합니다.").css("color","red");
+								$('#member_pw2').val('');
+							}  
+							else {
+								$('#pwMsg2').html("두 비밀번호가 일치합니다").css("color","blue");
+								++i;
+								++ch_pw2;
 							}
 						})
 	});
 
-	/* $(function(){
+$(document).ready(function() {
+		//가입 버튼 클릭 시 form submit
+		$("#btnJoin").click(function() {
+			if(i==9){
+				$(this).parents("form").submit();
+			}if(ch_id ==0){ $('#idMsg').show(); 
+			}if(ch_pw ==0){ $('#pwMsg1').show(); 
+			}if(ch_pw2 ==0){ $('#pwMsg2').show(); 
+			}if(ch_name ==0){ $('#nameMsg').show(); 
+			}if(ch_nick ==0){ $('#nickMsg').show(); 
+			}if(ch_birthday ==0){ $('#birthdayMsg').show(); 
+			}if(ch_gender ==0){ $('#genderMsg').show(); 
+			}if(ch_email ==0){ $('#emailMsg').show(); 
+			}if(ch_phone ==0){ $('#phoneMsg').show(); 
+			}
+		})
+
+});	
 	
-	 $('#member_id').blur(function(){
-	 if($('#member_id').val()==''){
-	 $('#idMsg').show(); 
-	 }
-	 });
-	 */
+	
+
 </script>
 
 <form action="/member/join" method="post" class="form">
@@ -255,23 +293,22 @@
 			</h3>
 			<span class="intext"> <input type="text" id="member_id"
 				name="member_id" class="inputtext" maxlength="20" />
-			</span> <span class="error" id="idMsg"> 필수 정보입니다 </span>
+			</span> <span class="error" id="idMsg">필수 정보입니다</span>
 		</div>
 
 		<div class="row_group">
 			<h3 class="join_title">
 				<label for="pw1">비밀번호</label>
 			</h3>
-			<span class="intext"> <input type="password" id="member_pw1"
-				name="member_pw1" class="inputtext" maxlength="20" />
-			</span> <span class="error" id="pwMsg1" role="alert"> 필수 정보입니다 </span>
+			<span class="intext"> <input type="password" id="member_pw"
+				name="member_pw" class="inputtext" maxlength="20" />
+			</span> <span class="error" id="pwMsg1">필수 정보입니다</span>
 			<h3 class="join_title">
 				<label for="pw2">비밀번호 확인</label>
 			</h3>
 			<span class="intext"> <input type="password" id="member_pw2"
-				name="member_pw2" class="inputtext" maxlength="20"
-				onkeyup="checkPwd()" />
-			</span> <span class="error" id="pwMsg2" role="alert"> 필수 정보입니다 </span>
+				name="member_pw2" class="inputtext" maxlength="20" />
+			</span> <span class="error" id="pwMsg2">필수 정보입니다</span>
 		</div>
 
 		<div class="row_group">
@@ -280,37 +317,36 @@
 			</h3>
 			<span class="intext"> <input type="text" id="member_name"
 				name="member_name" class="inputtext" maxlength="40" />
-			</span> <span class="error" id="nameMsg" role="alert"> 필수 정보입니다 </span>
+			</span> <span class="error" id="nameMsg"> 필수 정보입니다 </span>
 			<h3 class="join_title">
 				<label for="nick">닉네임</label>
 			</h3>
 			<span class="intext"> <input type="text" id="member_nick"
 				name="member_nick" class="inputtext" maxlength="40" />
-			</span> <span class="error" id="nickMsg" role="alert"> 필수 정보입니다 </span>
+			</span> <span class="error" id="nickMsg"> 필수 정보입니다 </span>
 			<h3 class="join_title">
 				<label for="birthday">생년월일</label>
 			</h3>
 			<span class="intext"> <input type="date" id="member_birthday"
 				name="member_birthday" class="inputtext" />
-			</span> <span class="error" id="birthdayMsg" role="alert"> 생년월일을
-				입력해주세요 </span>
+			</span> <span class="error" id="birthdayMsg"> 생년월일을 입력해주세요 </span>
 			<h3 class="join_title">
 				<label for="gender">성별</label>
 			</h3>
 			<div class="genderdiv">
-				<select id="member_gender" name="gender" class="gen">
+				<select id="member_gender" name="member_gender" class="gen">
 					<option value="0" selected>성별</option>
 					<option value="M">남자</option>
 					<option value="F">여자</option>
 				</select>
 			</div>
-			<span class="error" id="genderMsg" role="alert"> 필수 정보입니다 </span>
+			<span class="error" id="genderMsg"> 필수 정보입니다 </span>
 			<h3 class="join_title">
 				<label for="email">이메일</label>
 			</h3>
 			<span class="intext"> <input type="email" id="member_email"
 				name="member_email" class="inputtext" maxlength="100" />
-			</span> <span class="error" id="emailMsg" role="alert"> 필수 정보입니다 </span>
+			</span> <span class="error" id="emailMsg"> 필수 정보입니다 </span>
 			<h3 class="join_title">
 				<label for="phone">휴대전화</label>
 			</h3>

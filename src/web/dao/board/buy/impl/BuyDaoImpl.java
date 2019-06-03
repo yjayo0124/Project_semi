@@ -187,8 +187,12 @@ public class BuyDaoImpl implements BuyDao{
 				sql += " 	buy_board_writer,";
 				sql += " 	buy_board_content,";
 				sql += " 	buy_board_hit,";
-				sql += " 	buy_board_written_date";
-				sql += " FROM buy_board B";
+				sql += " 	buy_board_written_date,";
+				sql += "    buy_board_direct,";
+				sql += "    buy_board_delivery,";
+				sql += "    buy_board_price,";
+				sql += "    buy_board_phoneAgree";
+				sql += " FROM Buy_Board";
 				sql += " WHERE buy_board_no = ?";
 			
 				try {
@@ -206,7 +210,10 @@ public class BuyDaoImpl implements BuyDao{
 						viewBoard.setContent( rs.getString("buy_board_content") );
 						viewBoard.setHit( rs.getInt("buy_board_hit") );
 						viewBoard.setWrittendate( rs.getDate("buy_board_written_date") );
-						
+						viewBoard.setDirect(rs.getString("buy_board_direct"));
+						viewBoard.setDelivery(rs.getString("buy_board_delivery"));
+						viewBoard.setPrice(rs.getInt("buy_board_price"));
+						viewBoard.setPhoneAgree(rs.getString("buy_board_phoneAgree"));
 					}
 
 				} catch (SQLException e) {
@@ -265,8 +272,8 @@ public class BuyDaoImpl implements BuyDao{
 	public void insert(BuyBoard board) {
 		//다음 게시글 번호 조회 쿼리
 				String sql = "";
-				sql += "INSERT INTO Buy_Board(Buy_board_no,buy_board_title,buy_board_writer,buy_board_content,buy_board_hit) ";
-				sql += " VALUES (?, ?, ?, ?, 0)";
+				sql += "INSERT INTO Buy_Board(Buy_board_no,buy_board_title,buy_board_writer,buy_board_content,buy_board_hit, buy_board_direct, buy_board_delivery, buy_board_price, buy_board_phoneAgree) ";
+				sql += " VALUES (?, ?, ?, ?, 0, ?, ?, ?, ?)";
 				
 				try {
 					//DB작업
@@ -275,7 +282,12 @@ public class BuyDaoImpl implements BuyDao{
 					ps.setString(2, board.getTitle());
 					ps.setString(3, board.getWriter());
 					ps.setString(4, board.getContent());
-
+					
+					ps.setString(5, board.getDirect());
+					ps.setString(6, board.getDelivery());
+					ps.setInt(7, board.getPrice());
+					ps.setString(8, board.getPhoneAgree());
+					
 					ps.executeUpdate();
 					
 				} catch (SQLException e) {

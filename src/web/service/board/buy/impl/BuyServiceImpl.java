@@ -148,12 +148,36 @@ public class BuyServiceImpl implements BuyService{
 						}
 						
 						//본문 처리
+						
 						if( "content".equals( item.getFieldName() ) ) {
 							buyboard.setContent( item.getString("utf-8") );
 						}
 						
 						
+						//-----------------------------------------------
 						
+						if( "select".equals(item.getFieldName() ) ) {
+								
+						
+							buyboard.setDirect( item.getString("utf-8"));
+							buyboard.setDelivery( item.getString("utf-8"));
+						}
+						
+						
+						
+						if("price".equals( item.getFieldName())) {
+							
+							int price = Integer.parseInt( item.getString("utf-8") );
+							buyboard.setPrice( price );
+							
+							
+						}
+						
+						if("phoneAgree".equals( item.getFieldName())) {
+							buyboard.setPhoneAgree( item.getString("utf-8"));
+						}
+						
+						// -----------------------------------------------
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
 					}

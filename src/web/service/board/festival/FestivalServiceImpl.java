@@ -18,6 +18,18 @@ public class FestivalServiceImpl implements FestivalService{
 		
 		return festivalDao.selectAll(paging);
 	}
+	
+	@Override
+	public List getOngoingList(FestivalPaging paging) {
+		
+		return festivalDao.selectOngoing(paging);
+	}
+	
+	@Override
+	public List getClosedList(FestivalPaging paging) {
+		
+		return festivalDao.selectClosed(paging);
+	}
 
 	@Override
 	public FestivalPaging getCurpage(HttpServletRequest req) {
@@ -27,6 +39,34 @@ public class FestivalServiceImpl implements FestivalService{
 			curPage = Integer.parseInt(param);
 		}
 		int totalCount = festivalDao.selectCntAll();
+		
+		FestivalPaging paging = new FestivalPaging(totalCount, curPage);
+		
+		return paging;
+	}
+	
+	@Override
+	public FestivalPaging getOngoingCurpage(HttpServletRequest req) {
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if(param!=null && !"".equals(param)) {
+			curPage = Integer.parseInt(param);
+		}
+		int totalCount = festivalDao.selectCntOngoing();
+		
+		FestivalPaging paging = new FestivalPaging(totalCount, curPage);
+		
+		return paging;
+	}
+
+	@Override
+	public FestivalPaging getClosedCurpage(HttpServletRequest req) {
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if(param!=null && !"".equals(param)) {
+			curPage = Integer.parseInt(param);
+		}
+		int totalCount = festivalDao.selectCntClosed();
 		
 		FestivalPaging paging = new FestivalPaging(totalCount, curPage);
 		
@@ -72,5 +112,6 @@ public class FestivalServiceImpl implements FestivalService{
 		festivalDao.delete(board);
 		
 	}
+
 
 }

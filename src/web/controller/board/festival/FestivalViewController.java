@@ -21,12 +21,12 @@ public class FestivalViewController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		FestivalPaging paging = festivalService.getCurpage(req);
+		FestivalPaging paging = festivalService.getOngoingCurpage(req);
 		
 		req.setAttribute("paging", paging);
 		
 		//게시판 목록 조회
-		List list = festivalService.getList(paging);
+		List list = festivalService.getOngoingList(paging);
 		
 		//MODEL로 조회 결과 넣기
 		req.setAttribute("list", list);

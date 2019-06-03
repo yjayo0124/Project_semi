@@ -2,11 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<!-- header -->
+<c:import url="/WEB-INF/views/layout/header.jsp" />
 
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript"
@@ -131,9 +128,6 @@
 
 </style>
 
-<!-- header -->
-<c:import url="/WEB-INF/views/layout/header.jsp" />
-</head>
 <body>
 
 	<div class="main">

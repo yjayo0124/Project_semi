@@ -19,6 +19,18 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#btnUpdate").click(function() {
+		$(location).attr("href", "/board/festival/update?festival_board_no="+${board.festival_board_no });
+	});
+	
+	$("#btnDelete").click(function() {
+		$(location).attr("href", "/board/festival/delete?festival_board_no="+${board.festival_board_no });
+	});
+});
+</script>
 
 <style type="text/css">
 .main {
@@ -146,8 +158,8 @@
 			<div class="title_right">
 				<div class="title_right_top"></div>
 				<div class="title_right_bottom">
-					<button class="title_button">수정</button>
-					<button class="title_button">삭제</button>
+					<button class="title_button" id="btnUpdate">수정</button>
+					<button class="title_button" id="btnDelete">삭제</button>
 				</div>
 			</div>
 		</div>

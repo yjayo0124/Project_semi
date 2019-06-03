@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -38,28 +39,28 @@ public class FestivalWriteController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		// - - - MultipartRequest 생성자의 매개변수 준비 - - -
+		// - - - MultipartRequest �깮�꽦�옄�쓽 留ㅺ컻蹂��닔 以�鍮� - - -
 
-				//1. 요청 객체 - 따로 만들 필요 없음
+				//1. �슂泥� 媛앹껜 - �뵲濡� 留뚮뱾 �븘�슂 �뾾�쓬
 
-				//2. 파일 저장 위치 - 서버의 real path
+				//2. �뙆�씪 ���옣 �쐞移� - �꽌踰꾩쓽 real path
 				ServletContext context = getServletContext();
 				String saveDirectory = context.getRealPath("upload");
 
 				System.out.println(saveDirectory);
 
-				//3. 업로드 제한 사이즈 - 10MB
+				//3. �뾽濡쒕뱶 �젣�븳 �궗�씠利� - 10MB
 				int maxPostSize = 10 * 1024* 1024;
 
-				//4. 인코딩 - utf-8
+				//4. �씤肄붾뵫 - utf-8
 				String encoding = "UTF-8";
 
-				//5. 중복 파일 이름 정책 - 기본 정책
+				//5. 以묐났 �뙆�씪 �씠由� �젙梨� - 湲곕낯 �젙梨�
 				FileRenamePolicy policy = new DefaultFileRenamePolicy();
 
 				// ----------------------------------------------
 
-				//파일 업로드 객체 생성
+				//�뙆�씪 �뾽濡쒕뱶 媛앹껜 �깮�꽦
 				MultipartRequest mul = new MultipartRequest (
 						req,
 						saveDirectory,
@@ -67,7 +68,7 @@ public class FestivalWriteController extends HttpServlet {
 						encoding,
 						policy );
 				
-
+				HttpSession session = req.getSession();
 				FestivalBoard board = new FestivalBoard();
 				
 				String title = mul.getParameter("title");
@@ -75,27 +76,20 @@ public class FestivalWriteController extends HttpServlet {
 				String content = mul.getParameter("content");
 				String phone = mul.getParameter("phone");
 				String web = mul.getParameter("web");
-				
-				SimpleDateFormat date = new SimpleDateFormat("yyyy-mm-dd");
-				try {
-					Date start = date.parse(mul.getParameter("start"));
-					Date end = date.parse(mul.getParameter("end"));
-					
-					board.setFestival_start(start);
-					board.setFestival_end(end);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				String start = mul.getParameter("start");
+				String end =mul.getParameter("end");
 				String fee = mul.getParameter("fee");
-				
+				int memcode = (int) session.getAttribute("member_code");
 				
 				board.setFestival_title(title);
 				board.setFestival_host(host);
 				board.setFestival_content(content);
 				board.setFestival_phone(phone);
 				board.setFestival_web(web);
+				board.setFestival_start(start);
+				board.setFestival_end(end);
 				board.setFestival_fee(fee);
+				board.setMember_code(memcode);
 				
 
 				req.setAttribute("Board", board);
@@ -110,7 +104,7 @@ public class FestivalWriteController extends HttpServlet {
 				req.setAttribute("file", file);
 		
 		
-		resp.sendRedirect("/board/fastival");
+		resp.sendRedirect("/board/festival");
 		
 	}
 }

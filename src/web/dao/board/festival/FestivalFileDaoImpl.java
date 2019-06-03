@@ -10,7 +10,7 @@ import web.dto.festival.FestivalFile;
 
 public class FestivalFileDaoImpl implements FestivalFileDao{
 
-	//DB관련 객체
+	//DB愿��젴 媛앹껜
 		private Connection conn = DBConn.getConnection(); 
 
 		private PreparedStatement ps = null;
@@ -19,10 +19,10 @@ public class FestivalFileDaoImpl implements FestivalFileDao{
 		@Override
 		public void insert(FestivalFile board) {
 			
-			//파일업로드 기록 삽입쿼리
+			//�뙆�씪�뾽濡쒕뱶 湲곕줉 �궫�엯荑쇰━
 			String boardno = "SELECT Festival_board_seq.currval FROM dual";
 			String sql = "";
-			sql+="INSERT INTO Festivalfile ( Festival_file_no, Festival_board_no, Festival_originname, Festival_storedname())";
+			sql+="INSERT INTO Festivalfile ( Festival_file_no, Festival_board_no, Festival_originname, Festival_storedname)";
 			sql+=" VALUES ( Festivalfile_seq.nextval, ?, ?, ? )";
 			
 			try {
@@ -30,17 +30,17 @@ public class FestivalFileDaoImpl implements FestivalFileDao{
 				rs = ps.executeQuery();
 				
 				while( rs.next() ) {
-					int num = (rs.getInt("CURRVAL"));
+					int num = (rs.getInt(1));
 					board.setFestival_board_no(num);
 				}
 				
 				ps = conn.prepareStatement(sql);
-				//삽입할 내용 지정
+				//�궫�엯�븷 �궡�슜 吏��젙
 				ps.setInt(1, board.getFestival_board_no());
 				ps.setString(2, board.getFestival_originname());
 				ps.setString(3, board.getFestival_storedname());
 
-				// INSERT 쿼리 수행
+				// INSERT 荑쇰━ �닔�뻾
 				ps.executeUpdate();
 
 			} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class FestivalFileDaoImpl implements FestivalFileDao{
 		@Override
 		public FestivalFile selectByBoardno(FestivalFile file) {
 			
-			//SQL쿼리
+			//SQL荑쇰━
 			String sql = "";
 			sql += "SELECT";
 			sql += "	festival_file_no";
@@ -64,13 +64,13 @@ public class FestivalFileDaoImpl implements FestivalFileDao{
 			sql += " WHERE festival_board_no = ?";
 			
 			try {
-				ps = conn.prepareStatement(sql); //SQL 수행 객체
+				ps = conn.prepareStatement(sql); //SQL �닔�뻾 媛앹껜
 				
 				ps.setInt(1, file.getFestival_board_no());
 				
-				rs = ps.executeQuery(); //SQL 수행 결과
+				rs = ps.executeQuery(); //SQL �닔�뻾 寃곌낵
 				
-				//결과 처리
+				//寃곌낵 泥섎━
 				while( rs.next() ) {
 					file.setFestival_file_no(rs.getInt("festival_file_no"));
 					file.setFestival_board_no(rs.getInt("festival_board_no"));

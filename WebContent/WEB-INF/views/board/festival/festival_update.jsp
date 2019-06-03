@@ -139,47 +139,47 @@
 	<div class="main">
 		<div class="title">
 			<div class="title_left">
-				<h3>게시글 작성</h3>
+				<h3>게시글 수정</h3>
 			</div>
 		</div>
 		<br>
 		<br>
-		<form action="/board/festival/write" method="post" enctype="multipart/form-data">
+		<form action="/board/festival/update?festival_board_no=${update.festival_board_no }" method="post" enctype="multipart/form-data">
 			<table class="table table-bordered ">
 				<tr style="border: solid 1px;">
 					<td class="info" style="width: 150px;">제목</td>
 					<td class="input_td"><input class="input_text" type="text"
-						value="" name="title"></td>
+						value="${update.festival_title }" name="title"></td>
 					<td class="info" style="width: 150px;">주최자</td>
 					<td class="input_td"><input class="input_text" type="text"
-						value="" name="host"></td>
+						value="${update.festival_host }" name="host"></td>
 				</tr>
 				<tr style="border: solid 1px;">
 					<td class="info" style="width: 150px;">전화번호</td>
 					<td class="input_td"><input class="input_text" type="text"
-						value="" name="phone"></td>
+						value="${update.festival_phone }" name="phone"></td>
 					<td class="info" style="width: 150px;">주최사이트</td>
 					<td class="input_td"><input class="input_text" type="text"
-						value=""  name="web"></td>
+						value="${update.festival_web }"  name="web"></td>
 				</tr>
 				<tr style="border: solid 1px;">
 					<td class="info" style="width: 150px;">시작일</td>
 					<td class="input_td"><input class="input_date" type="date"
-						value=""  name="start"></td>
+						value="${update.festival_start }"  name="start"></td>
 					<td class="info" style="width: 150px;">종료일</td>
 					<td class="input_td"><input class="input_date" type="date"
-						value=""  name="end"></td>
+						value="${update.festival_end }"  name="end"></td>
 				</tr>
 				<tr style="border: solid 1px;">
 					<td class="info" style="width: 150px;">가격</td>
 					<td class="input_td"><input class="input_text" type="text"
-						value=""  name="fee"></td>
+						value="${update.festival_fee }"  name="fee"></td>
 				</tr>
 			</table>
 			<label>썸네일 이미지 : <input type="file" name="upfile"/></label><br><br>
 			<div class="content">
 				<div class="content_middle">
-					<textarea name="content" id="summernote" value=""></textarea>
+					<textarea name="content" id="summernote" value="">${update.festival_content }</textarea>
 				</div>
 			</div>
 			

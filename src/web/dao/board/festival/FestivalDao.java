@@ -15,5 +15,9 @@ public interface FestivalDao {
 	public FestivalBoard selectBoardByBoardno(FestivalBoard board);
 	
 	public void insert(FestivalBoard board);
+	
+	public void update(FestivalBoard board);
+	
+	public void delete(FestivalBoard board);
 
 }

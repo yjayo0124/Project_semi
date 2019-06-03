@@ -16,9 +16,8 @@
 .footer {
 	position: fixed;
 	bottom: 0;
-	width: 100%; overflow : hidden;
-	z-index: 100;
-	overflow: hidden;
+	width: 100%; 
+	
 }
 
 .main {
@@ -78,7 +77,7 @@
 			<a href="/board/free/list"> <img src="/imgs/img4.png" class="img-circle"></a>
 		</div>
 	</div>
-		
+	
 
-</body>
-</html>
+	<c:import url="/WEB-INF/views/layout/footer.jsp" />
+	

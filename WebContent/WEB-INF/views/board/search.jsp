@@ -12,36 +12,46 @@ $(document).ready(function(){
 		
 		$("form").submit(); 
 		
+		$.ajax({
+			url: "/board/search",
+			type: 'POST',
+			data : {"insttNm1" : insttNm1, "insttNm2" : insttNm2, "fshlcNm" : fshlcNm, "kdfsh" : kdfsh}, 
+			dataType: 'json',
+			success: function(data){
+			
+				console.log(data.response.body.items.item);
+				var myItem = data.response.body.items.item;
+				
+				for(var i=0; myItem.length; i++){
+					var output = '';
+					
+					console.log(myItem.length);
+					
+					output += '<h4>'+i+' 번 째 낚시터 정보 조회 결과'+'</h4>';
+					output += '<h4>'+myItem[i].fshlcNm+'</h4>'; //낚시터명
+					output += '<h4>'+myItem[i].rdnmadr+'</h4>'; //도로명주소
+					output += '<h4>'+myItem[i].fshlcPhoneNumber+'</h4>'; //낚시터 전화번호
+					output += '<h4>'+myItem[i].kdfsh+'</h4>'; //주요어종
+					output += '<h4>'+myItem[i].useCharge+'</h4>'; //이용요금
+					output += '<h4>'+myItem[i].cvntl+'</h4>'; //편의시설현황
+					output += '<h4>'+myItem[i].cfrTrrsrt+'</h4>'; //주변관광지
+					
+					$('#result').html(data);
+					
+					
+				}		
+				
 		
-		var url = "/board/search";
-		
-		var insttNm1 = $('#insttNm1').val();
-		var insttNm2 = $('#insttNm2').val();
-		var fshlcNm = $('#fshlcNm').val();
-		var kdfsh = $('#kdfsh').val();
-		
-		var query = "fshlcNm="+fshlcNm+"&kdfsh="+kdfsh+"&insttNm1="+insttNm1+"&insttNm2="+insttNm2;
-		
-		sendRequest("POST", url, query, callback); 
+				
+			}
+		})
+		 
 	});
 
 
 })
 
 
-function callback(){
-	if(httpRequest.readyState == 4) {
-		if(httpRequest.status == 200){
-			appendResult(); //통신 성공시 
-		}
-	}
-}
-	
-
-function appendResult(){
-	result.innerHTML = httpRequest.responseText;
-	
-}
 	
 function gugunSelect(e){
 		
@@ -209,8 +219,9 @@ max-width: initial;
 
 <hr>
 
-<div id="result">
-<h4>조회 결과 들어갈 공간</h4>
+<div class="container">
+<span id="result"></span>
+
 </div>
 
 </div> <!--container  -->

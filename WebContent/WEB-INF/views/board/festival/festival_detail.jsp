@@ -83,12 +83,12 @@ $(document).ready(function() {
 	text-align: center;
 	margin: 0 auto;
 	width: 1000px;
-	height: 800px;
+	height: auto;
 }
 
 .content_img {
 	width: 100%;
-	height: 100%;
+	height: auto;
 }
 
 .content_text {
@@ -191,7 +191,7 @@ $(document).ready(function() {
 
 		<div class="content">
 			<div class="content_middle">
-				<img src="/imgs/fishing.jpg" class="content_img" />
+				<img src="/upload/${board.festival_storedname }" class="content_img" />
 			</div>
 			<div class="content_text">${board.festival_content }</div>
 		</div>

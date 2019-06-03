@@ -140,7 +140,7 @@ padding-inline-start: 0px;
 		</div>
 		<br><br><br><br>
 
-<c:forEach items="${list}" var="i">
+<c:forEach items="${ongoinglist}" var="i">
 		<div class="event">
 			<div class="event_img">
 			<img src="/upload/${i.festival_storedname }" alt="/imgs/fishing.jpg" class="div_img"></img>
@@ -181,6 +181,6 @@ padding-inline-start: 0px;
 		<button style="float: right;" id="btnWrite">글쓰기</button>
 		</div>
 	</div>
-<c:import url="/WEB-INF/views/layout/festival/festival_paging.jsp" />
+<c:import url="/WEB-INF/views/layout/festival/ongoing_paging.jsp" />
 </body>
 </html>

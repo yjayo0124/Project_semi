@@ -131,16 +131,18 @@ padding-inline-start: 0px;
 		<br> <br> <br>
 		<div class="event_tap">
 			<ul>
-				<li style="border-bottom: none;">
-				<div class="tab_span"></div>
-				<a href="/board/festival/ongoing">진행중인 이벤트</a>
+				<li style="background-color: #E0E0E0;">
+					<a href="/board/festival/ongoing">진행중인 이벤트</a>
 				</li>
-				<li style="background-color: #E0E0E0;"><a href="/board/festival/closed">종료된 이벤트</a></li>
+				<li style="border-bottom: none;">
+					<div class="tab_span"></div>
+					<a href="/board/festival/closed">종료된 이벤트</a>
+				</li>
 			</ul>
 		</div>
 		<br><br><br><br>
 
-<c:forEach items="${list}" var="i">
+<c:forEach items="${closedlist}" var="i">
 		<div class="event">
 			<div class="event_img">
 			<img src="/upload/${i.festival_storedname }" alt="/imgs/fishing.jpg" class="div_img"></img>
@@ -181,6 +183,6 @@ padding-inline-start: 0px;
 		<button style="float: right;" id="btnWrite">글쓰기</button>
 		</div>
 	</div>
-<c:import url="/WEB-INF/views/layout/festival/festival_paging.jsp" />
+<c:import url="/WEB-INF/views/layout/festival/closed_paging.jsp" />
 </body>
 </html>

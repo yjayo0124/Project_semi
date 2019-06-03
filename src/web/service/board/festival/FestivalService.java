@@ -9,10 +9,18 @@ import web.util.festival.FestivalPaging;
 
 
 public interface FestivalService {
-
+	
 	public List getList(FestivalPaging paging);
 
+	public List getOngoingList(FestivalPaging paging);
+	
+	public List getClosedList(FestivalPaging paging);
+
 	public FestivalPaging getCurpage(HttpServletRequest req);
+	
+	public FestivalPaging getOngoingCurpage(HttpServletRequest req);
+	
+	public FestivalPaging getClosedCurpage(HttpServletRequest req);
 
 	public FestivalBoard getBoardno(HttpServletRequest req);
 

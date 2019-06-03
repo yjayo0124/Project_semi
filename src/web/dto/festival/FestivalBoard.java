@@ -13,6 +13,7 @@ public class FestivalBoard {
     private String festival_host;
     private String festival_fee;
     private int member_code;
+    private String festival_storedname;
     
     
     private Date festival_writtendate;
@@ -83,6 +84,12 @@ public class FestivalBoard {
 	}
 	public void setFestival_content(String festival_content) {
 		this.festival_content = festival_content;
+	}
+	public String getFestival_storedname() {
+		return festival_storedname;
+	}
+	public void setFestival_storedname(String festival_storedname) {
+		this.festival_storedname = festival_storedname;
 	}
 	
 

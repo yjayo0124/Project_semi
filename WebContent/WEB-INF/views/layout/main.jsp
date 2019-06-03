@@ -47,6 +47,15 @@
 	height: 300px;
 	background-color: #666666;
 }
+.icon{
+	position: relative;
+	top:400px;
+}
+.img-circle{
+	height: 200px;
+	width:200px;
+	margin-right: 45px;
+}
 </style>
 </head>
 
@@ -62,6 +71,14 @@
 			<div class="infoSearch"></div>
 			<div class="weather"></div>
 		</div>
+		<div class="icon">
+			<a href="/board/festival"> <img src="/imgs/img1.png" class="img-circle"></a>
+			<a href="/board/fish/info"> <img src="/imgs/img2.png" class="img-circle"></a>
+			<a href="/buy/list"> <img src="/imgs/img3.png" class="img-circle"></a>
+			<a href="/board/free/list"> <img src="/imgs/img4.png" class="img-circle"></a>
+		</div>
 	</div>
+		
+
 </body>
 </html>

@@ -168,8 +168,14 @@ body {
 		<c:if test="${login }">
 			<a href="/member/logout">로그아웃</a>
 			&nbsp;&nbsp;&nbsp;
-			<a href="/member/mypage?member_id=${member_id }">마이페이지</a>
-			&nbsp;&nbsp;&nbsp;
+			<c:if test="${member_group==0 }">
+				<a href="/member/mypage?member_id=${member_id }">마이페이지</a>
+				&nbsp;&nbsp;&nbsp;
+			</c:if>
+			<c:if test="${member_group==1 }">
+				<a href="/member/management">회원관리페이지</a>
+				&nbsp;&nbsp;&nbsp;
+			</c:if>
 		</c:if>
 	</div>
 	<br>

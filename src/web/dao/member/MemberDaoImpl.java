@@ -92,7 +92,8 @@ public class MemberDaoImpl implements MemberDao{
 				member.setMember_gender( rs.getString("member_gender") );
 				member.setMember_birthday( rs.getString("member_birthday") );
 				member.setMember_group(rs.getInt("member_group"));
-
+				member.setMember_email(rs.getString("member_email"));
+				member.setMember_phone(rs.getString("member_phone"));
 			}
 			
 		} catch (SQLException e) {

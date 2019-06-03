@@ -79,16 +79,15 @@
 
 
 <script type="text/javascript">
-var i =0;
-var ch_id = 0;
-var ch_pw = 0;
-var ch_pw2 = 0;
-var ch_name = 0;
-var ch_nick = 0;
-var ch_birthday = 0;
-var ch_gender = 0;
-var ch_email = 0;
-var ch_phone = 0;
+var ch_id=false;
+var ch_pw=false;
+var ch_pw2=false;
+var ch_name=false;
+var ch_nick=false;
+var ch_birthday=false;
+var ch_gender=false;
+var ch_email=false;
+var ch_phone=false;
 	//id체크
 	function idcheck() {
 		var memId = $('#member_id').val();
@@ -102,22 +101,12 @@ var ch_phone = 0;
 			success : function(data) {
 				if( data.check ) {
 					$('#idMsg').html("사용가능한 아이디입니다").css("color", "blue");
-					++i;
-					++ch_id;
+					ch_id=true;
 				} else {
-					$('#idMsg').html("중복되거나 이미 있는 아이디입니다").css("color", "red");				
+					$('#idMsg').html("중복되거나 이미 있는 아이디입니다").css("color", "red");	
+					ch_id=false;
 				}
-			
-// 				if ((data.check) == true) {
-// 					$('#idMsg').html("사용가능한 아이디입니다").css("color", "blue");
-// 				} else if ($(data.check) == false){
-// 					console.log(data);
-// 					alert(JSON.stringify(data.check));
-// 					$('#idMsg').html("중복되거나 이미 있는 아이디입니다").css("color", "red");
-// 				}else{
-// 					console.log(data);
-// 					alert(JSON.stringify(data.check));
-// 				}
+		
 			}
 
 		})
@@ -137,8 +126,10 @@ var ch_phone = 0;
 					if ($('#member_id').val() === ''
 							|| $('#member_id').val() === null) {
 						 $('#idMsg').html("필수 정보입니다").css("color", "red");	 
+						 ch_id=false;
 					}else if(!idok.test($('#member_id').val())){
 						$('#idMsg').html("5~20자의 영문 소문자, 숫자만 사용 가능합니다.").css("color","red");
+						ch_id==false;
 					}
 					else {
 						idcheck();
@@ -152,13 +143,14 @@ var ch_phone = 0;
 					if ($('#member_pw').val() === ''
 							|| $('#member_pw').val() === null) {
 						$('#pwMsg1').html("필수 정보입니다").css("color", "red");
+						ch_pw=false;
 					}else if(!pwok1.test($('#member_pw').val())){
 						$('#pwMsg1').html("8~20자의 특수문자, 영문 소문자, 숫자만 사용 가능합니다.").css("color","red");
+						ch_pw=false;
 					} 
 					else {
 						$('#pwMsg1').hide();
-						++i;
-						++ch_pw;
+						ch_pw=true;
 					}
 				})
 
@@ -171,10 +163,10 @@ var ch_phone = 0;
 					if ($('#member_name').val() === ''
 							|| $('#member_name').val() === null) {
 						$('#nameMsg').show();
+						ch_name=false;
 					} else {
 						$('#nameMsg').hide();
-						++i;
-						++ch_name;
+						ch_name=true;
 					}
 				})
 		$('#member_nick').blur(
@@ -182,10 +174,10 @@ var ch_phone = 0;
 					if ($('#member_nick').val() === ''
 							|| $('#member_nick').val() === null) {
 						$('#nickMsg').show();
+						ch_nick=false;
 					} else {
 						$('#nickMsg').hide();
-						++i;
-						++ch_nick;
+						ch_nick=true;
 					}
 				})
 		$('#member_birthday').blur(
@@ -193,20 +185,20 @@ var ch_phone = 0;
 					if ($('#member_birthday').val() === ''
 							|| $('#member_birthday').val() === null) {
 						$('#birthdayMsg').show();
+						ch_birthday=false;
 					} else {
 						$('#birthdayMsg').hide();
-						++i;
-						++ch_birthday;
+						ch_birthday=true;
 					}
 				})
 		$('#member_gender').blur(function() {
 			if ($('select[name=gender]').val() == '0') {
 
 				$('#genderMsg').show();
+				ch_gender=false;
 			} else {
 				$('#genderMsg').hide();
-				++i;
-				++ch_gender;
+				ch_gender=true;
 			}
 		})
 		$('#member_email').blur(
@@ -214,10 +206,10 @@ var ch_phone = 0;
 					if ($('#member_email').val() === ''
 							|| $('#member_email').val() === null) {
 						$('#emailMsg').show();
+						ch_email=false;
 					} else {
 						$('#emailMsg').hide();
-						++i;
-						++ch_email;
+						ch_email=true;
 					}
 				})
 		$('#member_phone').blur(
@@ -225,10 +217,10 @@ var ch_phone = 0;
 					if ($('#member_phone').val() === ''
 							|| $('#member_phone').val() === null) {
 						$('#phoneMsg').show();
+						ch_phone=false;
 					} else {
 						$('#phoneMsg').hide();
-						++i;
-						++ch_phone;
+						ch_phone=true;
 					}
 				})
 
@@ -245,18 +237,20 @@ var ch_phone = 0;
 								$('#pwMsg2').html("위 비밀번호와 일치하지 않습니다").css(
 										"color", "red");
 								$('#member_pw2').val('');
+								ch_pw2=false;
 							} else if ($('#member_pw2').val() === ''
 									|| $('#member_pw2').val() === null) {
 								$('#pwMsg2').html("필수 정보입니다").css("color",
 										"red");
+								ch_pw2=false;
 							}else if(!pwok2.test($('#member_pw').val())){
 								$('#pwMsg2').html("8~20자의 특수문자, 영문 소문자, 숫자만 사용 가능합니다.").css("color","red");
 								$('#member_pw2').val('');
+								ch_pw2=false;
 							}  
 							else {
 								$('#pwMsg2').html("두 비밀번호가 일치합니다").css("color","blue");
-								++i;
-								++ch_pw2;
+								ch_pw2=true;
 							}
 						})
 	});
@@ -264,17 +258,19 @@ var ch_phone = 0;
 $(document).ready(function() {
 		//가입 버튼 클릭 시 form submit
 		$("#btnJoin").click(function() {
-			if(i==9){
+			if(ch_id==true && ch_pw==true && ch_pw2==true && 
+				ch_name==true && ch_nick==true && ch_birthday==true && 
+				ch_gender==true && ch_email==true && ch_phone==true){
 				$(this).parents("form").submit();
-			}if(ch_id ==0){ $('#idMsg').show(); 
-			}if(ch_pw ==0){ $('#pwMsg1').show(); 
-			}if(ch_pw2 ==0){ $('#pwMsg2').show(); 
-			}if(ch_name ==0){ $('#nameMsg').show(); 
-			}if(ch_nick ==0){ $('#nickMsg').show(); 
-			}if(ch_birthday ==0){ $('#birthdayMsg').show(); 
-			}if(ch_gender ==0){ $('#genderMsg').show(); 
-			}if(ch_email ==0){ $('#emailMsg').show(); 
-			}if(ch_phone ==0){ $('#phoneMsg').show(); 
+			}if(ch_id==false){ $('#idMsg').show(); 
+			}if(ch_pw==false){ $('#pwMsg1').show(); 
+			}if(ch_pw2==false){ $('#pwMsg2').show(); 
+			}if(ch_name==false){ $('#nameMsg').show();  
+			}if(ch_nick==false){ $('#nickMsg').show(); 
+			}if(ch_birthday==false){ $('#birthdayMsg').show(); 
+			}if(ch_gender==false){ $('#genderMsg').show(); 
+			}if(ch_email==false){ $('#emailMsg').show(); 
+			}if(ch_phone==false){ $('#phoneMsg').show(); 
 			}
 		})
 

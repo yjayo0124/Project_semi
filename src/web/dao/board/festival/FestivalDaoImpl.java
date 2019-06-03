@@ -21,7 +21,7 @@ public class FestivalDaoImpl implements FestivalDao{
 	@Override
 	public List selectAll(FestivalPaging paging) {
 		
-		//파일업로드 기록 조회쿼리
+		//�뙆�씪�뾽濡쒕뱶 湲곕줉 議고쉶荑쇰━
 				String sql = "";
 				sql+="SELECT * FROM (	SELECT rownum rnum, B.* FROM (";
 				sql+="	SELECT festival_board_no, festival_title, festival_content, festival_start, festival_end, festival_writtendate FROM Festival_Board";
@@ -44,8 +44,8 @@ public class FestivalDaoImpl implements FestivalDao{
 						board.setFestival_board_no( rs.getInt("festival_board_no") );
 						board.setFestival_title(rs.getString("festival_title"));
 						board.setFestival_content(rs.getString("festival_content"));
-						board.setFestival_start(rs.getDate("festival_start"));
-						board.setFestival_end(rs.getDate("festival_end"));
+						board.setFestival_start(rs.getString("festival_start"));
+						board.setFestival_end(rs.getString("festival_end"));
 						board.setFestival_writtendate(rs.getDate("festival_writtendate"));
 						
 						list.add(board);
@@ -101,8 +101,8 @@ public class FestivalDaoImpl implements FestivalDao{
 				board.setFestival_board_no( rs.getInt("festival_board_no") );
 				board.setFestival_title(rs.getString("festival_title"));
 				board.setFestival_content(rs.getString("festival_content"));
-				board.setFestival_start(rs.getDate("festival_start"));
-				board.setFestival_end(rs.getDate("festival_end"));
+				board.setFestival_start(rs.getString("festival_start"));
+				board.setFestival_end(rs.getString("festival_end"));
 				board.setFestival_phone(rs.getString("festival_phone"));
 				board.setFestival_web(rs.getString("festival_web"));
 				board.setFestival_host(rs.getString("festival_host"));
@@ -122,9 +122,8 @@ public class FestivalDaoImpl implements FestivalDao{
 	public void insert(FestivalBoard board) {
 		
 		String sql ="";
-		sql += "INSERT INTO festival_board( festival_board_no, festival_title, festival_content, festival_start, festival_end, festival_phone, festival_web, festival_host, festival_fee, festival_writtendate )";
-		sql += " VALUES (Festival_Board_seq.nextval, '"+board.getFestival_title()+"', '"+board.getFestival_content()+"', '"+board.getFestival_start()+"', '"+board.getFestival_end()+"', '"+board.getFestival_phone()+"', '"+board.getFestival_web()+"', '"+board.getFestival_host()+"', '"+board.getFestival_fee()+"' )";
-
+		sql += "INSERT INTO festival_board( festival_board_no, festival_title, festival_content, festival_start, festival_end, festival_phone, festival_web, festival_host, festival_fee, member_code)";
+		sql += " VALUES (Festival_Board_seq.nextval, '"+board.getFestival_title()+"', '"+board.getFestival_content()+"', TO_DATE('"+board.getFestival_start()+"', 'YYYY-MM-DD'), TO_DATE('"+board.getFestival_end()+"', 'YYYY-MM-DD'), '"+board.getFestival_phone()+"', '"+board.getFestival_web()+"', '"+board.getFestival_host()+"', '"+board.getFestival_fee()+"', '"+board.getMember_code()+"' )";
 		try {
 			ps= conn.prepareStatement(sql);
 			ps.executeUpdate(sql);
@@ -134,6 +133,45 @@ public class FestivalDaoImpl implements FestivalDao{
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void update(FestivalBoard board) {
+		String sql ="";
+		sql += "UPDATE festival_board";
+		sql += " SET festival_title = ?,";
+		sql += "	festival_content = ?,";
+		sql += " 	festival_fee = ?";
+		sql += " WHERE festival_board_no = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, board.getFestival_title());
+			ps.setString(2, board.getFestival_content());
+			ps.setString(3, board.getFestival_fee());
+			ps.setInt(4, board.getFestival_board_no());
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void delete(FestivalBoard board) {
+		
+		String sql ="";
+		sql += "DELETE FROM festival_board";
+		sql += " WHERE festival_board_no = "+board.getFestival_board_no();
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.executeUpdate(sql);
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

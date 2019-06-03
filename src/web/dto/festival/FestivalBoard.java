@@ -6,13 +6,15 @@ public class FestivalBoard {
 	private int festival_board_no;
     private String festival_title;
     private String festival_content;
-    private Date festival_start;
-    private Date festival_end;
+    private String festival_start;
+    private String festival_end;
     private String festival_phone;
     private String festival_web;
     private String festival_host;
     private String festival_fee;
     private int member_code;
+    
+    
     private Date festival_writtendate;
     
 	public int getFestival_board_no() {
@@ -27,24 +29,7 @@ public class FestivalBoard {
 	public void setFestival_title(String festival_title) {
 		this.festival_title = festival_title;
 	}
-	public String getFestival_content() {
-		return festival_content;
-	}
-	public void setFestival_content(String festival_content) {
-		this.festival_content = festival_content;
-	}
-	public Date getFestival_start() {
-		return festival_start;
-	}
-	public void setFestival_start(Date festival_start) {
-		this.festival_start = festival_start;
-	}
-	public Date getFestival_end() {
-		return festival_end;
-	}
-	public void setFestival_end(Date festival_end) {
-		this.festival_end = festival_end;
-	}
+	
 	public String getFestival_phone() {
 		return festival_phone;
 	}
@@ -81,5 +66,24 @@ public class FestivalBoard {
 	public void setFestival_writtendate(Date festival_writtendate) {
 		this.festival_writtendate = festival_writtendate;
 	}
+	public String getFestival_start() {
+		return festival_start;
+	}
+	public void setFestival_start(String festival_start) {
+		this.festival_start = festival_start;
+	}
+	public String getFestival_end() {
+		return festival_end;
+	}
+	public void setFestival_end(String festival_end) {
+		this.festival_end = festival_end;
+	}
+	public String getFestival_content() {
+		return festival_content;
+	}
+	public void setFestival_content(String festival_content) {
+		this.festival_content = festival_content;
+	}
+	
 
 }

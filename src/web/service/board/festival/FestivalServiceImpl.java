@@ -25,7 +25,6 @@ public class FestivalServiceImpl implements FestivalService{
 		int curPage = 0;
 		if(param!=null && !"".equals(param)) {
 			curPage = Integer.parseInt(param);
-			System.out.println(curPage);
 		}
 		int totalCount = festivalDao.selectCntAll();
 		
@@ -59,6 +58,18 @@ public class FestivalServiceImpl implements FestivalService{
 
 
 		festivalDao.insert(board);
+		
+	}
+
+	@Override
+	public void update(FestivalBoard board) {
+		festivalDao.update(board);
+		
+	}
+
+	@Override
+	public void delete(FestivalBoard board) {
+		festivalDao.delete(board);
 		
 	}
 

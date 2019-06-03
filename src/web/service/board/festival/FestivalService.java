@@ -19,5 +19,9 @@ public interface FestivalService {
 	public FestivalBoard view(FestivalBoard board);
 	
 	public void write(FestivalBoard board);
+	
+	public void update(FestivalBoard board);
+	
+	public void delete(FestivalBoard board);
 
 }

@@ -28,22 +28,22 @@ public class NoticeViewController extends HttpServlet {
 
 		Notice notice = noticeService.getNoticeno(req);
 		notice = noticeService.viewNotice(notice);
-		//    <--°Ô½Ã±Û¹øÈ£·Î °¡Á®¿Â ±Û °´Ã¼¸¦ ÁÂº¯¿¡ ´ãÀ½
+		//    <--ï¿½Ô½Ã±Û¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Âºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		System.out.println(notice);
 //		System.out.println(req.getSession().getAttribute("member_id"));
 
 		boolean writer_check;
-		//ÀÛ¼ºÀÚ==·Î±×ÀÎ°´Ã¼ ºñ±³ÇÏ´Â ¸Þ¼Òµå
+		//ï¿½Û¼ï¿½ï¿½ï¿½==ï¿½Î±ï¿½ï¿½Î°ï¿½Ã¼ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
 		writer_check = noticeService.CheckWriter(notice.getMember_id(), req);
-		//ÀÛ¼ºÀÚ == ·Î±×ÀÎ°´Ã¼¶ó¸é true ¹ÝÈ¯ ¾Æ´Ï¶ó¸é false¹ÝÈ¯
+		//ï¿½Û¼ï¿½ï¿½ï¿½ == ï¿½Î±ï¿½ï¿½Î°ï¿½Ã¼ï¿½ï¿½ï¿½ true ï¿½ï¿½È¯ ï¿½Æ´Ï¶ï¿½ï¿½ falseï¿½ï¿½È¯
 		
-		// writerÃ¼Å©ÇÏ´Â model Àü¼Û 
+		// writerÃ¼Å©ï¿½Ï´ï¿½ model ï¿½ï¿½ï¿½ï¿½ 
 		req.setAttribute("writer_check", writer_check);
 		
-		//--¤ÑmodelÀü¼Û
+		//--ï¿½ï¿½modelï¿½ï¿½ï¿½ï¿½
 		req.setAttribute("notice", notice);
-			
-		//VIEW ÁöÁ¤
+		
+		//VIEW ï¿½ï¿½ï¿½ï¿½
 		req.getRequestDispatcher("/WEB-INF/views/board/notice/view.jsp").forward(req, resp);
 	
 	

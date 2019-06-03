@@ -2,6 +2,8 @@ package web.dao.board.fish_info;
 
 import java.util.List;
 
+import web.dto.FishInfo;
+import web.dto.FreeBoard;
 import web.util.Fish_Paging;
 import web.util.Paging;
 
@@ -21,5 +23,21 @@ public interface FishDao {
 	 * @return 테이블 전체 행 수 조회 결과
 	 */
 	public int selectCntAll();
+	
+	/**
+	 * 상세보기 게시글 조회
+	 * 
+	 * @param viewBoard - 조회 대상
+	 * @return Board - 게시글 조회 결과
+	 */
+	public FishInfo selectBoardByBoardno(FishInfo fishInfo);
+	
+	public int selectBoardno();
+
+	public void insert(FishInfo fishInfo);
+	
+	public void update(FishInfo fishInfo);
+
+	public void delete(FishInfo fishInfo);
 	
 }

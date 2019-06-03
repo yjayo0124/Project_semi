@@ -13,34 +13,33 @@ import web.service.board.fish_info.FishService;
 import web.service.board.fish_info.FishServiceImpl;
 
 /**
- * Servlet implementation class FishWriteController
+ * Servlet implementation class FishUpdateController
  */
-@WebServlet("/board/fish/info/write")
-public class FishWriteController extends HttpServlet {
+@WebServlet("/board/fish/info/update")
+public class FishUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private FishService fishService = new FishServiceImpl() ;
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			
+		FishInfo fishInfo = fishService.getBoardno(req) ;
 		
+		fishInfo = fishService.view(fishInfo) ;
 		
-		if( req.getSession().getAttribute("login") == null ) {
-		resp.sendRedirect("/main");
-			return;
+		req.setAttribute( "fishInfo" , fishInfo ) ; 
+		
+		req.getRequestDispatcher( "/WEB-INF/views/board/fish_info/fish_info_update.jsp" ).forward(req, resp) ;
 		}
-		
-		req.getRequestDispatcher( "/WEB-INF/views/board/fish_info/fish_info_write.jsp" ).forward(req, resp);
-	}
 	
 	@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		req.setCharacterEncoding("UTF-8");
 		
-		req.setCharacterEncoding("utf-8");
-		
-		fishService.write( req ) ;
+		fishService.update(req);
 		
 		resp.sendRedirect( "/board/fish/info" ) ;
-		
 		}
 }

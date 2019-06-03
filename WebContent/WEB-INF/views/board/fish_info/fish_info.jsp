@@ -17,15 +17,24 @@ $(document).ready(function() {
 <style type="text/css">
  
 #title {
- 	margin-left: 320px ;
- 	margin-right: 300px ;
- 	font-weight: 600px ;
- 	font-size: 30px ;
- 	width: 1300px ;
+ 	margin-left: 450px ;
+ 	width: 1100px ;
+ 	
 }
-#write {
-	float: right ;
-	margin-right: 320px ;
+#head {
+	font-weight: 600px ;
+ 	font-size: 30px ;
+}
+#btnWrite{
+	float: right;
+	margin-right: 140px ;
+	margin-top: 20px ;
+}
+#hr {
+	margin-left: 450px ;
+	margin-right: 450px ; 
+	margin-top: 0px ;
+	margin-bottom: 0px ;
 }
 #img {
 	float: left ;
@@ -44,29 +53,37 @@ $(document).ready(function() {
 	font-size: 20px ;
 	font-weight: 650px ;
 }
+#margin {
+	width: 1200px ;
+	margin: 0 auto ;
+	text-align: center;
+	
+}
+.item {
+	display: inline-block;
+	margin: 10px ;
+}
 
+</style>
+ 
+<c:import url="/WEB-INF/views/layout/header.jsp" />
 
- </style>
- 
- <c:import url="/WEB-INF/views/layout/header.jsp" />
- 
-<br><br>
-<div id = "title">
-&nbsp;&nbsp;&nbsp;&nbsp;물고기 정보
-<hr>
-</div>
-<div id = "write">
-<button id = "btnWrite">글쓰기</button>
-</div>
 <br>
+<div id = "title">
+<font id = "head">물고기 정보</font>
+<c:if test="${ res eq 1 }">
+<button id = "btnWrite">글쓰기</button>
+</c:if>
+</div><div style="clear: both;"></div>
+<hr id = "hr"><br>
 
-<div style = "width: 1000px ; margin: 0 auto ; text-align: center;">
+<div id = "margin">
 <c:forEach items="${fishlist}" var="i">
-<div class="item" style="display: inline-block;">
-	<div style="width: 220px; height: 350px" id = "img">
-		<a href="/board/fish/info/detail"><img src="/imgs/fishing.jpg" alt="Fishing" width="220px" height="350px"></a>
+<div class="item">
+	<div style="width: 220px; height: 350px;" id = "img">
+		<a href="/board/fish/info/detail?fish_no=${i.fish_no }"><img src="/imgs/fishing.jpg" alt="Fishing" width="220px;" height="350px;"></a>
 	</div>
-	<a href="/board/fish/info/detail">
+	<a href="/board/fish/info/detail?fish_no=${i.fish_no }">
 		<div id = "text" style="width: 240px; height: 350px" ><br>	
 			<div id = "fname">${i.fish_name } </div><br><br>
 			<div id = "ftype">낚시 종류 : ${i.fish_type } </div><br>
@@ -77,7 +94,6 @@ $(document).ready(function() {
 	</a>
 	<div style="clear: both;"></div>
 </div>
-<br>
 </c:forEach>
 </div>
 

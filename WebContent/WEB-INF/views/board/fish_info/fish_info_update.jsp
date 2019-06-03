@@ -49,17 +49,16 @@
 		});
 	})
 </script>
-
 <script type="text/javascript">
 $(document).ready(function() {
 	
 	//작성버튼 동작
-	$("#btnWrite").click(function() {
+	$("#btnUpdate").click(function() {
 		
-		//스마트 에디터의 내용으로 <textarea> 에 적용시키기
-//		submitContents($("#btnWrite"));
-		
-		//form submit 수행		
+/* 		//스마트에디터의 내용으로 <textarea>에 적용시키기
+		submitContents($("#btnUpdate"));
+		 */
+		//form submit 수행
 		$("form").submit();
 	});
 	
@@ -74,24 +73,20 @@ $(document).ready(function() {
 #content {
 	width: 98%;
 }
-
-#smart_editor2{
-	margin : 0 auto;
-}
-
 a:link , a:visited , a:active , a:hover {
 	color: black ;
 }
-
 </style>
 
 <div class="container">
 
-<h3>물고기 정보글 작성</h3>
+<h3>게시글 쓰기</h3>
 <hr>
 
 <div>
-<form action="/board/fish/info/write" method="post">
+<form action="/board/fish/info/update" method="post">
+<input type="hidden" name="fish_no" value="${fishInfo.fish_no }" />
+
 <table class="table table-bordered">
 <tr><td class="info">아이디</td><td>${member_id }</td></tr>
 <tr><td class="info">물고기 이름</td><td><input type="text" name="fish_name" style="width:100%" value="${fishInfo.fish_name }"/></td></tr>
@@ -101,47 +96,46 @@ a:link , a:visited , a:active , a:hover {
 <tr><td class="info">물고기 특징</td><td><input type="text" name="fish_care" style="width:100%" value="${fishInfo.fish_care }"/></td></tr>
 <tr><td class="info" colspan="2">본문</td></tr>
 <tr><td colspan="2">
-	<textarea id="summernote" name="fish_content" rows="10" cols="100"></textarea>
+	<textarea id="summernote" name="fish_content" rows="10" cols="100">${fishInfo.fish_content }</textarea>
 </td></tr>
 </table>
+
 
 </form>
 </div>
 
 <div class="text-center">	
-	<button type="button" id="btnWrite" >작성</button>
-	<button type="button" id="btnCancel" >취소</button>
+	<button type="button" id="btnUpdate" class="btn btn-info">수정적용</button>
+	<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
 </div>
 </div>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 <!-- 스마트 에디터를 생성하는 코드 -->
+<!-- 스마트 에디터의 스킨을 입히는 코드 -->
 <!-- <script type="text/javascript">
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
- oAppRef: oEditors,
- elPlaceHolder: "content",  //<textarea> 의 id를 입력
- sSkinURI: "/resources/se2/SmartEditor2Skin.html",
- fCreator: "createSEditor2",
- htParams: {
-	 bUseToolbar: true, //툴바 사용여부
-	 bUseVerticalResizer: false, //입력창 크기 조절 바
-	 bUseModeChanger: true //글쓰기 모드 탭	 
- }
+	oAppRef: oEditors,
+	elPlaceHolder: "content",	//<textarea>의 id 를 입력
+	sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+	fCreator: "createSEditor2",
+	htParams: {
+		bUseToolbar: true, //툴바 사용여부
+		bUseVerticalResizer: false, //입력창 크기 조절 바
+		bUseModeChanger: true //글쓰기 모드 탭
+	}
 });
 
-//<form>의 submit이 수행되면 스마트에디터의 내용이 <textarea> 에 적용됨
-//‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
+//<form>의 submit이 수행되면 스마트에디터의 내용이 <textarea>에 적용됨
 function submitContents(elClickedObj) {
-
 	// 에디터의 내용이 textarea에 적용된다.
- oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 
- try {
-     elClickedObj.form.submit();
- } catch(e) {	 
- }
+	try {
+		elClickedObj.form.submit();
+	} catch (e) { }
 }
- </script>
+</script>
  -->

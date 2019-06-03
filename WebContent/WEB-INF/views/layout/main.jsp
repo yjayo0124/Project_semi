@@ -16,9 +16,8 @@
 .footer {
 	position: fixed;
 	bottom: 0;
-	width: 100%; overflow : hidden;
-	z-index: 100;
-	overflow: hidden;
+	width: 100%; 
+	
 }
 
 .main {
@@ -63,5 +62,7 @@
 			<div class="weather"></div>
 		</div>
 	</div>
-</body>
-</html>
+	
+
+	<c:import url="/WEB-INF/views/layout/footer.jsp" />
+	

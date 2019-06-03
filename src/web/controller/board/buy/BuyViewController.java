@@ -1,6 +1,7 @@
 package web.controller.board.buy;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.dto.BuyBoard;
 import web.dto.BuyFile;
+import web.dto.Comment;
 import web.service.board.buy.face.BuyService;
 import web.service.board.buy.impl.BuyServiceImpl;
 
@@ -30,8 +32,16 @@ public class BuyViewController extends HttpServlet {
     	viewBoard = buyservice.view(viewBoard);
     	req.setAttribute("viewBoard", viewBoard);
     	
+    	// 첨부 파일 전달
     	BuyFile buyFile = buyservice.viewFile(viewBoard);
     	req.setAttribute("buyFile", buyFile);
+    	
+    	
+    	//댓글 리스트 전달
+    	Comment comment = new Comment();
+    	List<Comment> commentList = buyservice.getCommentList(viewBoard);
+    	req.setAttribute("commentList", commentList);
+    			
     	
     	
     	

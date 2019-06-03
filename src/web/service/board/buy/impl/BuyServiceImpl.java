@@ -14,17 +14,19 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import web.dao.board.buy.face.BuyDao;
+import web.dao.board.buy.face.CommentDao;
 import web.dao.board.buy.impl.BuyDaoImpl;
-
-
+import web.dao.board.buy.impl.CommentDaoImpl;
 import web.dto.BuyBoard;
 import web.dto.BuyFile;
+import web.dto.Comment;
 import web.service.board.buy.face.BuyService;
 import web.util.Paging;
 
 public class BuyServiceImpl implements BuyService{
 	
 	private BuyDao buyDao = new BuyDaoImpl();
+	private CommentDao commentDao = new CommentDaoImpl();
 	
 	@Override
 	public List getList(Paging paging) {
@@ -396,6 +398,49 @@ public class BuyServiceImpl implements BuyService{
 		
 		buyDao.delete(board);
 		
+		
+	}
+
+	@Override
+	public Comment getComment(HttpServletRequest req) {
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		String boardNo = (String) req.getParameter("boardNo");
+		String userid = (String) req.getParameter("userid");
+		String content = (String) req.getParameter("content");
+		
+		Comment comment = new Comment();
+		comment.setBoardNo( Integer.parseInt(boardNo) );
+		comment.setUserid(userid);
+		comment.setContent(content);
+		
+		return comment;
+	}
+
+	@Override
+	public void insertComment(Comment comment) {
+		commentDao.insertComment(comment);
+		
+	}
+
+	@Override
+	public List getCommentList(BuyBoard board) {
+		return commentDao.selectComment(board);
+	}
+
+	@Override
+	public boolean deleteComment(Comment comment) {
+		commentDao.deleteComment(comment);
+		
+		if( commentDao.countComment(comment) > 0) {
+			return false;
+		} else {
+			return true;
+		}
 		
 	}
 	

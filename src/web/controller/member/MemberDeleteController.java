@@ -12,35 +12,35 @@ import web.dto.MemberDetail;
 import web.service.member.MemberService;
 import web.service.member.MemberServiceImpl;
 
-@WebServlet("/member/mypage")
-public class MyPageController extends HttpServlet {
+@WebServlet("/member/delete")
+public class MemberDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberService memberService = new MemberServiceImpl();
 	
-	@Override
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+	}
+
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		
 		MemberDetail member = new MemberDetail();
 		
 		member.setMember_id(req.getParameter("member_id"));
 		
-   		member = memberService.getMemberByMemberid(member);
-	
-   		req.setAttribute("member", member);
-		
-		
-		req.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp")
-		.forward(req, resp);
-	}
-	
+		System.out.println(member.getMember_id());
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+//		memberService.deleteMemberByMemberid(member);
+
+
+		
+   		resp.sendRedirect("/main");
    		
-   		}
-	
+		
 	}
-	
 
+}

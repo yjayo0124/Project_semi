@@ -31,6 +31,19 @@
 		return false;
 		});
 	});
+	
+	$(document).ready(function() {
+		//글쓰기 버튼 누르면 이동
+		$("#btnUpdate").click(function() {
+			location.href="/member/update";
+		});
+		
+		$("#btnDelete").click(function() {
+			location.href="/member/delete";
+		});
+	});
+	
+
 		
 </script>	
 
@@ -137,16 +150,17 @@
 					}
 
 .form2{
-	display: block;
-	margin-left: 250px;
-	margin-top:200px;
-	margin-right:50px;
-	
+
+	background:silver;
+	margin-top:100px;
+	margin-left: 450px;
+	width:800px;
+	height:400px;
 	
 }
 
 .pass_check{
-	background:silver;
+	
 
 }
 </style>
@@ -229,7 +243,7 @@
 				name="member_phone" class="inputtext" maxlength="16" />
 			</span> <span class="error" id="phoneMsg"> 필수 정보입니다 </span>
 			<div class="btnarea">
-				<button type="button" id="btnJoin" class="btn_type">
+				<button type="button" id="btnUpdate" class="btn_type">
 					<span>변경하기</span>
 				</button>
 			</div>
@@ -237,13 +251,16 @@
 	
 </form>
 
-<form action="/member/mypage" method="post" class="form2">
+<form action="/member/mypagedelete?member_id=${member.member_id } " method="post" class="form2">
 
 <div class="pass_check">
-<input type="hidden" id="member_id" name="member_id" value=${member.member_id }/>
+
+
 현재 비밀번호 확인
 <input type="password" id="password_check" name="password_check"/>
-<button>제출</button>
+	<button id="btnDelete" >
+		<span>제출</span>
+	</button>
 </div>
 
 </form>

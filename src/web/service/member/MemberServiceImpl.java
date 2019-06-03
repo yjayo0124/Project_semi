@@ -75,6 +75,18 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.insert(member);
 	}
 
+	@Override
+	public MemberDetail getMemberByMemberpw(MemberDetail member) {
+		return memberDao.selectMemberByMemberpw(member);
+	}
+
+	@Override
+	public void deleteMemberByMemberid(MemberDetail member) {
+		 memberDao.deleteMember(member);
+
+	
+	}
+
 
 	
 

@@ -208,5 +208,87 @@ public class MemberDaoImpl implements MemberDao{
 		}
 		return check; // 데이터베이스 오류
 	}
+
+	@Override
+	public MemberDetail selectMemberByMemberpw(MemberDetail member) {
+	
+		if( member.getMember_pw() == null ) {
+			return null;
+		}
+
+		
+		String sql = "";
+		sql += "SELECT * FROM Member_Detail";
+		sql += " WHERE 1=1";
+		sql += " AND member_pw = ?";
+		
+		try {
+			//DB�옉�뾽
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getMember_pw());
+		
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				member.setMember_code(rs.getInt("member_code"));
+				member.setMember_id( rs.getString("member_id") );
+				member.setMember_pw( rs.getString("member_pw") );
+				member.setMember_nick( rs.getString("member_nick") );
+				member.setMember_name( rs.getString("member_name") );
+				member.setMember_gender( rs.getString("member_gender") );
+				member.setMember_birthday( rs.getString("member_birthday") );
+				member.setMember_group(rs.getInt("member_group"));
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				//DB媛앹껜 �떕湲�
+				if(rs!=null)	rs.close();
+				if(ps!=null)	ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return member;
+
+	}
+
+	@Override
+	public void deleteMember(MemberDetail member) {
+		String sql = "";
+		sql += "DELETE FROM Member_Detail";
+		sql += " WHERE 1=1";
+		sql += " AND member_id = ?";
+		
+		
+		try {
+			//DB�옉�뾽
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getMember_id());
+		
+			ps.executeUpdate();
+			
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				//DB媛앹껜 �떕湲�
+				if(rs!=null)	rs.close();
+				if(ps!=null)	ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
 	
 }

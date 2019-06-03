@@ -272,7 +272,7 @@ public class FreeServiceImpl implements FreeService{
 			//form-data 추출 
 			List<FileItem> items = null;
 			try {
-				items = upload.parseRequest((RequestContext) req);
+				items = upload.parseRequest(req);
 				
 			} catch (FileUploadException e) {
 				e.printStackTrace();

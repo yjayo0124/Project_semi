@@ -298,7 +298,7 @@
 				<label for="gender">성별</label>
 			</h3>
 			<div class="genderdiv">
-				<select id="member_gender" name="gender" class="gen">
+				<select id="member_gender" name="member_gender" class="gen">
 					<option value="0" selected>성별</option>
 					<option value="M">남자</option>
 					<option value="F">여자</option>

@@ -18,6 +18,7 @@ import web.dao.board.sell.face.SellDao;
 import web.dao.board.sell.impl.CommentDaoImpl;
 import web.dao.board.sell.impl.SellDaoImpl;
 import web.dto.BuyBoard;
+import web.dto.BuyFile;
 import web.dto.Comment;
 import web.dto.SellBoard;
 import web.dto.SellFile;
@@ -270,25 +271,202 @@ public class SellServiceImpl implements SellService{
 	// 여기서부터 수정 다시
 	@Override
 	public void update(HttpServletRequest req) {
-		// TODO Auto-generated method stub
+		SellBoard board = null;
+		SellFile boardFile = null;
+		
+		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
+		
+		board = new SellBoard();
+
+		if(!isMultipart) {
+			//파일 첨부가 없을 경우
+			
+			board.setTitle(req.getParameter("title"));
+			
+			board.setDirect(req.getParameter("select"));
+			board.setDelivery(req.getParameter("select"));
+			
+			String price1 = (String) req.getSession().getAttribute("price");
+			int price = Integer.parseInt(price1);
+			
+			board.setPrice(price);
+			board.setContent(req.getParameter("content"));
+			
+		} else {
+
+
+			//디스크팩토리
+			DiskFileItemFactory factory = new DiskFileItemFactory();
+
+			//메모리처리 사이즈
+			factory.setSizeThreshold(1 * 1024 * 1024); //1MB
+
+			//임시 저장소
+			File repository=new File(req.getServletContext().getRealPath("tmp"));
+			factory.setRepository(repository);
+			
+			//업로드 객체 생성
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			
+			//용량 제한 설정 : 10MB
+			upload.setFileSizeMax(10 * 1024 * 1024);
+			
+			//form-data 추출 
+			List<FileItem> items = null;
+			try {
+				items = upload.parseRequest(req);
+				
+			} catch (FileUploadException e) {
+				e.printStackTrace();
+			}
+			
+			//파싱된 데이터 처리 반복자
+			Iterator<FileItem> iter = items.iterator();
+			
+			//요청정보 처리
+			while( iter.hasNext() ) {
+				FileItem item = iter.next();
+				
+				// 빈 파일 처리
+				if( item.getSize() <= 0 )	continue;
+				
+				// 빈 파일이 아닐 경우
+				if( item.isFormField() ) {
+					try {
+						
+						if("boardno".equals( item.getFieldName())) {
+							board.setBoardno( Integer.parseInt(item.getString()));
+						}
+						
+						//제목 처리
+						if( "title".equals( item.getFieldName() ) ) {
+								board.setTitle( item.getString("utf-8") );
+								System.out.println(board.getTitle());
+						}
+						
+						
+						//본문 처리
+						
+						if( "content".equals( item.getFieldName() ) ) {
+							board.setContent( item.getString("utf-8") );
+							
+							
+						}
+						
+						
+						//-----------------------------------------------
+						
+						if( "select".equals(item.getFieldName() ) ) {
+								
+							
+							
+							 board.setDirect( item.getString("utf-8"));
+							 board.setDelivery( item.getString("utf-8"));
+							 
+							 System.out.println(board.getDirect());
+							 System.out.println(board.getDelivery());
+						}
+						
+						
+						
+						if("price".equals( item.getFieldName())) {
+							
+							
+							board.setPrice( Integer.parseInt(item.getString("utf-8")) );
+							
+							
+						}
+						
+						if("phoneAgree".equals( item.getFieldName())) {
+							board.setPhoneAgree( item.getString("utf-8"));
+						}
+						
+						
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				} else {
+					UUID uuid = UUID.randomUUID();
+//					System.out.println(uuid);
+					
+					String u = uuid.toString().split("-")[4];
+//					System.out.println(u);
+					// -----------------
+					
+					//로컬 저장소 파일
+					String stored = item.getName() + "_" + u;
+					File up = new File(
+						req.getServletContext().getRealPath("upload")
+						, stored);
+					
+					boardFile = new SellFile();
+					boardFile.setOriginName(item.getName());
+					boardFile.setStoredName(stored);
+					boardFile.setFilesize(item.getSize());
+					
+					try {
+						// 실제 업로드
+						item.write(up);
+						
+						// 임시 파일 삭제
+						item.delete();
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					} // try end
+				} //if end
+			} //while end
+		} //if(!isMultipart) end
+		
+
+		// System.out.println(board);
+		// System.out.println(boardFile);
+		
+		if(board != null) {
+			sellDao.update(board);
+		}
+		
+		if(boardFile != null) {
+			boardFile.setBoardno(board.getBoardno());
+			sellDao.insertFile(boardFile);
+		}
+		
 		
 	}
 
 	@Override
 	public void delete(SellBoard board) {
-		// TODO Auto-generated method stub
 		
+		sellDao.delete(board);
+		
+		sellDao.delete(board);
 	}
 
 	@Override
 	public Comment getComment(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		String boardNo = (String) req.getParameter("boardNo");
+		String userid = (String) req.getParameter("userid");
+		String content = (String) req.getParameter("content");
+		
+		Comment comment = new Comment();
+		comment.setBoardNo( Integer.parseInt(boardNo) );
+		comment.setUserid(userid);
+		comment.setContent(content);
+		
+		return comment;
 	}
 
 	@Override
 	public void insertComment(Comment comment) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

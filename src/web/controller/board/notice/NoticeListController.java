@@ -30,21 +30,21 @@ public class NoticeListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		
-		//¿äÃ»ÆÄ¶ó¹ÌÅÍ¿¡¼­ curPage ¾ò¾î¿À±â
+		//ï¿½ï¿½Ã»ï¿½Ä¶ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ curPage ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Paging paging = noticeService.getCurPage(req);
 				
-		//MODEL·Î Paging °´Ã¼ ³Ö±â
+		//MODELï¿½ï¿½ Paging ï¿½ï¿½Ã¼ ï¿½Ö±ï¿½
 		req.setAttribute("paging", paging);
 							
-		//°Ô½ÃÆÇ ¸ñ·Ï Á¶È¸
+		//ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 		List list = noticeService.getList(paging);
 				
-		//MODEL·Î Á¶È¸ °á°ú ³Ö±â
+		//MODELï¿½ï¿½ ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 		req.setAttribute("list", list);
 		//---------------------------------------
 		
 		
-		//°ü¸®ÀÚÀÎÀÌ ÀÏ¹Ý»ç¿ëÀÚÀÎÁö È®ÀÎÇÑµÚ parameter·Î °ª º¸³»±â
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹Ý»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ñµï¿½ parameterï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		int res = 0;
 			
 //		System.out.println(req.getSession().getAttribute("member_id"));
@@ -58,10 +58,10 @@ public class NoticeListController extends HttpServlet {
 		}
 		req.setAttribute("res", res);
 		
-		//---------------------------------¸â¹öÄÚµå Ã¼Å©ÇÑµÚ °ü¸®ÀÚÀÌ¸é 1/ ÀÏ¹Ý»ç¿ëÀÚÀÌ¸é 0ÀÎ °ªÀ» req·Î º¸³¿!!
+		//---------------------------------ï¿½ï¿½ï¿½ï¿½Úµï¿½ Ã¼Å©ï¿½Ñµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ 1/ ï¿½Ï¹Ý»ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ reqï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!
 		
 		
-		//viewÁöÁ¤
+		//viewï¿½ï¿½ï¿½ï¿½
 		req.getRequestDispatcher("/WEB-INF/views/board/notice/list.jsp").forward(req, resp);
 	
 	}

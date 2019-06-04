@@ -11,6 +11,8 @@ public interface FestivalFileDao {
 		//특정 boardno로 파일 조회
 		public FestivalFile selectByBoardno(FestivalFile board);
 		
+		public void updateFile (FestivalFile file);
+		
 		public void delete (FestivalFile board);
 		
 

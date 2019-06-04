@@ -110,4 +110,25 @@ public class FestivalFileDaoImpl implements FestivalFileDao{
 			
 			
 		}
+
+		@Override
+		public void updateFile(FestivalFile file) {
+			
+			String sql ="";
+			sql += "UPDATE festivalfile";
+			sql += " SET festival_originname = ?,";
+			sql += "	festival_storedname = ?";
+			sql += " WHERE festival_board_no = ?";
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, file.getFestival_originname());
+				ps.setString(2, file.getFestival_storedname());
+				ps.setInt(3, file.getFestival_board_no());
+				ps.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }

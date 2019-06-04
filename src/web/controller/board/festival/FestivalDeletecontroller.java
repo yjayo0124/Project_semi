@@ -36,24 +36,12 @@ public class FestivalDeletecontroller extends HttpServlet {
 		
 		festivalFileDao.delete(file);
 		
-		File uploadfile = new File("D:/workspace_web/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Bootstrapk/upload/"+file.getFestival_storedname());
+		File uploadfile = new File("D:/workspace_web/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Project_semi/upload/"+file.getFestival_storedname());
 		uploadfile.delete();
 		
 		
 		festivalService.delete(board);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		festivalService.delete(board);
-		
-		
+				
 		resp.sendRedirect("/board/festival");
 	}
 

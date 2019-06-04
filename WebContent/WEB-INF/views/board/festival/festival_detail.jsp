@@ -29,6 +29,10 @@ $(document).ready(function() {
 	$("#btnDelete").click(function() {
 		$(location).attr("href", "/board/festival/delete?festival_board_no="+${board.festival_board_no });
 	});
+	
+	$("#btnlist").click(function() {
+		$(location).attr("href", "/board/festival");
+	});
 });
 </script>
 
@@ -197,7 +201,7 @@ $(document).ready(function() {
 		</div>
 
 		<div class="board_list_btn">
-			<button class="list_btn">목록</button>
+			<button class="list_btn" id="btnlist">목록</button>
 		</div>
 		
 		<div class="board_list">

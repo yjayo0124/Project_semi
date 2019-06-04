@@ -1,13 +1,14 @@
 package web.service.board.search;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-import web.dto.Search;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public interface SearchService {
 
 	
-	public Search result(HttpServletRequest req);
+	public List result(HttpServletRequest req, HttpServletResponse resp);
 	
-	public String HtmlParser(String urlToRead);
+	
 }

@@ -334,15 +334,24 @@ public class BuyServiceImpl implements BuyService{
 				// 빈 파일이 아닐 경우
 				if( item.isFormField() ) {
 					try {
+						
+						if("boardno".equals( item.getFieldName())) {
+							board.setBoardno( Integer.parseInt(item.getString()));
+						}
+						
 						//제목 처리
 						if( "title".equals( item.getFieldName() ) ) {
 								board.setTitle( item.getString("utf-8") );
+								
 						}
+						
 						
 						//본문 처리
 						
 						if( "content".equals( item.getFieldName() ) ) {
 							board.setContent( item.getString("utf-8") );
+							
+							
 						}
 						
 						
@@ -354,6 +363,7 @@ public class BuyServiceImpl implements BuyService{
 							
 							 board.setDirect( item.getString("utf-8"));
 							 board.setDelivery( item.getString("utf-8"));
+							 
 						}
 						
 						
@@ -419,7 +429,7 @@ public class BuyServiceImpl implements BuyService{
 		
 		if(boardFile != null) {
 			boardFile.setBoardno(board.getBoardno());
-			buyDao.updateFile(boardFile);
+			buyDao.insertFile(boardFile);
 		}
 		
 	}

@@ -51,7 +51,7 @@ public class BuyUpdateController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		req.setCharacterEncoding("utf-8");
-		System.out.println("Update Controller");
+		
 		buyservice.update(req);
 		
 		resp.sendRedirect("/buy/list");

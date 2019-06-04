@@ -309,7 +309,7 @@ public class BuyDaoImpl implements BuyDao{
 		//다음 게시글 번호 조회 쿼리
 				String sql = "";
 				sql += "INSERT INTO BuyFile(fileno,buy_board_no,originname,storedname,filesize) ";
-				sql += " VALUES (boardfile_seq.nextval, ?, ?, ?, ?)";
+				sql += " VALUES (BuyFile_seq.nextval, ?, ?, ?, ?)";
 				
 				try {
 					//DB작업
@@ -507,6 +507,47 @@ public class BuyDaoImpl implements BuyDao{
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, board.getBoardno());
 
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				//DB객체 닫기
+				if(ps!=null)	ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	@Override
+	public void updateFile(BuyFile buyfile) {
+		String sql = "";
+		sql += "UPDATE BuyFile";
+		sql += " SET ";
+		sql += " 	buy_board_no = ?,";
+		sql += "    originname = ?,   "; 
+		sql += "    storedname = ?, ";
+		sql += "    filesize = ?";
+		
+		sql += " WHERE buy_board_no = ?";
+		
+		//DB 객체
+		PreparedStatement ps = null; 
+		
+		try {
+			//DB작업
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, buyfile.getBoardno());
+			ps.setString(2, buyfile.getOriginName());
+			ps.setString(3, buyfile.getStoredName());
+			ps.setLong(4, buyfile.getFilesize());
+			ps.setInt(5, buyfile.getBoardno());
+			
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

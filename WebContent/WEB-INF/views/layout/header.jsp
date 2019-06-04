@@ -202,7 +202,7 @@ body {
 			<li><span>낚시장터</span>
 				<ul class="SubMenu">
 					<li id="nop"><a href="/buy/list">삽니다 게시판</a></li>
-					<li id="nop">팝니다 게시판</li>
+					<li id="nop"><a href="/sell/list">팝니다 게시판</a></li>
 					<li id="nop">&nbsp;</li>
 				</ul></li>
 			<li><span>커뮤니티</span>

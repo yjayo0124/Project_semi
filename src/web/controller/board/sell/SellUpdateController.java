@@ -1,4 +1,4 @@
-package web.controller.board.buy;
+package web.controller.board.sell;
 
 import java.io.IOException;
 
@@ -14,8 +14,8 @@ import web.service.board.buy.face.BuyService;
 import web.service.board.buy.impl.BuyServiceImpl;
 
 
-@WebServlet("/buy/update")
-public class BuyUpdateController extends HttpServlet {
+@WebServlet("/sell/update")
+public class SellUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     private BuyService buyservice = new BuyServiceImpl();
@@ -51,7 +51,7 @@ public class BuyUpdateController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		req.setCharacterEncoding("utf-8");
-		System.out.println("Update Controller");
+		
 		buyservice.update(req);
 		
 		resp.sendRedirect("/buy/list");

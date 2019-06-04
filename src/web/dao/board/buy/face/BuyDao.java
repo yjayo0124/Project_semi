@@ -38,6 +38,7 @@ public interface BuyDao {
 	
 	public void update(BuyBoard board);
 	
+	public void updateFile(BuyFile buyfile);
 	
 	public void delete(BuyBoard board);
 	

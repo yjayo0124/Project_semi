@@ -12,6 +12,9 @@
 <script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 
 
+
+
+
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -23,10 +26,8 @@ $(document).ready(function() {
 	    lang: 'ko-KR'         // 한국어 지정(기본값은 en-US)
 	});
 	
-	
 	//작성버튼 동작
-	$("#btnUpdate").click(function() {
-		
+	$("#btnWrite").click(function() {
 		
 		
 		//form submit 수행
@@ -42,17 +43,11 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-<h3>수정하기</h3>
+<h3>게시글 쓰기</h3>
 <hr>
 
 <div>
-<form action="/buy/update" method="post" enctype="multipart/form-data">
-<input type="hidden" name="boardno" value="${viewBoard.boardno }" />
-
+<form action="/buy/write" method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
 <tr >
 <td class="info" >아이디</td><td>${member_id }</td> 
@@ -70,7 +65,7 @@ $(document).ready(function() {
 </tr>
 <tr><td class="info" style="width:30%">제목</td>
 
-<td colspan="5"><input type="text" name="title" value="${viewBoard.title }" style="width:30%"/></td>
+<td colspan="5"><input type="text" name="title" style="width:30%"/></td>
 
 
 
@@ -78,7 +73,7 @@ $(document).ready(function() {
 </tr>
 <tr><td class="info" colspan="5">본문</td></tr>
 	<td colspan="5">
-	<textarea id="summernote" name="content" rows="10" cols="100">${viewBoard.content }</textarea>
+	<textarea id="summernote" name="content" rows="10" cols="100"></textarea>
 </td>
 
 
@@ -95,32 +90,32 @@ $(document).ready(function() {
 
 </tr>
 <tr>
-<td colspan="4"><label><input type="checkbox" name="phoneAgree" value="T"> 연락처 노출 동의 </label></td>
+<td colspan="4"><input type="checkbox" name="phoneAgree" value="T"> 연락처 노출 동의 </td>
 
 </tr>
 </table>
 
 
-
-
-<label>기존 썸네일 : </label>${boardFile.originName }<br>
-<label>첨부파일 : <input type="file" name="file" /></label>
+<label>썸네일 : <input type="file" name="file" /></label>
 
 </form>
 </div>
 
-
-
 <div class="text-center">	
-	<button type="button" id="btnUpdate" class="btn btn-info">수정 적용</button>
+	<button type="button" id="btnWrite" class="btn btn-info">작성</button>
 	<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
 </div>
 
 
 
 
-
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
+
+
+
+
+
+
 
 
 

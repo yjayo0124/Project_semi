@@ -40,4 +40,7 @@ public interface FishDao {
 
 	public void delete(FishInfo fishInfo);
 	
+	public FishInfo page( FishInfo fishInfo ) ;
+	
+	
 }

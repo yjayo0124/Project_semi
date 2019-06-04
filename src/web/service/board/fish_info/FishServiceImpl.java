@@ -120,4 +120,23 @@ public class FishServiceImpl implements FishService {
 		
 	}
 
+	@Override
+	public FishInfo page(HttpServletRequest req) {
+		
+		FishInfo fishInfo = null ;
+		
+		fishInfo = new FishInfo() ;
+		
+		fishInfo.setFish_no( Integer.parseInt(req.getParameter( "fish_no" ) ) ) ;
+		
+		return fishDao.page( fishInfo ) ;
+		
+	}
+
+	
+
+
+		
+	
+
 }

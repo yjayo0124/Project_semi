@@ -1,8 +1,11 @@
 package web.service.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import web.dto.MemberDetail;
+import web.util.Paging;
 
 public interface MemberService {
 
@@ -19,7 +22,7 @@ public interface MemberService {
 
 	public MemberDetail getJoinMember(HttpServletRequest req);
 
-	
+	public Paging getCurPage(HttpServletRequest req);
 	/**
 	 * 회원가입
 	 * 
@@ -29,5 +32,13 @@ public interface MemberService {
 
 
 	public void deleteMemberByMemberid(MemberDetail member);
+
+
+	public List getList(Paging paging);
+
+
+	public void forceoutMember(MemberDetail member);
+	
+	public MemberDetail getMemberId(HttpServletRequest req);
 
 }

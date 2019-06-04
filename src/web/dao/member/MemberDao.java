@@ -1,6 +1,9 @@
 package web.dao.member;
 
+import java.util.List;
+
 import web.dto.MemberDetail;
+import web.util.Paging;
 
 public interface MemberDao {
 
@@ -26,4 +29,10 @@ public interface MemberDao {
 	public MemberDetail selectMemberByMemberpw(MemberDetail member);
 
 	public void deleteMember(MemberDetail member);
+	
+	public List selectAll(Paging paging);
+
+	public int selectCntAll(String search);
+	
+	public void memberforceout(MemberDetail member);
 }

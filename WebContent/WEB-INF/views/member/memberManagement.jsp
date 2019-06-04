@@ -19,11 +19,20 @@
       background-color: #BDBDBD;
     }
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btnSearch").click(function() {
+		location.href="/member/management?search="+$("#search").val();
+	});
+});
+
+</script>
 <body>
 <h3 style="margin-top:70px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 회원관리</h3>
+<c:if test="${member_group==1}">
 <div class="tablename">
 <hr>
 <table class="table table-hover table-bordered ">
@@ -38,16 +47,27 @@
 		<th style="width: 10%;">탈퇴</th>
 	</tr>
 </thead>
+<c:forEach items="${list}" var="i">
 	<tr>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
-		<td>5</td>
-		<td>6</td>
-		<td><a style="text-decoration: none; color: blue;" href="/member/delete">탈퇴</a></td>
+		<td>${i.member_code}</td>
+		<td>${i.member_id}</td>
+		<td>${i.member_name}</td>
+		<td>${i.member_gender}</td>
+		<td>${i.member_email}</td>
+		<td>${i.member_phone}</td>
+		<td><a style="text-decoration: none; color: blue;" href="/member/forceout?member_id=${i.member_id}">탈퇴</a></td>
 	</tr>
+</c:forEach>
 </table>
 </div>
+</c:if>
+<c:if test="${not login}"><h1>권한이 없습니다</h1></c:if>
+<c:if test="${member_group ==0}"><h1>권한이 없습니다</h1></c:if>
+<c:import url="/WEB-INF/views/member/paging.jsp" />
+<br>
+<div class="form-inline text-center">
+	<input class="form-control" type="text" id="search" />
+	<button id="btnSearch" class="btn">검색</button>
+</div> 
 </body>
 </html>

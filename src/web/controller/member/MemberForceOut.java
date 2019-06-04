@@ -28,8 +28,6 @@ public class MemberForceOut extends HttpServlet {
 		
 		memberService.forceoutMember(member);
 		
-		System.out.println(member);
-		
 		resp.sendRedirect("/member/management");
 		
 	

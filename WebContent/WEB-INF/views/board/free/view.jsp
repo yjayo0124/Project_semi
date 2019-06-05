@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 <tr>
 <td class="info">아이디</td><td>${viewBoard.free_board_writer }</td>
-<td class="info">닉네임</td><td>[ 추후 추가 ]</td>
+<td class="info">닉네임</td><td>${member_nick }</td>
 </tr>
 
 <tr>

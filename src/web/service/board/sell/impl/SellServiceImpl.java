@@ -363,8 +363,7 @@ public class SellServiceImpl implements SellService{
 							 board.setDirect( item.getString("utf-8"));
 							 board.setDelivery( item.getString("utf-8"));
 							 
-							 System.out.println(board.getDirect());
-							 System.out.println(board.getDelivery());
+							
 						}
 						
 						
@@ -378,6 +377,8 @@ public class SellServiceImpl implements SellService{
 						}
 						
 						if("phoneAgree".equals( item.getFieldName())) {
+							
+							board.setPhoneAgree("");
 							board.setPhoneAgree( item.getString("utf-8"));
 						}
 						
@@ -430,7 +431,7 @@ public class SellServiceImpl implements SellService{
 		
 		if(boardFile != null) {
 			boardFile.setBoardno(board.getBoardno());
-			sellDao.insertFile(boardFile);
+			sellDao.updateFile(boardFile);
 		}
 		
 		
@@ -439,7 +440,7 @@ public class SellServiceImpl implements SellService{
 	@Override
 	public void delete(SellBoard board) {
 		
-		sellDao.delete(board);
+		sellDao.deleteFile(board);
 		
 		sellDao.delete(board);
 	}
@@ -466,20 +467,33 @@ public class SellServiceImpl implements SellService{
 
 	@Override
 	public void insertComment(Comment comment) {
-		
+		commentDao.insertComment(comment);
 		
 	}
 
 	@Override
 	public List getCommentList(SellBoard board) {
-		// TODO Auto-generated method stub
-		return null;
+		return commentDao.selectComment(board);
 	}
 
 	@Override
 	public boolean deleteComment(Comment comment) {
-		// TODO Auto-generated method stub
-		return false;
+		commentDao.deleteComment(comment);
+		
+		
+		if( commentDao.countComment(comment) > 0) {
+			return false;
+		} else {
+			return true;
+		}
+		
+		
 	}
 
+	
+	
+	
+	
+	
+	
 }

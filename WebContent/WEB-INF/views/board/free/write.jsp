@@ -4,7 +4,40 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
+
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+<!-- summer note korean language pack -->
+<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
+
+
+
+<script type="text/javascript">
+	$(document).on('mouseover', '.MainMenu span', function() {
+		$('.SubMenu').slideDown(300);
+	});
+	$(document).on('mouseover', 'div', function() {
+		if (!$(this).hasClass('MainMenu')) {
+			$('.SubMenu').slideUp(300);
+		}
+	});
+	
+	
+	$(document).ready(function() {
+        
+        $('#summernote').summernote({
+           height: 300,          // 기본 높이값
+            minHeight: null,      // 최소 높이값(null은 제한 없음)
+            maxHeight: null,      // 최대 높이값(null은 제한 없음)
+            focus: true,          // 페이지가 열릴때 포커스를 지정함
+            lang: 'ko-KR'         // 한국어 지정(기본값은 en-US)
+        });
+        
+     }) 
+</script>
 
 <!-- 스마트 에디터 라이브러리 추가 -->
 <!-- <script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>

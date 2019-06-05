@@ -206,23 +206,6 @@ function deleteComment(commentNo) {
  
  <div>
  <hr>
-<!-- 비로그인상태 -->
-<c:if test="${not login }">
-<strong>로그인이 필요합니다</strong><br>
-<button onclick='location.href="/member/login";'>로그인</button>
-<button onclick='location.href="/member/join";'>회원가입</button>
-</c:if>
-
-<!-- 로그인상태 -->
-<c:if test="${login }">
-<!-- 댓글 입력 -->
-<div class="form-inline text-center">
-	<input type="text" size="10" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
-	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
-	<button id="btnCommInsert" class="btn">입력</button>
-</div>	<!-- 댓글 입력 end -->
-</c:if>
- 
  
 <!-- 댓글 리스트 -->
 <table class="table table-striped table-hover table-condensed">
@@ -255,6 +238,23 @@ function deleteComment(commentNo) {
 </table>	<!-- 댓글 리스트 end -->
 
 
+<!-- 비로그인상태 -->
+<c:if test="${not login }">
+<strong>로그인이 필요합니다</strong><br>
+<button onclick='location.href="/member/login";'>로그인</button>
+<button onclick='location.href="/member/join";'>회원가입</button>
+</c:if>
+
+<!-- 로그인상태 -->
+<c:if test="${login }">
+<!-- 댓글 입력 -->
+<div class="form-inline text-center">
+	<input type="text" size="10" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
+	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
+	<button id="btnCommInsert" class="btn">입력</button>
+</div>	<!-- 댓글 입력 end -->
+</c:if>
+ 
 </div>
 
 

@@ -22,6 +22,8 @@ public class MyPageDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberDetail member = new MemberDetail();
 	
+		req.getRequestDispatcher("/WEB-INF/views/member/mypagedelete.jsp")
+		.forward(req, resp);
 	
 	}
 
@@ -40,7 +42,7 @@ public class MyPageDeleteController extends HttpServlet {
    		if(passwordCheck.equals(member.getMember_pw())&&member.getMember_id()!=null)
    			//문자열비교할때는 참조값으로 비교되기때문에 equal을 써야한다
    		{
-   			req.getRequestDispatcher("/WEB-INF/views/member/mypagedelete.jsp")
+   			req.getRequestDispatcher("/WEB-INF/views/member/memberdelete.jsp")
    			.forward(req, resp);
    	
    		}

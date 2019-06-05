@@ -5,6 +5,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<!-- header -->
+	<c:import url="/WEB-INF/views/layout/header.jsp" />
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +18,14 @@
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.2.4.js"></script>
+	
+<!-- Bootstrap 3 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -121,9 +132,6 @@ padding-inline-start: 0px;
 </style>
 </head>
 <body>
-
-	<!-- header -->
-	<c:import url="/WEB-INF/views/layout/header.jsp" />
 	<div class="main">
 		<div id="title">
 			<h3>대회 & 축제</h3>

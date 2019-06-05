@@ -432,7 +432,11 @@ public class BuyDaoImpl implements BuyDao{
 		String sql = "";
 		sql += "UPDATE Buy_Board";
 		sql += " SET buy_board_title = ?,";
-		sql += " 	buy_board_content = ?";
+		sql += " 	buy_board_content = ?,";
+		sql += "    buy_board_price = ?,";
+		sql += "    buy_board_direct = ?,";
+		sql += "    buy_board_delivery = ?,";
+		sql += "    buy_board_phoneAgree = ?";
 		sql += " WHERE buy_board_no = ?";
 		
 		//DB 객체
@@ -443,7 +447,11 @@ public class BuyDaoImpl implements BuyDao{
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, board.getTitle());
 			ps.setString(2, board.getContent());
-			ps.setInt(3, board.getBoardno());
+			ps.setInt(3, board.getPrice());
+			ps.setString(4, board.getDirect());
+			ps.setString(5, board.getDelivery());
+			ps.setString(6, board.getPhoneAgree());
+			ps.setInt(7, board.getBoardno());
 
 			ps.executeUpdate();
 			
@@ -527,6 +535,8 @@ public class BuyDaoImpl implements BuyDao{
 	@Override
 	public void updateFile(BuyFile buyfile) {
 		String sql = "";
+		
+		if( buyfile.getFileno() != 0 ) {
 		sql += "UPDATE BuyFile";
 		sql += " SET ";
 		sql += " 	buy_board_no = ?,";
@@ -536,19 +546,36 @@ public class BuyDaoImpl implements BuyDao{
 		
 		sql += " WHERE buy_board_no = ?";
 		
+		} else {
+			sql += "INSERT INTO BuyFile(fileno,buy_board_no,originname,storedname,filesize) ";
+			sql += " VALUES (BuyFile_seq.nextval, ?, ?, ?, ?)";
+		}
+		
 		//DB 객체
 		PreparedStatement ps = null; 
 		
 		try {
 			//DB작업
+			
+			if (buyfile.getFileno() != 0) {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, buyfile.getBoardno());
 			ps.setString(2, buyfile.getOriginName());
 			ps.setString(3, buyfile.getStoredName());
 			ps.setLong(4, buyfile.getFilesize());
 			ps.setInt(5, buyfile.getBoardno());
-			
 			ps.executeUpdate();
+			
+			} else {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, buyfile.getBoardno());
+				ps.setString(2, buyfile.getOriginName());
+				ps.setString(3, buyfile.getStoredName());
+				ps.setLong(4, buyfile.getFilesize());
+
+				ps.executeUpdate();
+			}
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

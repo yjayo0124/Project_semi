@@ -169,7 +169,7 @@ body {
 			<a href="/member/logout">로그아웃</a>
 			&nbsp;&nbsp;&nbsp;
 			<c:if test="${member_group==0 }">
-				<a href="/member/mypage?member_id=${member_id }">마이페이지</a>
+				<a href="/member/update?member_id=${member_id }">마이페이지</a>
 				&nbsp;&nbsp;&nbsp;
 			</c:if>
 			<c:if test="${member_group==1 }">
@@ -208,7 +208,7 @@ body {
 			<li><span>커뮤니티</span>
 				<ul class="SubMenu">
 					<li id="nop"><a href="/board/free/list">자유게시판</a></li>
-					<li id="nop">자랑게시판</li>
+					<li id="nop"><a href="/board/boast/list">자랑게시판</a></li>
 					<li id="nop"><a href="/board/club">동호회 게시판</a></li>
 				</ul></li>
 		</ul>

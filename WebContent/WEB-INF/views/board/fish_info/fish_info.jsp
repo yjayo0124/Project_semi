@@ -38,6 +38,7 @@ $(document).ready(function() {
 }
 #img {
 	float: left ;
+	margin-left: 100px ;
 }
 #text {
 	float: left ;
@@ -55,7 +56,6 @@ $(document).ready(function() {
 #margin {
 	width: 1200px ;
 	margin: 0 auto ;
-	text-align: center;
 	
 }
 .item {
@@ -87,7 +87,7 @@ $(document).ready(function() {
 			<div id = "fname">${i.fish_name } </div><br><br>
 			<div id = "ftype">낚시 종류 : ${i.fish_type } </div><br>
 			<div id = "fsesson">어획 시기 : ${i.fish_sesson }</div><br>
-			<div id = "flength">최소 체장 : ${i.fish_min_length }</div><br>
+			<div id = "flength">표준 체장 : ${i.fish_min_length }</div><br>
 			<div id = "fcare">특징 : ${i.fish_care } </div><br>
 		</div>
 	</a>

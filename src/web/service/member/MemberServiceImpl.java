@@ -13,7 +13,7 @@ import web.util.Paging;
 public class MemberServiceImpl implements MemberService{
 
 	private MemberDao memberDao = new MemberDaoImpl();
-	
+
 	@Override
 	public MemberDetail getLoginMember(HttpServletRequest req) {
 		
@@ -90,6 +90,16 @@ public class MemberServiceImpl implements MemberService{
 
 	}
 
+
+	@Override
+	public void updateMemberByMemberid(MemberDetail member) {
+	
+		
+		 memberDao.updateMember(member);
+
+	}
+
+
 	public Paging getCurPage(HttpServletRequest req) {
 		
 		String param = req.getParameter("curPage");
@@ -133,6 +143,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		return member;
 	}
+
 	
 
 }

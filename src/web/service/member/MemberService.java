@@ -34,6 +34,11 @@ public interface MemberService {
 	public void deleteMemberByMemberid(MemberDetail member);
 
 
+
+	public void updateMemberByMemberid(MemberDetail member);
+
+
+
 	public List getList(Paging paging);
 
 

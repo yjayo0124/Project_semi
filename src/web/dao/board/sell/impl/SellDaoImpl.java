@@ -432,7 +432,11 @@ public class SellDaoImpl implements SellDao{
 				String sql = "";
 				sql += "UPDATE sell_board";
 				sql += " SET sell_board_title = ?,";
-				sql += " 	sell_board_content = ?";
+				sql += " 	sell_board_content = ?,";
+				sql += "    sell_board_price = ?,";
+				sql += "    sell_board_direct = ?,";
+				sql += "    sell_board_delivery = ?,";
+				sql += "    sell_board_phoneAgree = ?";
 				sql += " WHERE sell_board_no = ?";
 				
 				//DB 객체
@@ -443,7 +447,11 @@ public class SellDaoImpl implements SellDao{
 					ps = conn.prepareStatement(sql);
 					ps.setString(1, board.getTitle());
 					ps.setString(2, board.getContent());
-					ps.setInt(3, board.getBoardno());
+					ps.setInt(3, board.getPrice());
+					ps.setString(4, board.getDirect());
+					ps.setString(5, board.getDelivery());
+					ps.setString(6, board.getPhoneAgree());
+					ps.setInt(7, board.getBoardno());
 
 					ps.executeUpdate();
 					
@@ -522,7 +530,73 @@ public class SellDaoImpl implements SellDao{
 					}
 				}
 				
-			}		
+			}
+
+			@Override
+			public void updateFile(SellFile sellfile) {
+				String sql = "";
+				
+				if(sellfile.getFileno() != 0) {
+				sql += "UPDATE SellFile";
+				sql += " SET ";
+				sql += " 	sell_board_no = ?,";
+				sql += "    originname = ?,   "; 
+				sql += "    storedname = ?, ";
+				sql += "    filesize = ?";
+				
+				sql += " WHERE sell_board_no = ?";
+				
+				} else {
+					sql +=  "INSERT INTO SellFile(fileno,sell_board_no,originname,storedname,filesize) ";
+					sql += " VALUES (SellFile_seq.nextval, ?, ?, ?, ?)";
+				}
+				
+				
+				//DB 객체
+				PreparedStatement ps = null; 
+				
+				try {
+					//DB작업
+					
+					if(sellfile.getFileno() != 0) {
+						ps = conn.prepareStatement(sql);
+						ps.setInt(1, sellfile.getBoardno());
+						ps.setString(2, sellfile.getOriginName());
+						ps.setString(3, sellfile.getStoredName());
+						ps.setLong(4, sellfile.getFilesize());
+						ps.setInt(5, sellfile.getBoardno());
+						
+						ps.executeUpdate();
+					
+					} else {
+						ps = conn.prepareStatement(sql);
+						ps.setInt(1, sellfile.getBoardno());
+						ps.setString(2, sellfile.getOriginName());
+						ps.setString(3, sellfile.getStoredName());
+						ps.setLong(4, sellfile.getFilesize());
+
+						ps.executeUpdate();
+						
+					}
+					
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+					
+				} finally {
+					try {
+						//DB객체 닫기
+						if(ps!=null)	ps.close();
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				
+			}
+
+			
+			
 			
 			
 			

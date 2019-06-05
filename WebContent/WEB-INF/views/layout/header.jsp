@@ -208,7 +208,7 @@ body {
 			<li><span>커뮤니티</span>
 				<ul class="SubMenu">
 					<li id="nop"><a href="/board/free/list">자유게시판</a></li>
-					<li id="nop">자랑게시판</li>
+					<li id="nop"><a href="/board/boast/list">자랑게시판</a></li>
 					<li id="nop"><a href="/board/club">동호회 게시판</a></li>
 				</ul></li>
 		</ul>

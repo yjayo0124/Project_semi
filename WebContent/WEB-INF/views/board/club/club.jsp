@@ -31,11 +31,11 @@
 	$(document).ready(function() {
 
 		$("#travel").click(function() {
-
-			$("#list").load("/board/festival");
-
-			return false;//웹페이지의 동적 수행을 멈추게하는 코드
-
+			$(location).attr("href", "/board/club?club_tag=1");
+		});
+		
+		$("#reading").click(function() {
+			$(location).attr("href", "/board/club?club_tag=2");
 		});
 	});
 </script>
@@ -163,6 +163,65 @@
 	height: 25%;
 	line-height: 5px;
 }
+
+.lately_list {
+/* 	border-left:solid 1px; */
+/* 	border-color: rgba(33, 33, 33, 0.25); */
+	float:left;
+	width: 580px;
+	height: 180px;
+	margin-right:10px; 
+	margin-top:20px;
+	margin-bottom:50px;
+	
+
+}
+.lately_img{
+/* 	border-right:solid 1px; */
+/* 	border-color: rgba(33, 33, 33, 0.25); */
+	float:left;
+	width: 180px;
+	height: 180px;
+}
+.lately_image{
+/* 	border:solid 1px; */
+/* 	border-color: rgba(33, 33, 33, 0.25); */
+	width: 100%;
+	height: 100%;
+}
+.lately_content{
+	float:left;
+	width: 395px;
+	height: 180px;
+	padding-left: 15px;
+	padding-right:5px;
+}
+
+.lately_title {
+	width: 100%;
+	height: 35%;
+	line-height: 100px;
+	font-size: 25px;
+}
+.lately_include{
+	width: 100%;
+	height: 40%;
+	padding-top:10px;
+	font-size: 15px;
+}
+.lately_detail {
+	width: 100%;
+	height: 25%;
+	line-height: 5px;
+}
+.paging_bar {
+	float:left;
+	text-align:center;
+	width:100%;
+	margin-top:100px;
+	margin-bottom:100px;
+	padding-right:100px;
+}
 </style>
 
 </head>
@@ -184,7 +243,7 @@
 					<strong>여행</strong>
 				</div>
 			</div>
-			<div class="tagselect">
+			<div class="tagselect" id="reading">
 				<div class="select_img">
 					<img src="/imgs/reading.jpg" class="img-circle tag_img">
 				</div>
@@ -283,8 +342,33 @@
 						</div>
 					</div>
 					</div>
+					
+					<div style="margin-top: 80px; ">
+						<div class="pop_title"><strong>최근 등록된 동호회</strong></div>
+					</div>
+					
+					<c:forEach items="${list}" var="i">
+					<div class="lately_list">
+						<div class="lately_img">
+							<img src="/upload/${i.club_storedname }" class="lately_image img-rounded">
+						</div>
+						<div class="lately_content">
+							<div class="lately_title"><strong>${i.club_title }</strong></div>
+							<div class="lately_include">${i.club_include }</div>
+							<div class="lately_detail">000명 가입 중</div>
+						</div>
+					</div>
+					</c:forEach>
+					
+					
+					
+					
+					
+				</div>
+				<div class="paging_bar">
+				<c:import url="/WEB-INF/views/layout/club/club_paging.jsp" />
 				</div>
 			</div>
-		</div>
+	
 </body>
 </html>

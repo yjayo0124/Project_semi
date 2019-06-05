@@ -11,4 +11,6 @@ public interface SearchService {
 	public List result(HttpServletRequest req, HttpServletResponse resp);
 	
 	
+	public String count(HttpServletRequest req, HttpServletResponse resp);
+	
 }

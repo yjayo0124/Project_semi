@@ -69,7 +69,7 @@ public class SearchServiceImpl implements SearchService{
 			
 			try {
 				URL url = new URL(strURL); //url로 이동해서 
-				System.out.println("strURL: "+strURL);
+//				System.out.println("strURL: "+strURL);
 				
 				BufferedReader bf;
 				String line = "";
@@ -79,7 +79,7 @@ public class SearchServiceImpl implements SearchService{
 				//스트림을 통해 JSON데이터를 가져온다.
 				while((line=bf.readLine())!=null){
 					result = result.concat(line); //url상 화면에 나오는 문자열이 result에 string타입으로 다 담김 	
-					System.out.println("스트림으로 불러온 값: "+result);
+//					System.out.println("스트림으로 불러온 값: "+result);
 				}
 				
 				JSONParser parser = new JSONParser(); 
@@ -94,6 +94,7 @@ public class SearchServiceImpl implements SearchService{
 				
 				if( resultCode.equals("00") ) {
 				
+					//System.out.println("정상 응답");
 					//응답이 정상인 경우(또는 데이터가 존재할때 ) 
 					JSONObject parse_body = (JSONObject) parse_response.get("body");
 					
@@ -120,13 +121,14 @@ public class SearchServiceImpl implements SearchService{
 						search.setUseCharge((String) res.get("useCharge")); //이용요금
 						search.setCvntl((String) res.get("cvntl")); //편익시설현황
 						search.setCfrTrrsrt((String) res.get("cfrTrrsrt")); //주변관광지 
-						search.setInsttNm((String) res.get("insttNm"));
+						search.setInsttNm("["+(String) res.get("insttNm")+"]");
 						
 						list.add(search);
 						
 						}
 					
 				}else if( !resultCode.equals("00")  ) {
+					//System.out.println("에러코드 : "+resultCode);
 					
 					Search search = new Search();
 					
@@ -158,6 +160,127 @@ public class SearchServiceImpl implements SearchService{
 		
 	}
 
+	@Override
+	public String count(HttpServletRequest req, HttpServletResponse resp) {
+		
+		String res = null;
+		
+		resp.setContentType("text/html; charset=utf-8"); 	
+		resp.setCharacterEncoding("UTF-8");
+	
+		
+		String strURL = null; //보낼 주소 URL
+		String insttNm1 = null;  //시.도명
+		String insttNm2 = null;  //군.구명
+		String fshlcNm = null; //낚시터검색이름
+		String kdfsh = null; //어종검색이름
+		//변수선언
 
+		strURL = FIRST_URL;
+		strURL += KEY;
+		strURL += "&pageNo=1";
+		strURL += "&numOfRows=100";
+		strURL += "&type=json";
+		//strUR변수에 차례대로 값 담음.
+		try {
+			//파라미터로 각 값들 가져옴
+			fshlcNm = URLEncoder.encode(req.getParameter("fshlcNm"), "UTF-8");
+			kdfsh = URLEncoder.encode(req.getParameter("kdfsh"), "UTF-8");
+			insttNm1 = URLEncoder.encode(req.getParameter("insttNm1"), "UTF-8");
+			insttNm2 = URLEncoder.encode(req.getParameter("insttNm2"), "UTF-8");
+		
+			if( fshlcNm != null &&!"".equals(fshlcNm)) {
+				strURL += "&fshlcNm="+fshlcNm;
+			}
+			
+			if( kdfsh != null &&!"".equals(kdfsh)) {
+				strURL += "&kdfsh="+kdfsh;
+			}
+		
+			if( insttNm1 != null &&!"".equals(insttNm1)) {
+				strURL += "&insttNm="+insttNm1+"%20"+insttNm2; //%20은 공백 유니코드
+			}
+
+//--------------------------------여기까진 사용자가 입력한 값을 파라미터를 통해 받은 부분을 url화 시킴--------------------------			
+			
+			try {
+				URL url = new URL(strURL); //url로 이동해서 
+//				System.out.println("strURL: "+strURL);
+				
+				BufferedReader bf;
+				String line = "";
+				String result = "";
+				
+				bf = new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
+				//스트림을 통해 JSON데이터를 가져온다.
+				while((line=bf.readLine())!=null){
+					result = result.concat(line); //url상 화면에 나오는 문자열이 result에 string타입으로 다 담김 	
+//					System.out.println("스트림으로 불러온 값: "+result);
+				}
+				
+				JSONParser parser = new JSONParser(); 
+				//json데이터 받을 객체 선언하고
+				
+				//JSON타입으로 읽을 수 있도록 변환해줌
+				JSONObject obj = (JSONObject) parser.parse(result); 
+				JSONObject parse_response = (JSONObject) obj.get("response");
+				JSONObject parse_header = (JSONObject) parse_response.get("header");
+
+				String resultCode = (String) parse_header.get("resultCode");
+				
+				if( resultCode.equals("00") ) {
+				
+					System.out.println("정상 응답 resultCode : "+resultCode);
+					//응답이 정상인 경우(또는 데이터가 존재할때 ) 
+					JSONObject parse_body = (JSONObject) parse_response.get("body");
+					
+					//items는 '배열'로 담겨있기 때문에 JSONArray로 담아서 가져와야한다. 
+					String parse_totalCount =  (String) parse_body.get("totalCount");
+					
+					res = parse_totalCount;
+					
+			
+					
+				}else if( !resultCode.equals("00")  ) {
+					System.out.println("에러코드 : "+resultCode);
+					
+					Search search = new Search();
+					
+					if( resultCode.equals("03")) {
+						System.out.println("데이터 없음");
+					}
+					
+					
+					res = "0";
+					
+			
+				}
+		
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+				
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
+			
+		
+			
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} 
+
+		
+	
+		return res;
+		
+		
+		
+	}
+	
 	
 }

@@ -184,15 +184,22 @@ max-width: initial;
 
 </div> <!-- row  -->
 
-
 <hr>
+<br>
+<div style="border-bottom: 1px solid #ccc; height: 35px; text-align: right;">
+	<span>조회결과 값은 <mark>0</mark>건 입니다.</span>
+</div>
+<div class="row text-center">
+  <div class="col-xs-6 col-md-4"></div>
+  <div class="col-xs-6 col-md-4"></div>
+  <div class="col-xs-6 col-md-4"></div>
+</div>
 
-<div class="container">
-<span id="result"></span>
+
 
 </div>
 
-</div> <!--container  -->
+
 
 
 

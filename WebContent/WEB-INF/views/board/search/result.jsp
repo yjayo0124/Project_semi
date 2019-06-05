@@ -186,39 +186,28 @@ max-width: initial;
 
 
 <hr>
-
-<div class="container">
 <br>
-<table class="table table-hover table-condensed ">
-<thead>
-<tr>
-	<th style="width: 15%;">낚시터 이름</th>
-	<th style="width: 10%;">도로명주소</th>
-	<th style="width: 10%;">지번주소</th>
-	<th style="width: 15%;">업체 전화번호</th>
-	<th style="width: 10%;">주요어종</th>
-	<th style="width: 10%;">이용요금</th>
-	<th style="width: 10%;">편익시설</th>
-	<th style="width: 10%;">주변관광지</th>
-	<th style="width: 10%;">소속지</th>
-	<!--  너비가 총 100퍼센트가 되도록  -->
-</tr>
-</thead>
-<c:forEach items="${list }" var="i">
-<tr>
-	<td>${i.fshlcNm }</td>
-	<td>${i.rdnmadr }</td> 
-	<td>${i.lnmadr }</td>
-	<td>${i.fshlcPhoneNumber }</td>
-	<td>${i.kdfsh }</td>
-	<td>${i.useCharge }</td>
-	<td>${i.cvntl }</td>
-	<td>${i.cfrTrrsrt }</td>
-	<td>${i.insttNm }</td>
-</tr>
-</c:forEach>
-</table>
+
+<div style="border-bottom: 1px solid #ccc; height: 35px; text-align: right;">
+	<span>조회결과 값은 <mark>${res }</mark>건 입니다.</span>
 </div>
+<div>
+<div class="row">
+	<br>
+	<c:forEach items="${list }" var="i">
+		<div class="col-xs-6 col-md-4 text-center lead" style="border: 0.3px solid #ccc; height: 120px; width: 110px;">
+			<strong>${i.fshlcNm }</strong>
+			<div>${i.kdfsh }</div>
+			<div>${i.useCharge }</div>
+			<div>${i.insttNm }</div>
+			<br>
+		</div>
+	</c:forEach>
+</div>
+</div>
+
+
+
 
 </div> <!--container  -->
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

@@ -44,7 +44,7 @@ table, th {
 
 </style>
 
-<h1>게시판 리스트</h1>
+<h1>자유게시판</h1>
 <hr>
 
 <table class="table table-striped table-hover table-condensed">

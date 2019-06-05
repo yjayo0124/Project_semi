@@ -26,4 +26,6 @@ public interface MemberDao {
 	public MemberDetail selectMemberByMemberpw(MemberDetail member);
 
 	public void deleteMember(MemberDetail member);
+
+	public void updateMember(MemberDetail member);
 }

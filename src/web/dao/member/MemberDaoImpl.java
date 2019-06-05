@@ -264,9 +264,15 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public void deleteMember(MemberDetail member) {
 		String sql = "";
-		sql += "DELETE FROM Member_Detail";
-		sql += " WHERE 1=1";
-		sql += " AND member_id = ?";
+		sql += "UPDATE Member_Detail";
+		sql += " SET member_pw = null, ";
+		sql += "     member_name = null, ";
+		sql += "     member_gender = null, ";
+		sql += "     member_birthday = null, ";
+		sql += "     member_email = null, ";
+		sql += "     member_phone = null, ";
+		sql += "     member_group = 2 ";
+		sql += "  WHERE member_id = ?";
 		
 		
 		try {
@@ -292,6 +298,42 @@ public class MemberDaoImpl implements MemberDao{
 		}
 		
 		
+	}
+
+	@Override
+	public void updateMember(MemberDetail member) {
+		String sql = "";
+		sql += "UPDATE Member_Detail";
+		sql += " SET member_pw = ?, ";
+		sql += "     member_email = ?, ";
+		sql += "     member_phone = ? ";
+		sql += "  WHERE member_id = ?";
+		
+		
+		try {
+			//DB�옉�뾽
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getMember_pw());
+			ps.setString(2, member.getMember_email());
+			ps.setString(3, member.getMember_phone());
+			ps.setString(4, member.getMember_id());
+		
+			ps.executeUpdate();
+			
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				//DB媛앹껜 �떕湲�
+				if(rs!=null)	rs.close();
+				if(ps!=null)	ps.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }

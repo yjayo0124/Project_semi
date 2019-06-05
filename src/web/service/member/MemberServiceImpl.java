@@ -9,7 +9,7 @@ import web.dto.MemberDetail;
 public class MemberServiceImpl implements MemberService{
 
 	private MemberDao memberDao = new MemberDaoImpl();
-	
+
 	@Override
 	public MemberDetail getLoginMember(HttpServletRequest req) {
 		
@@ -85,6 +85,14 @@ public class MemberServiceImpl implements MemberService{
 		 memberDao.deleteMember(member);
 
 	
+	}
+
+	@Override
+	public void updateMemberByMemberid(MemberDetail member) {
+	
+		
+		 memberDao.updateMember(member);
+
 	}
 
 

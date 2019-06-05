@@ -1,5 +1,6 @@
 package web.dao.board.fish_info;
 
+import java.util.HashMap;
 import java.util.List;
 
 import web.dto.FishInfo;
@@ -39,8 +40,18 @@ public interface FishDao {
 	public void update(FishInfo fishInfo);
 
 	public void delete(FishInfo fishInfo);
+
+	/**
+	 * 
+	 * @param fishInfo
+	 * @return 다음글 이전글 번호불러오기
+	 */
+	public HashMap getPrevNext(FishInfo fishInfo);
 	
-	public FishInfo page( FishInfo fishInfo ) ;
-	
-	
+	/**
+	 * 
+	 * @param fishInfo
+	 * @return 다음글 이전글 제목불러오기
+	 */
+	public HashMap getPrevNextName( FishInfo fishInfo ) ;
 }

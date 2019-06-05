@@ -12,6 +12,14 @@ public class FishInfo {
 	private String fish_content ;
 	private Date fish_written_date ;
 	private String member_id ;
+
+	@Override
+	public String toString() {
+		return "FishInfo [fish_no=" + fish_no + ", fish_name=" + fish_name + ", fish_type=" + fish_type
+				+ ", fish_sesson=" + fish_sesson + ", fish_min_length=" + fish_min_length + ", fish_care=" + fish_care
+				+ ", fish_content=" + fish_content + ", fish_written_date=" + fish_written_date + ", member_id="
+				+ member_id + "]";
+	}
 	public int getFish_no() {
 		return fish_no;
 	}
@@ -66,13 +74,7 @@ public class FishInfo {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	@Override
-	public String toString() {
-		return "FishInfo [fish_no=" + fish_no + ", fish_name=" + fish_name + ", fish_type=" + fish_type
-				+ ", fish_sesson=" + fish_sesson + ", fish_length=" + fish_min_length + ", fish_care=" + fish_care
-				+ ", fish_content=" + fish_content + ", fish_written_date=" + fish_written_date + ", member_id="
-				+ member_id + "]";
-	}
+	
 	
 	
 	

@@ -28,13 +28,11 @@ public class MemberDeleteController extends HttpServlet {
 		
 		MemberDetail member = new MemberDetail();
 		
+	
 		member.setMember_id(req.getParameter("member_id"));
 		
 		System.out.println(member.getMember_id());
-
-
-
-//		memberService.deleteMemberByMemberid(member);
+		memberService.deleteMemberByMemberid(member);
 
 
 		

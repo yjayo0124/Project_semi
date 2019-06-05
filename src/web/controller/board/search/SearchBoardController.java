@@ -41,8 +41,12 @@ public class SearchBoardController extends HttpServlet {
 		
 		list = searchService.result(req,resp);
 	
-		System.out.println("list로 받아온 값 : "+list);
-	
+//		System.out.println("list로 받아온 값 : "+list);
+
+		String res = "0";
+		res =searchService.count(req, resp);
+		
+		req.setAttribute("res", res);
 		req.setAttribute("list", list);
 		
 		req.getRequestDispatcher("/WEB-INF/views/board/search/result.jsp").forward(req, resp);

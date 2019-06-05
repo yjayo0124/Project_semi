@@ -1,21 +1,22 @@
 package web.controller.board.sell;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.service.board.buy.face.BuyService;
-import web.service.board.buy.impl.BuyServiceImpl;
+import web.service.board.sell.face.SellService;
+import web.service.board.sell.impl.SellServiceImpl;
 
 
 @WebServlet("/sell/write")
 public class SellWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private BuyService buyservice = new BuyServiceImpl();
+	private SellService sellservice = new SellServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +27,7 @@ public class SellWriteController extends HttpServlet {
 				}
 				
 				//VIEW 지정
-				req.getRequestDispatcher("/WEB-INF/views/board/buy/buywrite.jsp")
+				req.getRequestDispatcher("/WEB-INF/views/board/sell/sellwrite.jsp")
 					.forward(req, resp);
 	}
 	
@@ -35,11 +36,11 @@ public class SellWriteController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-		buyservice.write(req);
+		sellservice.write(req);
 		
 		
 		//목록으로 리다이렉션
-		resp.sendRedirect("/buy/list");
+		resp.sendRedirect("/sell/list");
 		
 	}
 

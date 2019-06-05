@@ -79,7 +79,7 @@ public class SearchServiceImpl implements SearchService{
 				//스트림을 통해 JSON데이터를 가져온다.
 				while((line=bf.readLine())!=null){
 					result = result.concat(line); //url상 화면에 나오는 문자열이 result에 string타입으로 다 담김 	
-					System.out.println("스트림으로 불러온 값: "+result);
+			//		System.out.println("스트림으로 불러온 값: "+result);
 				}
 				
 				JSONParser parser = new JSONParser(); 

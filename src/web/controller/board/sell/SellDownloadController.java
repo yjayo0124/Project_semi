@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 
-import web.dao.board.buy.face.BuyDao;
-import web.dao.board.buy.impl.BuyDaoImpl;
-import web.dto.BuyFile;
+import web.dao.board.sell.face.SellDao;
+import web.dao.board.sell.impl.SellDaoImpl;
+import web.dto.SellFile;
 
 
 @WebServlet("/sell/download")
@@ -24,7 +24,7 @@ public class SellDownloadController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	
-	private BuyDao buyDao = new BuyDaoImpl();
+	private SellDao sellDao = new SellDaoImpl();
 	
 	
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException ,IOException {
@@ -36,7 +36,7 @@ public class SellDownloadController extends HttpServlet {
 		}
 		
 		// 다운로드 대상 파일 정보 찾기
-		BuyFile downFile = buyDao.selectByFileno(fileno);
+		SellFile downFile = sellDao.selectByFileno(fileno);
 		
 		//다운로드 파일 찾기
 		String path = getServletContext().getRealPath("upload");

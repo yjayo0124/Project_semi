@@ -31,17 +31,17 @@ div.2 {
 $(document).ready(function() {
 	//목록버튼 동작
 	$("#btnList").click(function() {
-		$(location).attr("href", "/buy/list");
+		$(location).attr("href", "/sell/list");
 	});
 	
 	//수정버튼 동작
 	$("#btnUpdate").click(function() {
-		$(location).attr("href", "/buy/update?boardno=${viewBoard.boardno }");
+		$(location).attr("href", "/sell/update?boardno=${viewBoard.boardno }");
 	});
 
 	//삭제버튼 동작
 	$("#btnDelete").click(function() {
-		$(location).attr("href", "/buy/delete?boardno=${viewBoard.boardno }");
+		$(location).attr("href", "/sell/delete?boardno=${viewBoard.boardno }");
 	});
 	
 	
@@ -53,7 +53,7 @@ $(document).ready(function() {
 	//		console.log($("#commentContent").val());
 		
 		$form = $("<form>").attr({
-			action: "/comment/insert",
+			action: "/sell/comment/insert",
 			method: "post"
 		}).append(
 			$("<input>").attr({
@@ -86,7 +86,7 @@ $(document).ready(function() {
 function deleteComment(commentNo) {
 	$.ajax({
 		type: "post"
-		, url: "/comment/delete"
+		, url: "/sell/comment/delete"
 		, dataType: "json"
 		, data: {
 			commentNo: commentNo
@@ -206,23 +206,7 @@ function deleteComment(commentNo) {
  
  <div>
  <hr>
-<!-- 비로그인상태 -->
-<c:if test="${not login }">
-<strong>로그인이 필요합니다</strong><br>
-<button onclick='location.href="/member/login";'>로그인</button>
-<button onclick='location.href="/member/join";'>회원가입</button>
-</c:if>
 
-<!-- 로그인상태 -->
-<c:if test="${login }">
-<!-- 댓글 입력 -->
-<div class="form-inline text-center">
-	<input type="text" size="10" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
-	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
-	<button id="btnCommInsert" class="btn">입력</button>
-</div>	<!-- 댓글 입력 end -->
-</c:if>
- 
  
 <!-- 댓글 리스트 -->
 <table class="table table-striped table-hover table-condensed">
@@ -257,7 +241,23 @@ function deleteComment(commentNo) {
 
 </div>
 
+<!-- 비로그인상태 -->
+<c:if test="${not login }">
+<strong>로그인이 필요합니다</strong><br>
+<button onclick='location.href="/member/login";'>로그인</button>
+<button onclick='location.href="/member/join";'>회원가입</button>
+</c:if>
 
+<!-- 로그인상태 -->
+<c:if test="${login }">
+<!-- 댓글 입력 -->
+<div class="form-inline text-center">
+	<input type="text" size="10" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
+	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
+	<button id="btnCommInsert" class="btn">입력</button>
+</div>	<!-- 댓글 입력 end -->
+</c:if>
+ 
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
 

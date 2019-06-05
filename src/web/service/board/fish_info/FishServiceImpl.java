@@ -1,5 +1,6 @@
 package web.service.board.fish_info;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -121,17 +122,15 @@ public class FishServiceImpl implements FishService {
 	}
 
 	@Override
-	public FishInfo page(HttpServletRequest req) {
-		
-		FishInfo fishInfo = null ;
-		
-		fishInfo = new FishInfo() ;
-		
-		fishInfo.setFish_no( Integer.parseInt(req.getParameter( "fish_no" ) ) ) ;
-		
-		return fishDao.page( fishInfo ) ;
-		
+	public HashMap getPrevNext(FishInfo fishInfo) {
+		return fishDao.getPrevNext(fishInfo);
 	}
+
+	@Override
+	public HashMap getPrevNextName(FishInfo fishInfo) {
+		return fishDao.getPrevNextName(fishInfo);
+	}
+
 
 	
 

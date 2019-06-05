@@ -113,7 +113,7 @@ $(document).ready(function() {
 	<br><div id = "fname">${ fishInfo.fish_name }</div><br><br>
 		<div id = "ftype">낚시 종류 : ${ fishInfo.fish_type } </div><br>
 		<div id = "fsesson">어획 시기 : ${ fishInfo.fish_sesson }</div><br>
-		<div id = "flength">최소 체장 : ${ fishInfo.fish_min_length }</div><br>
+		<div id = "flength">표준 체장 : ${ fishInfo.fish_min_length }</div><br>
 		<div id = "fcare">특징 : ${ fishInfo.fish_care }</div><br>
 	</div><div style="clear: both;"></div>
 </div>
@@ -126,13 +126,31 @@ ${ fishInfo.fish_content }
 </div><div style="clear: both;"></div>
 <br>
 <div id = "page">
+
+
 <hr id = "hr2">
 <div id = "next">
-<a href="/board/fish/info/detail?fish_no=${fishInfo.fish_no+1}">다음글</a>
+<c:if test="${prev_next.next eq 0 }">
+	다음글없음
+</c:if>
+<c:if test="${prev_next.next ne 0 }">
+	<a href="/board/fish/info/detail?fish_no=${prev_next.next }">
+	${prev_next_name.next }
+	</a>
+</c:if>
 </div>
+
+
 <hr id = "hr2">
 <div id = "back">
-<a href="/board/fish/info/detail?fish_no=${fishInfo.fish_no-1 }">이전글</a>
+<c:if test="${prev_next.prev eq 0 }">
+	이전글없음
+</c:if>
+<c:if test="${prev_next.prev ne 0 }">
+<a href="/board/fish/info/detail?fish_no=${prev_next.prev}">
+	${prev_next_name.prev }
+	</a>
+</c:if>
 </div>
 <hr id = "hr2">
 </div>

@@ -1,6 +1,7 @@
 package web.controller.board.fish_info;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,14 +37,14 @@ public class FishDetailController extends HttpServlet {
 		
 		System.out.println( fishInfo );
 		
-		// 다음 , 이전글
-		FishInfo page = fishService.page(req) ;
+		// 이전글 / 다음글 Fish_no
+		HashMap map = fishService.getPrevNext(fishInfo);
+//		System.out.println(map);
+		req.setAttribute("prev_next", map);
 		
-		page = fishService.view(page) ;
-		
-		req.setAttribute( "next" , page ) ;
-		System.out.println( page );
-		
+		// 이전글 / 다음글 Fish_name
+		HashMap name = fishService.getPrevNextName(fishInfo) ;
+		req.setAttribute( "prev_next_name", name);
 		
 		// 권한 Hide
 		int res = 0 ;

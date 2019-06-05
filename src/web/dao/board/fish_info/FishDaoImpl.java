@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import web.dbutil.DBConn;
@@ -302,34 +303,67 @@ public class FishDaoImpl implements FishDao {
 	}
 
 	@Override
-	public FishInfo page(FishInfo fishInfo) {
-		
+	public HashMap getPrevNext(FishInfo fishInfo) {
 		String sql = "";
-		sql += "SELECT * FROM ( " ;
-		sql += " SELECT" ;
-		sql +=	    " lag(fish_no, 1) over (order by fish_no) prev," ;
-		sql +=	    " fish_no , fish_name," ;
-		sql +=	    " lead(fish_no, 1) over (order by fish_no) next" ;
-		sql +=		" FROM fish_info )" ;
-		sql += 		" fish_no = ?" ;
+		sql += "SELECT * FROM (";
+		sql += " SELECT";
+		sql += " 	LEAD( fish_no, 1 ) OVER (ORDER BY fish_no DESC) prev,";
+		sql += "	fish_no,";
+		sql += " 	LAG( fish_no, 1 ) OVER (ORDER BY fish_no DESC) next";
+		sql += " FROM fish_info";
+		sql += " )";
+		sql += " WHERE fish_no = ?";
 		  
-		 try {  
-				  ps = conn.prepareStatement(sql);
-				  ps.setInt(1, fishInfo.getFish_no() ) ;
-				  rs = ps.executeQuery();
-				  
-				   while(rs.next()) {
-				   
-					fishInfo.setFish_no( rs.getInt( "fish_no" ) ) ;
-					fishInfo.setFish_name( rs.getString( "fish_name" ) ) ;
-					   
-				   }
-			} catch (SQLException e) {
-				e.printStackTrace();
+		HashMap<String, Integer> map = new HashMap();
+		try {  
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, fishInfo.getFish_no() ) ;
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				map.put("prev", rs.getInt("prev"));
+				map.put("next", rs.getInt("next"));
 			}
-		return fishInfo ;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map ;
 	}
 
+	@Override
+	public HashMap getPrevNextName(FishInfo fishInfo) {
 		
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += " SELECT";
+		sql += " 	LEAD( fish_name, 1 ) OVER (ORDER BY fish_no DESC) prev,";
+		sql += "	fish_no , fish_name,";
+		sql += " 	LAG( fish_name, 1 ) OVER (ORDER BY fish_no DESC) next";
+		sql += " FROM fish_info";
+		sql += " )";
+		sql += " WHERE fish_no = ?";
+		  
+		HashMap<String, String> map = new HashMap();
+		try {  
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, fishInfo.getFish_no() ) ;
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				map.put("prev", rs.getString("prev"));
+				map.put("next", rs.getString("next"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map ;
 	}
+
+
+		
+}
 

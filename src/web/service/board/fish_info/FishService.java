@@ -1,5 +1,6 @@
 package web.service.board.fish_info;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +54,8 @@ public interface FishService {
 
 	public void delete(FishInfo fishInfo);
 	
-	public FishInfo page( HttpServletRequest req ) ;
+	public HashMap getPrevNext(FishInfo fishInfo);
 	
+	public HashMap getPrevNextName(FishInfo fishInfo);
 	
 }

@@ -82,7 +82,7 @@ select {
 </table>
 
 <div id="pagingBox">
-<c:import url="/WEB-INF/views/layout/buypaging/paging.jsp" />
+<c:import url="/WEB-INF/views/layout/sellpaging/paging.jsp" />
 
 
 </div>
@@ -90,8 +90,8 @@ select {
 
 <div class="form-inline text-center">
 <select class="form-control form-control-sm" name="select" id="select">
-	<option value="buy_board_title" selected>제목</option>
-	<option value="buy_board_content">내용</option>
+	<option value="sell_board_title" selected>제목</option>
+	<option value="sell_board_content">내용</option>
 </select>
 	<input class="form-control" type="text" id="search" />
 	<button id="btnSearch" class="btn">검색</button>

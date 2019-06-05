@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import web.dto.Comment;
-import web.service.board.buy.face.BuyService;
-import web.service.board.buy.impl.BuyServiceImpl;
+import web.service.board.sell.face.SellService;
+import web.service.board.sell.impl.SellServiceImpl;
 
 
 @WebServlet("/sell/comment/insert")
 public class CommInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    private BuyService buyservice = new BuyServiceImpl();
+    private SellService sellservice = new SellServiceImpl();
     
     
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,11 +28,11 @@ public class CommInsertController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     
-    	Comment comment = buyservice.getComment(req);
+    	Comment comment = sellservice.getComment(req);
     	
-    	buyservice.insertComment(comment);
+    	sellservice.insertComment(comment);
     	
-    	resp.sendRedirect("/buy/view?boardno="+comment.getBoardNo());
+    	resp.sendRedirect("/sell/view?boardno="+comment.getBoardNo());
     	
     	
     }

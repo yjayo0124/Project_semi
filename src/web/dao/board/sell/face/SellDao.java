@@ -37,6 +37,7 @@ public interface SellDao {
 	
 	public void update(SellBoard board);
 	
+	public void updateFile(SellFile sellfile);
 	
 	public void delete(SellBoard board);
 	

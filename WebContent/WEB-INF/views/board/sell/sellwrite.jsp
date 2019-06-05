@@ -47,7 +47,7 @@ $(document).ready(function() {
 <hr>
 
 <div>
-<form action="/buy/write" method="post" enctype="multipart/form-data">
+<form action="/sell/write" method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
 <tr >
 <td class="info" >아이디</td><td>${member_id }</td> 

@@ -293,6 +293,7 @@ public class BuyServiceImpl implements BuyService{
 			board.setPrice(price);
 			board.setContent(req.getParameter("content"));
 			
+			board.setPhoneAgree(req.getParameter("phoneAgree"));
 		} else {
 
 
@@ -377,6 +378,8 @@ public class BuyServiceImpl implements BuyService{
 						}
 						
 						if("phoneAgree".equals( item.getFieldName())) {
+							
+							board.setPhoneAgree("");
 							board.setPhoneAgree( item.getString("utf-8"));
 						}
 						
@@ -429,7 +432,7 @@ public class BuyServiceImpl implements BuyService{
 		
 		if(boardFile != null) {
 			boardFile.setBoardno(board.getBoardno());
-			buyDao.insertFile(boardFile);
+			buyDao.updateFile(boardFile);
 		}
 		
 	}

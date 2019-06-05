@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import web.dbutil.DBConn;
 import web.dto.MemberDetail;
+import web.util.Paging;
 
 public class MemberDaoImpl implements MemberDao{
 
@@ -92,8 +95,7 @@ public class MemberDaoImpl implements MemberDao{
 				member.setMember_gender( rs.getString("member_gender") );
 				member.setMember_birthday( rs.getString("member_birthday") );
 				member.setMember_group(rs.getInt("member_group"));
-				member.setMember_email(rs.getString("member_email"));
-				member.setMember_phone(rs.getString("member_phone"));
+
 			}
 			
 		} catch (SQLException e) {
@@ -333,6 +335,129 @@ public class MemberDaoImpl implements MemberDao{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	public List selectAll(Paging paging) {
+		
+		String sql ="";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, B.* FROM (";
+		sql += "	 SELECT member_code, member_id, member_name, member_gender, ";
+		sql += "	 member_email, member_phone";
+		sql += "	 FROM member_detail";
+		sql += "	 WHERE member_group = 0";
+		sql	+= "     AND member_id LIKE '%'||?||'%' ";	
+		sql += "	 ORDER BY member_code DESC";
+		sql += "	) B";
+		sql += " ) ";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+		List list = new ArrayList();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, paging.getSearch());
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				MemberDetail member = new MemberDetail();
+				
+				member.setMember_code(rs.getInt("member_code"));
+				member.setMember_id(rs.getString("member_id"));
+				member.setMember_name(rs.getString("member_name"));
+				member.setMember_gender(rs.getString("member_gender"));
+				member.setMember_email(rs.getString("member_email"));
+				member.setMember_phone(rs.getString("member_phone"));
+				
+				list.add(member);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				// 자원 해제
+				if(rs!=null)	rs.close();
+				if(ps!=null)	ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	@Override
+	public int selectCntAll(String search) {
+
+		
+		String sql = " ";
+		sql += " SELECT count(*) FROM member_detail";
+		sql += " WHERE member_id LIKE '%'||?||'%'";
+		
+		int totalCount = 0; 
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, search);
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			totalCount = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return totalCount;
+		
+	}
+	
+	public void memberforceout(MemberDetail member) {
+		
+		String sql ="";
+		sql += "	UPDATE member_detail";
+		sql += "	SET member_pw = null,";
+		sql += "	member_name = null,";
+		sql += "	member_gender = null,";
+		sql += "	member_birthday = null,";
+		sql += "	member_email = null,";
+		sql += "	member_phone = null,";
+		sql += "	member_group = 2";
+		sql += "	WHERE member_id = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getMember_id());
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 	}
 	

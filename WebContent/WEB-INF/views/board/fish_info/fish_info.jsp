@@ -41,7 +41,6 @@ $(document).ready(function() {
 }
 #text {
 	float: left ;
-	background-color: yellow ;
 	text-align: center;
  }
  
@@ -71,7 +70,7 @@ $(document).ready(function() {
 <br>
 <div id = "title">
 <font id = "head">물고기 정보</font>
-<c:if test="${ res eq 1 }">
+<c:if test="${res eq 1 }">
 <button id = "btnWrite">글쓰기</button>
 </c:if>
 </div><div style="clear: both;"></div>

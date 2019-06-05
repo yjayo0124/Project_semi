@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<!-- header -->
+<c:import url="/WEB-INF/views/layout/header.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,9 +131,6 @@
 }
 
 </style>
-
-<!-- header -->
-<c:import url="/WEB-INF/views/layout/header.jsp" />
 </head>
 <body>
 

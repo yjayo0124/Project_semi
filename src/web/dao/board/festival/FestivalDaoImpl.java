@@ -299,14 +299,22 @@ public class FestivalDaoImpl implements FestivalDao{
 		sql += "UPDATE festival_board";
 		sql += " SET festival_title = ?,";
 		sql += "	festival_content = ?,";
+		sql += "	festival_start = "+"TO_DATE('"+board.getFestival_start()+"', 'YYYY-MM-DD')"+",";
+		sql += "	festival_end = "+"TO_DATE('"+board.getFestival_end()+"', 'YYYY-MM-DD')"+",";
+		sql += "	festival_phone = ?,";
+		sql += "	festival_web = ?,";
+		sql += "	festival_host = ?,";
 		sql += " 	festival_fee = ?";
 		sql += " WHERE festival_board_no = ?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, board.getFestival_title());
 			ps.setString(2, board.getFestival_content());
-			ps.setString(3, board.getFestival_fee());
-			ps.setInt(4, board.getFestival_board_no());
+			ps.setString(3, board.getFestival_phone());
+			ps.setString(4, board.getFestival_web());
+			ps.setString(5, board.getFestival_host());
+			ps.setString(6, board.getFestival_fee());
+			ps.setInt(7, board.getFestival_board_no());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {

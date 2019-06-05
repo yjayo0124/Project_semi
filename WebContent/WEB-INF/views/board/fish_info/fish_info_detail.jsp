@@ -128,7 +128,7 @@ ${ fishInfo.fish_content }
 <div id = "page">
 <hr id = "hr2">
 <div id = "next">
-<a href="/board/fish/info/detail?fish_no=${fishInfo.fish_no+1 }">다음글</a>
+<a href="/board/fish/info/detail?fish_no=${fishInfo.fish_no+1}">다음글</a>
 </div>
 <hr id = "hr2">
 <div id = "back">

@@ -39,6 +39,9 @@ public class FishViewController extends HttpServlet {
 		
 		int res = 0 ;
 		
+//		System.out.println(req.getSession().getAttribute("member_id"));
+//		System.out.println(req.getSession().getAttribute("member_group"));
+		
 		if( req.getSession().getAttribute("member_id") != null) {
 			
 			int memCode = (int) req.getSession().getAttribute("member_code");

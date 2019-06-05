@@ -300,6 +300,36 @@ public class FishDaoImpl implements FishDao {
 		}
 		
 	}
+
+	@Override
+	public FishInfo page(FishInfo fishInfo) {
+		
+		String sql = "";
+		sql += "SELECT * FROM ( " ;
+		sql += " SELECT" ;
+		sql +=	    " lag(fish_no, 1) over (order by fish_no) prev," ;
+		sql +=	    " fish_no , fish_name," ;
+		sql +=	    " lead(fish_no, 1) over (order by fish_no) next" ;
+		sql +=		" FROM fish_info )" ;
+		sql += 		" fish_no = ?" ;
+		  
+		 try {  
+				  ps = conn.prepareStatement(sql);
+				  ps.setInt(1, fishInfo.getFish_no() ) ;
+				  rs = ps.executeQuery();
+				  
+				   while(rs.next()) {
+				   
+					fishInfo.setFish_no( rs.getInt( "fish_no" ) ) ;
+					fishInfo.setFish_name( rs.getString( "fish_name" ) ) ;
+					   
+				   }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return fishInfo ;
+	}
+
 		
 	}
 

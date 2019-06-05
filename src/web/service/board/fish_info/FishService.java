@@ -53,5 +53,7 @@ public interface FishService {
 
 	public void delete(FishInfo fishInfo);
 	
+	public FishInfo page( HttpServletRequest req ) ;
+	
 	
 }

@@ -14,17 +14,19 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import web.dao.board.buy.face.BuyDao;
+import web.dao.board.buy.face.CommentDao;
 import web.dao.board.buy.impl.BuyDaoImpl;
-
-
+import web.dao.board.buy.impl.CommentDaoImpl;
 import web.dto.BuyBoard;
 import web.dto.BuyFile;
+import web.dto.Comment;
 import web.service.board.buy.face.BuyService;
 import web.util.Paging;
 
 public class BuyServiceImpl implements BuyService{
 	
 	private BuyDao buyDao = new BuyDaoImpl();
+	private CommentDao commentDao = new CommentDaoImpl();
 	
 	@Override
 	public List getList(Paging paging) {
@@ -158,7 +160,8 @@ public class BuyServiceImpl implements BuyService{
 						
 						if( "select".equals(item.getFieldName() ) ) {
 								
-						
+							System.out.println(item.getFieldName());
+							
 							buyboard.setDirect( item.getString("utf-8"));
 							buyboard.setDelivery( item.getString("utf-8"));
 						}
@@ -274,17 +277,24 @@ public class BuyServiceImpl implements BuyService{
 		
 		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
 		
+		board = new BuyBoard();
+
 		if(!isMultipart) {
 			//파일 첨부가 없을 경우
-			board = new BuyBoard();
 			
 			board.setTitle(req.getParameter("title"));
-			board.setWriter((String) req.getSession().getAttribute("writer"));
+			
+			board.setDirect(req.getParameter("select"));
+			board.setDelivery(req.getParameter("select"));
+			
+			String price1 = (String) req.getSession().getAttribute("price");
+			int price = Integer.parseInt(price1);
+			
+			board.setPrice(price);
 			board.setContent(req.getParameter("content"));
 			
 		} else {
-			//파일업로드를 사용하고 있을 경우
-			board = new BuyBoard();
+
 
 			//디스크팩토리
 			DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -324,18 +334,53 @@ public class BuyServiceImpl implements BuyService{
 				// 빈 파일이 아닐 경우
 				if( item.isFormField() ) {
 					try {
-						if( "boardno".equals( item.getFieldName() ) ) {
-							board.setBoardno( Integer.parseInt(item.getString()) );
-						}
-	
-						if( "title".equals( item.getFieldName() ) ) {
-							board.setTitle( item.getString("utf-8") ); 
-						}
-						if( "content".equals( item.getFieldName() ) ) {
-							board.setContent( item.getString("utf-8") );
+						
+						if("boardno".equals( item.getFieldName())) {
+							board.setBoardno( Integer.parseInt(item.getString()));
 						}
 						
-						board.setWriter((String) req.getSession().getAttribute("writer"));
+						//제목 처리
+						if( "title".equals( item.getFieldName() ) ) {
+								board.setTitle( item.getString("utf-8") );
+								
+						}
+						
+						
+						//본문 처리
+						
+						if( "content".equals( item.getFieldName() ) ) {
+							board.setContent( item.getString("utf-8") );
+							
+							
+						}
+						
+						
+						//-----------------------------------------------
+						
+						if( "select".equals(item.getFieldName() ) ) {
+								
+							
+							
+							 board.setDirect( item.getString("utf-8"));
+							 board.setDelivery( item.getString("utf-8"));
+							 
+						}
+						
+						
+						
+						if("price".equals( item.getFieldName())) {
+							
+							
+							board.setPrice( Integer.parseInt(item.getString("utf-8")) );
+							
+							
+						}
+						
+						if("phoneAgree".equals( item.getFieldName())) {
+							board.setPhoneAgree( item.getString("utf-8"));
+						}
+						
+						
 					} catch (UnsupportedEncodingException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -375,8 +420,8 @@ public class BuyServiceImpl implements BuyService{
 		} //if(!isMultipart) end
 		
 
-//		System.out.println(board);
-//		System.out.println(boardFile);
+		// System.out.println(board);
+		// System.out.println(boardFile);
 		
 		if(board != null) {
 			buyDao.update(board);
@@ -396,6 +441,49 @@ public class BuyServiceImpl implements BuyService{
 		
 		buyDao.delete(board);
 		
+		
+	}
+
+	@Override
+	public Comment getComment(HttpServletRequest req) {
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		String boardNo = (String) req.getParameter("boardNo");
+		String userid = (String) req.getParameter("userid");
+		String content = (String) req.getParameter("content");
+		
+		Comment comment = new Comment();
+		comment.setBoardNo( Integer.parseInt(boardNo) );
+		comment.setUserid(userid);
+		comment.setContent(content);
+		
+		return comment;
+	}
+
+	@Override
+	public void insertComment(Comment comment) {
+		commentDao.insertComment(comment);
+		
+	}
+
+	@Override
+	public List getCommentList(BuyBoard board) {
+		return commentDao.selectComment(board);
+	}
+
+	@Override
+	public boolean deleteComment(Comment comment) {
+		commentDao.deleteComment(comment);
+		
+		if( commentDao.countComment(comment) > 0) {
+			return false;
+		} else {
+			return true;
+		}
 		
 	}
 	

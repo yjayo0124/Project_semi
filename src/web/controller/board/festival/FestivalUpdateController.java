@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -37,7 +37,7 @@ public class FestivalUpdateController extends HttpServlet {
 		festivalService.view(board);
 		
 		req.setAttribute("update", board);
-		
+				
 		
 		req.getRequestDispatcher("/WEB-INF/views/board/festival/festival_update.jsp").forward(req, resp);
 		
@@ -45,6 +45,7 @@ public class FestivalUpdateController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		
 		// - - - MultipartRequest �깮�꽦�옄�쓽 留ㅺ컻蹂��닔 以�鍮� - - -
 
@@ -97,16 +98,15 @@ public class FestivalUpdateController extends HttpServlet {
 		
 		req.setAttribute("updateboard", updateboard);
 		
+		
 		festivalService.update(updateboard);
 		
-//		FestivalFile file = new FestivalFile();
-//		file.setFestival_originname(mul.getOriginalFileName("upfile"));
-//		file.setFestival_storedname(mul.getFilesystemName("upfile"));
-//
-//		festivalFileDao.insert(file);
-//		req.setAttribute("file", file);
-//		
+		FestivalFile file = new FestivalFile();
+		file.setFestival_board_no(updateboard.getFestival_board_no());
+		file.setFestival_originname(mul.getOriginalFileName("upfile"));
+		file.setFestival_storedname(mul.getFilesystemName("upfile"));
 		
+		festivalFileDao.updateFile(file);
 		
 		
 		resp.sendRedirect("/board/festival");

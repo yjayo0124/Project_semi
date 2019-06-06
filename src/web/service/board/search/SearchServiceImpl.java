@@ -124,6 +124,8 @@ public class SearchServiceImpl implements SearchService{
 						search.setCvntl((String) res.get("cvntl")); //편익시설현황
 						search.setCfrTrrsrt((String) res.get("cfrTrrsrt")); //주변관광지 
 						search.setInsttNm("["+(String) res.get("insttNm")+"]");
+						search.setLatitude((String) res.get("latitude"));
+						search.setHardness((String) res.get("hardness"));
 						
 						list.add(search);
 						
@@ -134,7 +136,7 @@ public class SearchServiceImpl implements SearchService{
 					
 					Search search = new Search();
 					
-					search.setResultCode("검색 결과가 없습니다.");
+					search.setKdfsh("검색 결과가 없습니다.");
 					
 					list.add(search);
 				}
@@ -232,7 +234,7 @@ public class SearchServiceImpl implements SearchService{
 				
 				if( resultCode.equals("00") ) {
 				
-					System.out.println("정상 응답 resultCode : "+resultCode);
+			//		System.out.println("정상 응답 resultCode : "+resultCode);
 					//응답이 정상인 경우(또는 데이터가 존재할때 ) 
 					JSONObject parse_body = (JSONObject) parse_response.get("body");
 					
@@ -282,6 +284,115 @@ public class SearchServiceImpl implements SearchService{
 		
 		
 		
+	}
+
+	@Override
+	public Search getSearch(HttpServletRequest req, HttpServletResponse resp) {
+		
+		Search search = new Search();
+
+		resp.setContentType("text/html; charset=utf-8"); 	
+		resp.setCharacterEncoding("UTF-8");
+	
+		
+		String strURL = null; //보낼 주소 URL
+		String latitude = null;
+		String hardness = null;
+		//변수선언
+
+		strURL = FIRST_URL;
+		strURL += KEY;
+		strURL += "&pageNo=1";
+		strURL += "&numOfRows=100";
+		strURL += "&type=json";
+		//strUR변수에 차례대로 값 담음.
+		try {
+			//파라미터로 각 값들 가져옴
+			latitude = URLEncoder.encode(req.getParameter("latitude"), "UTF-8");
+			hardness = URLEncoder.encode(req.getParameter("hardness"), "UTF-8");
+			
+		
+			if( latitude != null &&!"".equals(latitude)) {
+				strURL += "&latitude="+latitude;
+			}
+			
+			if( hardness != null &&!"".equals(hardness)) {
+				strURL += "&hardness="+hardness;
+			}
+		
+//--------------------------------여기까진 사용자가 입력한 값을 파라미터를 통해 받은 부분을 url화 시킴--------------------------			
+			
+			try {
+				
+				URL url = new URL(strURL); //url로 이동해서 
+//				System.out.println("strURL: "+strURL);
+				
+				BufferedReader bf;
+				String line = "";
+				String result = "";
+				
+				bf = new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
+				//스트림을 통해 JSON데이터를 가져온다.
+				while((line=bf.readLine())!=null){
+					result = result.concat(line); //url상 화면에 나오는 문자열이 result에 string타입으로 다 담김 	
+	//				System.out.println("스트림으로 불러온 값: "+result);
+				}
+				
+				JSONParser parser = new JSONParser(); 
+				//json데이터 받을 객체 선언하고
+				
+				//JSON타입으로 읽을 수 있도록 변환해줌
+				JSONObject obj = (JSONObject) parser.parse(result); 
+				JSONObject parse_response = (JSONObject) obj.get("response");
+				JSONObject parse_header = (JSONObject) parse_response.get("header");
+
+				//System.out.println("정상 응답");
+				JSONObject parse_body = (JSONObject) parse_response.get("body");
+				//items는 '배열'로 담겨있기 때문에 JSONArray로 담아서 가져와야한다. 
+				JSONArray parse_items = (JSONArray) parse_body.get("items");
+					
+				JSONObject res1; //필요한 데이터만 가져올 객체 선언
+				
+				for(int i = 0; i<parse_items.size(); i++) {
+					
+					
+					res1 = (JSONObject) parse_items.get(i);
+							
+					search.setFshlcNm((String) res1.get("fshlcNm")); //낚시터 명
+					search.setLnmadr((String) res1.get("lnmadr"));
+					search.setRdnmadr((String) res1.get("rdnmadr")); //도로명 주소
+					search.setFshlcPhoneNumber((String) res1.get("fshlcPhoneNumber")); //낚시터전화번호
+					search.setKdfsh((String) res1.get("kdfsh")); //주요어종
+					search.setUseCharge((String) res1.get("useCharge")); //이용요금
+					search.setCvntl((String) res1.get("cvntl")); //편익시설현황
+					search.setCfrTrrsrt((String) res1.get("cfrTrrsrt")); //주변관광지 
+					search.setInsttNm("["+(String) res1.get("insttNm")+"]");
+					search.setLatitude((String) res1.get("latitude"));
+					search.setHardness((String) res1.get("hardness"));
+							
+				}
+	
+		
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+				
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
+			
+		
+			
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} 
+
+		
+		return search;
 	}
 	
 	

@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import web.dto.Comment;
-import web.service.board.sell.face.SellService;
-import web.service.board.sell.impl.SellServiceImpl;
+import web.service.board.buy.face.BuyService;
+import web.service.board.buy.impl.BuyServiceImpl;
 
 
 @WebServlet("/comment/delete")
 public class CommentDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    private SellService sellservice = new SellServiceImpl();
+    private BuyService buyservice = new BuyServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class CommentDeleteController extends HttpServlet {
     	
     	comment.setCommentNo( Integer.parseInt(commentNo));
     	
-    	boolean success = sellservice.deleteComment(comment);
+    	boolean success = buyservice.deleteComment(comment);
     	
     	resp.getWriter().append("{\"success\":"+success+"}");
     			

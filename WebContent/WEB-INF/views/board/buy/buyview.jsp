@@ -7,23 +7,29 @@
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
 <style type="text/css">
-/* #img {
+
+
+.total {
+	margin : 0 auto;
+	width : 75%;
+}
+.sumnail{
 	
-	width: 50px;
-	height: 50px;	
+	
+	margin : 50px;
+	width: 40%;
 	float : left;
+	position : relative; 
 }
 
-div 1{
-	
-	float: right;
-	
+.info {
+	margin : 80px;
+	font-size : 16px;
 }
 
-div.2 {
-	float : left;
-} */
-
+.notice {
+	font-size : 18px;
+}
 </style>
 
 
@@ -110,14 +116,16 @@ function deleteComment(commentNo) {
 </script>
 
 
+<div class="total">
+
 
 <h1 class="pull-left">${viewBoard.title }</h1><br><br><br><br>
 <h5 class="pull-left">작성일 : ${viewBoard.writtendate }</h5>
 <div class="text-right">	
-	<button id="btnList" class="btn btn-primary">목록</button>
+	<button id="btnList" class="btn btn-success btn-sm">목록</button>
 	<c:if test="${member_id eq viewBoard.writer }">
-	<button id="btnUpdate" class="btn btn-info">수정</button>
-	<button id="btnDelete" class="btn btn-danger">삭제</button>
+	<button id="btnUpdate" class="btn btn-success btn-sm">수정</button>
+	<button id="btnDelete" class="btn btn-success btn-sm">삭제</button>
 	</c:if>
 </div>
 <hr>
@@ -126,9 +134,9 @@ function deleteComment(commentNo) {
 
 <!-- 썸네일  -->
 
-
+<div class="sumnail" >
 <img src="/upload/${buyFile.storedName }" width="350px" height="350px"></img>
-
+</div>
 
 
 
@@ -147,37 +155,40 @@ function deleteComment(commentNo) {
 </tr>
 --%>
 
-
+<div class = "info">
+<div class = "direct">
 <c:if test="${viewBoard.direct eq 'direct'}" >
 
 거래유형 : 직거래<br>
 
 </c:if>
+</div>
 
-
-
+<div class = "delivery">
 <c:if test="${viewBoard.delivery eq 'delivery' }">
 
 거래유형 : 배달거래<br>
 
 </c:if>
+</div>
 
-
+<div class ="price">
 가격 :  ${viewBoard.price } <br>
-
+</div>
 
 
 
 <!-- 폰 동의 -->
 
-<div id="2">
+<div class="phoneAgree">
 <c:if test="${viewBoard.phoneAgree eq 'T' }"> 
 폰 번호 : ${member_phone }
 </c:if>
 </div>
 
+</div>
 
-<div>
+<div class = "notice">
 * 거래전 필독! 주의하세요! <br>
 * 연락처가 없이 외부링크, 카카오톡, 댓글로만 거래할 때<br> 
 * 연락처 및 계좌번호를 사이버캅과 더치트로 꼭 조회해보기 <br>
@@ -185,7 +196,6 @@ function deleteComment(commentNo) {
 * 고가의 물품(휴대폰,전자기기)등만 판매하고 최근(1주일 내) 게시글만 있을 때<br> 
 * 해외직구로 면세받은 물품을 판매하는 행위는 불법입니다.<br>
 </div>
-
 
 
 <table class="table table-bordered">
@@ -208,9 +218,9 @@ function deleteComment(commentNo) {
  <hr>
  
 <!-- 댓글 리스트 -->
-<table class="table table-striped table-hover table-condensed">
+<table class="table table-striped table-hover table-condensed ">
 <thead>
-<tr>
+<tr class="success">
 	<th style="width: 5%;">번호</th>
 	<th style="width: 10%;">작성자</th>
 	<th style="width: 50%;">댓글</th>
@@ -240,7 +250,7 @@ function deleteComment(commentNo) {
 
 <!-- 비로그인상태 -->
 <c:if test="${not login }">
-<strong>로그인이 필요합니다</strong><br>
+<strong>댓글작성은 로그인이 필요합니다</strong><br>
 <button onclick='location.href="/member/login";'>로그인</button>
 <button onclick='location.href="/member/join";'>회원가입</button>
 </c:if>
@@ -249,14 +259,14 @@ function deleteComment(commentNo) {
 <c:if test="${login }">
 <!-- 댓글 입력 -->
 <div class="form-inline text-center">
-	<input type="text" size="10" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
-	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
-	<button id="btnCommInsert" class="btn">입력</button>
+	<input type="text" size="7" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
+	<textarea rows="3" cols="110" class="form-control" id="commentContent" placeholder="내용을 입력해 주세요"></textarea>
+	<button id="btnCommInsert" class="btn btn-default">입력</button>
 </div>	<!-- 댓글 입력 end -->
 </c:if>
  
 </div>
-
+</div> <!-- total end -->
 
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

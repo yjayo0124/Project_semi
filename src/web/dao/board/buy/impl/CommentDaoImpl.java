@@ -55,8 +55,9 @@ public class CommentDaoImpl implements CommentDao{
 				comment.setCommentNo(rs.getInt("commentno"));
 				comment.setUserid(rs.getString("userid"));
 				comment.setContent(rs.getString("content"));
-				comment.setWrittenDate(rs.getDate("writtendate"));
-
+				comment.setWrittenDate(rs.getDate("writtenDate"));
+				
+				
 				commentList.add(comment);
 			}
 
@@ -82,12 +83,18 @@ public class CommentDaoImpl implements CommentDao{
 				+ "		commentno,"
 				+ "		boardno,"
 				+ "		userid,"
-				+ "		content )"
+				+ "		content)"
+				
+				
+				
 				+ "	VALUES ("
 				+ "		commentTb_seq.nextval,"
 				+ "		?,"
 				+ "		?,"
-				+ "		? )";
+				+ "		?)" ;
+				
+				
+				
 
 		try {
 			ps = conn.prepareStatement(sql);
@@ -95,6 +102,7 @@ public class CommentDaoImpl implements CommentDao{
 			ps.setInt(1, comment.getBoardNo());
 			ps.setString(2, comment.getUserid());
 			ps.setString(3, comment.getContent());
+	
 			ps.executeUpdate();
 
 		} catch (SQLException e) {

@@ -27,17 +27,24 @@ table, th {
 	text-align: center;
 }
 
+.container {
+	border-left : 1px solid #eee;
+	border-right : 1px solid #eee;
+}
+
 /* 글쓰기 버튼 위치 설정 */
 #pagingBox {
 	position: relative;
 }
+
+
 #btnBox {
-	position: absolute;
+	
 	top: 0;
 	bottom: 0;
-	right: 0;
-	height: 100px;
-	margin: auto;
+	
+	
+	margin-left: 1050px;
 }
 
 select {
@@ -48,10 +55,17 @@ select {
 </style>
 
 
+<div class="wrap">
+
+<div class="container" style="margin-top:40px;">
+<div style="margin-top : 100px; ">
+
 <h1>삽니다 게시판</h1>
+</div>
 <hr>
+
 <div id="btnBox">
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
+	<button id="btnWrite" class="btn btn-success">글쓰기</button>
 </div>
 
 <br><br>
@@ -80,13 +94,14 @@ select {
 </tbody>
 
 </table>
+</div>
 
 <div id="pagingBox">
 <c:import url="/WEB-INF/views/layout/buypaging/paging.jsp" />
 
 
 </div>
-
+</div>
 
 <div class="form-inline text-center">
 <select class="form-control form-control-sm" name="select" id="select">

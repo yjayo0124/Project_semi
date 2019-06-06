@@ -131,7 +131,7 @@ body {
 	position : absolute;
 	left: 0;
 	height:0px;
-	bottom: 0;
+	bottom: 0px;
 	width: 100%;
 	padding: 1px 0;
 	

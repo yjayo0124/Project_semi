@@ -296,6 +296,71 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 	}
 
+	@Override
+	public Notice nextTitle(Notice notice) {
+		
+		String sql = "";
+		sql += " SELECT notice_no, notice_title ";
+		sql += " FROM notice WHERE notice_no = ? ";
+		
+		Notice res = new Notice();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, notice.getNotice_no()+1);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				
+				res.setNotice_no(rs.getInt("notice_no"));
+				res.setNotice_title(rs.getString("notice_title"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+		
+	}
+
+	@Override
+	public Notice formerTtile(Notice notice) {
+		
+		String sql = "";
+		sql += " SELECT notice_no, notice_title ";
+		sql += " FROM notice WHERE notice_no = ? ";
+		
+		Notice res = new Notice(); 
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, notice.getNotice_no()-1);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+			
+				res.setNotice_no(rs.getInt("notice_no"));
+				res.setNotice_title(rs.getString("notice_title"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+		
+		
+	}
+
+
+
 
 
 

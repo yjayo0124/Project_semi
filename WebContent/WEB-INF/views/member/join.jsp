@@ -232,7 +232,7 @@ var ch_phone=false;
 		$('#member_pw2').blur(
 						function() {
 							var pwok2  = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
-							if ($('#member_pw1').val() != $('#member_pw2')
+							if ($('#member_pw').val() != $('#member_pw2')
 									.val()) {
 								$('#pwMsg2').html("위 비밀번호와 일치하지 않습니다").css(
 										"color", "red");
@@ -296,7 +296,7 @@ $(document).ready(function() {
 			<h3 class="join_title">
 				<label for="pw1">비밀번호</label>
 			</h3>
-			<span class="intext"> <input type="password" id="member_pw1"
+			<span class="intext"> <input type="password" id="member_pw"
 				name="member_pw" class="inputtext" maxlength="20" />
 			</span> <span class="error" id="pwMsg1">필수 정보입니다</span>
 			<h3 class="join_title">

@@ -46,11 +46,13 @@ public class SearchBoardController extends HttpServlet {
 		String res = "0";
 		res =searchService.count(req, resp);
 		
+		
 		req.setAttribute("res", res);
 		req.setAttribute("list", list);
 		
 		req.getRequestDispatcher("/WEB-INF/views/board/search/result.jsp").forward(req, resp);
 		
+	
 	
 	}
 

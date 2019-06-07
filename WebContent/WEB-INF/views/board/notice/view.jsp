@@ -39,6 +39,30 @@ $(document).ready(function(){
 </script>
 
 
+<style type="text/css">
+
+.btnupdown {
+	float:left;
+	padding-left:20px;
+	width: 50px;
+	height: 50px;
+}
+.btnafter {
+	width: 100%;
+	height: 45px;
+}
+.btnbefore {
+	width: 100%;
+	height: 45px;
+}
+.listtext {
+	font-size: 18px;
+	padding-left : 200px;
+	padding-top: 12px;
+}
+
+</style>
+
 <div>
 <div class="container" style="margin-top: 50px; margin-bottom: 350px;">
 <table class="table" style="border: 1px solid #ccc;">
@@ -68,9 +92,17 @@ $(document).ready(function(){
 	</c:if>
 </div>
 
-
-
+<br>
+<div class="row" >
+	<div class="btnupdown col-md-0.5"><img src="/imgs/after.png" class="btnafter"></div>
+	<div class="listtext col-md-11.5"><a href="/board/notice/view?notice_no=${next.notice_no }">${next.notice_title}</a></div>
 </div>
+<div class="row">		
+	<div class="btnupdown col-md-0.5"><img src="/imgs/before.png" class="btnbefore"></div>
+	<div class="listtext col-md-11.5"><a href="/board/notice/view?notice_no=${former.notice_no }">${former.notice_title }</a></div>
+</div>
+</div>
+
 </div>
 
 

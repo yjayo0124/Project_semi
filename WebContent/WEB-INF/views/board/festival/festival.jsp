@@ -190,5 +190,4 @@ padding-inline-start: 0px;
 		</div>
 	</div>
 <c:import url="/WEB-INF/views/layout/festival/festival_paging.jsp" />
-</body>
-</html>
+<c:import url="/WEB-INF/views/layout/footer.jsp" />

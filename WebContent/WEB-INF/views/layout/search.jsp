@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>   
-<c:import url="/WEB-INF/views/layout/header.jsp" />
+    
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -11,14 +9,13 @@ $(document).ready(function(){
 	$("#btnSearchSubmit").click(function() {
 		
 		$("form").submit(); 
-	
+		
+		
+		 
 	});
-	
 
-	
+
 })
-
-
 	
 function gugunSelect(e){
 		
@@ -78,141 +75,65 @@ function gugunSelect(e){
 	
 	
 
-</script>
-
-
-<style type="text/css">
-
-.map_box{
-
-max-width: 300px;
-max-heigh: 100%;
-overflow: hidden;
-
-}
-
-
-
-.map_box img{
-
-max-width: initial;
-
-
-}
-
-</style>
-
-<div class="container" style="width: 1000px;">
-
-<div class="row">
-<div class="col-md-12 text-center" style="padding: 20px;" >
-<h2>낚시터 정보 검색</h2>
-</div>
-
-<div>
-
-<div class="col-md-3" style="border: 1px solid #ccc;">
-	<div class="map_box" style="height: 236px; width: 250px; background-color: #fffff5 ">
-		<img src="/imgs/map.png" style="width: 100%; height: 100%; overflow: hidden;">		
-	</div>
-</div>
-
-<div class="col-md-9" id="search" style="border: 1px solid #ccc; background-color: #80d4f6;  padding: 35px; height: 238px;">
-<form action="/board/search" method="POST" class="form-horizontal" >	
-	<div class="form-group">
-		<label class="form-label col-md-2" for="insttNm1"> 시/도</label>
-		<div class="col-md-10">
-		<select class="fsearch_select" name="insttNm1" id="insttNm1" onchange="gugunSelect(this)">
-			<option value="">시/도 선택</option>
-			<option value="서울특별시">서울</option>
-			<option value="인천광역시">인천</option>
-			<option value="대전광역시">대전</option>
-			<option value="광주광역시">광주</option>
-			<option value="대구광역시">대구</option>
-			<option value="울산광역시">울산</option>
-			<option value="부산광역시">부산</option>
-			<option value="경기도">경기</option>
-			<option value="강원도">강원</option>
-			<option value="충청북도">충북</option>
-			<option value="충청남도">충남</option>
-			<option value="전라북도">전북</option>
-			<option value="전라남도">전남</option>
-			<option value="경상북도">경북</option>
-			<option value="경상남도">경남</option>
-			<option value="제주특별자치도">제주</option>
-		</select>
-		</div>
-	</div>
-	
-	
-	<div class="form-group">
-		<label class="form-label col-md-2" for="insttNm2"> 시/군/구</label>
-		<div class="col-md-10">
-		<select class="search_select" name="insttNm2" id="insttNm2">
-		<option value="">구/군 선택</option>
-		</select>
-		</div>
-	</div>
-	
-	
-	<div class="form-group">
-		<label class="form-label col-md-2" for="kdfsh"> 주요어종</label>
-		<div class="col-md-10">
-		<input type="text" id="kdfsh" name="kdfsh" class="search_input" value="" placeholder="예) 붕어, 잉어,향어 등"/>
-		</div>
-	</div>
-	
-	<div class="form-group">
-		<label class="form-label col-md-2" for="fshlcNm"> 낚시터명</label>
-		<div class="col-md-10">
-		<input type="text" id="fshlcNm" name="fshlcNm" class="search_input" value=""></div>
-	</div>
-</form>
-
-<div style=" text-align: right;">
-<button id="btnSearchSubmit">검색하기</button>
-</div>
-
-</div>
-</div>
-
-
-
-
-
-
-</div> <!-- row  -->
-
-
-<hr>
-<br>
-
-<div style="border-bottom: 1px solid #ccc; height: 35px; text-align: right;">
-	<span>조회결과 값은 <mark>${res }</mark>건 입니다.</span>
-</div>
-<div>
-<div class="row">
-	<br>
-		<c:forEach items="${list }" var="i">
-			<div class="col-xs-6 col-md-4 text-center lead">
-				<a href="/board/search/view?latitude=${i.latitude }&hardness=${i.hardness}">
-				<button type="button" "class="btn btn-default btn-sm" id="btnSearchView" style="width:220px; height: 220px;">		
-				<strong>${i.fshlcNm }</strong>
-				<div>${i.kdfsh }</div>
-				<div>${i.useCharge }</div>
-				<div id="name">${i.insttNm }</div>
-				<br>
-				</button>
-				</a>
-	
+</script>    
+    
+    
+    
+<div id="search" style="width: 100%; background-color: #f4f4f4;">
+			<p style="background-color: #45d9fd;" class="text-center">오늘, 내가 가고싶은 낚시터는 어디?</p>
+			<form action="/board/search" method="POST" class="form-horizontal">	
+			<div class="form-group" style="margin-left: 10px;">
+				<label class="form-label col-md-2" for="insttNm1"> 시/도</label>
+				<div class="col-md-10">
+				<select class="fsearch_select" name="insttNm1" id="insttNm1" onchange="gugunSelect(this)" required="required">
+					<option value="">시/도 선택</option>
+					<option value="서울특별시">서울</option>
+					<option value="인천광역시">인천</option>
+					<option value="대전광역시">대전</option>
+					<option value="광주광역시">광주</option>
+					<option value="대구광역시">대구</option>
+					<option value="울산광역시">울산</option>
+					<option value="부산광역시">부산</option>
+					<option value="경기도">경기</option>
+					<option value="강원도">강원</option>
+					<option value="충청북도">충북</option>
+					<option value="충청남도">충남</option>
+					<option value="전라북도">전북</option>
+					<option value="전라남도">전남</option>
+					<option value="경상북도">경북</option>
+					<option value="경상남도">경남</option>
+					<option value="제주특별자치도">제주</option>
+				</select>
+				</div>
 			</div>
-		</c:forEach>
+			
+			
+			<div class="form-group" style="margin-left: 10px;">
+				<label class="form-label col-md-2" for="insttNm2"> 시/군/구</label>
+				<div class="col-md-10">
+				<select class="search_select" name="insttNm2" id="insttNm2" required="required">
+				<option value="">구/군 선택</option>
+				</select>
+				</div>
+			</div>
+			
+			<div class="form-group" style="visibility: hidden; display: none;">
+				<label class="form-label col-md-2" for="kdfsh"> 주요어종</label>
+				<div class="col-md-10">
+				<input type="text" id="kdfsh" name="kdfsh" class="search_input" value="" placeholder="예) 붕어, 잉어,향어 등"/>
+				</div>
+			</div>
+			
+			
+			<div class="form-group" style="margin-left: 10px;">
+				<label class="form-label col-md-2" for="fshlcNm"> 낚시터명</label>
+				<div class="col-md-10">
+				<input type="text" id="fshlcNm" name="fshlcNm" class="search_input" value=""></div>
+			</div>
+		</form>
+		
+		<div style=" text-align: right; margin-right: 10px;  margin-bottom: 10px;">
+		<button id="btnSearchSubmit" class="btn-default">검색하기</button>
+		</div>
 
-</div>
-</div>
-
-
-
-
-</div> <!--container  -->
-<c:import url="/WEB-INF/views/layout/footer.jsp" />
+	</div>

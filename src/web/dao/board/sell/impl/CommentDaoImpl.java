@@ -55,7 +55,7 @@ public class CommentDaoImpl implements CommentDao {
 				comment.setCommentNo(rs.getInt("commentno"));
 				comment.setUserid(rs.getString("userid"));
 				comment.setContent(rs.getString("content"));
-				comment.setWrittenDate(rs.getDate("writtenDate"));
+				comment.setWrittenDate(rs.getString("writtenDate"));
 
 				commentList.add(comment);
 			}

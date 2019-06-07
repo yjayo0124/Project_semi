@@ -234,7 +234,7 @@ function deleteComment(commentNo) {
 	<td>${comment.rnum }</td>
 	<td>${comment.userid }</td><!-- 닉네임으로 해도 좋음 -->
 	<td>${comment.content }</td>
-	<td><fmt:formatDate value="${comment.writtenDate }" pattern="yy-MM-dd hh:mm:ss" /></td>
+	<td>${comment.writtenDate }</td>
 	<td>
 		<c:if test="${sessionScope.member_id eq comment.userid }">
 		<button class="btn btn-default btn-xs"

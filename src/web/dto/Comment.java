@@ -8,11 +8,11 @@ public class Comment {
 	private int boardNo;
 	private String userid;
 	private String content;
-	private Date writtenDate;
+	private String writtenDate;
 	@Override
 	public String toString() {
 		return "Comment [rnum=" + rnum + ", commentNo=" + commentNo + ", boardNo=" + boardNo + ", userid=" + userid
-				+ ", content=" + content + "]";
+				+ ", content=" + content + ", writtenDate=" + writtenDate + "]";
 	}
 	public int getRnum() {
 		return rnum;
@@ -44,12 +44,13 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getWrittenDate() {
+	public String getWrittenDate() {
 		return writtenDate;
 	}
-	public void setWrittenDate(Date writtenDate) {
+	public void setWrittenDate(String writtenDate) {
 		this.writtenDate = writtenDate;
 	}
+	
 	
 	
 	

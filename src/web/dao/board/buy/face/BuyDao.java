@@ -45,4 +45,6 @@ public interface BuyDao {
 	public void deleteFile(BuyBoard board);
 	
 	
+	
+	
 }

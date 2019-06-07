@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 	<!-- header -->
 	<c:import url="/WEB-INF/views/layout/header.jsp" />
@@ -333,7 +335,6 @@ $(document).ready(function() {
 				<label for="birthday">생년월일</label>
 			</h3>
 			<span class="intext">${member.member_birthday }</span>
-									
 			
 			
 			<h3 class="join_title">

@@ -1,6 +1,7 @@
 package web.dao.member;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -93,7 +94,7 @@ public class MemberDaoImpl implements MemberDao{
 				member.setMember_email(rs.getString("member_email"));
 				member.setMember_name( rs.getString("member_name") );
 				member.setMember_gender( rs.getString("member_gender") );
-				member.setMember_birthday( rs.getString("member_birthday") );
+				member.setMember_birthday( rs.getDate("member_birthday") );
 				member.setMember_group(rs.getInt("member_group"));
 
 			}
@@ -132,7 +133,7 @@ public class MemberDaoImpl implements MemberDao{
 			ps.setString(3, member.getMember_nick());
 			ps.setString(4, member.getMember_name());
 			ps.setString(5, member.getMember_gender());
-			ps.setString(6,member.getMember_birthday());
+			ps.setDate(6,(Date) member.getMember_birthday());
 			ps.setString(7, member.getMember_email());
 			ps.setString(8, member.getMember_phone());
 
@@ -241,7 +242,7 @@ public class MemberDaoImpl implements MemberDao{
 				member.setMember_nick( rs.getString("member_nick") );
 				member.setMember_name( rs.getString("member_name") );
 				member.setMember_gender( rs.getString("member_gender") );
-				member.setMember_birthday( rs.getString("member_birthday") );
+				member.setMember_birthday( rs.getDate("member_birthday") );
 				member.setMember_group(rs.getInt("member_group"));
 
 			}

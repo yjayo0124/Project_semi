@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import web.dto.Comment;
 import web.dto.FreeBoard;
+import web.dto.FreeComment;
 import web.dto.FreeFile;
 import web.util.Paging;
 
@@ -86,6 +88,39 @@ public interface FreeService {
 	public void update(HttpServletRequest req);
 
 	public void delete(FreeBoard board);
+	
+	// --- 댓글
+	/**
+	 * 댓글 전달파라미터 꺼내기
+	 */
+	public FreeComment getComment(HttpServletRequest req);
+	
+	/**
+	 * 댓글 입력
+	 * 
+	 * @param comment - 삽입될 댓글
+	 */
+	public void insertComment(FreeComment comment);
+
+	/**
+	 * 댓글 리스트
+	 * 
+	 * @param board - 댓글이 조회될 게시글
+	 * @return List - 댓글 리스트
+	 */
+	
+	public List getCommentList(FreeBoard viewBoard);
+
+	
+	/**
+	 * 댓글 삭제
+	 *  
+	 * @param comment - 삭제할 댓글
+	 * @return boolean - 삭제 성공 여부
+	 */
+	
+	
+	public boolean deleteComment(FreeComment comment);
 	
 
 	

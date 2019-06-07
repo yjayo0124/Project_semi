@@ -1,7 +1,6 @@
 package web.controller.board.boast;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.dto.boast.BoastBoard;
+import web.dto.boast.BoastFile;
 import web.service.board.boast.BoastService;
 import web.service.board.boast.BoastServiceImpl;
-import web.util.boast.BoastPaging;
 
-@WebServlet("/board/boast/list")
-public class BoastListController extends HttpServlet {
+@WebServlet("/board/boast/view")
+public class BoastViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private BoastService boardService = new BoastServiceImpl();
@@ -22,23 +22,22 @@ public class BoastListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		BoastPaging paging = boardService.getCurPage(req);
+		//게시글 번호 파싱
+		BoastBoard viewBoard = boardService.getBoardno(req);
 		
-		//MODEL로 Paging 객체 넣기
-		req.setAttribute("paging", paging);
+		//게시글 조회
+		viewBoard = boardService.view(viewBoard);
+
+		//MODEL로 게시글 전달
+		req.setAttribute("viewBoard", viewBoard);
 		
+		//첨부파일 전달
+		BoastFile boardFile = boardService.viewFile(viewBoard);
+		req.setAttribute("boardFile", boardFile);
 		
+		//VIEW 지정
+		req.getRequestDispatcher("/WEB-INF/views/board/boast/view.jsp").forward(req, resp);
 		
-		//게시판 목록 조회
-		List list = boardService.getList(paging);
-		
-		//MODEL로 조회 결과 넣기
-		req.setAttribute("list", list);
-		
-		
-		req.getRequestDispatcher("/WEB-INF/views/board/boast/list.jsp").forward(req, resp);
-	
-	
 	}
 	
 }

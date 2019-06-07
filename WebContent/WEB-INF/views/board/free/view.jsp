@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
@@ -20,10 +22,63 @@ $(document).ready(function() {
 	//삭제버튼 동작
 	$("#btnDelete").click(function() {
 		$(location).attr("href", "/board/free/delete?free_board_no=${viewBoard.free_board_no }");
+	});
+	
+	// 댓글 입력
+	$("#btnCommInsert").click(function() {
 
+		$form = $("<form>").attr({
+			action: "comment/insert",
+			method: "post"
+		}).append(
+			$("<input>").attr({
+				type:"hidden",
+				name:"free_board_no",
+				value:"${viewBoard.free_board_no }"
+			})
+		).append(
+			$("<input>").attr({
+				type:"hidden",
+				name:"member_id",
+				value:"${sessionScope.member_id }"
+			})
+		).append(
+			$("<textarea>")
+				.attr("name", "free_board_content")
+				.css("display", "none")
+				.text($("#commentContent").val())
+		);
+		$(document.body).append($form);
+		$form.submit();
+		
 	});
 	
 });
+
+
+//댓글 삭제
+function deleteComment(free_board_comment_no) {
+	$.ajax({
+		type: "post"
+		, url: "comment/delete"
+		, dataType: "json"
+		, data: {
+			free_board_comment_no: free_board_comment_no
+		}
+		, success: function(data){
+			if(data.success) {
+				
+				$("[data-commentno='"+free_board_comment_no+"']").remove();
+				
+			} else {
+				alert("댓글 삭제 실패");
+			}
+		}
+		, error: function() {
+			console.log("error");
+		}
+	});
+}
 </script>
 
 <h1 class="pull-left">게시판 - VIEW</h1>
@@ -81,5 +136,46 @@ $(document).ready(function() {
 	<button id="btnDelete" class="btn btn-danger">삭제</button>
 	</c:if>
 </div>
+
+<!-- 로그인상태 -->
+<c:if test="${login }">
+<!-- 댓글 입력 -->
+<div class="form-inline text-center">
+	<input type="text" size="10" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
+	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
+	<button id="btnCommInsert" class="btn">입력</button>
+</div>	<!-- 댓글 입력 end -->
+</c:if>
+ 
+ 
+<!-- 댓글 리스트 -->
+<table class="table table-striped table-hover table-condensed">
+<thead>
+<tr>
+	<th style="width: 5%;">번호</th>
+	<th style="width: 10%;">작성자</th>
+	<th style="width: 50%;">댓글</th>
+	<th style="width: 20%;">작성일</th>
+	<th style="width: 5%;"></th>
+</tr>
+</thead>
+<tbody id="commentBody">
+<c:forEach items="${commentList }" var="comment">
+<tr data-commentno="${comment.free_board_comment_no }">
+	<td>${comment.free_board_comment_no}</td>
+	<td>${comment.member_id }</td><!-- 닉네임으로 해도 좋음 -->
+	<td>${comment.free_board_content }</td>
+	<td>${comment.free_board_comment_date }</td>
+	<td>
+		<c:if test="${sessionScope.member_id eq comment.member_id }">
+		<button class="btn btn-default btn-xs"
+			onclick="deleteComment(${comment.free_board_comment_no  });">삭제</button>
+		</c:if>
+	</td>
+	
+</tr>
+</c:forEach>
+</tbody>
+</table>	<!-- 댓글 리스트 end -->
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

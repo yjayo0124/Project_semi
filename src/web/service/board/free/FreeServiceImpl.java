@@ -13,15 +13,20 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import web.dao.board.free.FreeCommentDao;
+import web.dao.board.free.FreeCommentDaoImpl;
 import web.dao.board.free.FreeDao;
 import web.dao.board.free.FreeDaoImpl;
 import web.dto.FreeBoard;
+import web.dto.FreeComment;
 import web.dto.FreeFile;
 import web.util.Paging;
 
 public class FreeServiceImpl implements FreeService{
 
 	private FreeDao freeDao = new FreeDaoImpl();
+	private FreeCommentDao commentDao = new FreeCommentDaoImpl();
+
 	
 	@Override
 	public List getList(Paging paging) {
@@ -39,14 +44,16 @@ public class FreeServiceImpl implements FreeService{
 		}
 		
 		//寃��깋�뼱
+		String select = (String)req.getParameter("select");
 		String search = (String)req.getParameter("search");
 
 		
 		// �쟾泥� 寃뚯떆湲� �닔
-		int totalCount = freeDao.selectCntAll(search);
+		int totalCount = freeDao.selectCntAll(select,search);
 		
 		// �럹�씠吏� 媛앹껜 �깮�꽦
 		Paging paging = new Paging(totalCount, curPage);
+		paging.setSelect(select);
 		paging.setSearch(search); //**以묒슂 search 媛� �럹�씠吏� 媛앹껜�뿉 ���옣
 //		System.out.println(paging); //TEST
 		
@@ -364,6 +371,49 @@ public class FreeServiceImpl implements FreeService{
 			
 		freeDao.deleteFile(board);
 		
+	}
+
+	@Override
+	public FreeComment getComment(HttpServletRequest req) {
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		String boardNo = (String) req.getParameter("free_board_no");
+		String memberid = (String) req.getParameter("member_id");
+		String content = (String) req.getParameter("free_board_content");
+		
+		FreeComment comment = new FreeComment();
+		comment.setFree_board_no( Integer.parseInt(boardNo) );
+		comment.setMember_id(memberid);
+		comment.setFree_board_content(content);
+		
+		return comment;
+
+	}
+
+	@Override
+	public void insertComment(FreeComment comment) {
+		commentDao.insertComment(comment);
+		
+	}
+
+	@Override
+	public List getCommentList(FreeBoard viewBoard) {
+		return commentDao.selectComment(viewBoard);
+	}
+
+	@Override
+	public boolean deleteComment(FreeComment comment) {
+		commentDao.deleteComment(comment);
+		
+		if( commentDao.countComment(comment) > 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}		
 	
 

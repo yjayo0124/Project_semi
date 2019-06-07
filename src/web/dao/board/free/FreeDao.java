@@ -18,10 +18,11 @@ public interface FreeDao {
 	
 	/**
 	 * 테이블 전체 COUNT 조회
+	 * @param search2 
 	 * 
 	 * @return 테이블 전체 행 수 조회 결과
 	 */
-	public int selectCntAll(String search);
+	public int selectCntAll(String select, String search);
 	
 
 	

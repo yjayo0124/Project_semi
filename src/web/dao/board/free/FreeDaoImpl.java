@@ -26,6 +26,9 @@ public class FreeDaoImpl implements FreeDao {
 		
 		//게시글 목록 조회쿼리
 		String sql = "";
+		
+		if ("".equals(paging.getSelect()) || paging.getSelect() == null || paging.getSelect().equals("free_board_title")) {
+
 		sql += "SELECT * FROM (";
 		sql += " 	SELECT rownum rnum, B.* FROM (";
 		sql += " 	 SELECT free_board_no, free_board_title, free_board_content, free_board_writer, ";
@@ -38,6 +41,21 @@ public class FreeDaoImpl implements FreeDao {
 		sql += " ) ";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 
+	  } else if (paging.getSelect().equals("free_board_content")) {
+		
+		sql += "SELECT * FROM (";
+		sql += " 	SELECT rownum rnum, B.* FROM (";
+		sql += " 	 SELECT free_board_no, free_board_title, free_board_content, free_board_writer, ";
+		sql += "     free_board_hit, free_board_written_date, free_board_comment_no, free_board_file_idx, member_id ";
+		sql += " 	 FROM Free_Board	";
+		sql	+= "     WHERE free_board_content LIKE '%'||?||'%' ";
+		sql	+= "     ORDER BY free_board_no DESC";
+		sql += " 	) B";
+		sql += " 	ORDER BY rnum";
+		sql += " ) ";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+	
+		}
 	
 		List list = new ArrayList();
 		try {
@@ -82,13 +100,23 @@ public class FreeDaoImpl implements FreeDao {
 	}
 
 	@Override
-	public int selectCntAll(String search) {
+	public int selectCntAll(String select, String search) {
 		//전체 게시글 수 조회 쿼리
-		String sql = "";
+		String sql = ""; 
 		
+		if("".equals(select) || select == null || select.equals("free_board_title")) {
 		sql += "SELECT count(*) FROM Free_Board";
 		sql += " WHERE free_board_title LIKE '%'||?||'%'";
-	
+		
+		}else if(select.equals("free_board_content")) {
+			
+			sql+="SELECT count(*)";
+			sql+=" FROM Free_Board";
+			sql+=" WHERE free_board_content LIKE '%'||?||'%' ";
+							
+		}
+		
+		
 		int totalCount = 0;
 		try {
 			ps = conn.prepareStatement(sql);

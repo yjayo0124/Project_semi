@@ -15,7 +15,7 @@ $(document).ready(function() {
 	});
 	
 	$("#btnSearch").click(function() {
-		location.href="/board/free/list?search="+$("#search").val();
+		location.href="/board/free/list?select=" +$("#select").val()+"&search="+$("#search").val();
 	});
 
 	
@@ -40,14 +40,19 @@ table, th {
 	margin: auto;
 }
 
+
 /* 검색창 css */
 
 </style>
 
-<h1>자유게시판</h1>
+<h3 style="margin-top:70px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+자유게시판</h3>
 <hr>
 
-<table class="table table-striped table-hover table-condensed">
+<table class="table table-striped table-hover table-condensed"
+	style="margin-left:95px; width:1500px;">
 
 <thead>
 	<tr>
@@ -76,12 +81,16 @@ table, th {
 <div id="pagingBox">
 <c:import url="/WEB-INF/views/layout/freepaging/paging.jsp" />
 
-<div id="btnBox">
+<div id="btnBox" style="margin-right:95px;">
 	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
 </div>
 </div>
 
 <div class="form-inline text-center">
+<select class="form-control form-control-sm" name="select" id="select">
+	<option value="free_board_title" selected>제목</option>
+	<option value="free_board_content">내용</option>
+</select>
 	<input class="form-control" type="text" id="search" />
 	<button id="btnSearch" class="btn">검색</button>
 </div> 

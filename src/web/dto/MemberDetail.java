@@ -1,5 +1,6 @@
 package web.dto;
 
+import java.util.Date;
 
 public class MemberDetail {
 	private String member_id;
@@ -8,7 +9,7 @@ public class MemberDetail {
 	private String member_nick;
 	private String member_name;
 	private String member_gender;
-	private String member_birthday;
+	private Date member_birthday;
 	private String member_email;
 	private String member_phone;
 	private int member_group;
@@ -69,11 +70,11 @@ public class MemberDetail {
 		this.member_gender = member_gender;
 	}
 
-	public String getMember_birthday() {
+	public Date getMember_birthday() {
 		return member_birthday;
 	}
 
-	public void setMember_birthday(String member_birthday) {
+	public void setMember_birthday(Date member_birthday) {
 		this.member_birthday = member_birthday;
 	}
 

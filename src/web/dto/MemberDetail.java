@@ -73,10 +73,11 @@ public class MemberDetail {
 	public Date getMember_birthday() {
 		return member_birthday;
 	}
-
+	
 	public void setMember_birthday(Date member_birthday) {
 		this.member_birthday = member_birthday;
 	}
+
 
 	public String getMember_email() {
 		return member_email;

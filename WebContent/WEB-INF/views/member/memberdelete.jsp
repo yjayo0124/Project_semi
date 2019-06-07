@@ -14,6 +14,11 @@
 			$(this).parents("form").submit();
 		});
 		
+// 		//글쓰기 버튼 누르면 이동
+// 		$("#btnCancel").click(function() {
+// 			location.href="/member/update?member_id=${member.member_id }";
+// 		});
+		
 	});
 		
 </script>	
@@ -78,15 +83,36 @@
 	margin: 30px 0 9px;
 }
 
-.btn_type {
+.btn_type1 {
 	display: block;
-	width: 100%;
+	width: 100px;
+	height:22px;
 	padding: 21px 0 17px;
 	font-size: 20px;
 	font-weight: 700;
 	text-align: center;
 	cursor: pointer;
 	box-sizing: border-box;
+		position:absolute;
+	top:527px;
+	left:700px;
+	height:57px;
+}
+
+.btn_type2 {
+	display: block;
+	width: 100px;
+	height:22px;
+	padding: 21px 0 17px;
+	font-size: 20px;
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	box-sizing: border-box;
+		position:absolute;
+	top:527px;
+	left:890px;
+	height:57px;
 }
 
 .next1:hover {	color:white; 
@@ -124,7 +150,7 @@
 
 .form2{
 
-	background:silver;
+
 	margin-top:30px;
 	margin-left: 450px;
 	width:800px;
@@ -158,11 +184,11 @@
 <br><br><br><br><br><br>
 <h3>회원탈퇴하시겠습니까?</h3>
 
-	<button id="btnDelete" >
+	<button id="btnDelete" class="btn_type1" >
 		탈퇴
 	</button>
-	<button><a href="/member/update?member_id=${member.member_id }">취소</a></button>
 </div>
+	<button id="btnCancel" class="btn_type2"><a href="/member/update?member_id=${member.member_id }">취소</a></button>
 
 
 

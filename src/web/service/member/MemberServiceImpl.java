@@ -1,5 +1,10 @@
 package web.service.member;
 
+
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,13 +54,23 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberDetail getJoinMember(HttpServletRequest req) {
 		MemberDetail member = new MemberDetail();
+		String member_birthday = req.getParameter("member_birthday");
+			
+			try {
+				Date date;
+				date = new SimpleDateFormat("yyyy-mm-dd").parse(member_birthday);
+				member.setMember_birthday(date);
+			} catch (ParseException e) {	
+				e.printStackTrace();
+			}
+			
+		
 		
 		member.setMember_id(req.getParameter("member_id"));
 		member.setMember_pw(req.getParameter("member_pw2"));
 		member.setMember_nick(req.getParameter("member_nick"));
 		member.setMember_name(req.getParameter("member_name"));
 		member.setMember_gender(req.getParameter("member_gender"));
-		member.setMember_birthday((String)req.getParameter("member_birthday"));
 		member.setMember_email(req.getParameter("member_email"));
 		member.setMember_phone(req.getParameter("member_phone"));
 

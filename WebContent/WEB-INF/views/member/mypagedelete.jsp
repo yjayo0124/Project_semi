@@ -110,70 +110,69 @@
 
 .btn_type {
 	display: block;
-	width: 100%;
+	width: 75px;
 	padding: 21px 0 17px;
 	font-size: 20px;
 	font-weight: 700;
 	text-align: center;
 	cursor: pointer;
 	box-sizing: border-box;
+	position:absolute;
+	top:527px;
+	left:1030px;
+	height:57px;
+
 }
 
-.next1:hover {	color:white; 
-				background:blue;
-				margin-left:150px;
-				width: 90px;
-				height:20px;
+.next1:hover {	
+ 				margin-left:150px; 
+				width: 90px; 
+				height:20px; 
 
-					}
+
+					} 
 					
 					
-.next1{
+.next1{			
+				
+				font-size:15px;
 				margin-left:150px; 
 				width: 90px; 
 				height:20px;
 				
 					}
 
-.next2:hover {	 
-				color:white;
-				background:blue;
-				margin-left:150px;
-				width: 90px;
-				height:20px;
+ .next2:hover {	 
+ 				margin-left:150px; 
+ 				width: 90px; 
+ 				height:20px; 
 
-					}
+					} 
 					
 					
-.next2{			margin-top:20px;
+.next2{			
+				
+				font-size:15px;
+				margin-top:20px;
 				margin-left:150px; 
 				width: 90px; 
 				height:20px;
 				
 					}
 
-.form2{
 
-	background:silver;
-	margin-top:30px;
-	margin-left: 450px;
-	width:800px;
-	height:400px;
-	
-}
 
-.next3{			margin-top:20px;
-				margin-left:150px; 
-				width: 90px; 
-				height:20px;
-				
-					}
-					
-.next1 > a:hover{text-decoration:none;
-			color:white;}
+.next1 > a:hover{ 	text-decoration:none;
+				  	color:#337AB7;
+				  	font-weight:bold;
+						}
 
-.next2 > a:hover{text-decoration:none;
-			color:white;}
+.next2 > a:hover{ 	text-decoration:none;
+				  	color:#337AB7;
+				  	font-weight:bold;
+						}
+
+
 
 </style>
 
@@ -187,19 +186,20 @@
 <div class="next1" ><a href="/member/update?member_id=${member_id }">회원정보수정</a></div>
 <div class="next2" ><a href="/member/mypagedelete">회원탈퇴</a></div>
 
-
-
 <form action="/member/mypagedelete?member_id=${member.member_id } " method="post" class="form2">
-
-<div class="pass_check" style="text-align : center;">
-<br><br><br><br><br><br>
-<h3>현재 비밀번호 확인</h3>
-<input type="password" id="password_check" name="password_check"/>
-	<button id="btnDelete" >
-		<span>확인</span>
-	</button>
+	<div class="join_content">
+		<div class="row_group">
+			<h2 class="join_title">
+				<label>현재비밀번호확인</label>
+			</h2>
+			<span class="intext"> 
+			<input type="password" id="password_check" class="inputtext" name="password_check" />
+			</span>
+	<button id="btnDelete" class="btn_type"><span>확인</span></button>
+<!-- 		<span>확인</span> -->
+<!-- 	</button> -->
+	
 </div>
-
 </form>
 
 

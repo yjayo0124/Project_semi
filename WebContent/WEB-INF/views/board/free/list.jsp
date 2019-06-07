@@ -32,29 +32,44 @@ table, th {
 	position: relative;
 }
 #btnBox {
-	position: absolute;
 	top: 0;
 	bottom: 0;
-	right: 0;
-	height: 40px;
-	margin: auto;
+	
+	
+	margin-left: 1050px;
 }
 
 
-/* 검색창 css */
+
+
+table, th {
+	text-align: center;
+}
+
+.container {
+	border-left : 1px solid #eee;
+	border-right : 1px solid #eee;
+}
+
 
 </style>
 
-<h3 style="margin-top:70px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;
-자유게시판</h3>
-<hr>
+<div class="wrap">
 
-<table class="table table-striped table-hover table-condensed"
-	style="margin-left:95px; width:1500px;">
+<div class="container" style="margin-top:40px;">
+<div style="margin-top : 100px; ">
 
-<thead>
+<h1>자유게시판</h1>
+</div>
+<hr>>
+
+<div id="btnBox" >
+	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
+</div>
+
+<table class="table table-hover table-condensed" style="margin-top:20px;">
+
+<thead style="background: #337AB7; color: white;" >
 	<tr>
 		<th style="width: 10%;">번호</th>
 		<th style="width: 45%;">제목</th>
@@ -81,9 +96,7 @@ table, th {
 <div id="pagingBox">
 <c:import url="/WEB-INF/views/layout/freepaging/paging.jsp" />
 
-<div id="btnBox" style="margin-right:95px;">
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
-</div>
+
 </div>
 
 <div class="form-inline text-center">

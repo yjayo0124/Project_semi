@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import web.dbutil.DBConn;
@@ -506,6 +507,66 @@ public class FreeDaoImpl implements FreeDao {
 			}
 		}
 		
+	}
+
+	@Override
+	public HashMap getPrevNext(FreeBoard viewBoard) {
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += " SELECT";
+		sql += " 	LEAD( free_board_no, 1 ) OVER (ORDER BY free_board_no DESC) prev,";
+		sql += "	free_board_no,";
+		sql += " 	LAG( free_board_no, 1 ) OVER (ORDER BY free_board_no DESC) next";
+		sql += " FROM Free_Board";
+		sql += " )";
+		sql += " WHERE free_board_no = ?";
+		  
+		HashMap<String, Integer> map = new HashMap();
+		try {  
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, viewBoard.getFree_board_no() ) ;
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				map.put("prev", rs.getInt("prev"));
+				map.put("next", rs.getInt("next"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map ;
+	}
+
+	@Override
+	public HashMap getPrevNextName(FreeBoard viewBoard) {
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += " SELECT";
+		sql += " 	LEAD( free_board_title, 1 ) OVER (ORDER BY free_board_no DESC) prev,";
+		sql += "	free_board_no , free_board_title,";
+		sql += " 	LAG( free_board_title, 1 ) OVER (ORDER BY free_board_no DESC) next";
+		sql += " FROM Free_Board";
+		sql += " )";
+		sql += " WHERE free_board_no = ?";
+		  
+		HashMap<String, String> map = new HashMap();
+		try {  
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, viewBoard.getFree_board_no() ) ;
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				map.put("prev", rs.getString("prev"));
+				map.put("next", rs.getString("next"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map ;
 	}
 	
 

@@ -1,6 +1,7 @@
 package web.controller.board.free;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -34,6 +35,15 @@ public class FreeViewController extends HttpServlet {
 
 		//MODEL로 게시글 전달
 		req.setAttribute("viewBoard", viewBoard);
+		
+		// 이전글 / 다음글 
+		HashMap map = boardService.getPrevNext(viewBoard);
+//		System.out.println(map);
+		req.setAttribute("prev_next", map);
+		
+		// 이전글 / 다음글 
+		HashMap name = boardService.getPrevNextName(viewBoard) ;
+		req.setAttribute( "prev_next_name", name);
 		
 		//첨부파일 전달
 		FreeFile boardFile = boardService.viewFile(viewBoard);

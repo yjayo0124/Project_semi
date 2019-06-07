@@ -97,16 +97,16 @@ $(document).ready(function() {
 
 <div id="sliderbox">
 	<ul id="slider">
-		<li><img src="/imgs/1.png" /></li>
-		<li><img src="/imgs/2.png" /></li>
-		<li><img src="/imgs/3.png" /></li>
+		<li><img id="1" src="/imgs/1.jpg" /></li>
+		<li><img id="2" src="/imgs/2.png" /></li>
+		<li><img id="3" src="/imgs/3.png" /></li>
 	</ul>
 </div>
 <br>
 <div style="text-align:center" >
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-  <span class="dot"></span> 
+  <a href="#"><span class="dot"></span></a>
+  <a href="#"><span class="dot"></span></a>
+  <a href="#"><span class="dot"></span></a>
 </div>
 </body>
 </html>

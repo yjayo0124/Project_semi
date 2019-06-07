@@ -107,7 +107,7 @@ $(document).ready(function() {
 
 <div id = "content">
 <div id = "img">
-	<img src="/imgs/fishing.jpg" alt="Fishing" width="470px;" height="410px;">
+	<img src="/fishupload/${ fishInfo.fish_storedname }" alt="Fishing" width="470px;" height="410px;">
 </div>
 	<div id = text>
 	<br><div id = "fname">${ fishInfo.fish_name }</div><br><br>

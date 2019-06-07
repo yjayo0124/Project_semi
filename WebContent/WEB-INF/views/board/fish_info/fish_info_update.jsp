@@ -84,7 +84,7 @@ a:link , a:visited , a:active , a:hover {
 <hr>
 
 <div>
-<form action="/board/fish/info/update" method="post">
+<form action="/board/fish/info/update" method="post" enctype="multipart/form-data">
 <input type="hidden" name="fish_no" value="${fishInfo.fish_no }" />
 
 <table class="table table-bordered">
@@ -100,6 +100,7 @@ a:link , a:visited , a:active , a:hover {
 </td></tr>
 </table>
 
+<label>썸네일 이미지 : <input type="file" name="upfile"/></label><br><br>
 
 </form>
 </div>

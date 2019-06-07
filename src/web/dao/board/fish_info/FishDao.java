@@ -5,6 +5,7 @@ import java.util.List;
 
 import web.dto.FishInfo;
 import web.dto.FreeBoard;
+import web.dto.festival.FestivalBoard;
 import web.util.Fish_Paging;
 import web.util.Paging;
 
@@ -54,4 +55,6 @@ public interface FishDao {
 	 * @return 다음글 이전글 제목불러오기
 	 */
 	public HashMap getPrevNextName( FishInfo fishInfo ) ;
+	
+	public FishInfo selectImgByBoardno(FishInfo fishInfo);
 }

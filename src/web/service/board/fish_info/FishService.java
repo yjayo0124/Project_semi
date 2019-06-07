@@ -46,11 +46,11 @@ public interface FishService {
 	 * @param req - 요청정보 객체(게시글내용 + 첨부파일)
 	 * 
 	 */
-	public void write(HttpServletRequest req);
+	public void write(FishInfo fishInfo);
 	
 	public boolean checkWriter(HttpServletRequest req);
 	
-	public void update(HttpServletRequest req);
+	public void update(FishInfo fishInfo);
 
 	public void delete(FishInfo fishInfo);
 	

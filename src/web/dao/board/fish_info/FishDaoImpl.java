@@ -29,9 +29,11 @@ public class FishDaoImpl implements FishDao {
 			String sql = "";
 			sql += "SELECT * FROM (";
 			sql += " 	SELECT rownum rnum, B.* FROM (";
-			sql += " 	 SELECT fish_no , fish_name , fish_type , fish_sesson , fish_min_length , ";
-			sql += "     fish_care , fish_content , fish_written_date , member_id";
-			sql += " 	FROM Fish_Info ORDER BY fish_no DESC";
+			sql += " 	 SELECT i.fish_no , i.fish_name , i.fish_type , i.fish_sesson , i.fish_min_length , ";
+			sql += "     i.fish_care , i.fish_content , i.fish_written_date , i.member_id , f.fish_storedname ";
+			sql += " 	 FROM Fish_Info i , fish_file f " ;
+			sql += " 	 where i.fish_no = f.fish_no " ;
+			sql += "	 ORDER BY fish_no DESC";
 			sql += " 	) B";
 			sql += " 	ORDER BY rnum";
 			sql += " ) Fish_Info";
@@ -59,6 +61,7 @@ public class FishDaoImpl implements FishDao {
 					fish.setFish_content( rs.getString( "fish_content" ) ) ;
 					fish.setFish_written_date( rs.getDate( "fish_written_date" ) ) ;
 					fish.setMember_id( rs.getString( "member_id" ) ) ;
+					fish.setFish_storedname( rs.getString( "fish_storedname" ) ) ;
 
 					fishlist.add( fish ) ;
 				}
@@ -115,10 +118,10 @@ public class FishDaoImpl implements FishDao {
 	public FishInfo selectBoardByBoardno(FishInfo fishInfo) {
 		//게시글 조회쿼리
 			String sql = "";
-			sql += "select fish_no , fish_name , fish_type , fish_sesson ," ;
-			sql += " fish_min_length , fish_care , fish_content , fish_written_date , member_id" ;
-			sql += " from Fish_Info " ;
-			sql += " WHERE fish_no = ?";
+			sql += "select i.fish_no , i.fish_name , i.fish_type , i.fish_sesson ," ;
+			sql += " i.fish_min_length , i.fish_care , i.fish_content , i.fish_written_date , i.member_id , f.fish_storedname " ;
+			sql += " from Fish_Info i , fish_file f " ;
+			sql += " WHERE i.fish_no = f.fish_no and i.fish_no = ?";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -138,6 +141,7 @@ public class FishDaoImpl implements FishDao {
 				fishInfo.setFish_content( rs.getString( "fish_content" ) );
 				fishInfo.setFish_written_date( rs.getDate( "fish_written_date" ) ) ;
 				fishInfo.setMember_id( rs.getString( "member_id" ) ) ;
+				fishInfo.setFish_storedname( rs.getString( "fish_storedname" ) ) ;
 				}
 
 			} catch (SQLException e) {
@@ -361,6 +365,32 @@ public class FishDaoImpl implements FishDao {
 		}
 		
 		return map ;
+	}
+
+	@Override
+	public FishInfo selectImgByBoardno(FishInfo fishInfo) {
+		
+		String sql = "";
+		sql += "SELECT fish_storedname FROM fish_file";
+		sql += " WHERE fish_no = ?";
+
+
+		try {
+			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, fishInfo.getFish_no());
+			rs = ps.executeQuery();
+
+			while( rs.next() ) {	
+				fishInfo.setFish_storedname( rs.getString("fish_storedname") );
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return fishInfo;
 	}
 
 

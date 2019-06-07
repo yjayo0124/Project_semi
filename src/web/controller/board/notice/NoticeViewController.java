@@ -28,22 +28,25 @@ public class NoticeViewController extends HttpServlet {
 
 		Notice notice = noticeService.getNoticeno(req);
 		notice = noticeService.viewNotice(notice);
-		//    <--�Խñ۹�ȣ�� ������ �� ��ü�� �º��� ����
 //		System.out.println(notice);
 //		System.out.println(req.getSession().getAttribute("member_id"));
 
 		boolean writer_check;
-		//�ۼ���==�α��ΰ�ü ���ϴ� �޼ҵ�
 		writer_check = noticeService.CheckWriter(notice.getMember_id(), req);
-		//�ۼ��� == �α��ΰ�ü��� true ��ȯ �ƴ϶�� false��ȯ
 		
-		// writerüũ�ϴ� model ���� 
+		Notice next = noticeDao.nextTitle(notice);
+		Notice former =  noticeDao.formerTtile(notice);
+		
+		req.setAttribute("next", next);
+		req.setAttribute("former", former);
+		
+		
+		
+		
 		req.setAttribute("writer_check", writer_check);
 		
-		//--��model����
 		req.setAttribute("notice", notice);
-		
-		//VIEW ����
+
 		req.getRequestDispatcher("/WEB-INF/views/board/notice/view.jsp").forward(req, resp);
 	
 	

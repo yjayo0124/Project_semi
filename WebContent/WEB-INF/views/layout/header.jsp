@@ -126,35 +126,11 @@ body {
 	background: #fff;
 }
 
-.footer{
-	
-	position : absolute;
-	left: 0;
-	height:0px;
-	bottom: 0px;
-	width: 100%;
-	padding: 1px 0;
-	
-	border-top: 1px solid #d9d9d9;
-	background-color: #e7e7e7;
-	
-	
-}
-
-
-.footer .inner {
-    position: relative;
-    max-width: 960px;
-    width: 960px;
-    margin: 0 auto;
-    min-height: 40px;
-    padding: 15px 0;
-}
-
-}
 
 
 </style>
+
+
 </head>
 <body>
 	<br>
@@ -214,5 +190,3 @@ body {
 		</ul>
 	</div>
 	<hr>
-</body>
-</html>

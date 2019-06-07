@@ -28,6 +28,7 @@ public interface NoticeDao {
 	
 	public void delete(Notice notice);
 	
-	
+	public Notice nextTitle(Notice notice);
+	public Notice formerTtile(Notice notice);
 	
 }

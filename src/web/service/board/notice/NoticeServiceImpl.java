@@ -120,8 +120,9 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public boolean CheckWriter(String writer, HttpServletRequest req) {
 
-	
-		String loginId = (String) req.getSession().getAttribute("member_id");
+		String loginId = null;
+		
+		 loginId = (String) req.getSession().getAttribute("member_id");
 		
 		if( !loginId.equals(writer)) {
 			

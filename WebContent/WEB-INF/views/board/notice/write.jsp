@@ -69,7 +69,7 @@ $(document).ready(function(){
 	</div>
 	<div class="form-group ">
 		<label for="notice_title" class="col-sm-2 control-label">제목</label>
-		<div class="col-sm-10"><input type="text" name="notice_title"/></div>
+		<div class="col-sm-10"><input type="text" name="notice_title" style="width:100%;"/></div>
 	</div>
 	 <div class="form-group">
         <label for="notice_content" class="col-sm-2 control-label">내용입력</label>

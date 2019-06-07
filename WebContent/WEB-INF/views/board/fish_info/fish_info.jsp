@@ -80,7 +80,7 @@ $(document).ready(function() {
 <c:forEach items="${fishlist}" var="i">
 <div class="item">
 	<div style="width: 220px; height: 350px;" id = "img">
-		<a href="/board/fish/info/detail?fish_no=${i.fish_no }"><img src="/imgs/fishing.jpg" alt="Fishing" width="220px;" height="350px;"></a>
+		<a href="/board/fish/info/detail?fish_no=${i.fish_no }"><img src="/fishupload/${i.fish_storedname }" alt="Fishing" width="220px;" height="350px;"></a>
 	</div>
 	<a href="/board/fish/info/detail?fish_no=${i.fish_no }">
 		<div id = "text" style="width: 240px; height: 350px" ><br>	

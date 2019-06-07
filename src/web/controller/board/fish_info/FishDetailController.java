@@ -35,7 +35,7 @@ public class FishDetailController extends HttpServlet {
 		
 		req.setAttribute( "fishInfo" , fishInfo ) ;
 		
-		System.out.println( fishInfo );
+//		System.out.println( fishInfo );
 		
 		// 이전글 / 다음글 Fish_no
 		HashMap map = fishService.getPrevNext(fishInfo);

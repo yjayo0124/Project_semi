@@ -91,7 +91,7 @@ a:link , a:visited , a:active , a:hover {
 <hr>
 
 <div>
-<form action="/board/fish/info/write" method="post">
+<form action="/board/fish/info/write" method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
 <tr><td class="info">아이디</td><td>${member_id }</td></tr>
 <tr><td class="info">물고기 이름</td><td><input type="text" name="fish_name" style="width:100%" value="${fishInfo.fish_name }"/></td></tr>
@@ -104,6 +104,8 @@ a:link , a:visited , a:active , a:hover {
 	<textarea id="summernote" name="fish_content" rows="10" cols="100"></textarea>
 </td></tr>
 </table>
+
+<label>썸네일 이미지 : <input type="file" name="upfile"/></label><br><br>
 
 </form>
 </div>

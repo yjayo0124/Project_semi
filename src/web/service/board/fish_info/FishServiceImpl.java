@@ -1,13 +1,26 @@
 package web.service.board.fish_info;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import web.dao.board.fish_info.FishDao;
 import web.dao.board.fish_info.FishDaoImpl;
+import web.dao.board.fish_info.FishFileDao;
+import web.dto.BuyBoard;
+import web.dto.BuyFile;
 import web.dto.FishInfo;
+import web.dto.FishInfoFile;
 import web.dto.FreeBoard;
 import web.dto.festival.FestivalBoard;
 import web.util.Fish_Paging;
@@ -60,24 +73,7 @@ public class FishServiceImpl implements FishService {
 		return fishDao.selectBoardByBoardno(fishInfo) ;
 	}
 
-	@Override
-	public void write(HttpServletRequest req) {
-		
-		FishInfo fishInfo = null ;
-		
-		fishInfo = new FishInfo() ;
-		
-		fishInfo.setFish_name( req.getParameter( "fish_name" ));
-		fishInfo.setFish_type( req.getParameter( "fish_type" ));
-		fishInfo.setFish_sesson( req.getParameter( "fish_sesson" ));
-		fishInfo.setFish_min_length( req.getParameter( "fish_min_length" ));
-		fishInfo.setFish_care( req.getParameter( "fish_care" ));
-		fishInfo.setFish_content( req.getParameter( "fish_content" ));
-		fishInfo.setMember_id( (String)req.getSession().getAttribute( "member_id" ) ) ;
-			
-		fishDao.insert(fishInfo);
-		
-	}
+
 	
 		@Override
 		public boolean checkWriter(HttpServletRequest req) {
@@ -95,25 +91,7 @@ public class FishServiceImpl implements FishService {
 		return true;
 	}
 
-	@Override
-	public void update(HttpServletRequest req) {
-		
-		FishInfo fishInfo = null ;
-		
-		fishInfo = new FishInfo() ;
-		
-		fishInfo.setFish_no( Integer.parseInt(req.getParameter( "fish_no" ) ) ) ;
-		fishInfo.setFish_name( req.getParameter( "fish_name" ));
-		fishInfo.setFish_type( req.getParameter( "fish_type" ));
-		fishInfo.setFish_sesson( req.getParameter( "fish_sesson" ));
-		fishInfo.setFish_min_length( req.getParameter( "fish_min_length" ));
-		fishInfo.setFish_care( req.getParameter( "fish_care" ));
-		fishInfo.setFish_content( req.getParameter( "fish_content" ));
-		
-		System.out.println( fishInfo );
-		fishDao.update(fishInfo);
-	
-	}
+
 
 	@Override
 	public void delete(FishInfo fishInfo) {
@@ -129,6 +107,18 @@ public class FishServiceImpl implements FishService {
 	@Override
 	public HashMap getPrevNextName(FishInfo fishInfo) {
 		return fishDao.getPrevNextName(fishInfo);
+	}
+
+	@Override
+	public void write(FishInfo fishInfo) {
+		fishDao.insert(fishInfo);
+		
+	}
+
+	@Override
+	public void update(FishInfo fishInfo) {
+		fishDao.update(fishInfo);
+		
 	}
 
 

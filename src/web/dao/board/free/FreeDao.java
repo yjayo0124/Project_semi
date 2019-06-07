@@ -1,5 +1,6 @@
 package web.dao.board.free;
 
+import java.util.HashMap;
 import java.util.List;
 
 import web.dto.FreeBoard;
@@ -68,5 +69,9 @@ public interface FreeDao {
 	public void delete(FreeBoard board);
 
 	public void deleteFile(FreeBoard board);
+
+	public HashMap getPrevNext(FreeBoard viewBoard);
+
+	public HashMap getPrevNextName(FreeBoard viewBoard);
 
 }

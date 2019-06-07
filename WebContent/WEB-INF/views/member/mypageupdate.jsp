@@ -232,8 +232,7 @@ $(document).ready(function() {
 	box-sizing: border-box;
 }
 
-.next1:hover {	color:white;  
-				background:blue; 
+.next1:hover {	
  				margin-left:150px; 
 				width: 90px; 
 				height:20px; 
@@ -242,44 +241,44 @@ $(document).ready(function() {
 					} 
 					
 					
-.next1{
+.next1{			
+				
+				font-size:15px;
 				margin-left:150px; 
 				width: 90px; 
 				height:20px;
 				
 					}
 
- .next2:hover {	 color:white; 
- 				background:blue; 
+ .next2:hover {	 
  				margin-left:150px; 
  				width: 90px; 
  				height:20px; 
 
-/					} 
+					} 
 					
 					
-.next2{			margin-top:20px;
+.next2{			
+				
+				font-size:15px;
+				margin-top:20px;
 				margin-left:150px; 
 				width: 90px; 
 				height:20px;
 				
 					}
 
-.form2{
 
-	background:silver;
-	margin-top:100px;
-	margin-left: 450px;
-	width:800px;
-	height:400px;
-	
-}
 
-.next1 > a:hover{text-decoration:none;
-			color:white;}
+.next1 > a:hover{ 	text-decoration:none;
+				  	color:#337AB7;
+				  	font-weight:bold;
+						}
 
-.next2 > a:hover{text-decoration:none;
-			color:white;}
+.next2 > a:hover{ 	text-decoration:none;
+				  	color:#337AB7;
+				  	font-weight:bold;
+						}
 
 
 

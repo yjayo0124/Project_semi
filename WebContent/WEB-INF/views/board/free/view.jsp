@@ -81,7 +81,30 @@ function deleteComment(free_board_comment_no) {
 }
 </script>
 
-<h1 class="pull-left">게시판 - VIEW</h1>
+<style type="text/css">
+
+#next > a{
+
+font-size:16px;
+}
+
+#back > a{
+font-size:16px;
+}
+
+#page{
+margin-left: 200px;
+margin-right:50px;
+width:1200px;
+margin-top: 50px;
+
+}
+
+</style>
+
+<h3 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;자유게시판</h3>
 
 <c:if test="${login }">
 <button id="btnRecommend" class="btn pull-right" style="margin-top: 30px;"></button>
@@ -90,7 +113,8 @@ function deleteComment(free_board_comment_no) {
 <div class="clearfix"></div>
 <hr>
 
-<table class="table table-bordered">
+<table class="table table-bordered"
+style="margin-left:130px; width:1400px; margin-top:100px;">
 <tr>
 <td class="info">글번호</td><td colspan="3">${viewBoard.free_board_no }</td>
 </tr>
@@ -100,17 +124,15 @@ function deleteComment(free_board_comment_no) {
 </tr>
 
 <tr>
-<td class="info">아이디</td><td>${viewBoard.free_board_writer }</td>
 <td class="info">닉네임</td><td>${member_nick }</td>
 </tr>
 
 <tr>
-<td class="info">조회수</td><td>${viewBoard.free_board_hit }</td>
-<td class="info">추천수</td><td id="recommend">[ 추후 추가 ]</td>
+<td class="info">조회수</td><td colspan="4">${viewBoard.free_board_hit }</td>
 </tr>
 
 <tr>
-<td class="info">작성일</td><td colspan="2">${viewBoard.free_board_written_date }</td>
+<td class="info">작성일</td><td colspan="4">${viewBoard.free_board_written_date }</td>
 </tr>
 
 <tr><td class="info"  colspan="4">본문</td></tr>
@@ -137,32 +159,22 @@ function deleteComment(free_board_comment_no) {
 	</c:if>
 </div>
 
-<!-- 로그인상태 -->
-<c:if test="${login }">
-<!-- 댓글 입력 -->
-<div class="form-inline text-center">
-	<input type="text" size="10" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
-	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
-	<button id="btnCommInsert" class="btn">입력</button>
-</div>	<!-- 댓글 입력 end -->
-</c:if>
- 
- 
 <!-- 댓글 리스트 -->
-<table class="table table-striped table-hover table-condensed">
+<table class="table table-striped table-hover table-condensed"
+style="margin-left:130px; width:1400px; margin-top:300px;">
 <thead>
 <tr>
-	<th style="width: 5%;">번호</th>
-	<th style="width: 10%;">작성자</th>
-	<th style="width: 50%;">댓글</th>
-	<th style="width: 20%;">작성일</th>
+
+	<th style="width: 10%;"></th>
+	<th style="width: 50%;"></th>
+	<th style="width: 20%;"></th>
 	<th style="width: 5%;"></th>
 </tr>
 </thead>
 <tbody id="commentBody">
 <c:forEach items="${commentList }" var="comment">
 <tr data-commentno="${comment.free_board_comment_no }">
-	<td>${comment.free_board_comment_no}</td>
+
 	<td>${comment.member_id }</td><!-- 닉네임으로 해도 좋음 -->
 	<td>${comment.free_board_content }</td>
 	<td>${comment.free_board_comment_date }</td>
@@ -177,5 +189,48 @@ function deleteComment(free_board_comment_no) {
 </c:forEach>
 </tbody>
 </table>	<!-- 댓글 리스트 end -->
+ 
+<!-- 로그인상태 -->
+<c:if test="${login }">
+<!-- 댓글 입력 -->
+<div class="form-inline text-center">
+	<input type="text" size="10" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
+	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
+	<button id="btnCommInsert" class="btn">입력</button>
+</div>	<!-- 댓글 입력 end -->
+</c:if>
+ 
+
+
+<!-- 이전글, 다음글 리스트 -->
+<div id = "page">
+
+
+<hr id = "hr2">
+<div id = "next">
+<c:if test="${prev_next.next eq 0 }">
+	다음글없음
+</c:if>
+<c:if test="${prev_next.next ne 0 }">
+	<a href="/board/free/view?free_board_no=${prev_next.next }" >
+	다음글:&nbsp;&nbsp;&nbsp;&nbsp;${prev_next_name.next }
+	</a>
+</c:if>
+</div>
+
+
+<hr id = "hr2">
+<div id = "back">
+<c:if test="${prev_next.prev eq 0 }">
+	이전글없음
+</c:if>
+<c:if test="${prev_next.prev ne 0 }">
+<a href="/board/free/view?free_board_no=${prev_next.prev}">
+		이전글:&nbsp;&nbsp;&nbsp;&nbsp;${prev_next_name.prev }
+	</a>
+</c:if>
+</div>
+<hr id = "hr2">
+</div>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

@@ -2,6 +2,7 @@ package web.service.board.free;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -414,6 +415,16 @@ public class FreeServiceImpl implements FreeService{
 		} else {
 			return true;
 		}
+	}
+
+	@Override
+	public HashMap getPrevNext(FreeBoard viewBoard) {
+		return freeDao.getPrevNext(viewBoard);
+	}
+
+	@Override
+	public HashMap getPrevNextName(FreeBoard viewBoard) {
+		return freeDao.getPrevNextName(viewBoard);
 	}		
 	
 

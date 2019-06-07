@@ -1,5 +1,6 @@
 package web.service.board.free;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -121,6 +122,10 @@ public interface FreeService {
 	
 	
 	public boolean deleteComment(FreeComment comment);
+
+	public HashMap getPrevNext(FreeBoard viewBoard);
+
+	public HashMap getPrevNextName(FreeBoard viewBoard);
 	
 
 	

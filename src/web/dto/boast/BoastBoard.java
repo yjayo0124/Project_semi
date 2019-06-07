@@ -11,14 +11,24 @@ public class BoastBoard {
 	private int boast_board_hit;
 	private Date boast_board_written_date;
 	private int boast_board_comment_no;
+	private int boast_board_file_idx;
 	private String member_id;
+	
 	
 	@Override
 	public String toString() {
 		return "BoastBoard [boast_board_no=" + boast_board_no + ", boast_board_title=" + boast_board_title
 				+ ", boast_board_writer=" + boast_board_writer + ", boast_board_content=" + boast_board_content
 				+ ", boast_board_hit=" + boast_board_hit + ", boast_board_written_date=" + boast_board_written_date
-				+ ", boast_board_comment_no=" + boast_board_comment_no + ", member_id=" + member_id + "]";
+				+ ", boast_board_comment_no=" + boast_board_comment_no + ", boast_board_file_idx="
+				+ boast_board_file_idx + ", member_id=" + member_id + ", boast_board_stored_name="
+				+ "]";
+	}
+	public int getBoast_board_file_idx() {
+		return boast_board_file_idx;
+	}
+	public void setBoast_board_file_idx(int boast_board_file_idx) {
+		this.boast_board_file_idx = boast_board_file_idx;
 	}
 	public int getBoast_board_no() {
 		return boast_board_no;

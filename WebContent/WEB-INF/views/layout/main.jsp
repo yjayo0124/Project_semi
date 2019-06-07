@@ -31,20 +31,23 @@
 <div class="main container" style="margin-top: 50px; margin-bottom: 100px;">
 
 <!-- slider -->
-<c:import url="/WEB-INF/views/layout/slider.jsp" />
-<br>
-<br>
 <div class="middle" style="width: 1000px; margin: 0 auto;">
-			
+<div id="slider" style="width: 100%; height: 400px; text-align: center;">
+<c:import url="/WEB-INF/views/layout/slider2.jsp" />
+</div>
+	<br>
+	<br>
 	<div id="search"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
 	<br>
 	<br>
-	<div class="icon">
+	<br>
+	<div class="icon" style="margin-left: 5px; text-align: center;">
 			<a href="/board/festival"> <img src="/imgs/img1.png" class="img-circle"></a>
 			<a href="/board/fish/info"> <img src="/imgs/img2.png" class="img-circle"></a>
 			<a href="/buy/list"> <img src="/imgs/img3.png" class="img-circle"></a>
 			<a href="/board/free/list"> <img src="/imgs/img4.png" class="img-circle"></a>
 	</div>
+	<br><br>
 </div>
 </div>
 

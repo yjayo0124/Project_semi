@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import web.dao.board.buy.face.BuyDao;
@@ -590,6 +591,66 @@ public class BuyDaoImpl implements BuyDao{
 			}
 		}
 		
+	}
+
+	@Override
+	public HashMap getPrevNext(BuyBoard board) {
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += " SELECT";
+		sql += " 	LEAD( buy_board_no, 1 ) OVER (ORDER BY buy_board_no DESC) prev,";
+		sql += "	buy_board_no,";
+		sql += " 	LAG( buy_board_no, 1 ) OVER (ORDER BY buy_board_no DESC) next";
+		sql += " FROM Buy_Board";
+		sql += " )";
+		sql += " WHERE buy_board_no = ?";
+		  
+		HashMap<String, Integer> map = new HashMap();
+		try {  
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, board.getBoardno() ) ;
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				map.put("prev", rs.getInt("prev"));
+				map.put("next", rs.getInt("next"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map ;
+	}
+
+	@Override
+	public HashMap getPrevNextName(BuyBoard board) {
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += " SELECT";
+		sql += " 	LEAD( buy_board_title, 1 ) OVER (ORDER BY buy_board_no DESC) prev,";
+		sql += "	buy_board_no , buy_board_title,";
+		sql += " 	LAG( buy_board_title, 1 ) OVER (ORDER BY buy_board_no DESC) next";
+		sql += " FROM buy_board";
+		sql += " )";
+		sql += " WHERE buy_board_no = ?";
+		  
+		HashMap<String, String> map = new HashMap();
+		try {  
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, board.getBoardno() ) ;
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				map.put("prev", rs.getString("prev"));
+				map.put("next", rs.getString("next"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map ;
 	}
 
 	

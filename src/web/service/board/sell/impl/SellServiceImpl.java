@@ -2,6 +2,7 @@ package web.service.board.sell.impl;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -487,6 +488,19 @@ public class SellServiceImpl implements SellService{
 			return true;
 		}
 		
+		
+	}
+
+	@Override
+	public HashMap getPrevNext(SellBoard sellboard) {
+		 
+		return sellDao.getPrevNext(sellboard);
+	}
+
+	@Override
+	public HashMap getPrevNextName(SellBoard sellboard) {
+		
+		return sellDao.getPrevNextName(sellboard);
 		
 	}
 

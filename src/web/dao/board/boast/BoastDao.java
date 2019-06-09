@@ -66,5 +66,7 @@ public interface BoastDao {
 	public void delete(BoastBoard board);
 
 	public void deleteFile(BoastBoard board);
+	
+	public BoastBoard selectrecommend( BoastBoard board ) ;
 
 }

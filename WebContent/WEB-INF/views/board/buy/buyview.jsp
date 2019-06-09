@@ -222,8 +222,8 @@ function deleteComment(commentNo) {
 </div>
  --%>
  
- <div>
- <hr>
+<div>
+<hr>
  
 <!-- 댓글 리스트 -->
 <table class="table table-striped table-hover table-condensed ">

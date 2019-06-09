@@ -13,16 +13,23 @@ public class BoastBoard {
 	private int boast_board_comment_no;
 	private int boast_board_file_idx;
 	private String member_id;
+	private int recommend;
 	
 	
+
 	@Override
 	public String toString() {
 		return "BoastBoard [boast_board_no=" + boast_board_no + ", boast_board_title=" + boast_board_title
 				+ ", boast_board_writer=" + boast_board_writer + ", boast_board_content=" + boast_board_content
 				+ ", boast_board_hit=" + boast_board_hit + ", boast_board_written_date=" + boast_board_written_date
 				+ ", boast_board_comment_no=" + boast_board_comment_no + ", boast_board_file_idx="
-				+ boast_board_file_idx + ", member_id=" + member_id + ", boast_board_stored_name="
-				+ "]";
+				+ boast_board_file_idx + ", member_id=" + member_id + ", recommend=" + recommend + "]";
+	}
+	public int getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
 	}
 	public int getBoast_board_file_idx() {
 		return boast_board_file_idx;

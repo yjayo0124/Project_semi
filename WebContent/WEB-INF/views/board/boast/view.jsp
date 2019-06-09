@@ -23,6 +23,50 @@ $(document).ready(function() {
 
 	});
 	
+	if(${isRecommend}) {
+		$("#btnRecommend")
+			.addClass("btn-warn")
+			.html('추천 취소');
+		
+	} else {
+		$("#btnRecommend")
+			.addClass("btn-primary")
+			.html('추천');
+	} ;
+	
+	$("#btnRecommend").click(function() {
+		
+		$.ajax({
+			type: "get"
+				, url: "/board/boast/recommend"
+				, data: { "boast_board_no": ${viewBoard.boast_board_no } }
+				, dataType: "json"
+				, success: function( data ) {
+					console.log("성공");
+ 					console.log(data);
+					if( data.result ) { //추천 성공
+						$("#btnRecommend")
+						.addClass("btn-warn")
+						.html('추천 취소');
+					
+					} else { //추천 취소 성공
+						$("#btnRecommend")
+						.addClass("btn-primary")
+						.html('추천');
+					
+					}
+					
+					//추천수 적용
+					$("#recommend").html(data.cnt);
+					
+				}
+				, error: function() {
+					console.log("실패");
+				}
+		});
+		
+	});
+	
 });
 </script>
 
@@ -51,7 +95,7 @@ $(document).ready(function() {
 
 <tr>
 <td class="info">조회수</td><td>${viewBoard.boast_board_hit }</td>
-<td class="info">추천수</td><td id="recommend">[ 추후 추가 ]</td>
+<td class="info">추천수</td><td id="recommend">${viewBoard.recommend }</td>
 </tr>
 
 <tr>
@@ -77,5 +121,60 @@ $(document).ready(function() {
 	<button id="btnDelete" class="btn btn-danger">삭제</button>
 	</c:if>
 </div>
+
+<div>
+<hr>
+ 
+<!-- 댓글 리스트 -->
+<table class="table table-striped table-hover table-condensed ">
+<thead>
+<tr class="success">
+	<th style="width: 5%;">번호</th>
+	<th style="width: 10%;">작성자</th>
+	<th style="width: 50%;">댓글</th>
+	<th style="width: 20%;">작성일</th>
+	<th style="width: 5%;"></th>
+</tr>
+</thead>
+<tbody id="commentBody">
+<c:forEach items="${commentList }" var="comment">
+<tr data-commentno="${comment.boast_board_comment_no }">
+	<td>${comment.rnum }</td>
+	<td>${comment.member_id }</td><!-- 닉네임으로 해도 좋음 -->
+	<td>${comment.boast_content }</td>
+	<td>${comment.boast_comment_written_date }</td>
+	<td>
+		<c:if test="${sessionScope.member_id eq comment.member_id }">
+		<button class="btn btn-default btn-xs"
+			onclick="deleteComment(${comment.boast_board_comment_no });">삭제</button>
+		</c:if>
+	</td>
+	
+</tr>
+</c:forEach>
+</tbody>
+</table>	<!-- 댓글 리스트 end -->
+
+
+<!-- 비로그인상태 -->
+<c:if test="${not login }">
+<strong>댓글작성은 로그인이 필요합니다</strong><br>
+<button onclick='location.href="/member/login";'>로그인</button>
+<button onclick='location.href="/member/join";'>회원가입</button>
+</c:if>
+
+<!-- 로그인상태 -->
+<c:if test="${login }">
+<!-- 댓글 입력 -->
+<div class="form-inline text-center">
+	<input type="text" size="7" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
+	<textarea rows="3" cols="110" class="form-control" id="commentContent" placeholder="내용을 입력해 주세요"></textarea>
+	<button id="btnCommInsert" class="btn btn-default">입력</button>
+</div>	<!-- 댓글 입력 end -->
+</c:if>
+ 
+</div>
+
+<hr id = "hr2">
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

@@ -461,4 +461,16 @@ String sql = "";
 		}		
 	}
 
+	@Override
+	public BoastBoard selectrecommend(BoastBoard board) {
+		String sql = "";
+		sql += "SELECT" ;
+		sql += " boast_board_no, " ;
+		sql += " boast_board_title, " ;
+		sql += " (SELECT COUNT(*) FROM recommend WHERE boardno = board.boardno) AS recommend, " ;
+		sql += " FROM board" ;
+		sql += " WHERE boast_board_no = ? ";
+		return null;
+	}
+
 }

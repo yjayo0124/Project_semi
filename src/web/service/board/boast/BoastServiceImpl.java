@@ -15,14 +15,22 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import web.dao.board.boast.BoastDao;
 import web.dao.board.boast.BoastDaoImpl;
+import web.dao.board.boast.CommentDao;
+import web.dao.board.boast.CommentDaoImpl;
+import web.dao.board.boast.RecommendDao;
+import web.dao.board.boast.RecommendDaoImpl;
+import web.dto.Comment;
 import web.dto.boast.BoastBoard;
+import web.dto.boast.BoastComment;
 import web.dto.boast.BoastFile;
+import web.dto.boast.Recommend;
 import web.util.boast.BoastPaging;
 
 public class BoastServiceImpl implements BoastService{
 
 	private BoastDao boastDao = new BoastDaoImpl();
-	
+	private CommentDao commentDao = new CommentDaoImpl() ;
+	private RecommendDao recommendDao = new RecommendDaoImpl() ;
 	@Override
 	public List getList(BoastPaging paging) {
 		return boastDao.selectAll(paging);
@@ -300,6 +308,100 @@ public class BoastServiceImpl implements BoastService{
 		
 	}
 
-	
+	@Override
+	public BoastComment getComment(HttpServletRequest req) {
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		String boast_board_no = (String) req.getParameter("boast_board_no");
+		String member_id = (String) req.getParameter("member_id");
+		String boast_content = (String) req.getParameter("boast_content");
+		
+		BoastComment comment = new BoastComment() ;
+		comment.setBoast_board_no( Integer.parseInt( boast_board_no ) ) ;
+		comment.setMember_id(member_id);
+		comment.setBoast_content(boast_content);
+		
+		return comment;
+	}
+
+	@Override
+	public void insertComment(BoastComment comment) {
+		commentDao.insertComment( comment ) ;
+		
+	}
+
+
+
+	@Override
+	public boolean deleteComment(BoastComment comment) {
+		commentDao.deleteComment(comment);
+		
+		if( commentDao.countComment(comment) > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public List getCommentList(BoastBoard board) {
+		return commentDao.selectComment( board ) ;
+	}
+
+	@Override
+	public boolean isRecommend(Recommend recommend) {
+		int cnt = recommendDao.selectCntRecommend(recommend);
+		
+		if(cnt > 0) { //추천했음
+			return true;
+			
+		} else { //추천하지 않았음
+			return false;
+			
+		}
+	}
+
+	@Override
+	public Recommend getRecommend(HttpServletRequest req) {
+		//전달파라미터 파싱
+		int boardno = 0;
+		String param = req.getParameter("boast_board_no");
+		if( param!=null && !"".equals(param) ) {
+			boardno = Integer.parseInt(param);
+		}
+
+		//로그인한 아이디
+		String userid = (String) req.getSession().getAttribute("member_id");
+
+		Recommend recommend = new Recommend();
+		recommend.setBoast_board_no(boardno);
+		recommend.setMember_id(userid);
+
+		return recommend;
+	}
+
+	@Override
+	public boolean recommend(Recommend recommend) {
+		if( isRecommend(recommend) ) { //추천한 상태
+			recommendDao.deleteRecommend(recommend);
+			
+			return false;
+			
+		} else { //추천하지 않은 상태
+			recommendDao.insertRecommend(recommend);
+			
+			return true;
+			
+		}
+	}
+
+	@Override
+	public int getTotalCntRecommend(Recommend recommend) {
+		return recommendDao.selectTotalCntRecommend(recommend);
+	}
 	
 }

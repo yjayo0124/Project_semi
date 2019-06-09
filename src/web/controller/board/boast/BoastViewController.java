@@ -2,6 +2,7 @@ package web.controller.board.boast;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import web.dto.boast.BoastBoard;
+import web.dto.boast.BoastComment;
 import web.dto.boast.BoastFile;
+import web.dto.boast.Recommend;
 import web.service.board.boast.BoastService;
 import web.service.board.boast.BoastServiceImpl;
 
@@ -36,10 +39,17 @@ public class BoastViewController extends HttpServlet {
 		BoastFile boardFile = boardService.viewFile(viewBoard);
 		req.setAttribute("boardFile", boardFile);
 		
+		BoastComment comment = new BoastComment() ;
+		List<BoastComment> commentList = boardService.getCommentList(viewBoard) ;
+		req.setAttribute( "commentList" , commentList ) ; 
 		
-		
-		
-		
+		//추천 상태 전달
+		Recommend recommend = new Recommend();
+		recommend.setBoast_board_no( viewBoard.getBoast_board_no() ) ;
+		recommend.setMember_id( (String)req.getSession().getAttribute( "member_id" ) ) ;
+		boolean isRecommend = boardService.isRecommend(recommend);
+		req.setAttribute("isRecommend", isRecommend);
+
 		//VIEW 지정
 		req.getRequestDispatcher("/WEB-INF/views/board/boast/view.jsp").forward(req, resp);
 		

@@ -1,6 +1,7 @@
 package web.controller.board.sell;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -44,6 +45,13 @@ public class SellViewController extends HttpServlet {
     	req.setAttribute("commentList", commentList);
     			
     	
+    	// 이전글 다음글 no
+    	HashMap map = sellservice.getPrevNext(viewBoard);
+    	req.setAttribute("prev_next", map);
+    	
+    	// 이전글 다음글 title
+    	HashMap name = sellservice.getPrevNextName(viewBoard);
+    	req.setAttribute("prev_next_name", name);
     	
     	
     	req.getRequestDispatcher("/WEB-INF/views/board/sell/sellview.jsp").forward(req, resp);

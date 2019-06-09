@@ -1,5 +1,6 @@
 package web.dao.board.sell.face;
 
+import java.util.HashMap;
 import java.util.List;
 
 import web.dto.SellBoard;
@@ -42,4 +43,10 @@ public interface SellDao {
 	public void delete(SellBoard board);
 	
 	public void deleteFile(SellBoard board);
+	
+	public HashMap getPrevNext(SellBoard board);
+	
+	public HashMap getPrevNextName(SellBoard board);
+	
+	
 }

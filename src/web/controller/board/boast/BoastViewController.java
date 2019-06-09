@@ -1,6 +1,7 @@
 package web.controller.board.boast;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +35,10 @@ public class BoastViewController extends HttpServlet {
 		//첨부파일 전달
 		BoastFile boardFile = boardService.viewFile(viewBoard);
 		req.setAttribute("boardFile", boardFile);
+		
+		
+		
+		
 		
 		//VIEW 지정
 		req.getRequestDispatcher("/WEB-INF/views/board/boast/view.jsp").forward(req, resp);

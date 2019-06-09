@@ -1,6 +1,7 @@
 package web.controller.board.buy;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -43,7 +44,13 @@ public class BuyViewController extends HttpServlet {
     	req.setAttribute("commentList", commentList);
     			
     	
+    	// 이전굴, 다음글
+    	HashMap map = buyservice.getPrevNext(viewBoard);
+    	req.setAttribute("prev_next", map);
     	
+    	// title
+    	HashMap name = buyservice.getPrevNextName(viewBoard);
+    	req.setAttribute("prev_next_name", name);
     	
     	req.getRequestDispatcher("/WEB-INF/views/board/buy/buyview.jsp").forward(req, resp);
     	

@@ -29,6 +29,13 @@
 .notice {
 	font-size : 18px;
 }
+
+#hr {
+	margin-left: 450px ;
+	margin-right: 450px ; 
+	margin-top: 0px ;
+	margin-bottom: 0px ;
+}
 </style>
 
 
@@ -248,7 +255,6 @@ function deleteComment(commentNo) {
 </table>	<!-- 댓글 리스트 end -->
 
 
-</div>
 
 <!-- 비로그인상태 -->
 <c:if test="${not login }">
@@ -266,6 +272,51 @@ function deleteComment(commentNo) {
 	<button id="btnCommInsert" class="btn btn-default">입력</button>
 </div>	<!-- 댓글 입력 end -->
 </c:if>
+
+
+
+</div>
+
+
+
+
+<hr id = "hr2">
+<div id = "next">
+<c:if test="${prev_next.next eq 0 }">
+	다음글없음
+</c:if>
+<c:if test="${prev_next.next ne 0 }">
+<span class="glyphicon glyphicon-menu-up">	<a href="/sell/view?boardno=${prev_next.next }">
+	다음글 : ${prev_next_name.next }
+	</a>
+	</span>
+</c:if>
+</div>
+
+
+<hr id = "hr2">
+<div id = "back">
+<c:if test="${prev_next.prev eq 0 }">
+	이전글없음
+</c:if>
+<c:if test="${prev_next.prev ne 0 }">
+
+<span class="glyphicon glyphicon-menu-down"><a href="/sell/view?boardno=${prev_next.prev}">	
+	이전글 : ${prev_next_name.prev }
+	</a>
+	</span>
+</c:if>
+</div>
+<hr id = "hr2">
+
+
+
+
+
+
+
+
+
 
 </div> <!-- total end -->
 

@@ -1,9 +1,10 @@
 package web.dao.board.buy.face;
 
+import java.util.HashMap;
 import java.util.List;
 
-import web.dto.BuyFile;
 import web.dto.BuyBoard;
+import web.dto.BuyFile;
 import web.util.Paging;
 
 public interface BuyDao {
@@ -44,6 +45,10 @@ public interface BuyDao {
 	
 	public void deleteFile(BuyBoard board);
 	
+	
+	public HashMap getPrevNext(BuyBoard board);
+	
+	public HashMap getPrevNextName(BuyBoard board);
 	
 	
 	

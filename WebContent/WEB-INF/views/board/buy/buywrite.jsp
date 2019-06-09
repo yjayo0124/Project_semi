@@ -96,7 +96,7 @@ $(document).ready(function() {
 </table>
 
 
-<label>썸네일 : <input type="file" name="file" /></label>
+<label>대표이미지 : <input type="file" name="file" /></label>
 
 </form>
 </div>

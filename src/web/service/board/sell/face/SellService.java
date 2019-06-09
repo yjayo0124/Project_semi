@@ -1,10 +1,10 @@
 package web.service.board.sell.face;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import web.dto.BuyBoard;
 import web.dto.Comment;
 import web.dto.SellBoard;
 import web.dto.SellFile;
@@ -88,4 +88,9 @@ public interface SellService {
 		 * @return boolean - 삭제 성공 여부
 		 */
 		public boolean deleteComment(Comment comment);
+		
+		
+		public HashMap getPrevNext(SellBoard sellboard);
+		
+		public HashMap getPrevNextName(SellBoard sellboard);
 }

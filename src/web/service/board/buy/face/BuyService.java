@@ -1,9 +1,9 @@
 package web.service.board.buy.face;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 import web.dto.BuyBoard;
 import web.dto.BuyFile;
@@ -89,5 +89,10 @@ public interface BuyService {
 	 * @return boolean - 삭제 성공 여부
 	 */
 	public boolean deleteComment(Comment comment);
+	
+	
+	public HashMap getPrevNext(BuyBoard buyboard);
+	
+	public HashMap getPrevNextName(BuyBoard buyboard);
 	
 }

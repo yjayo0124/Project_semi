@@ -28,7 +28,12 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
+		
+		$("#btncreate").click(function() {
+			$(location).attr("href", "/board/club/create");
+		});
 
 		$("#travel").click(function() {
 			$(location).attr("href", "/board/club?club_tag=1");
@@ -37,7 +42,24 @@
 		$("#reading").click(function() {
 			$(location).attr("href", "/board/club?club_tag=2");
 		});
+		
+		$("#movie").click(function() {
+			$(location).attr("href", "/board/club?club_tag=3");
+		});
+		
+		$("#music").click(function() {
+			$(location).attr("href", "/board/club?club_tag=4");
+		});
+		
+		$("#exercise").click(function() {
+			$(location).attr("href", "/board/club?club_tag=5");
+		});
+		
+		$("#game").click(function() {
+			$(location).attr("href", "/board/club?club_tag=6");
+		});
 	});
+	
 </script>
 
 
@@ -252,7 +274,7 @@
 					<strong>독서</strong>
 				</div>
 			</div>
-			<div class="tagselect">
+			<div class="tagselect" id="movie">
 				<div class="select_img">
 					<img src="/imgs/movie.jpg" class="img-circle tag_img">
 				</div>
@@ -261,7 +283,7 @@
 					<strong>영화</strong>
 				</div>
 			</div>
-			<div class="tagselect">
+			<div class="tagselect" id="music">
 				<div class="select_img">
 					<img src="/imgs/music.jpg" class="img-circle tag_img">
 				</div>
@@ -270,7 +292,7 @@
 					<strong>음악</strong>
 				</div>
 			</div>
-			<div class="tagselect">
+			<div class="tagselect" id="exercise">
 				<div class="select_img">
 					<img src="/imgs/exercise.jpg" class="img-circle tag_img">
 				</div>
@@ -279,7 +301,7 @@
 					<strong>운동</strong>
 				</div>
 			</div>
-			<div class="tagselect">
+			<div class="tagselect" id="game">
 				<div class="select_img">
 					<img src="/imgs/game.jpg" class="img-circle tag_img">
 				</div>
@@ -296,23 +318,23 @@
 					<div class="pop_firline">
 						<div class="pop_content_l">
 						
-							<div class="pop_img"><img src="/imgs/fishing.jpg"class="img-circle pop_image"></div>
+							<div class="pop_img"><img src="/upload/${pop[0].club_storedname }"class="img-circle pop_image"></div>
 							
 							<div class="pop_clubcontent">
-								<div class="pop_clubname"><strong>동호회 이름</strong></div>
-								<div class="pop_clubinclude">싶이 천지는 실현에 우리 보이는 보배를 설산에서 목숨이 사막이다. 듣기만 곳으로 청춘을 그들은 있는가?</div>
-								<div class="pop_clubdetail">000명 가입 중</div>
+								<div class="pop_clubname"><strong>${pop[0].club_title }</strong></div>
+								<div class="pop_clubinclude"><a href="/board/club/detail?club_no=${pop[0].club_no }">${pop[0].club_include }</a></div>
+								<div class="pop_clubdetail">${pop[0].membercnt }명 가입 중</div>
 							</div>
 						
 						</div>
 						<div class="pop_content">
 							
-							<div class="pop_img"><img src="/imgs/fishing.jpg"class="img-circle pop_image"></div>
+							<div class="pop_img"><img src="/upload/${pop[1].club_storedname }"class="img-circle pop_image"></div>
 							
 							<div class="pop_clubcontent">
-								<div class="pop_clubname"><strong>동호회 이름</strong></div>
-								<div class="pop_clubinclude">싶이 천지는 실현에 우리 보이는 보배를 설산에서 목숨이 사막이다. 듣기만 곳으로 청춘을 그들은 있는가?</div>
-								<div class="pop_clubdetail">000명 가입 중</div>
+								<div class="pop_clubname"><strong>${pop[1].club_title }</strong></div>
+								<div class="pop_clubinclude"><a href="/board/club/detail?club_no=${pop[1].club_no }">${pop[1].club_include }</a></div>
+								<div class="pop_clubdetail">${pop[1].membercnt }명 가입 중</div>
 							</div>
 							
 						</div>
@@ -320,23 +342,23 @@
 					<div class="pop_secline">
 						<div class="pop_content_l">
 							
-							<div class="pop_img"><img src="/imgs/fishing.jpg"class="img-circle pop_image"></div>
+							<div class="pop_img"><img src="/upload/${pop[2].club_storedname }"class="img-circle pop_image"></div>
 							
 							<div class="pop_clubcontent">
-								<div class="pop_clubname"><strong>동호회 이름</strong></div>
-								<div class="pop_clubinclude">싶이 천지는 실현에 우리 보이는 보배를 설산에서 목숨이 사막이다. 듣기만 곳으로 청춘을 그들은 있는가?</div>
-								<div class="pop_clubdetail">000명 가입 중</div>
+								<div class="pop_clubname"><strong>${pop[2].club_title }</strong></div>
+								<div class="pop_clubinclude"><a href="/board/club/detail?club_no=${pop[2].club_no }">${pop[2].club_include }</a></div>
+								<div class="pop_clubdetail">${pop[2].membercnt }명 가입 중</div>
 							</div>
 						
 						</div>
 						<div class="pop_content">
 							
-							<div class="pop_img"><img src="/imgs/fishing.jpg"class="img-circle pop_image"></div>
+							<div class="pop_img"><img src="/upload/${pop[3].club_storedname }"class="img-circle pop_image"></div>
 							
 							<div class="pop_clubcontent">
-								<div class="pop_clubname"><strong>동호회 이름</strong></div>
-								<div class="pop_clubinclude">싶이 천지는 실현에 우리 보이는 보배를 설산에서 목숨이 사막이다. 듣기만 곳으로 청춘을 그들은 있는가?</div>
-								<div class="pop_clubdetail">000명 가입 중</div>
+								<div class="pop_clubname"><strong>${pop[3].club_title }</strong></div>
+								<div class="pop_clubinclude"><a href="/board/club/detail?club_no=${pop[3].club_no }">${pop[3].club_include }</a></div>
+								<div class="pop_clubdetail">${pop[3].membercnt }명 가입 중</div>
 							</div>
 						
 						</div>
@@ -354,20 +376,23 @@
 						</div>
 						<div class="lately_content">
 							<div class="lately_title"><strong>${i.club_title }</strong></div>
-							<div class="lately_include">${i.club_include }</div>
-							<div class="lately_detail">000명 가입 중</div>
+							<div class="lately_include"><a href="/board/club/detail?club_no=${i.club_no }">${i.club_include }</a></div>
+							<div class="lately_detail">${i.membercnt}명 가입 중</div>
 						</div>
 					</div>
 					</c:forEach>
 					
 					
-					
-					
-					
+						
+				</div>
+				
+				<div style="float:left; width:1200px; height:50px; text-align: right; padding-right:50px;">
+					<button id="btncreate">등록하기</button>
 				</div>
 				<div class="paging_bar">
 				<c:import url="/WEB-INF/views/layout/club/club_paging.jsp" />
 				</div>
 			</div>
 	
-<c:import url="/WEB-INF/views/layout/footer.jsp" />
+</body>
+</html>

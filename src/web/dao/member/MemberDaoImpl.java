@@ -133,7 +133,7 @@ public class MemberDaoImpl implements MemberDao{
 			ps.setString(3, member.getMember_nick());
 			ps.setString(4, member.getMember_name());
 			ps.setString(5, member.getMember_gender());
-			ps.setDate(6,(Date) member.getMember_birthday());
+			ps.setDate(6, new java.sql.Date(member.getMember_birthday().getTime()));
 			ps.setString(7, member.getMember_email());
 			ps.setString(8, member.getMember_phone());
 

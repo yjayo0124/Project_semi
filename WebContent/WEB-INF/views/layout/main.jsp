@@ -8,12 +8,22 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.2.4.js"></script>
 
-
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet">
 <style type="text/css">
+
+.p{
+
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 50px;
+	width: 250px;
+	text-align: center;
+	
+}
 
 #search{
 	width:600px;
 	height: 180px;
+	
 
 }
 
@@ -28,28 +38,50 @@
 <!-- header -->
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<div class="main container" style="margin-top: 50px; margin-bottom: 100px;">
+<div class="main container" style="margin-top: 0px; margin-bottom: 100px;">
 
 <!-- slider -->
 <div class="middle" style="width: 1000px; margin: 0 auto;">
-<div id="slider" style="width: 100%; height: 400px; text-align: center;">
+<div id="slider" style="width: 100%; height: 500px;">
 <c:import url="/WEB-INF/views/layout/slider2.jsp" />
 </div>
 	<br>
 	<br>
-	<div id="search"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
+</div>
+</div>
+<section style="background-image: url('/imgs/back.png'); background-repeat: no-repeat, repeat-x; background-size: cover;">
 	<br>
 	<br>
 	<br>
-	<div class="icon" style="margin-left: 5px; text-align: center;">
-			<a href="/board/festival"> <img src="/imgs/img1.png" class="img-circle"></a>
-			<a href="/board/fish/info"> <img src="/imgs/img2.png" class="img-circle"></a>
-			<a href="/buy/list"> <img src="/imgs/img3.png" class="img-circle"></a>
-			<a href="/board/free/list"> <img src="/imgs/img4.png" class="img-circle"></a>
+	<br>
+	<br>
+	<div id="search" style="margin: auto;"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</section>
+	<br>
+	<br>
+	<br>
+	<div class="middle" style="width: 1000px; margin: 0 auto;">
+	<div class="row">
+		<div class="col-md-3">
+			<a href="/board/festival"><p class="p">대회와 축제</p></a>
+		</div>
+		<div class="col-md-3">
+			<a href="/board/fish/info"><p class="p">물고기 정보</p></a>
+		</div>
+		<div class="col-md-3">
+			<a href="/board/club"><p class="p">동호회찾기</p></a>
+		</div>
+		<div class="col-md-3">
+			<a href="/board/free/list"><p class="p">자유게시판</p></a>
+		</div>
 	</div>
-	<br><br>
 </div>
-</div>
+
 
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

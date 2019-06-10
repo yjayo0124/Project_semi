@@ -280,18 +280,6 @@ function deleteComment(commentNo) {
 
 
 
-<hr id = "hr2">
-<div id = "next">
-<c:if test="${prev_next.next eq 0 }">
-	다음글없음
-</c:if>
-<c:if test="${prev_next.next ne 0 }">
-<span class="glyphicon glyphicon-menu-up">	<a href="/sell/view?boardno=${prev_next.next }">
-	다음글 : ${prev_next_name.next }
-	</a>
-	</span>
-</c:if>
-</div>
 
 
 <hr id = "hr2">
@@ -301,7 +289,7 @@ function deleteComment(commentNo) {
 </c:if>
 <c:if test="${prev_next.prev ne 0 }">
 
-<span class="glyphicon glyphicon-menu-down"><a href="/sell/view?boardno=${prev_next.prev}">	
+<span class="glyphicon glyphicon-menu-up"><a href="/sell/view?boardno=${prev_next.prev}">	
 	이전글 : ${prev_next_name.prev }
 	</a>
 	</span>
@@ -311,7 +299,19 @@ function deleteComment(commentNo) {
 
 
 
+<div id = "next">
+<c:if test="${prev_next.next eq 0 }">
+	다음글없음
+</c:if>
+<c:if test="${prev_next.next ne 0 }">
+<span class="glyphicon glyphicon-menu-down">	<a href="/sell/view?boardno=${prev_next.next }">
+	다음글 : ${prev_next_name.next }
+	</a>
+	</span>
+</c:if>
+</div>
 
+<hr id = "hr2">
 
 
 

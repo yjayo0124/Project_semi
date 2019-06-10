@@ -16,6 +16,7 @@ public class ClubPaging {
 		private int endNo;	//게시물리스트 마지막 번호
 		
 		private int club_tag;
+		private int club_no;
 		
 		// 총 게시글 수만 입력하는 생성자
 		//	curPage == 1
@@ -175,6 +176,14 @@ public class ClubPaging {
 
 		public void setClub_tag(int club_tag) {
 			this.club_tag = club_tag;
+		}
+
+		public int getClub_no() {
+			return club_no;
+		}
+
+		public void setClub_no(int club_no) {
+			this.club_no = club_no;
 		}
 
 	}

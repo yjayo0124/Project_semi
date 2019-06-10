@@ -323,7 +323,7 @@ public class FreeDaoImpl implements FreeDao {
 
 	@Override
 	public FreeFile selectFile(FreeBoard board) {
-		//다음 게시글 번호 조회 쿼리
+		
 		String sql = "";
 		sql += "SELECT * FROM Free_File";
 		sql += " WHERE free_board_no = ?";

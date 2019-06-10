@@ -16,6 +16,7 @@ import org.apache.commons.io.IOUtils;
 
 import web.dao.board.free.FreeDao;
 import web.dao.board.free.FreeDaoImpl;
+import web.dto.FreeBoard;
 import web.dto.FreeFile;
 
 @WebServlet("/board/free/download")
@@ -27,16 +28,20 @@ public class FreeDownloadController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String param = req.getParameter("free_board_file_no");
+		String param = req.getParameter("free_board_no");
 		
-		int fileno = 0;
+		int board_no = 0;
 		if( param!=null && !"".equals(param) ) {
-			fileno = Integer.parseInt(param);
+			board_no = Integer.parseInt(param);
 		}
 		
-		// 다운로드 대상 파일 정보 찾기
-		FreeFile downFile = boardDao.selectByFileno(fileno);
+		FreeBoard board = new FreeBoard();
+		board.setFree_board_no(board_no);
 		
+		// 다운로드 대상 파일 정보 찾기
+		FreeFile downFile = boardDao.selectFile(board);
+		
+		System.out.println(downFile.getFree_board_file_idx());
 		//다운로드 파일 찾기
 		String path = getServletContext().getRealPath("freeupload");
 		File file = new File(

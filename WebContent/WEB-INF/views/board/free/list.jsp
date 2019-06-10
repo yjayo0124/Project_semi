@@ -61,7 +61,7 @@ table, th {
 
 <h1>자유게시판</h1>
 </div>
-<hr>>
+<hr>
 
 <div id="btnBox" >
 	<button id="btnWrite" class="btn btn-primary">글쓰기</button>

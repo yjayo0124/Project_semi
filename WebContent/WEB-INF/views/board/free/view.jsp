@@ -93,11 +93,39 @@ font-size:16px;
 }
 
 #page{
-margin-left: 200px;
+margin-left: 50px;
 margin-right:50px;
 width:1200px;
 margin-top: 50px;
 
+}
+
+.total {
+	margin : 0 auto;
+	width : 75%;
+}
+.sumnail{
+	
+	
+	margin : 50px;
+	width: 40%;
+	float : left;
+	position : relative; 
+}
+
+.info {
+	margin : 80px;
+	font-size : 16px;
+}
+
+.notice {
+	font-size : 18px;
+}
+
+#filediv{
+	position:absolute;
+	top:530px;
+	left:1100px;
 }
 
 </style>
@@ -113,55 +141,69 @@ margin-top: 50px;
 <div class="clearfix"></div>
 <hr>
 
-<table class="table table-bordered"
-style="margin-left:130px; width:1400px; margin-top:100px;">
-<tr>
-<td class="info">글번호</td><td colspan="3">${viewBoard.free_board_no }</td>
-</tr>
 
-<tr>
-<td class="info">제목</td><td colspan="3">${viewBoard.free_board_title }</td>
-</tr>
+<div class="total">
 
-<tr>
-<td class="info">닉네임</td><td>${member_nick }</td>
-</tr>
 
-<tr>
-<td class="info">조회수</td><td colspan="4">${viewBoard.free_board_hit }</td>
-</tr>
-
-<tr>
-<td class="info">작성일</td><td colspan="4">${viewBoard.free_board_written_date }</td>
-</tr>
-
-<tr><td class="info"  colspan="4">본문</td></tr>
-
-<tr><td colspan="4">${viewBoard.free_board_content }</td></tr>
-
-<tr>
-<td class="info">첨부파일</td><td colspan="3"><a href="/board/free/download?fileno=${boardFile.free_board_file_no }">${boardFile.free_board_file_origin_name }</a>
-</td>
-</tr>
-
-</table>
-
-<%-- <div>
-<h2>파일</h2>
-<a href="/board/free/download?fileno=${boardFile.free_board_file_no }">${boardFile.free_board_file_origin_name }</a>
-</div>
- --%>
-<div class="text-center">	
-	<button id="btnList" class="btn btn-primary">목록</button>
+<h1 class="pull-left">${viewBoard.free_board_title }</h1><br><br><br><br>
+<h5 class="pull-left">작성일 : ${viewBoard.free_board_written_date } </h5>
+<h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성자 : ${member_nick }  </h5>
+<h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${viewBoard.free_board_hit }  </h5>
+<div class="text-right">	
+	<button id="btnList" class="btn btn-primary btn-sm">목록</button>
 	<c:if test="${member_id eq viewBoard.free_board_writer }">
-	<button id="btnUpdate" class="btn btn-info">수정</button>
-	<button id="btnDelete" class="btn btn-danger">삭제</button>
+	<button id="btnUpdate" class="btn btn-primary btn-sm">수정</button>
+	<button id="btnDelete" class="btn btn-primary btn-sm">삭제</button>
 	</c:if>
 </div>
+<hr>
+
+<div class = "notice">
+${viewBoard.free_board_content }
+</div>
+
+
+<!-- <table class="table table-bordered" -->
+<!-- style="margin-left:130px; width:1400px; margin-top:100px;"> -->
+<!-- <tr> -->
+<%-- <td class="info">글번호</td><td colspan="3">${viewBoard.free_board_no }</td> --%>
+<!-- </tr> -->
+
+<!-- <tr> -->
+<%-- <td class="info">제목</td><td colspan="3">${viewBoard.free_board_title }</td> --%>
+<!-- </tr> -->
+
+<!-- <tr> -->
+<%-- <td class="info">닉네임</td><td>${member_nick }</td> --%>
+<!-- </tr> -->
+
+<!-- <tr> -->
+<%-- <td class="info">조회수</td><td colspan="4">${viewBoard.free_board_hit }</td> --%>
+<!-- </tr> -->
+
+<!-- <tr> -->
+<%-- <td class="info">작성일</td><td colspan="4">${viewBoard.free_board_written_date }</td> --%>
+<!-- </tr> -->
+
+<!-- <tr><td class="info"  colspan="4">본문</td></tr> -->
+
+<%-- <tr><td colspan="4">${viewBoard.free_board_content }</td></tr> --%>
+
+<div id="filediv">
+
+<c:if test="${boardFile.free_board_file_idx ne null }">
+<h5>첨부파일:&nbsp;&nbsp;&nbsp;<a href="/board/free/download?free_board_no=${boardFile.free_board_no }">${boardFile.free_board_file_origin_name }</a> </h5>
+</c:if>
+
+</div>
+
+
+
+
 
 <!-- 댓글 리스트 -->
 <table class="table table-striped table-hover table-condensed"
-style="margin-left:130px; width:1400px; margin-top:300px;">
+style=" width:1300px; margin-top:300px;">
 <thead>
 <tr>
 

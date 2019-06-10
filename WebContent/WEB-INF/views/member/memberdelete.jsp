@@ -8,16 +8,25 @@
 	
 <script type="text/javascript">
 	$(document).ready(function() {
-		//글쓰기 버튼 누르면 이동
-		$(".btnDelete").click(function() {
+		//form 제출
+		$(".btn_type1").click(function() {
 			
 			$(this).parents("form").submit();
 		});
 		
-// 		//글쓰기 버튼 누르면 이동
-// 		$("#btnCancel").click(function() {
-// 			location.href="/member/update?member_id=${member.member_id }";
-// 		});
+		//취소 버튼
+		$(".btn_type2").click(function() {
+			location.href="/member/update?member_id=${member.member_id }";
+		});
+		
+		
+		$("#btnUpdate").click(function() {
+			location.href="/member/update";
+		});
+		
+		$("#btnDelete").click(function() {
+			location.href="/member/delete";
+		});
 		
 	});
 		
@@ -94,8 +103,8 @@
 	cursor: pointer;
 	box-sizing: border-box;
 		position:absolute;
-	top:527px;
-	left:700px;
+	top:700px;
+	left:730px;
 	height:57px;
 }
 
@@ -110,43 +119,59 @@
 	cursor: pointer;
 	box-sizing: border-box;
 		position:absolute;
-	top:527px;
-	left:890px;
+	top:700px;
+	left:920px;
 	height:57px;
 }
 
-.next1:hover {	color:white; 
-				background:blue;
-				margin-left:150px;
-				width: 90px;
-				height:20px;
+.next1:hover {	
+ 				margin-left:150px; 
+				width: 90px; 
+				height:20px; 
 
-					}
+
+					} 
 					
 					
-.next1{
+.next1{			
+				
+				font-size:15px;
 				margin-left:150px; 
 				width: 90px; 
 				height:20px;
 				
 					}
 
-.next2:hover {	 
-				color:white;
-				background:blue;
-				margin-left:150px;
-				width: 90px;
-				height:20px;
+ .next2:hover {	 
+ 				margin-left:150px; 
+ 				width: 90px; 
+ 				height:20px; 
 
-					}
+					} 
 					
 					
-.next2{			margin-top:20px;
+.next2{			
+				
+				font-size:15px;
+				margin-top:20px;
 				margin-left:150px; 
 				width: 90px; 
 				height:20px;
 				
 					}
+
+
+
+.next1 > a:hover{ 	text-decoration:none;
+				  	color:#337AB7;
+				  	font-weight:bold;
+						}
+
+.next2 > a:hover{ 	text-decoration:none;
+				  	color:#337AB7;
+				  	font-weight:bold;
+						}
+
 
 .form2{
 
@@ -158,22 +183,22 @@
 	
 }
 
-.next3{			margin-top:20px;
-				margin-left:150px; 
-				width: 90px; 
-				height:20px;
-				
-					}
-					
-.next1 > a:hover{text-decoration:none;
-			color:white;}
 
-.next2 > a:hover{text-decoration:none;
-			color:white;}
-			
-.form2 > a:hover{text-decoration:none;}
 
+#title{
+		position: absolute;
+		top:600px;
+		left: 750px;}
 </style>
+
+<h3 style="margin-top:70px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+마이페이지</h3>
+<hr>
+
+<div class="next1" ><a href="/member/update?member_id=${member_id }">회원정보수정</a></div>
+<div class="next2" ><a href="/member/mypagedelete">회원탈퇴</a></div>
 	
 	
 	
@@ -182,18 +207,20 @@
 
 <div class="pass_check" style="text-align : center;">
 <br><br><br><br><br><br>
-<h3>회원탈퇴하시겠습니까?</h3>
+<h3 id="title">회원탈퇴하시겠습니까?</h3>
 
 	<button id="btnDelete" class="btn_type1" >
 		탈퇴
 	</button>
 </div>
-	<button id="btnCancel" class="btn_type2"><a href="/member/update?member_id=${member.member_id }">취소</a></button>
-
-
-
 
 </form>
+
+	<button id="btnCancel" class="btn_type2">취소</button>
+
+
+
+
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
 

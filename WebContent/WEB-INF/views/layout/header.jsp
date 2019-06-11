@@ -156,7 +156,7 @@ body {
 	</div>
 	<br>
 	<div>
-		<h1><a href="/main" style="text-decoration: none; color: black;">낚시모아</a></h1>
+		<h1><a href="/main"><img src="/imgs/logo2.png"></a></h1>
 		<br><br><br>
 	</div>
 

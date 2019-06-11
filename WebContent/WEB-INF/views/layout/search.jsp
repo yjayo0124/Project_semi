@@ -69,20 +69,56 @@ function gugunSelect(e){
 		 
 };
  
- 
- 
-	 
-	
-	
+
 
 </script>    
     
+<style type="text/css">
+
+#btnSearchSubmit {
+   width: 50px;
+   height: 53px;
+   background: #292C33;
+   font-size: 20px;
+   color: #fff;
+   border: none;
+   border-radius: 1px;
+	margin-left : 2px;
+	margin-bottom: -48px;
+	
+}
+
+.input-container{
+
+	margin-left : 25%;
+	display: flex;
+	align-items: center;
+
+}
+
+
+.search_input{
+	height: 53px;
+	width: 380px;
+	background-color: #292C33;
+	color: #fff;
+	margin-top: 48px;
+	padding-left: 30px;
+	border: none;
+	outline: none;
+
+}
+
+
+
+</style>
     
     
-<div id="search" style="width: 100%; background-color: #f4f4f4;">
-			<p style="background-color:#60c5ba;" class="text-center">오늘, 내가 가고싶은 낚시터는 어디?</p>
-			<form action="/board/search" method="POST" class="form-horizontal">	
-			<div class="form-group" style="margin-left: 10px;">
+    
+    
+<div id="search" style="width: 100%; background-color: white;">
+		<form action="/board/search" method="POST" class="form-horizontal">	
+			<div class="form-group" style="margin-left: 10px; visibility: hidden; display: none;">
 				<label class="form-label col-md-2" for="insttNm1"> 시/도</label>
 				<div class="col-md-10">
 				<select class="fsearch_select" name="insttNm1" id="insttNm1" onchange="gugunSelect(this)" required="required">
@@ -108,7 +144,7 @@ function gugunSelect(e){
 			</div>
 			
 			
-			<div class="form-group" style="margin-left: 10px;">
+			<div class="form-group" style="margin-left: 10px; visibility: hidden; display: none;">
 				<label class="form-label col-md-2" for="insttNm2"> 시/군/구</label>
 				<div class="col-md-10">
 				<select class="search_select" name="insttNm2" id="insttNm2" required="required">
@@ -125,15 +161,11 @@ function gugunSelect(e){
 			</div>
 			
 			
-			<div class="form-group" style="margin-left: 10px;">
-				<label class="form-label col-md-2" for="fshlcNm"> 낚시터명</label>
-				<div class="col-md-10">
-				<input type="text" id="fshlcNm" name="fshlcNm" class="search_input" value=""></div>
+			<div class="input-container">
+				<input type="text" id="fshlcNm" name="fshlcNm" class="search_input" value="" placeholder="낚시터명을 입력하세요" style="font-size: 16px; line-heigh: 1.5; border-radius: 0;">
+				<button id="btnSearchSubmit" class="btn-default">검색</button>
 			</div>
+			
+			
 		</form>
-		
-		<div style=" text-align: right; margin-right: 10px;  margin-bottom: 10px;">
-		<button id="btnSearchSubmit" class="btn-default">검색하기</button>
-		</div>
-
-	</div>
+</div>

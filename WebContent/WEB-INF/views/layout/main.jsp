@@ -40,8 +40,8 @@
 }
 
 #search{
-	width:600px;
-	height: 180px;
+	width:786px;
+	height: 101px;
 	
 
 }
@@ -52,6 +52,10 @@
 	width:200px;
 	margin-right: 45px;
 }
+
+
+
+
 </style>
 
 <!-- header -->
@@ -68,12 +72,12 @@
 	<br>
 </div>
 </div>
-<section>
+<section class="mid">
 	<br>
 	<br>
 	<br>
 	<br>
-	<br>
+	<h2 style="font-stretch: normal; text-align: center; margin: 0;">800+ Fishing Spots</h2>
 	<div id="search" style="margin: auto;"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
 	<br>
 	<br>

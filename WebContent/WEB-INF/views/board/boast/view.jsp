@@ -3,7 +3,7 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:import url="/WEB-INF/views/layout/header.jsp" />
+<
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 	});
 	
-	if(${isRecommend}) {
+	if('${isRecommend}') {
 		$("#btnRecommend")
 			.addClass("btn-warn")
 			.html('추천 취소');
@@ -95,9 +95,33 @@ $(document).ready(function() {
 		$form.submit();
 		
 	});
-	
-	
+
 });
+
+	//댓글 삭제
+	function deleteComment(boast_board_comment_no) {
+		$.ajax({
+			type: "post"
+			, url: "/boast/comment/delete"
+			, dataType: "json"
+			, data: {
+				boast_board_comment_no: boast_board_comment_no
+			}
+			, success: function(data){
+				if(data.success) {
+					
+					$("[data-commentno='"+boast_board_comment_no+"']").remove();
+					
+				} else {
+					alert("댓글 삭제 실패");
+				}
+			}
+			, error: function() {
+				console.log("error");
+			}
+		});
+	}
+	
 
 </script>
 <style type="text/css">
@@ -318,4 +342,4 @@ style=" width:1300px; margin-top:300px;">
 <hr id = "hr2">
 </div>
 
-<c:import url="/WEB-INF/views/layout/footer.jsp" />
+

@@ -32,13 +32,30 @@ public class ClubServiceImpl implements ClubService {
 		if(param2!=null && !"".equals(param2)) {
 			curPage = Integer.parseInt(param2);
 		}
-		System.out.println(club_tag);
-		System.out.println(curPage);
+		
+		
 		int totalCount = clubDao.selectCntAll(club_tag);
 		ClubPaging paging = new ClubPaging(totalCount,curPage);
 		paging.setClub_tag(club_tag);
 		
 		return paging;
 	}
+
+	@Override
+	public ClubPaging getBoardCurpage(HttpServletRequest req, int club_no) {
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if(param!=null && !"".equals(param)) {
+			curPage = Integer.parseInt(param);
+		}
+		
+		int totalCount = clubDao.selectBoardCntAll(club_no);
+		ClubPaging paging = new ClubPaging(totalCount,curPage);
+		paging.setClub_no(club_no);
+		
+		return paging;
+	}
+
+	
 
 }

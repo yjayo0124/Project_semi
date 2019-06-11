@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.dao.club.ClubDao;
+import web.dao.club.ClubDaoImpl;
 import web.service.board.club.ClubService;
 import web.service.board.club.ClubServiceImpl;
 import web.util.club.ClubPaging;
@@ -18,6 +20,7 @@ public class ClubListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ClubService clubService = new ClubServiceImpl();
+	private ClubDao clubDao = new ClubDaoImpl();
        
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -28,14 +31,10 @@ public class ClubListController extends HttpServlet {
 		
 		req.setAttribute("list", list);
 		
-		
+		List pop = clubDao.selectPop();
+		req.setAttribute("pop", pop);
 		
 		req.getRequestDispatcher("/WEB-INF/views/board/club/club.jsp").forward(req, resp);
-	}
-
-	
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 	}
 
 }

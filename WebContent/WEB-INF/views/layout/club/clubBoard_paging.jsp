@@ -8,7 +8,7 @@
 		<!-- 처음으로 가기 -->
 		<c:if test="${paging.curPage ne 1 }">
 		<li>
-			<a href="/board/club"><span>&larr;처음</span></a>
+			<a href="/board/club/detail?club_no=${club.club_no }"><span>&larr;처음</span></a>
 		</li>
 		</c:if>
 
@@ -25,7 +25,7 @@
 
 		<c:if test="${paging.curPage ne 1 }">
 		<li>
-			<a href="/board/club?club_tag=${paging.club_tag }&curPage=${paging.curPage-1 }"><span>&laquo;</span></a>
+			<a href="/board/club/detail?club_no=${club.club_no }&curPage=${paging.curPage-1 }"><span>&laquo;</span></a>
 	    </li>
 	    </c:if>
 
@@ -41,13 +41,13 @@
 			<!-- 현재 보고 있는 페이지번호만 강조해주기 -->
 			<c:if test="${paging.curPage eq i}">
 			<li class="active">
-				<a href="/board/club?club_tag=${paging.club_tag }&curPage=${i }">${i }</a>
+				<a href="/board/club/detail?club_no=${club.club_no }&curPage=${i }">${i }</a>
 			</li>
 			</c:if>
 		
 			<c:if test="${paging.curPage ne i}">
 			<li>
-				<a href="/board/club?club_tag=${paging.club_tag }&curPage=${i }">${i }</a>
+				<a href="/board/club/detail?club_no=${club.club_no }&curPage=${i }">${i }</a>
 			</li>
 			</c:if>
 			
@@ -65,7 +65,7 @@
 
 		<c:if test="${paging.curPage ne paging.totalPage }">
 		<li>
-			<a href="/board/club?club_tag=${paging.club_tag }&curPage=${paging.curPage+1 }">
+			<a href="/board/club/detail?club_no=${club.club_no }&curPage=${paging.curPage+1 }">
 			<span>&raquo;</span>
 		</a>
 		</li>

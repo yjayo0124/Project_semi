@@ -8,6 +8,7 @@ public class Club {
 	private String club_include;
 	private int club_tag;
 	private String member_id;
+	private int membercnt;
 	
 	
 	public int getClub_no() {
@@ -51,5 +52,11 @@ public class Club {
 	}
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
+	}
+	public int getMembercnt() {
+		return membercnt;
+	}
+	public void setMembercnt(int membercnt) {
+		this.membercnt = membercnt;
 	}
 }

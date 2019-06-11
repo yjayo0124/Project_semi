@@ -80,7 +80,7 @@ function gugunSelect(e){
     
     
 <div id="search" style="width: 100%; background-color: #f4f4f4;">
-			<p style="background-color: #45d9fd;" class="text-center">오늘, 내가 가고싶은 낚시터는 어디?</p>
+			<p style="background-color:#60c5ba;" class="text-center">오늘, 내가 가고싶은 낚시터는 어디?</p>
 			<form action="/board/search" method="POST" class="form-horizontal">	
 			<div class="form-group" style="margin-left: 10px;">
 				<label class="form-label col-md-2" for="insttNm1"> 시/도</label>

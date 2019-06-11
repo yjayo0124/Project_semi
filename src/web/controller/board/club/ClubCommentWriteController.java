@@ -1,6 +1,7 @@
 package web.controller.board.club;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import web.dao.club.ClubCommentDao;
 import web.dao.club.ClubCommentDaoImpl;
@@ -22,10 +25,12 @@ public class ClubCommentWriteController extends HttpServlet {
 	
 	private ClubCommentDao clubCommentDao = new ClubCommentDaoImpl();
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
+		PrintWriter pw= resp.getWriter();
 		//세션 얻어 오기
 		HttpSession session = req.getSession();
 		
@@ -54,7 +59,11 @@ public class ClubCommentWriteController extends HttpServlet {
 		clubCommentDao.insert(clubComment);
 		
 		
-		resp.sendRedirect("/board/club/detail?club_no="+club_no);
+		JSONObject obj = new JSONObject();
+		obj.put("club_comment_writer", clubComment.getClub_comment_writer());
+		obj.put("club_comment_content", clubComment.getClub_comment_content());
+		
+		pw.println(obj);
 
 	}
 

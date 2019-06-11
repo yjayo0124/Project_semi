@@ -78,6 +78,41 @@
 
 		});
 		
+		if(${club.club_tag } == 1) {
+			$("#more_tag").html("여행에 대해 더보기");
+			
+		} else if (${club.club_tag } == 2) {
+			$("#more_tag").html("독서에 대해 더보기");
+			
+		} else if (${club.club_tag } == 3) {
+			$("#more_tag").html("영화에 대해 더보기");
+			
+		} else if (${club.club_tag } == 4) {
+			$("#more_tag").html("음악에 대해 더보기");
+			
+		} else if (${club.club_tag } == 5) {
+			$("#more_tag").html("음악에 대해 더보기");
+			
+		} else if (${club.club_tag } == 6) {
+			$("#more_tag").html("게임에 대해 더보기");
+			
+		}
+		
+		$("#more_tag").click(function() {
+			if(${club.club_tag } == 1) {
+				$("#more_tag").attr("href", "/board/club?club_tag=1");
+			} else if (${club.club_tag } == 2) {
+				$("#more_tag").attr("href", "/board/club?club_tag=2");
+			} else if (${club.club_tag } == 3) {
+				$("#more_tag").attr("href", "/board/club?club_tag=3");
+			} else if (${club.club_tag } == 4) {
+				$("#more_tag").attr("href", "/board/club?club_tag=4");
+			} else if (${club.club_tag } == 5) {
+				$("#more_tag").attr("href", "/board/club?club_tag=5");
+			} else if (${club.club_tag } == 6) {
+				$("#more_tag").attr("href", "/board/club?club_tag=6");
+			}
+		});
 
 });
 	
@@ -128,10 +163,7 @@ function hidewritecomment(btn,div) {
 	
 }
 
-//댓글 뷰
 function ListComment(club_board_no, div) {
-	
-	var result = new Array();
 	
 	$.ajax({
 		type: "get"
@@ -147,12 +179,58 @@ function ListComment(club_board_no, div) {
 			
 			for(var i=0; i<data.comment.length; i++) {
 			$('#' + divs).append("<div class='comment'>"+
+					"<div>"+
 					"<div class='writer'><strong>"+data.comment[i].club_comment_writer +"</strong></div>"+
+					"<div class='delete_comment'><a href='javascript:void(0);' onclick='deleteComment(\""+club_board_no+"\",\""+div+"\",\""+data.comment[i].club_comment_no+"\")'>삭제</a>"+
+					"</div>"+
 					"<div class='comment_content'>"+
 					"<p>"+data.comment[i].club_comment_content +"</p>"+
 					"</div>"+
 				"</div>");
 			}
+		}
+		, error: function(request,status,error) {
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
+
+function insertComment(club_board_no, div, form, content) {
+	
+	var forms =  String(form);
+	var divs = String(div);
+	var contents = String(content);
+	
+	$.ajax({
+		type: "post"
+		, url: "/board/club/comment/write"
+		, dataType : "json"   
+		, data: $('#' + forms).serialize()
+		, success: function(data){
+			
+			$('#' + contents).val(" ");
+			
+			ListComment(club_board_no, div);
+		}
+		, error: function(request,status,error) {
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
+
+function deleteComment(club_board_no, div, club_comment_no) {
+	
+	
+	$.ajax({
+		type: "get"
+		, url: "/board/club/comment/delete"
+		, dataType : "json"   
+			, data: {
+				club_comment_no: club_comment_no
+			}
+		, success: function(data){
+			
+			ListComment(club_board_no, div);
 		}
 		, error: function(request,status,error) {
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -251,7 +329,7 @@ section {
 
 .club_include {
 	width: 540px;
-	padding: 18px 20px 23px;
+	padding: 18px 20px 15px;
 	margin-bottom: 30px;
 	background: white;
 	box-shadow: 0 1px 1px 0 #e5e8ec;
@@ -272,7 +350,7 @@ section {
 .tag_info {
 	width: 500px;
 	height: 40px;
-	padding-top: 17px;
+	padding-top: 10px;
 	margin-top: 16px;
 	border-top: 1px solid #f0f2f4;
 }
@@ -308,7 +386,7 @@ section {
 	padding-top: 5px;
 	text-align: center;
 	margin-bottom: 20px;
-	display:block;
+	display: block;
 }
 
 .board_writebtn button {
@@ -323,8 +401,9 @@ section {
 
 .board_write {
 	margin-bottom: 20px;
-	display:none;
+	display: none;
 }
+
 .buttons {
 	width: 100%;
 	height: 20px;
@@ -334,65 +413,113 @@ section {
 .board_title {
 	height: 40px;
 }
-.paging_bar {
-	float:left;
-	text-align:center;
-	width:100%;
 
-	margin-bottom:100px;
+.paging_bar {
+	float: left;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 100px;
 }
+
 .btn_comment_list_down {
-	text-align:right;
+	text-align: right;
 	width: 100%;
 	height: 40px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 }
+
 .btn_comment_list_up {
-	text-align:right;
+	text-align: right;
 	width: 100%;
 	height: 40px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 }
+
 .img_comment {
-	width:13px;
+	width: 13px;
 	height: 13px;
 }
-#boardcomment0{
-    display: none;
+
+#boardcomment0 {
+	display: none;
 }
-#boardcomment1{
-    display: none;
+
+#boardcomment1 {
+	display: none;
 }
-#boardcomment2{
-    display: none;
+
+#boardcomment2 {
+	display: none;
 }
-#boardcomment3{
-    display: none;
+
+#boardcomment3 {
+	display: none;
 }
-#boardcomment4{
-    display: none;
+
+#boardcomment4 {
+	display: none;
 }
-#boardcomment5{
-    display: none;
+
+#boardcomment5 {
+	display: none;
 }
 
 .comment {
-	padding: 14px 40px 14px 17px;
+	padding: 14px 20px 14px 17px;
 	border-top: 1px solid #f0f0f0;
 	min-height: 67px;
-	padding-top:5px;
+	padding-top: 5px;
 	margin-top: 3px;
-	
-}
-.comment_content p {
-	margin:0px;
-	
 }
 
+.comment_content p {
+	margin: 0px;
+}
+
+.writer {
+	float: left;
+	width: 80%;
+}
+
+.delete_comment {
+	float: left;
+	width: 20%;
+	text-align: right;
+}
+
+.comment_textarea {
+	width: 100%;
+	resize: none;
+	overflow-y: hidden; /* prevents scroll bar flash */
+	padding: 1.1em; /* prevents text jump on Enter keypress */
+	padding-bottom: 0.2em;
+	line-height: 1.6;
+	margin-bottom: 5px;
+}
+
+.club_tag {
+	z-index: 1;
+	display: inline-block;
+	position: relative;
+	height: 26px;
+	padding: 0 10px 0 9px;
+	background: #fff;
+	border: 1px solid #e1e1e1;
+	border-radius: 100px;
+	line-height: 23px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #777;
+	cursor: pointer;
+}
+a:link    { text-decoration:none; color:black }
+a:visited { text-decoration:none; color:black }
+a:hover   { text-decoration:none; color:black }
+a:active  { text-decoration:none; color:black }
 </style>
 
 
@@ -425,59 +552,75 @@ section {
 					<h2>동호회 소개</h2>
 					<p>${club.club_include}</p>
 					<div class="tag_info">
-						<p>${club.club_tag }에대해 더보기</p>
+						<a class="club_tag" id="more_tag"></a>
 					</div>
 				</div>
 
 
 				<c:forEach items="${list}" var="i" varStatus="status">
-				<div class="board_list">
-					<div class="board_info">
-						<div class="board_title">
-							<strong>${i.club_board_title }</strong>
-						</div>
-						<strong>${i.club_board_writer }</strong><br>
-						<div style="padding-top: 3px; border-bottom: 1px solid;">
-							<label>작성일 : ${i.club_board_writedate }</label>
-						</div>
-						<div class="board_content">${i.club_board_content }</div>
-					</div>
-					<div class="btn_comment_list_down" id="listdown${status.index}" style="display:block;">
-						<button id="btn_comment" onclick="viewcomment('boardcomment${status.index}','listdown${status.index}','listup${status.index}'); ListComment('${i.club_board_no}','boardcom${status.index}');"><img src="/imgs/comment.png" class="img_comment"> 댓글 <img src="/imgs/down_arrow.png" class="img_comment"></button>
-					</div>
-					<div class="btn_comment_list_up" id="listup${status.index}" style="display:none;">
-						<button id="btn_comment" onclick="hidecomment('boardcomment${status.index}','listdown${status.index}','listup${status.index}')"><img src="/imgs/comment.png" class="img_comment"> 댓글 <img src="/imgs/up_arrow.png" class="img_comment"></button>
-					</div>
-					
-					<div id="boardcomment${status.index}">
-						<div id="boardcom${status.index}"></div>
-						
-						
-						<div class="board_writebtn" id="commentwrite${status.index}">
-							<button onclick="viewwritecomment('commentwrite${status.index}','writecomment${status.index}')">댓글작성</button>
-						</div>
-					
-						<div id="writecomment${status.index}" style="display:none;">
-						<div class="comment_write">
-						
-							<form action="/board/club/comment/write" method="post">
-								<textarea name="club_comment_content" id="summernote" value=""></textarea>
-								<div class="buttons">
-									<input type="hidden" name="club_no" value="${club.club_no}">
-									<input type="hidden" name="club_board_no" value="${i.club_board_no}">
-									<input type="submit" value="작성하기">
-								</div>
-							</form>
-						
-							<div style="text-align: right;">
-								<button id="btn_comment_cancle" onclick="hidewritecomment('commentwrite${status.index}','writecomment${status.index}')" style="margin-left: 5px;">취소</button>
+					<div class="board_list">
+						<div class="board_info">
+							<div class="board_title">
+								<strong>${i.club_board_title }</strong>
 							</div>
-				
+							<strong>${i.club_board_writer }</strong><br>
+							<div style="padding-top: 3px; border-bottom: 1px solid;">
+								<label>작성일 : ${i.club_board_writedate }</label>
+							</div>
+							<div class="board_content">${i.club_board_content }</div>
 						</div>
+						<div class="btn_comment_list_down" id="listdown${status.index}"
+							style="display: block;">
+							<button id="btn_comment"
+								onclick="viewcomment('boardcomment${status.index}','listdown${status.index}','listup${status.index}'); ListComment('${i.club_board_no}','boardcom${status.index}');">
+								<img src="/imgs/comment.png" class="img_comment"> 댓글 <img
+									src="/imgs/down_arrow.png" class="img_comment">
+							</button>
+						</div>
+						<div class="btn_comment_list_up" id="listup${status.index}"
+							style="display: none;">
+							<button id="btn_comment"
+								onclick="hidecomment('boardcomment${status.index}','listdown${status.index}','listup${status.index}')">
+								<img src="/imgs/comment.png" class="img_comment"> 댓글 <img
+									src="/imgs/up_arrow.png" class="img_comment">
+							</button>
+						</div>
+
+						<div id="boardcomment${status.index}">
+							<div id="boardcom${status.index}"></div>
+
+
+							<div class="board_writebtn" id="commentwrite${status.index}">
+								<button
+									onclick="viewwritecomment('commentwrite${status.index}','writecomment${status.index}')">댓글작성</button>
+							</div>
+
+							<div id="writecomment${status.index}" style="display: none;">
+								<div class="comment_write">
+
+									<form id="CommentForm${status.index}" method="post">
+										<textarea name="club_comment_content"
+											id="comment_content${status.index}" class="comment_textarea"></textarea>
+										<div class="buttons">
+											<input type="hidden" name="club_no" value="${club.club_no}">
+											<input type="hidden" name="club_board_no"
+												value="${i.club_board_no}">
+											<button type="button"
+												onclick="insertComment('${i.club_board_no}','boardcom${status.index}','CommentForm${status.index}','comment_content${status.index}'); hidewritecomment('commentwrite${status.index}','writecomment${status.index}');">작성하기</button>
+										</div>
+									</form>
+
+									<div style="text-align: right;">
+										<button id="btn_comment_cancle"
+											onclick="hidewritecomment('commentwrite${status.index}','writecomment${status.index}')"
+											style="margin-left: 5px;">취소</button>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
 					</div>
-					</div>
-				
-				</div>
 				</c:forEach>
 
 

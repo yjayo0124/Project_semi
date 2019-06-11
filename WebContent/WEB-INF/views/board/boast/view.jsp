@@ -23,49 +23,6 @@ $(document).ready(function() {
 
 	});
 	
-	if('${isRecommend}') {
-		$("#btnRecommend")
-			.addClass("btn-warn")
-			.html('추천 취소');
-		
-	} else {
-		$("#btnRecommend")
-			.addClass("btn-primary")
-			.html('추천');
-	} ;
-	
-	$("#btnRecommend").click(function() {
-		
-		$.ajax({
-			type: "get"
-				, url: "/board/boast/recommend"
-				, data: { "boast_board_no": ${viewBoard.boast_board_no } }
-				, dataType: "json"
-				, success: function( data ) {
-					console.log("성공");
- 					console.log(data);
-					if( data.result ) { //추천 성공
-						$("#btnRecommend")
-						.addClass("btn-warn")
-						.html('추천 취소');
-					
-					} else { //추천 취소 성공
-						$("#btnRecommend")
-						.addClass("btn-primary")
-						.html('추천');
-					
-					}
-					
-					//추천수 적용
-					$("#recommend").html(data.cnt);
-					
-				}
-				, error: function() {
-					console.log("실패");
-				}
-		});
-		
-	});
 	
 	// 댓글 입력
 	$("#btnCommInsert").click(function() {
@@ -216,13 +173,9 @@ border-radius: 1px;
 <h5 class="pull-left">작성일 : ${viewBoard.boast_board_written_date } </h5>
 <h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성자 : ${viewBoard.boast_board_writer }  </h5>
 <h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${viewBoard.boast_board_hit }  </h5>
-<h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 추천수 : ${viewBoard.recommend }  </h5>
 
 <div class="text-right">	
 	<button id="btnList">목록</button>
-	<c:if test="${login }">
-	<button id="btnRecommend" class="btn btn-primary btn-sm">추천</button>
-	</c:if>
 	<c:if test="${member_id eq viewBoard.boast_board_writer }">
 	<button id="btnUpdate">수정</button>
 	<button id="btnDelete">삭제</button>
@@ -231,8 +184,9 @@ border-radius: 1px;
 <hr>
 
 <div class = "notice">
-${viewBoard.boast_board_content }
+${viewBoard.boast_board_content }<br>
 </div>
+<%-- <img src="/upload/${boardFile.boast_board_stored_name}" alt="첨부파일없음" width="350px" height="350px"></img> --%>
 
 
 <!-- <h1 class="pull-left">게시판 - VIEW</h1> -->
@@ -274,14 +228,6 @@ ${viewBoard.boast_board_content }
 <!-- </td> -->
 <!-- </tr> -->
 
-<!-- </table> -->
-<div id="filediv">
-
-<c:if test="${boardFile.boast_board_file_idx ne null }">
-<h5>첨부파일:&nbsp;&nbsp;&nbsp;<a href="/board/boast/download?fileno=${boardFile.boast_board_file_no }">${boardFile.boast_board_origin_name }</a></h5>
-</c:if>
-
-</div>
 
 
 
@@ -338,35 +284,6 @@ style=" width:1300px; margin-top:300px;">
  
 </div>
 
-<!-- 이전글, 다음글 리스트 -->
-<div id = "page">
 
-
-<hr id = "hr2">
-<div id = "next">
-<c:if test="${prev_next.next eq 0 }">
-	다음글없음
-</c:if>
-<c:if test="${prev_next.next ne 0 }">
-	<a href="/board/boast/view?boast_board_no=${prev_next.next }" >
-	다음글:&nbsp;&nbsp;&nbsp;&nbsp;${prev_next_name.next }
-	</a>
-</c:if>
-</div>
-
-
-<hr id = "hr2">
-<div id = "back">
-<c:if test="${prev_next.prev eq 0 }">
-	이전글없음
-</c:if>
-<c:if test="${prev_next.prev ne 0 }">
-<a href="/board/boast/view?boast_board_no=${prev_next.prev}">
-		이전글:&nbsp;&nbsp;&nbsp;&nbsp;${prev_next_name.prev }
-	</a>
-</c:if>
-</div>
-<hr id = "hr2">
-</div>
 
 

@@ -46,7 +46,6 @@ public class BoastListController extends HttpServlet {
 				
 				//게시글 조회
 				viewBoard = boardService.view(viewBoard);
-
 				//MODEL로 게시글 전달
 				req.setAttribute("viewBoard", viewBoard);
 				
@@ -58,16 +57,6 @@ public class BoastListController extends HttpServlet {
 				List<BoastComment> commentList = boardService.getCommentList(viewBoard) ;
 				req.setAttribute( "commentList" , commentList ) ; 
 				
-				//추천 상태 전달
-				Recommend recommend = new Recommend();
-				recommend.setBoast_board_no( viewBoard.getBoast_board_no() ) ;
-				recommend.setMember_id( (String)req.getSession().getAttribute( "member_id" ) ) ;
-				boolean isRecommend = boardService.isRecommend(recommend);
-				req.setAttribute("isRecommend", isRecommend);
-		
-		
-		
-		
 		
 		
 		req.getRequestDispatcher("/WEB-INF/views/board/boast/list.jsp").forward(req, resp);

@@ -69,7 +69,36 @@ $(document).ready(function() {
 	
 });
 </script>
+<style>
+#btnList {
+width: 80px;
+height: 40px;
+background: #474e60;
+font-size: 13px;
+color: #fff;
+border: solid 2px;
+border-radius: 1px;
+}
+#btnUpdate{
+	width: 80px;
+	height: 40px;
+	background: #1ec0ff;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnDelete{
+	width: 80px;
+	height: 40px;
+	background: #f1404b;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
 
+</style>
 <h1 class="pull-left">게시판 - VIEW</h1>
 
 <c:if test="${login }">
@@ -115,10 +144,10 @@ $(document).ready(function() {
 <img src="/upload/${boardFile.boast_board_stored_name}" alt="첨부파일없음" width="350px" height="350px"></img>
 </div>
 <div class="text-center">	
-	<button id="btnList" class="btn btn-primary">목록</button>
+	<button id="btnList">목록</button>
 	<c:if test="${member_id eq viewBoard.boast_board_writer }">
-	<button id="btnUpdate" class="btn btn-info">수정</button>
-	<button id="btnDelete" class="btn btn-danger">삭제</button>
+	<button id="btnUpdate">수정</button>
+	<button id="btnDelete">삭제</button>
 	</c:if>
 </div>
 

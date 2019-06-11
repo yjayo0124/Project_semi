@@ -50,7 +50,15 @@ table, th {
 	border-left : 1px solid #eee;
 	border-right : 1px solid #eee;
 }
-
+#btnWrite {
+width: 100px;
+height: 40px;
+background: #474e60;
+font-size: 13px;
+color: #fff;
+border: solid 2px;
+border-radius: 1px;
+}
 
 </style>
 
@@ -64,7 +72,7 @@ table, th {
 <hr>
 
 <div id="btnBox" >
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
+	<button id="btnWrite">글쓰기</button>
 </div>
 
 <table class="table table-hover table-condensed" style="margin-top:20px;">

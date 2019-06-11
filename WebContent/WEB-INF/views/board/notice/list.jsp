@@ -35,7 +35,15 @@ table, th {
 	border-left: 1px solid #eee;
 	border-right: 1px solid #eee;
 }
-
+#btnWrite {
+   width: 100px;
+   height: 40px;
+   background: #474e60;
+   font-size: 13px;
+   color: #fff;
+   border: solid 2px;
+   border-radius: 1px;
+}
 
 
 </style>

@@ -127,7 +127,33 @@ margin-top: 50px;
 	top:530px;
 	left:1100px;
 }
-
+#btnList {
+width: 80px;
+height: 40px;
+background: #474e60;
+font-size: 13px;
+color: #fff;
+border: solid 2px;
+border-radius: 1px;
+}
+#btnUpdate{
+	width: 80px;
+	height: 40px;
+	background: #1ec0ff;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnDelete{
+	width: 80px;
+	height: 40px;
+	background: #f1404b;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
 </style>
 
 <h3 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -150,10 +176,10 @@ margin-top: 50px;
 <h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성자 : ${member_nick }  </h5>
 <h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${viewBoard.free_board_hit }  </h5>
 <div class="text-right">	
-	<button id="btnList" class="btn btn-primary btn-sm">목록</button>
+	<button id="btnList">목록</button>
 	<c:if test="${member_id eq viewBoard.free_board_writer }">
-	<button id="btnUpdate" class="btn btn-primary btn-sm">수정</button>
-	<button id="btnDelete" class="btn btn-primary btn-sm">삭제</button>
+	<button id="btnUpdate">수정</button>
+	<button id="btnDelete">삭제</button>
 	</c:if>
 </div>
 <hr>

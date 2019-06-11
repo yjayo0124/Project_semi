@@ -34,7 +34,27 @@ $(document).ready(function(){
 	
 
 </script>
+<style >
+#btnCancel{
+   width:100px;
+   height: 40px;
+   background: #a7a7a2;
+   font-size: 13px;
+   color: #fff;
+   border: solid 2px;
+   border-radius: 1px;
+}
+#btnUpdate {
+width: 100px;
+height: 40px;
+background: #474e60;
+font-size: 13px;
+color: #fff;
+border: solid 2px;
+border-radius: 1px;
+}
 
+</style>
 
 <div>
 <div class="container" style="margin-top: 50px; margin-bottom: 350px;">
@@ -67,8 +87,8 @@ $(document).ready(function(){
 
 <br>
 <div class="text-center">	
-	<button id ="btnUpdate" class= "btn btn-primary">수정하기</button>
-	<button id ="btnCancel"	class= "btn btn-default">취소</button>
+	<button id ="btnUpdate" >수정하기</button>
+	<button id ="btnCancel"	>취소</button>
 </div>
 
 

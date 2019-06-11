@@ -82,7 +82,24 @@ $(document).ready(function() {
 a:link , a:visited , a:active , a:hover {
 	color: black ;
 }
-
+#btnWrite {
+	width: 100px;
+	height: 40px;
+	background: #474e60;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnCancel{
+   width:100px;
+   height: 40px;
+   background: #a7a7a2;
+   font-size: 13px;
+   color: #fff;
+   border: solid 2px;
+   border-radius: 1px;
+}
 </style>
 
 <div class="container">

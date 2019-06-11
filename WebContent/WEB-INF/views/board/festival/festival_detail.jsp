@@ -109,6 +109,11 @@ $(document).ready(function() {
 	margin-right: 10px;
 	width: 100px;
 	height: 40px;
+	background: #474e60;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
 }
 .board_list {
 	border-top: solid rgba(0, 0, 0, .5) 1px;
@@ -144,6 +149,24 @@ $(document).ready(function() {
 	font-size: 18px;
 	padding-left : 200px;
 	padding-top: 12px;
+}
+#btnUpdate{
+	width: 80px;
+	height: 30px;
+	background: #1ec0ff;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnDelete{
+	width: 80px;
+	height: 30px;
+	background: #f1404b;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
 }
 </style>
 

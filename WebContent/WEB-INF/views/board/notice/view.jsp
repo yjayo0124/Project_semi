@@ -60,7 +60,33 @@ $(document).ready(function(){
 	padding-left : 200px;
 	padding-top: 12px;
 }
-
+#btnlist {
+	width: 80px;
+	height: 40px;
+	background: #474e60;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnUpdate{
+	width: 80px;
+	height: 40px;
+	background: #1ec0ff;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnDelete{
+	width: 80px;
+	height: 40px;
+	background: #f1404b;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
 </style>
 
 <div>
@@ -85,9 +111,9 @@ $(document).ready(function(){
 
 <br>
 <div class="text-center">	
-	<button id="btnList" class="btn btn-primary">목록</button>
+	<button id="btnList">목록</button>
 	<c:if test="${writer_check eq true }">
-		<button id="btnUpdate" class="btn btn-info">수정</button>
+		<button id="btnUpdate" >수정</button>
 		<button id="btnDelete" class="btn btn-danger">삭제</button>
 	</c:if>
 </div>

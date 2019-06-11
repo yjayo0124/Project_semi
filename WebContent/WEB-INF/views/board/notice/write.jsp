@@ -52,7 +52,27 @@ $(document).ready(function(){
 })
 
 </script>
+<style>
+#btnSubmit{
+   width:100px;
+   height: 40px;
+   background: #474e60;
+   font-size: 13px;
+   color: #fff;
+   border: solid 2px;
+   border-radius: 1px;
+}
+#btnCancel{
+   width:100px;
+   height: 40px;
+   background: #a7a7a2;
+   font-size: 13px;
+   color: #fff;
+   border: solid 2px;
+   border-radius: 1px;
+}
 
+</style>
 <div class="wrap">
 
 <div class="container" style="position: relative; width: 1000px; margin-left:270px; ">
@@ -83,8 +103,8 @@ $(document).ready(function(){
 
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">	
-		<button type="button" id="btnSubmit" class="btn btn-info">작성</button>
-		<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
+		<button type="button" id="btnSubmit">작성</button>
+		<button type="button" id="btnCancel">취소</button>
 	</div>
 </div>
 </div>

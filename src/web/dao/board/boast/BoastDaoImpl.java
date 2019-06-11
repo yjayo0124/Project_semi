@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import web.dbutil.DBConn;
@@ -24,6 +25,10 @@ public class BoastDaoImpl implements BoastDao{
 	public List selectAll(BoastPaging paging) {
 		
 		String sql = "";
+		
+		if ("".equals(paging.getSelect()) || paging.getSelect() == null || paging.getSelect().equals("boast_board_title")) {
+
+		
 		sql += "SELECT * FROM (";
 		sql += " 	SELECT rownum rnum, B.* FROM (";
 		sql += " 	 SELECT boast_board_no, boast_board_title, boast_board_content, boast_board_writer, ";
@@ -36,6 +41,21 @@ public class BoastDaoImpl implements BoastDao{
 		sql += " ) ";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 		
+		} else if (paging.getSelect().equals("boast_board_content")) {
+			
+			sql += "SELECT * FROM (";
+			sql += " 	SELECT rownum rnum, B.* FROM (";
+			sql += " 	 SELECT boast_board_no, boast_board_title, boast_board_content, boast_board_writer, ";
+			sql += "     boast_board_hit, boast_board_written_date, boast_board_comment_no, boast_board_file_idx, member_id ";
+			sql += " 	 FROM Boast_Board	";
+			sql	+= "     WHERE boast_board_content LIKE '%'||?||'%' ";
+			sql	+= "     ORDER BY boast_board_no DESC";
+			sql += " 	) B";
+			sql += " 	ORDER BY rnum";
+			sql += " ) ";
+			sql += " WHERE rnum BETWEEN ? AND ?";
+
+		}
 		List list = new ArrayList();
 		
 		try {
@@ -78,12 +98,19 @@ public class BoastDaoImpl implements BoastDao{
 	}
 
 	@Override
-	public int selectCntAll(String search) {
-String sql = "";
-		
+	public int selectCntAll(String select, String search) {
+		String sql = "";
+		if("".equals(select) || select == null || select.equals("boast_board_title")) {
+
 		sql += "SELECT count(*) FROM Boast_Board";
 		sql += " WHERE boast_board_title LIKE '%'||?||'%'";
-	
+		
+		}else if(select.equals("boast_board_content")) {
+			
+			sql += "SELECT count(*) FROM Boast_Board";
+			sql += " WHERE boast_board_content LIKE '%'||?||'%'";
+			
+		}
 		int totalCount = 0;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -473,4 +500,67 @@ String sql = "";
 		return null;
 	}
 
-}
+	@Override
+	public HashMap getPrevNext(BoastBoard viewBoard) {
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += " SELECT";
+		sql += " 	LEAD( boast_board_no, 1 ) OVER (ORDER BY boast_board_no DESC) prev,";
+		sql += "	boast_board_no,";
+		sql += " 	LAG( boast_board_no, 1 ) OVER (ORDER BY boast_board_no DESC) next";
+		sql += " FROM Boast_Board";
+		sql += " )";
+		sql += " WHERE boast_board_no = ?";
+		  
+		HashMap<String, Integer> map = new HashMap();
+		try {  
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, viewBoard.getBoast_board_no() ) ;
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				map.put("prev", rs.getInt("prev"));
+				map.put("next", rs.getInt("next"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map ;
+	}
+
+	@Override
+	public HashMap getPrevNextName(BoastBoard viewBoard) {
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += " SELECT";
+		sql += " 	LEAD( boast_board_title, 1 ) OVER (ORDER BY boast_board_no DESC) prev,";
+		sql += "	boast_board_no , boast_board_title,";
+		sql += " 	LAG( boast_board_title, 1 ) OVER (ORDER BY boast_board_no DESC) next";
+		sql += " FROM Boast_Board";
+		sql += " )";
+		sql += " WHERE boast_board_no = ?";
+		  
+		HashMap<String, String> map = new HashMap();
+		try {  
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, viewBoard.getBoast_board_no() ) ;
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				map.put("prev", rs.getString("prev"));
+				map.put("next", rs.getString("next"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map ;
+	}
+	
+
+	}
+
+

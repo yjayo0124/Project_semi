@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -9,9 +10,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
-
+	//글쓰기 버튼 누르면 이동
+	$("#btnWrite").click(function() {
+		location.href="/board/boast/write";
+	});
+	
 	$("#btnSearch").click(function() {
-		location.href="/board/boast/list?search="+$("#search").val();
+		location.href="/board/boast/list?select=" +$("#select").val()+"&search="+$("#search").val();
 	});
 
 	
@@ -28,35 +33,44 @@ table, th {
 	position: relative;
 }
 #btnBox {
-	position: absolute;
 	top: 0;
 	bottom: 0;
-	right: 0;
-	height: 40px;
-	margin: auto;
-}
-#btnWrite{
-	display: scroll; 
-	position: fixed;
-	margin-left: 800px;
-	bottom: 100px;
-	left: 50%;
-}
-#writeimg{
-	height: 100px;
-	width: 100px;
+	
+	
+	margin-left: 1050px;
 }
 
-/* 검색창 css */
+
+
+
+table, th {
+	text-align: center;
+}
+
+.container {
+	border-left : 1px solid #eee;
+	border-right : 1px solid #eee;
+}
+
 
 </style>
 
+<div class="wrap">
+
+<div class="container" style="margin-top:40px;">
+<div style="margin-top : 100px; ">
+
 <h1>자랑게시판</h1>
+</div>
 <hr>
 
-<table class="table table-striped table-hover table-condensed">
+<div id="btnBox" >
+	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
+</div>
 
-<thead>
+<table class="table table-hover table-condensed" style="margin-top:20px;">
+
+<thead style="background: #337AB7; color: white;" >
 	<tr>
 		<th style="width: 10%;">번호</th>
 		<th style="width: 45%;">제목</th>
@@ -83,15 +97,18 @@ table, th {
 <div id="pagingBox">
 <c:import url="/WEB-INF/views/layout/boastpaging/paging.jsp" />
 
-<div id="btnBox">
-	<button id="btnWrite"></button>
-</div>
+
 </div>
 
 <div class="form-inline text-center">
+<select class="form-control form-control-sm" name="select" id="select">
+	<option value="boast_board_title" selected>제목</option>
+	<option value="boast_board_content">내용</option>
+</select>
 	<input class="form-control" type="text" id="search" />
+	<button id="btnSearch" class="btn">검색</button>
 </div> 
-	<a id="btnWrite" href="/board/boast/write"><img id="writeimg" src="/imgs/write.png"></a>
+
 
 
 

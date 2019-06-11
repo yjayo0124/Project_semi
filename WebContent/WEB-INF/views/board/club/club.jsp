@@ -244,6 +244,19 @@
 	margin-bottom:100px;
 	padding-right:100px;
 }
+#btncreate {
+	width: 100px;
+	height: 40px;
+	background: #474e60;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+a {
+	color: black;
+	text-decoration: none;
+}
 </style>
 
 </head>

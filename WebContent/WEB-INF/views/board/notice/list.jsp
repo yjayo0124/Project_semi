@@ -35,7 +35,15 @@ table, th {
 	border-left: 1px solid #eee;
 	border-right: 1px solid #eee;
 }
-
+#btnWrite {
+   width: 100px;
+   height: 40px;
+   background: #474e60;
+   font-size: 13px;
+   color: #fff;
+   border: solid 2px;
+   border-radius: 1px;
+}
 
 
 </style>
@@ -58,7 +66,7 @@ table, th {
 
 <br>
 <table class="table table-hover table-condensed ">
-<thead>
+<thead  style="background: #337AB7; color: white;">
 	<tr>
 		<th style="width: 10%;">번호</th>
 		<th style="width: 45%;">제목</th>

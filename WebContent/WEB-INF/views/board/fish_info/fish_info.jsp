@@ -62,7 +62,15 @@ $(document).ready(function() {
 	display: inline-block;
 	margin: 10px ;
 }
-
+#btnWrite {
+width: 100px;
+height: 40px;
+background: #474e60;
+font-size: 13px;
+color: #fff;
+border: solid 2px;
+border-radius: 1px;
+}
 </style>
  
 <c:import url="/WEB-INF/views/layout/header.jsp" />

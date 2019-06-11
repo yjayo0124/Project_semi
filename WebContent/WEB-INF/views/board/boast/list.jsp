@@ -165,6 +165,7 @@ table, th {
 <hr>
 
 
+
 <div id="btnBox" >
 	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
 </div>
@@ -173,6 +174,7 @@ table, th {
 
 
 <thead style="background: #337AB7; color: white;" >
+  
 	<tr>
 		<th style="width: 10%;">번호</th>
 		<th style="width: 45%;">제목</th>

@@ -114,16 +114,24 @@
 }
 .btn_write {
 	margin:5px;
-	font-size:12pt;
 	width: 80px;
 	height: 30px;
+	background: #474e60;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
 }
 
 .btn_cancel {
 	margin:5px;
-	font-size:12pt;
 	width: 80px;
 	height: 30px;
+	background: #a7a7a2;
+   	font-size: 13px;
+   	color: #fff;
+   	border: solid 2px;
+   	border-radius: 1px;
 }
 
 </style>

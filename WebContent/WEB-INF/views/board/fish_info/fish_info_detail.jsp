@@ -93,7 +93,37 @@ $(document).ready(function() {
 });
 
 </script>
+<style>
+#btnList {
+	width: 80px;
+	height: 40px;
+	background: #474e60;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnUpdate{
+	width: 80px;
+	height: 40px;
+	background: #1ec0ff;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnDelete{
+	width: 80px;
+	height: 40px;
+	background: #f1404b;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
 
+
+</style>
 <br>
 <div id = "title">
 <font id = "head">물고기 정보</font>

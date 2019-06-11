@@ -67,6 +67,24 @@ $(document).ready(function() {
 #smart_editor2{
 	margin : 0 auto;
 }
+#btnWrite {
+	width: 100px;
+	height: 40px;
+	background: #474e60;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnCancel{
+	width:100px;
+	height: 40px;
+	background: #a7a7a2;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+    border-radius: 1px;
+}
 </style>
 
 <div class="container">
@@ -89,8 +107,8 @@ $(document).ready(function() {
 </div>
 
 <div class="text-center">	
-	<button type="button" id="btnWrite" class="btn btn-info">작성</button>
-	<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
+	<button type="button" id="btnWrite">작성</button>
+	<button type="button" id="btnCancel">취소</button>
 </div>
 </div>
 

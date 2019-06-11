@@ -124,10 +124,10 @@ $(document).ready(function() {
 	
 
 </script>
+
 <style type="text/css">
 
 #next > a{
-
 font-size:16px;
 }
 
@@ -170,7 +170,34 @@ margin-top: 50px;
 	top:540px;
 	left:1100px;
 }
-
+  
+#btnList {
+width: 80px;
+height: 40px;
+background: #474e60;
+font-size: 13px;
+color: #fff;
+border: solid 2px;
+border-radius: 1px;
+}
+#btnUpdate{
+	width: 80px;
+	height: 40px;
+	background: #1ec0ff;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnDelete{
+	width: 80px;
+	height: 40px;
+	background: #f1404b;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
 </style>
 
 <h3 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -192,13 +219,13 @@ margin-top: 50px;
 <h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 추천수 : ${viewBoard.recommend }  </h5>
 
 <div class="text-right">	
-	<button id="btnList" class="btn btn-primary btn-sm">목록</button>
+	<button id="btnList">목록</button>
 	<c:if test="${login }">
 	<button id="btnRecommend" class="btn btn-primary btn-sm">추천</button>
 	</c:if>
 	<c:if test="${member_id eq viewBoard.boast_board_writer }">
-	<button id="btnUpdate" class="btn btn-primary btn-sm">수정</button>
-	<button id="btnDelete" class="btn btn-primary btn-sm">삭제</button>
+	<button id="btnUpdate">수정</button>
+	<button id="btnDelete">삭제</button>
 	</c:if>
 </div>
 <hr>

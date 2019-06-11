@@ -39,7 +39,27 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style>
+#btnUpdate{
+	width: 100px;
+	height: 40px;
+	background: #474e60;
+	font-size: 13px;
+	color: #fff;
+	border: solid 2px;
+	border-radius: 1px;
+}
+#btnCancel{
+   width:100px;
+   height: 40px;
+   background: #a7a7a2;
+   font-size: 13px;
+   color: #fff;
+   border: solid 2px;
+   border-radius: 1px;
+}
 
+</style>
 
 
 
@@ -112,8 +132,8 @@ $(document).ready(function() {
 
 
 <div class="text-center">	
-	<button type="button" id="btnUpdate" class="btn btn-info">수정 적용</button>
-	<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
+	<button type="button" id="btnUpdate">수정 적용</button>
+	<button type="button" id="btnCancel">취소</button>
 </div>
 
 

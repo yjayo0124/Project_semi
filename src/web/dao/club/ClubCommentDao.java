@@ -11,4 +11,6 @@ public interface ClubCommentDao {
 	
 	public void insert (ClubComment clubComment);
 	
+	public void delete (ClubComment clubComment);
+	
 }

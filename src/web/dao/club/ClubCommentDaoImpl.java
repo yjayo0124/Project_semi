@@ -76,4 +76,24 @@ public class ClubCommentDaoImpl implements ClubCommentDao{
 		}
 	}
 
+	@Override
+	public void delete(ClubComment clubComment) {
+		
+		
+		String sql ="";
+		sql += "DELETE FROM club_comment";
+		sql += " WHERE club_comment_no = ?";
+		try {
+			ps= conn.prepareStatement(sql);
+			System.out.println(clubComment.getClub_comment_no());
+			ps.setInt(1, clubComment.getClub_comment_no());
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }

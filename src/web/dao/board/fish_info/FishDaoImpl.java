@@ -32,7 +32,7 @@ public class FishDaoImpl implements FishDao {
 			sql += " 	 SELECT i.fish_no , i.fish_name , i.fish_type , i.fish_sesson , i.fish_min_length , ";
 			sql += "     i.fish_care , i.fish_content , i.fish_written_date , i.member_id , f.fish_storedname ";
 			sql += " 	 FROM Fish_Info i , fish_file f " ;
-			sql += " 	 where i.fish_no = f.fish_no " ;
+			sql += " 	 where i.fish_no = f.fish_no(+) " ;
 			sql += "	 ORDER BY fish_no DESC";
 			sql += " 	) B";
 			sql += " 	ORDER BY rnum";

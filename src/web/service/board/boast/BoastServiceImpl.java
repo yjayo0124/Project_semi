@@ -2,6 +2,7 @@ package web.service.board.boast;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -43,11 +44,14 @@ public class BoastServiceImpl implements BoastService{
 		if( param!=null && !"".equals(param) ) {
 			curPage = Integer.parseInt(param);
 		}
+		String select = (String)req.getParameter("select");
 		String search = (String)req.getParameter("search");
-		
-		int totalCount = boastDao.selectCntAll(search);
+
+		int totalCount = boastDao.selectCntAll(select,search);
 		
 		BoastPaging paging = new BoastPaging(totalCount, curPage);
+		
+		paging.setSelect(select);
 		paging.setSearch(search);
 		
 		return paging;
@@ -402,6 +406,18 @@ public class BoastServiceImpl implements BoastService{
 	@Override
 	public int getTotalCntRecommend(Recommend recommend) {
 		return recommendDao.selectTotalCntRecommend(recommend);
+	}
+
+	@Override
+	public HashMap getPrevNext(BoastBoard viewBoard) {
+		return boastDao.getPrevNext(viewBoard);
+
+	}
+
+	@Override
+	public HashMap getPrevNextName(BoastBoard viewBoard) {
+		return boastDao.getPrevNextName(viewBoard);
+
 	}
 	
 }

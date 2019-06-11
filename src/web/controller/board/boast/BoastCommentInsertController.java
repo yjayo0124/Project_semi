@@ -29,8 +29,10 @@ public class BoastCommentInsertController extends HttpServlet {
     	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     	BoastComment comment = boastService.getComment(req) ;
-    	
+    	System.out.println(comment);
     	boastService.insertComment(comment);
+    	
+    	System.out.println(comment.getBoast_content());
     	
     	resp.sendRedirect( "/board/boast/view?boast_board_no="+comment.getBoast_board_no() );
     	}

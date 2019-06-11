@@ -173,7 +173,7 @@ border-radius: 1px;
 
 <h1 class="pull-left">${viewBoard.free_board_title }</h1><br><br><br><br>
 <h5 class="pull-left">작성일 : ${viewBoard.free_board_written_date } </h5>
-<h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성자 : ${member_nick }  </h5>
+<h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성자 : ${viewBoard.free_board_writer}  </h5>
 <h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${viewBoard.free_board_hit }  </h5>
 <div class="text-right">	
 	<button id="btnList">목록</button>
@@ -189,31 +189,6 @@ ${viewBoard.free_board_content }
 </div>
 
 
-<!-- <table class="table table-bordered" -->
-<!-- style="margin-left:130px; width:1400px; margin-top:100px;"> -->
-<!-- <tr> -->
-<%-- <td class="info">글번호</td><td colspan="3">${viewBoard.free_board_no }</td> --%>
-<!-- </tr> -->
-
-<!-- <tr> -->
-<%-- <td class="info">제목</td><td colspan="3">${viewBoard.free_board_title }</td> --%>
-<!-- </tr> -->
-
-<!-- <tr> -->
-<%-- <td class="info">닉네임</td><td>${member_nick }</td> --%>
-<!-- </tr> -->
-
-<!-- <tr> -->
-<%-- <td class="info">조회수</td><td colspan="4">${viewBoard.free_board_hit }</td> --%>
-<!-- </tr> -->
-
-<!-- <tr> -->
-<%-- <td class="info">작성일</td><td colspan="4">${viewBoard.free_board_written_date }</td> --%>
-<!-- </tr> -->
-
-<!-- <tr><td class="info"  colspan="4">본문</td></tr> -->
-
-<%-- <tr><td colspan="4">${viewBoard.free_board_content }</td></tr> --%>
 
 <div id="filediv">
 

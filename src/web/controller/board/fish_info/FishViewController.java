@@ -32,9 +32,10 @@ public class FishViewController extends HttpServlet {
 		Fish_Paging paging = fishService.getCurPage(req) ;
 		
 		req.setAttribute( "paging", paging);
+		System.out.println(paging);
 		
 		List fishlist = fishService.getList( paging ) ;
-		
+		System.out.println( fishlist );
 		req.setAttribute( "fishlist", fishlist);
 		
 		int res = 0 ;

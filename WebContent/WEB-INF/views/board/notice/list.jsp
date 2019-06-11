@@ -66,7 +66,7 @@ table, th {
 
 <br>
 <table class="table table-hover table-condensed ">
-<thead>
+<thead  style="background: #337AB7; color: white;">
 	<tr>
 		<th style="width: 10%;">번호</th>
 		<th style="width: 45%;">제목</th>

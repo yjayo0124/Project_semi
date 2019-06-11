@@ -59,7 +59,7 @@ color: #fff;
 border: solid 2px;
 border-radius: 1px;
 }
-
+ 
 </style>
 
 <div class="wrap">
@@ -116,8 +116,8 @@ border-radius: 1px;
 	<button id="btnSearch" class="btn">검색</button>
 </div> 
 
-
-
+</div>
+</div>
 
   
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

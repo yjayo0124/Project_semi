@@ -139,7 +139,10 @@ String sql = "";
 	@Override
 	public BoastBoard selectBoardByBoardno(BoastBoard viewBoard) {
 		String sql = "";
-		sql += "SELECT boast_board_no, boast_board_title, boast_board_content, boast_board_writer, boast_board_hit, boast_board_written_date, boast_board_comment_no, boast_board_file_idx, member_id FROM Boast_Board";
+		sql += "SELECT boast_board_no, boast_board_title, boast_board_content, boast_board_writer,";
+		sql += " boast_board_hit, boast_board_written_date, boast_board_comment_no, boast_board_file_idx, member_id";
+		sql += " , (SELECT COUNT(*) FROM recommend R WHERE B.boast_board_no = R.boast_board_no ) recommend"; 
+		sql += " FROM Boast_Board B";
 		sql += " WHERE boast_board_no = ?";
 	
 		try {
@@ -160,6 +163,7 @@ String sql = "";
 				viewBoard.setBoast_board_comment_no( rs.getInt("boast_board_comment_no") );
 				viewBoard.setBoast_board_file_idx( rs.getInt("boast_board_file_idx") );
 				viewBoard.setMember_id( rs.getString("member_id") );
+				viewBoard.setRecommend( rs.getInt("recommend") );
 				
 			}
 

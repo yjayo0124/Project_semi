@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 	});
 	
-	if(${isRecommend}) {
+	if('${isRecommend}') {
 		$("#btnRecommend")
 			.addClass("btn-warn")
 			.html('추천 취소');
@@ -67,7 +67,60 @@ $(document).ready(function() {
 		
 	});
 	
+	// 댓글 입력
+	$("#btnCommInsert").click(function() {
+
+		$form = $("<form>").attr({
+			action: "/boast/comment/insert",
+			method: "post"
+		}).append(
+			$("<input>").attr({
+				type:"hidden",
+				name:"boast_board_no",
+				value:"${viewBoard.boast_board_no }"
+			})
+		).append(
+			$("<input>").attr({
+				type:"hidden",
+				name:"member_id",
+				value:"${sessionScope.member_id }"
+			})
+		).append(
+			$("<textarea>")
+				.attr("name", "boast_content")
+				.css("display", "none")
+				.text($("#commentContent").val())
+		);
+		$(document.body).append($form);
+		$form.submit();
+		
+	});
 });
+
+	//댓글 삭제
+	function deleteComment(boast_board_comment_no) {
+		$.ajax({
+			type: "post"
+			, url: "/boast/comment/delete"
+			, dataType: "json"
+			, data: {
+				boast_board_comment_no: boast_board_comment_no
+			}
+			, success: function(data){
+				if(data.success) {
+					
+					$("[data-commentno='"+boast_board_comment_no+"']").remove();
+					
+				} else {
+					alert("댓글 삭제 실패");
+				}
+			}
+			, error: function() {
+				console.log("error");
+			}
+		});
+	}
+	
 </script>
 
 <h1 class="pull-left">게시판 - VIEW</h1>

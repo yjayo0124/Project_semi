@@ -11,17 +11,17 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="/imgs/fff.jpg">
+      <img src="/imgs/festival1.png">
       <div class="carousel-caption">
       </div>
     </div>
     <div class="item">
-      <img src="/imgs/fff2.jpg">
+      <img src="/imgs/festival2.png">
       <div class="carousel-caption">
       </div>
     </div>
     <div class="item">
-      <img src="/imgs/fff3.png">
+      <img src="/imgs/festival3.png">
       <div class="carousel-caption">
       </div>
     </div>

@@ -7,9 +7,28 @@
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.2.4.js"></script>
-
+<link rel="stylesheet" href="/resources/hover/hover-min.css" >
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet">
 <style type="text/css">
+
+/* Grow */
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    transform: scale(1.1);
+}
+
 
 .p{
 
@@ -49,7 +68,7 @@
 	<br>
 </div>
 </div>
-<section style="background-image: url('/imgs/back.png'); background-repeat: no-repeat, repeat-x; background-size: cover;">
+<section>
 	<br>
 	<br>
 	<br>
@@ -68,16 +87,16 @@
 	<div class="middle" style="width: 1000px; margin: 0 auto;">
 	<div class="row">
 		<div class="col-md-3">
-			<a href="/board/festival"><p class="p">대회와 축제</p></a>
+			<a href="/board/festival"><img class="hvr-grow" src="/imgs/icon1.png"/></a>
 		</div>
 		<div class="col-md-3">
-			<a href="/board/fish/info"><p class="p">물고기 정보</p></a>
+			<a href="/board/fish/info"><img class="hvr-grow" src="/imgs/icon2.png"/></a>
 		</div>
 		<div class="col-md-3">
-			<a href="/board/club"><p class="p">동호회찾기</p></a>
+			<a href="/board/club"><img class="hvr-grow" src="/imgs/icon3.png"/></a>
 		</div>
 		<div class="col-md-3">
-			<a href="/board/free/list"><p class="p">자유게시판</p></a>
+			<a href="/board/free/list"><img class="hvr-grow" src="/imgs/icon4.png"/></a>
 		</div>
 	</div>
 </div>

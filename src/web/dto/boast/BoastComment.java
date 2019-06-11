@@ -9,7 +9,7 @@ public class BoastComment {
 	private int boast_board_no;
 	private String boast_content;
 	private String member_id;
-	private Date boast_comment_written_date;
+	private String boast_comment_written_date;
 	@Override
 	public String toString() {
 		return "BoastComment [rnum=" + rnum + ", boast_board_comment_no=" + boast_board_comment_no + ", boast_board_no="
@@ -46,10 +46,10 @@ public class BoastComment {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	public Date getBoast_comment_written_date() {
+	public String getBoast_comment_written_date() {
 		return boast_comment_written_date;
 	}
-	public void setBoast_comment_written_date(Date boast_comment_written_date) {
+	public void setBoast_comment_written_date(String boast_comment_written_date) {
 		this.boast_comment_written_date = boast_comment_written_date;
 	}
 	

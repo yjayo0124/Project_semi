@@ -1,5 +1,6 @@
 package web.dao.board.boast;
 
+import java.util.HashMap;
 import java.util.List;
 
 import web.dto.boast.BoastBoard;
@@ -17,10 +18,11 @@ public interface BoastDao {
 	
 	/**
 	 * 테이블 전체 COUNT 조회
+	 * @param search2 
 	 * 
 	 * @return 테이블 전체 행 수 조회 결과
 	 */
-	public int selectCntAll(String search);
+	public int selectCntAll(String search, String search2);
 	
 
 	
@@ -68,5 +70,9 @@ public interface BoastDao {
 	public void deleteFile(BoastBoard board);
 	
 	public BoastBoard selectrecommend( BoastBoard board ) ;
+
+	public HashMap getPrevNext(BoastBoard viewBoard);
+
+	public HashMap getPrevNextName(BoastBoard viewBoard);
 
 }

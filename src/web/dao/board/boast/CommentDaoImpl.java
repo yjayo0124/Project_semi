@@ -54,7 +54,7 @@ public class CommentDaoImpl implements CommentDao {
 				comment.setBoast_board_comment_no( rs.getInt( "boast_board_comment_no" ) ) ;
 				comment.setBoast_board_no( rs.getInt( "boast_board_no" ) ) ;
 				comment.setBoast_content( rs.getString( "boast_content" ) ) ;
-				comment.setBoast_comment_written_date( rs.getDate( "boast_comment_written_date" ) ) ;
+				comment.setBoast_comment_written_date( rs.getString( "boast_comment_written_date" ) ) ;
 				comment.setMember_id( rs.getString( "member_id" ) ) ;
  								
 				commentList.add(comment);

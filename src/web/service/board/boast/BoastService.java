@@ -1,5 +1,6 @@
 package web.service.board.boast;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -148,4 +149,8 @@ public interface BoastService {
 		 * @return int - 총 추천 수
 		 */
 		public int getTotalCntRecommend(Recommend recommend);
+
+		public HashMap getPrevNext(BoastBoard viewBoard);
+
+		public HashMap getPrevNextName(BoastBoard viewBoard);
 }

@@ -49,6 +49,16 @@ public class BoastViewController extends HttpServlet {
 		recommend.setMember_id( (String)req.getSession().getAttribute( "member_id" ) ) ;
 		boolean isRecommend = boardService.isRecommend(recommend);
 		req.setAttribute("isRecommend", isRecommend);
+		
+		// 이전글 / 다음글 
+		HashMap map = boardService.getPrevNext(viewBoard);
+//		System.out.println(map);
+		req.setAttribute("prev_next", map);
+		
+		// 이전글 / 다음글 
+		HashMap name = boardService.getPrevNextName(viewBoard) ;
+		req.setAttribute( "prev_next_name", name);
+
 
 		//VIEW 지정
 		req.getRequestDispatcher("/WEB-INF/views/board/boast/view.jsp").forward(req, resp);

@@ -32,6 +32,8 @@ public class BoastCommentInsertController extends HttpServlet {
     	System.out.println(comment);
     	boastService.insertComment(comment);
     	
+    	System.out.println(comment.getBoast_content());
+    	
     	resp.sendRedirect( "/board/boast/view?boast_board_no="+comment.getBoast_board_no() );
     	}
 }

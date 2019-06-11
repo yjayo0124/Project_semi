@@ -102,14 +102,6 @@ table, th {
 #pagingBox {
 	position: relative;
 }
-#btnBox {
-	top: 0;
-	bottom: 0;
-	
-	
-	margin-left: 1050px;
-}
-
 
 
 
@@ -150,7 +142,17 @@ table, th {
     
     overflow: scroll;
  }
-
+#btnWrite{
+	display: scroll; 
+	position: fixed;
+	margin-left: 800px;
+	bottom: 100px;
+	left: 50%;
+}
+#writeimg{
+	height: 100px;
+	width: 100px;
+}
 
 
 </style>
@@ -166,9 +168,7 @@ table, th {
 
 
 
-<div id="btnBox" >
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
-</div>
+<a id="btnWrite" href="/board/boast/write"><img id="writeimg" src="/imgs/write.png"></a>
 
 <table class="table table-hover table-condensed" style="margin-top:20px;">
 
@@ -228,7 +228,8 @@ table, th {
 	<input class="form-control" type="text" id="search" />
 	<button id="btnSearch" class="btn">검색</button>
 </div> 
-
+</div>
+</div>
 
 
 

@@ -168,7 +168,6 @@ public class BoastDaoImpl implements BoastDao{
 		String sql = "";
 		sql += "SELECT boast_board_no, boast_board_title, boast_board_content, boast_board_writer,";
 		sql += " boast_board_hit, boast_board_written_date, boast_board_comment_no, boast_board_file_idx, member_id";
-		sql += " , (SELECT COUNT(*) FROM recommend R WHERE B.boast_board_no = R.boast_board_no ) recommend"; 
 		sql += " FROM Boast_Board B";
 		sql += " WHERE boast_board_no = ?";
 	
@@ -190,8 +189,6 @@ public class BoastDaoImpl implements BoastDao{
 				viewBoard.setBoast_board_comment_no( rs.getInt("boast_board_comment_no") );
 				viewBoard.setBoast_board_file_idx( rs.getInt("boast_board_file_idx") );
 				viewBoard.setMember_id( rs.getString("member_id") );
-				viewBoard.setRecommend( rs.getInt("recommend") );
-				
 			}
 
 		} catch (SQLException e) {
@@ -503,68 +500,7 @@ public class BoastDaoImpl implements BoastDao{
 		sql += " WHERE boast_board_no = ? ";
 		return null;
 	}
-
-	@Override
-	public HashMap getPrevNext(BoastBoard viewBoard) {
-		String sql = "";
-		sql += "SELECT * FROM (";
-		sql += " SELECT";
-		sql += " 	LEAD( boast_board_no, 1 ) OVER (ORDER BY boast_board_no DESC) prev,";
-		sql += "	boast_board_no,";
-		sql += " 	LAG( boast_board_no, 1 ) OVER (ORDER BY boast_board_no DESC) next";
-		sql += " FROM Boast_Board";
-		sql += " )";
-		sql += " WHERE boast_board_no = ?";
-		  
-		HashMap<String, Integer> map = new HashMap();
-		try {  
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, viewBoard.getBoast_board_no() ) ;
-			rs = ps.executeQuery();
-
-			while(rs.next()) {
-				map.put("prev", rs.getInt("prev"));
-				map.put("next", rs.getInt("next"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return map ;
-	}
-
-	@Override
-	public HashMap getPrevNextName(BoastBoard viewBoard) {
-		String sql = "";
-		sql += "SELECT * FROM (";
-		sql += " SELECT";
-		sql += " 	LEAD( boast_board_title, 1 ) OVER (ORDER BY boast_board_no DESC) prev,";
-		sql += "	boast_board_no , boast_board_title,";
-		sql += " 	LAG( boast_board_title, 1 ) OVER (ORDER BY boast_board_no DESC) next";
-		sql += " FROM Boast_Board";
-		sql += " )";
-		sql += " WHERE boast_board_no = ?";
-		  
-		HashMap<String, String> map = new HashMap();
-		try {  
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, viewBoard.getBoast_board_no() ) ;
-			rs = ps.executeQuery();
-
-			while(rs.next()) {
-				map.put("prev", rs.getString("prev"));
-				map.put("next", rs.getString("next"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return map ;
-	}
 	
-
-	}
+		}
 
 

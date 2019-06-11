@@ -117,40 +117,6 @@ public interface BoastService {
 		 * @return boolean - 삭제 성공 여부
 		 */
 		public boolean deleteComment(BoastComment comment);
-		
-		/**
-		 * 게시글 추천 상태 조회
-		 * 
-		 * @param recommend - 추천 상태 체크 객체
-		 * @return boolean - true:추천했음, false:추천하지않았음
-		 */
-		public boolean isRecommend(Recommend recommend);
-		
-		/**
-		 * 추천 정보 파라미터 얻기
-		 * 
-		 * @param req - 요청 정보 객체
-		 * @return Recommend - 추천 정보 객체
-		 */
-		public Recommend getRecommend(HttpServletRequest req);
-		
-		/**
-		 * 추천 토글
-		 * 
-		 * @param recommend - 추천 정보 객체
-		 * @return boolean - true:추천 성공, false:추천취소 성공
-		 */
-		public boolean recommend(Recommend recommend);
-		
-		/**
-		 * 게시글의 총 추천 수 구하기
-		 * 
-		 * @param board - 해당 게시글
-		 * @return int - 총 추천 수
-		 */
-		public int getTotalCntRecommend(Recommend recommend);
 
-		public HashMap getPrevNext(BoastBoard viewBoard);
 
-		public HashMap getPrevNextName(BoastBoard viewBoard);
 }

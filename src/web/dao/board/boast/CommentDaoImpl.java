@@ -58,6 +58,7 @@ public class CommentDaoImpl implements CommentDao {
 				comment.setMember_id( rs.getString( "member_id" ) ) ;
  								
 				commentList.add(comment);
+				System.out.println(comment);
 			}
 
 		} catch (SQLException e) {

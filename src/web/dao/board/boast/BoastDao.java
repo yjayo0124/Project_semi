@@ -71,8 +71,4 @@ public interface BoastDao {
 	
 	public BoastBoard selectrecommend( BoastBoard board ) ;
 
-	public HashMap getPrevNext(BoastBoard viewBoard);
-
-	public HashMap getPrevNextName(BoastBoard viewBoard);
-
 }

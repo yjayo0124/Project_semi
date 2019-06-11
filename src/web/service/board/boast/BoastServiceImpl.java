@@ -18,20 +18,16 @@ import web.dao.board.boast.BoastDao;
 import web.dao.board.boast.BoastDaoImpl;
 import web.dao.board.boast.CommentDao;
 import web.dao.board.boast.CommentDaoImpl;
-import web.dao.board.boast.RecommendDao;
-import web.dao.board.boast.RecommendDaoImpl;
 import web.dto.Comment;
 import web.dto.boast.BoastBoard;
 import web.dto.boast.BoastComment;
 import web.dto.boast.BoastFile;
-import web.dto.boast.Recommend;
 import web.util.boast.BoastPaging;
 
 public class BoastServiceImpl implements BoastService{
 
 	private BoastDao boastDao = new BoastDaoImpl();
 	private CommentDao commentDao = new CommentDaoImpl() ;
-	private RecommendDao recommendDao = new RecommendDaoImpl() ;
 	@Override
 	public List getList(BoastPaging paging) {
 		return boastDao.selectAll(paging);
@@ -356,68 +352,5 @@ public class BoastServiceImpl implements BoastService{
 		return commentDao.selectComment( board ) ;
 	}
 
-	@Override
-	public boolean isRecommend(Recommend recommend) {
-		int cnt = recommendDao.selectCntRecommend(recommend);
-		
-		if(cnt > 0) { //추천했음
-			return true;
-			
-		} else { //추천하지 않았음
-			return false;
-			
-		}
-	}
 
-	@Override
-	public Recommend getRecommend(HttpServletRequest req) {
-		//전달파라미터 파싱
-		int boardno = 0;
-		String param = req.getParameter("boast_board_no");
-		if( param!=null && !"".equals(param) ) {
-			boardno = Integer.parseInt(param);
-		}
-
-		//로그인한 아이디
-		String userid = (String) req.getSession().getAttribute("member_id");
-
-		Recommend recommend = new Recommend();
-		recommend.setBoast_board_no(boardno);
-		recommend.setMember_id(userid);
-
-		return recommend;
-	}
-
-	@Override
-	public boolean recommend(Recommend recommend) {
-		if( isRecommend(recommend) ) { //추천한 상태
-			recommendDao.deleteRecommend(recommend);
-			
-			return false;
-			
-		} else { //추천하지 않은 상태
-			recommendDao.insertRecommend(recommend);
-			
-			return true;
-			
-		}
-	}
-
-	@Override
-	public int getTotalCntRecommend(Recommend recommend) {
-		return recommendDao.selectTotalCntRecommend(recommend);
-	}
-
-	@Override
-	public HashMap getPrevNext(BoastBoard viewBoard) {
-		return boastDao.getPrevNext(viewBoard);
-
-	}
-
-	@Override
-	public HashMap getPrevNextName(BoastBoard viewBoard) {
-		return boastDao.getPrevNextName(viewBoard);
-
-	}
-	
 }

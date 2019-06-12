@@ -15,4 +15,6 @@ public interface FishFileDao {
 	public void updateFile ( FishInfoFile fishInfoFile );
 	
 	public void delete ( FishInfoFile fishInfoFile );
+	
+	public void deleteWithoutInsert(FishInfoFile fishInfoFile );
 }

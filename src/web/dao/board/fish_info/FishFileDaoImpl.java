@@ -18,19 +18,19 @@ public class FishFileDaoImpl implements FishFileDao {
 	@Override
 	public void insert(FishInfoFile fishInfoFile) {
 		
-		String fishno = "SELECT Fish_Info_seq.currval FROM dual";
+//		String fishno = "SELECT Fish_Info_seq.currval FROM dual";
 		String sql = "";
 		sql+="INSERT INTO fish_file ( fish_file_no, fish_no, fish_originname, fish_storedname)";
 		sql+=" VALUES ( fishfile_seq.nextval, ?, ?, ? )";
 		
 		try {
-			ps = conn.prepareStatement(fishno);
-			rs = ps.executeQuery();
-			
-			while( rs.next() ) {
-				int num = (rs.getInt(1));
-				fishInfoFile.setFish_no(num);
-			}
+//			ps = conn.prepareStatement(fishno);
+//			rs = ps.executeQuery();
+//			
+//			while( rs.next() ) {
+//				int num = (rs.getInt(1));
+//				fishInfoFile.setFish_no(num);
+//			}
 			
 			ps = conn.prepareStatement(sql);
 			
@@ -125,12 +125,34 @@ public class FishFileDaoImpl implements FishFileDao {
 			
 			ps.setInt( 1 , fishInfoFile.getFish_file_no()) ;
 			
-			ps.executeUpdate(sql);
+			ps.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-}
+	}
+
+	@Override
+	public void deleteWithoutInsert(FishInfoFile fishInfoFile) {
+		String sql ="";
+		sql += "DELETE FROM fish_file";
+		sql += " WHERE fish_no = ? " ;
+		sql += " 	AND fish_file_no != ( SELECT max(fish_file_no) from fish_file WHERE fish_no = ? )";
+		
+		try {
+			ps= conn.prepareStatement(sql);
+			
+			ps.setInt( 1 , fishInfoFile.getFish_no()) ;
+			ps.setInt( 2 , fishInfoFile.getFish_no()) ;
+			
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

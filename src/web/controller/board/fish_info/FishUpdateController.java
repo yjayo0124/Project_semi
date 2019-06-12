@@ -52,7 +52,7 @@ public class FishUpdateController extends HttpServlet {
 		ServletContext context = getServletContext();
 		String saveDirectory = context.getRealPath("fishupload");
 
-		System.out.println(saveDirectory);
+//System.out.println(saveDirectory);
 
 		int maxPostSize = 10 * 1024* 1024;
 
@@ -79,6 +79,7 @@ public class FishUpdateController extends HttpServlet {
 		String care = mul.getParameter("fish_care");
 		String content = mul.getParameter("fish_content");
 		String member = mul.getParameter( "member_id" ) ;
+		String stored = mul.getParameter( "fish_storedname" ) ;
 		
 		fishInfo.setFish_no( no ) ;
 		fishInfo.setFish_name( name ) ;
@@ -88,6 +89,7 @@ public class FishUpdateController extends HttpServlet {
 		fishInfo.setFish_care( care ) ;
 		fishInfo.setFish_content( content ) ;
 		fishInfo.setMember_id( member ) ;
+		fishInfo.setFish_storedname( stored ) ;
 		
 		req.setAttribute("fishInfo", fishInfo);
 		fishService.update(fishInfo);
@@ -98,7 +100,9 @@ public class FishUpdateController extends HttpServlet {
 		file.setFish_originname(mul.getOriginalFileName("upfile"));
 		file.setFish_storedname(mul.getFilesystemName("upfile"));
 
-		fishFileDao.updateFile(file);
+		System.out.println("ooooooLLLL:::::::::::"+ file );
+		fishFileDao.insert(file);
+		fishFileDao.deleteWithoutInsert(file);
 		req.setAttribute("file", file);
 		
 		resp.sendRedirect( "/board/fish/info" ) ;

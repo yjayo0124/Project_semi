@@ -3,7 +3,7 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<
+
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -39,8 +39,8 @@ $(document).ready(function() {
 		).append(
 			$("<input>").attr({
 				type:"hidden",
-				name:"member_id",
-				value:"${sessionScope.member_id }"
+				name:"member_nick",
+				value:"${sessionScope.member_nick }"
 			})
 		).append(
 			$("<textarea>")
@@ -176,7 +176,9 @@ border-radius: 1px;
 
 <div class="text-right">	
 	<button id="btnList">목록</button>
-	<c:if test="${member_id eq viewBoard.boast_board_writer }">
+
+	<c:if test="${member_id eq viewBoard.member_id }">
+
 	<button id="btnUpdate">수정</button>
 	<button id="btnDelete">삭제</button>
 	</c:if>
@@ -252,8 +254,8 @@ style=" width:1300px; margin-top:300px;">
 	<td>${comment.member_id }</td><!-- 닉네임으로 해도 좋음 -->
 	<td>${comment.boast_content }</td>
 	<td>${comment.boast_comment_written_date }</td>
-	<td>
-		<c:if test="${sessionScope.member_id eq comment.member_id }">
+	<td>     <!-- comment 객체의 member_id에 member_nick을 insert했기 때문에 이렇게 비교 -->
+		<c:if test="${sessionScope.member_nick eq comment.member_id }">
 		<button class="btn btn-default btn-xs"
 			onclick="deleteComment(${comment.boast_board_comment_no });">삭제</button>
 		</c:if>

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class BoastBoard {
 	
+	private int lnum;
 	private int boast_board_no;
 	private String boast_board_title;
 	private String boast_board_writer;
@@ -84,6 +85,12 @@ public class BoastBoard {
 	}
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
+	}
+	public int getLnum() {
+		return lnum;
+	}
+	public void setLnum(int lnum) {
+		this.lnum = lnum;
 	}
 	
 	

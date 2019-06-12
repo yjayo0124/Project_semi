@@ -57,4 +57,5 @@ public interface FishDao {
 	public HashMap getPrevNextName( FishInfo fishInfo ) ;
 	
 	public FishInfo selectImgByBoardno(FishInfo fishInfo);
+	
 }

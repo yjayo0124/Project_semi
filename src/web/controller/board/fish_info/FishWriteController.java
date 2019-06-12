@@ -88,7 +88,9 @@ public class FishWriteController extends HttpServlet {
 		fishInfo.setMember_id( fish_member ) ;
 		
 		
-
+		int fish_no = fishService.getBoardNo();
+		fishInfo.setFish_no(fish_no);
+		
 		req.setAttribute("fishInfo", fishInfo);
 		fishService.write( fishInfo ) ;
 		
@@ -96,7 +98,8 @@ public class FishWriteController extends HttpServlet {
 		FishInfoFile file = new FishInfoFile() ;
 		file.setFish_originname(mul.getOriginalFileName("upfile"));
 		file.setFish_storedname(mul.getFilesystemName("upfile"));
-
+		file.setFish_no(fish_no);
+		
 		fishFileDao.insert(file) ;
 		req.setAttribute("file", file);
 		

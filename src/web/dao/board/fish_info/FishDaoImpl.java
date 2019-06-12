@@ -121,7 +121,7 @@ public class FishDaoImpl implements FishDao {
 			sql += "select i.fish_no , i.fish_name , i.fish_type , i.fish_sesson ," ;
 			sql += " i.fish_min_length , i.fish_care , i.fish_content , i.fish_written_date , i.member_id , f.fish_storedname " ;
 			sql += " from Fish_Info i , fish_file f " ;
-			sql += " WHERE i.fish_no = f.fish_no and i.fish_no = ?";
+			sql += " WHERE i.fish_no = f.fish_no(+) and i.fish_no = ?";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -201,19 +201,22 @@ public class FishDaoImpl implements FishDao {
 		String sql = "";
 		sql += "insert into Fish_Info ( fish_no , fish_name , fish_type , fish_sesson ," ;
 		sql += " fish_min_length , fish_care , fish_content , fish_written_date , member_id ) ";
-		sql += " values ( Fish_Info_seq.nextval , ? , ? , ? , ? , ? , ? , sysdate , ? )" ;
+		sql += " values ( ? , ? , ? , ? , ? , ? , ? , sysdate , ? )" ;
+		
+		PreparedStatement ps = null; 
 		
 		try {
 			
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString( 1 , fishInfo.getFish_name() ) ;
-			ps.setString( 2 , fishInfo.getFish_type() ) ;
-			ps.setString( 3 , fishInfo.getFish_sesson() ) ;
-			ps.setString( 4 , fishInfo.getFish_min_length() ) ;
-			ps.setString( 5 , fishInfo.getFish_care() ) ;
-			ps.setString( 6 , fishInfo.getFish_content() ) ;
-			ps.setString( 7 , fishInfo.getMember_id() ) ;
+			ps.setInt( 1 , fishInfo.getFish_no() ) ;
+			ps.setString( 2 , fishInfo.getFish_name() ) ;
+			ps.setString( 3 , fishInfo.getFish_type() ) ;
+			ps.setString( 4 , fishInfo.getFish_sesson() ) ;
+			ps.setString( 5 , fishInfo.getFish_min_length() ) ;
+			ps.setString( 6 , fishInfo.getFish_care() ) ;
+			ps.setString( 7 , fishInfo.getFish_content() ) ;
+			ps.setString( 8 , fishInfo.getMember_id() ) ;
 			
 			ps.executeUpdate();
 			
@@ -331,6 +334,15 @@ public class FishDaoImpl implements FishDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+				try {
+					if(rs!=null) rs.close();
+					if(ps!=null) ps.close();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			
 		}
 		
 		return map ;
@@ -362,6 +374,13 @@ public class FishDaoImpl implements FishDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return map ;
@@ -386,14 +405,18 @@ public class FishDaoImpl implements FishDao {
 
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(ps!=null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return fishInfo;
 	}
 
-
-		
 }
 

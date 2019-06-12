@@ -27,10 +27,11 @@ $(document).ready(function() {
 }
 #btnWrite{
 	float: right;
-	margin-right: 140px ;
+	margin-right: 100px ;
 	margin-top: 20px ;
 }
 #hr {
+	width: 1000px ;
 	margin-left: 450px ;
 	margin-right: 450px ; 
 	margin-top: 0px ;
@@ -54,7 +55,7 @@ $(document).ready(function() {
 	font-weight: 650px ;
 }
 #margin {
-	width: 1200px ;
+	width: 1260px ;
 	margin: 0 auto ;
 	
 }
@@ -82,16 +83,18 @@ border-radius: 1px;
 <button id = "btnWrite">글쓰기</button>
 </c:if>
 </div><div style="clear: both;"></div>
-<hr id = "hr"><br>
-
-<div id = "margin">
+<div style="width: 1000px ;">
+<hr id = "hr">
+</div><br>
+<div style="width: 1260px ; float: left; margin-left: 320px ;">
+<div id = "margin" >
 <c:forEach items="${fishlist}" var="i">
 <div class="item">
 	<div style="width: 220px; height: 350px;" id = "img">
 		<a href="/board/fish/info/detail?fish_no=${i.fish_no }"><img src="/fishupload/${i.fish_storedname }" alt="Fishing" width="220px;" height="350px;"></a>
 	</div>
 	<a href="/board/fish/info/detail?fish_no=${i.fish_no }">
-		<div id = "text" style="width: 240px; height: 350px" ><br>	
+		<div id = "text" style="width: 260px; height: 350px" ><br>	
 			<div id = "fname">${i.fish_name } </div><br><br>
 			<div id = "ftype">낚시 종류 : ${i.fish_type } </div><br>
 			<div id = "fsesson">어획 시기 : ${i.fish_sesson }</div><br>
@@ -103,7 +106,7 @@ border-radius: 1px;
 </div>
 </c:forEach>
 </div>
-
+</div><div style="clear: both;"></div>
 <c:import url="/WEB-INF/views/layout/fish_paging.jsp" />
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

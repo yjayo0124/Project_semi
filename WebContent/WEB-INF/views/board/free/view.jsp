@@ -39,8 +39,8 @@ $(document).ready(function() {
 		).append(
 			$("<input>").attr({
 				type:"hidden",
-				name:"member_id",
-				value:"${sessionScope.member_id }"
+				name:"member_nick",
+				value:"${sessionScope.member_nick }"
 			})
 		).append(
 			$("<textarea>")
@@ -124,7 +124,7 @@ margin-top: 50px;
 
 #filediv{
 	position:absolute;
-	top:530px;
+	top:600px;
 	left:1100px;
 }
 #btnList {
@@ -177,7 +177,7 @@ border-radius: 1px;
 <h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${viewBoard.free_board_hit }  </h5>
 <div class="text-right">	
 	<button id="btnList">목록</button>
-	<c:if test="${member_id eq viewBoard.free_board_writer }">
+	<c:if test="${member_nick eq viewBoard.free_board_writer }">
 	<button id="btnUpdate">수정</button>
 	<button id="btnDelete">삭제</button>
 	</c:if>
@@ -222,7 +222,7 @@ style=" width:1300px; margin-top:300px;">
 	<td>${comment.free_board_content }</td>
 	<td>${comment.free_board_comment_date }</td>
 	<td>
-		<c:if test="${sessionScope.member_id eq comment.member_id }">
+		<c:if test="${sessionScope.member_nick eq comment.member_id }">
 		<button class="btn btn-default btn-xs"
 			onclick="deleteComment(${comment.free_board_comment_no  });">삭제</button>
 		</c:if>

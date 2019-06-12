@@ -157,8 +157,9 @@ public class FreeServiceImpl implements FreeService{
 					}
 					
 					//�옉�꽦�옄id 泥섎━
-					board.setFree_board_writer((String) req.getSession().getAttribute("member_id"));
-					
+					board.setFree_board_writer((String) req.getSession().getAttribute("member_nick"));
+					board.setMember_id((String) req.getSession().getAttribute("member_id"));
+						
 				} else {
 					UUID uuid = UUID.randomUUID();
 					System.out.println(uuid);
@@ -383,12 +384,12 @@ public class FreeServiceImpl implements FreeService{
 		}
 		
 		String boardNo = (String) req.getParameter("free_board_no");
-		String memberid = (String) req.getParameter("member_id");
+		String membernick = (String) req.getParameter("member_nick");
 		String content = (String) req.getParameter("free_board_content");
 		
 		FreeComment comment = new FreeComment();
 		comment.setFree_board_no( Integer.parseInt(boardNo) );
-		comment.setMember_id(memberid);
+		comment.setMember_id(membernick);
 		comment.setFree_board_content(content);
 		
 		return comment;

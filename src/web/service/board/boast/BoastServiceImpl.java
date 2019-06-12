@@ -317,12 +317,12 @@ public class BoastServiceImpl implements BoastService{
 		}
 		
 		String boast_board_no = (String) req.getParameter("boast_board_no");
-		String member_id = (String) req.getParameter("member_id");
+		String member_nick = (String) req.getParameter("member_nick");
 		String boast_content = (String) req.getParameter("boast_content");
 		
 		BoastComment comment = new BoastComment() ;
 		comment.setBoast_board_no( Integer.parseInt( boast_board_no ) ) ;
-		comment.setMember_id(member_id);
+		comment.setMember_id(member_nick);
 		comment.setBoast_content(boast_content);
 		
 		return comment;

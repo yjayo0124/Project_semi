@@ -121,6 +121,11 @@ public class FishServiceImpl implements FishService {
 		
 	}
 
+	@Override
+	public int getBoardNo() {
+		return fishDao.selectBoardno();
+	}
+
 
 	
 

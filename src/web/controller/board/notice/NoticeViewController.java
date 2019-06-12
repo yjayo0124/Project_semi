@@ -31,8 +31,16 @@ public class NoticeViewController extends HttpServlet {
 //		System.out.println(notice);
 //		System.out.println(req.getSession().getAttribute("member_id"));
 
-		boolean writer_check;
-		writer_check = noticeService.CheckWriter(notice.getMember_id(), req);
+		boolean writer_check = false;
+		if( req.getSession().getAttribute("member_id") != null ) {
+		
+			writer_check = noticeService.CheckWriter(notice.getMember_id(), req);
+		
+		} else {
+			
+			writer_check = false;
+			
+		}
 		
 		Notice next = noticeDao.nextTitle(notice);
 		Notice former =  noticeDao.formerTtile(notice);

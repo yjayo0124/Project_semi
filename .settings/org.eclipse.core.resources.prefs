@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/views/layout/search.jsp=UTF-8
 encoding//src/web/controller/board/search/SearchBoardController.java=UTF-8
 encoding//src/web/dao/member/MemberDao.java=UTF-8
 encoding//src/web/dao/member/MemberDaoImpl.java=UTF-8

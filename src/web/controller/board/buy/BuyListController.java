@@ -35,6 +35,17 @@ public class BuyListController extends HttpServlet {
     	req.setAttribute("list", list);
     	
     	
+   
+    	int res = 0;
+    	
+    	if( req.getSession().getAttribute("member_id") != null) {
+    		
+    		res = 1;
+    	}
+    	
+    	req.setAttribute("res", res);
+    	
+    	
     	// VIEW 지정
     	req.getRequestDispatcher("/WEB-INF/views/board/buy/buylist.jsp").forward(req, resp);
     }

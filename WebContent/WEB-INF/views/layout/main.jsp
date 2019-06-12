@@ -39,12 +39,7 @@
 	
 }
 
-#search{
-	width:786px;
-	height: 101px;
-	
 
-}
 
 
 .img-circle{
@@ -68,25 +63,9 @@
 <div id="slider" style="width: 100%; height: 500px;">
 <c:import url="/WEB-INF/views/layout/slider2.jsp" />
 </div>
-	<br>
-	<br>
 </div>
 </div>
-<section class="mid">
-	<br>
-	<br>
-	<br>
-	<br>
-	<h2 style="font-stretch: normal; text-align: center; margin: 0;">800+ Fishing Spots</h2>
-	<div id="search" style="margin: auto;"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-</section>
-	<br>
-	<br>
+
 	<br>
 	<div class="middle" style="width: 1000px; margin: 0 auto;">
 	<div class="row">
@@ -104,6 +83,22 @@
 		</div>
 	</div>
 </div>
+<br>
+<br>
+
+<section class="mid" style="width: 1000px; margin: 0 auto;">
+	<br>
+	<br>
+	<br>
+	<br>
+	<div id="search" style="margin: auto;"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</section>
+
 
 
 

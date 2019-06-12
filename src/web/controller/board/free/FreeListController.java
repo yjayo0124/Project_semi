@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.dao.member.MemberDao;
+import web.dao.member.MemberDaoImpl;
 import web.service.board.free.FreeService;
 import web.service.board.free.FreeServiceImpl;
 import web.util.Paging;
@@ -20,6 +22,7 @@ public class FreeListController extends HttpServlet {
 
 	//BoardService 객체
 	private FreeService FreeService = new FreeServiceImpl();
+	private MemberDao memberDao = new MemberDaoImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,6 +40,17 @@ public class FreeListController extends HttpServlet {
 		
 		//MODEL로 조회 결과 넣기
 		req.setAttribute("list", list);
+		
+		
+		int res = 0;
+		
+		if( req.getSession().getAttribute("member_id") != null) {
+			
+			res = 1 ; 
+			
+		}
+		
+		req.setAttribute("res", res);
 		
 		
 		

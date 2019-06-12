@@ -72,10 +72,13 @@ border-radius: 1px;
 </div>
 <hr>
 
+<c:if test="${res eq 1 }">
 <div id="btnBox" >
-	<button id="btnWrite">글쓰기</button>
+	<button style="float: right;" id="btnWrite">글쓰기</button>
 </div>
-
+</c:if>
+<br>
+<br>
 <table class="table table-hover table-condensed" style="margin-top:20px;">
 
 <thead style="background: #337AB7; color: white;" >

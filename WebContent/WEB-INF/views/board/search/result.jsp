@@ -97,8 +97,23 @@ overflow: hidden;
 
 max-width: initial;
 
+}
+
+#btnSearchSubmit{
+	
+	width: 100px;
+ 	height: 35px;
+    background: #474e60;
+    font-size: 13px;
+    color: #fff;
+    border: solid 2px #474e60;
+    border-radius: 1px;
+
+
 
 }
+
+
 
 </style>
 
@@ -112,12 +127,12 @@ max-width: initial;
 <div>
 
 <div class="col-md-3" style="border: 1px solid #ccc;">
-	<div class="map_box" style="height: 236px; width: 250px; background-color: #fffff5 ">
-		<img src="/imgs/map.png" style="width: 100%; height: 100%; overflow: hidden;">		
+	<div class="map_box" style="height: 236px; width: 250px; background-color: #fff ">
+		<img src="/imgs/map.png" style="height: 100%; overflow: hidden;">		
 	</div>
 </div>
 
-<div class="col-md-9" id="search" style="border: 1px solid #ccc; background-color: #80d4f6;  padding: 35px; height: 238px;">
+<div class="col-md-9" id="search" style="border: 1px solid #ccc; background-color: #fff;  padding: 35px; height: 238px;">
 <form action="/board/search" method="POST" class="form-horizontal" >	
 	<div class="form-group">
 		<label class="form-label col-md-2" for="insttNm1"> 시/도</label>
@@ -196,6 +211,7 @@ max-width: initial;
 		<c:forEach items="${list }" var="i">
 			<div class="col-xs-6 col-md-4 text-center lead">
 				<a href="/board/search/view?latitude=${i.latitude }&hardness=${i.hardness}">
+
 				<c:if test="${res!=0 }">
 				<button type="button" class="btn btn-default btn-sm" id="btnSearchView" style="width:220px; height: 220px;">		
 				<strong>${i.fshlcNm }</strong>
@@ -206,7 +222,6 @@ max-width: initial;
 				</button>
 				</c:if>
 				</a>
-	
 			</div>
 		</c:forEach>
 

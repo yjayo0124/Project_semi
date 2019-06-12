@@ -142,13 +142,10 @@ table, th {
     
     overflow: scroll;
  }
-#btnWrite{
-	display: scroll; 
-	position: fixed;
-	margin-left: 800px;
-	bottom: 100px;
-	left: 50%;
-}
+
+
+
+
 #writeimg{
 	height: 100px;
 	width: 100px;
@@ -158,6 +155,24 @@ table, th {
 	min-width: 1080px;
 }
 
+#btnWrite {
+width: 100px;
+height: 40px;
+background: #474e60;
+font-size: 13px;
+color: #fff;
+border: solid 2px;
+border-radius: 1px;
+}
+
+#btnBox {
+	
+	top: 0;
+	bottom: 0;
+	
+	
+	margin-left: 1050px;
+}
 
 </style>
 
@@ -170,10 +185,13 @@ table, th {
 </div>
 <hr>
 
+<c:if test="${res eq 1 }">
+<div id="btnBox">
+	<button style="float: right;" id="btnWrite">글쓰기</button>
+</div>
+</c:if>
 
-
-<a id="btnWrite" href="/board/boast/write"><img id="writeimg" src="/imgs/write.png"></a>
-
+<br><br>
 <table class="table table-hover table-condensed" style="margin-top:20px;">
 
 

@@ -21,20 +21,20 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public Paging getCurPage(HttpServletRequest req) {
-		// Àü´ÞÆÄ¶ó¹ÌÅÍ curPage ÆÄ½Ì
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ curPage ï¿½Ä½ï¿½
 		String param = req.getParameter("curPage");
 		int curPage = 0;
 		if( param!=null && !"".equals(param) ) {
 			curPage = Integer.parseInt(param);
 		}
 						
-		//°Ë»ö¾î
+		//ï¿½Ë»ï¿½ï¿½ï¿½
 		String search = (String)req.getParameter("search");
 				
-		// ÀüÃ¼ °Ô½Ã±Û ¼ö
+		// ï¿½ï¿½Ã¼ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½
 		int totalCount = noticeDao.selectCntAll(search);
 						
-		// ÆäÀÌÂ¡ °´Ã¼ »ý¼º
+		// ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		Paging paging = new Paging(totalCount, curPage);
 		paging.setSearch(search);
 //		System.out.println(paging); //TEST
@@ -45,18 +45,18 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public Notice getNoticeno(HttpServletRequest req) {
 		
-		// Àü´ÞÆÄ¶ó¹ÌÅÍ·Î °øÁö»çÇ×¹øÈ£ °¡Á®¿À±â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String param = req.getParameter("notice_no");
 		int notice_no = 0;
 		if( param!=null && !"".equals(param) ) {
 			notice_no = Integer.parseInt(param);
 		}
 		
-		//°øÁö»çÇ× °´Ã¼ »ý¼º
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		Notice notice = new Notice();
 		notice.setNotice_no(notice_no);
 		
-		//ÆÄ¶ó¹ÌÅÍ·Î ¾òÀº ¹øÈ£ °¡Á®¿Í¼­ °´Ã¼¿¡ ´ã°í ±×°É return
+		//ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½×°ï¿½ return
 		return notice;
 		
 	}
@@ -64,10 +64,10 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public Notice viewNotice(Notice notice) {
 		
-		//°øÁö»çÇ× Á¶È¸¼ö +1
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ +1
 		noticeDao.updateHit(notice);
 		
-		//°Ô½Ã±Û Á¶È¸ ¹ÝÈ¯ ¤¡¸Þ¼Òµå
+		//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È¸ ï¿½ï¿½È¯ ï¿½ï¿½ï¿½Þ¼Òµï¿½
 		return noticeDao.selectNoticeByNoticeno(notice);
 		
 		
@@ -77,20 +77,20 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public void writeNotice(HttpServletRequest req) {
 		
-		//°øÁö»çÇ× °´Ã¼ ¼±¾ð
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		Notice notice = new Notice();
 		
-		String notice_writer = (String) req.getSession().getAttribute("member_nick");  //¼¼¼Ç°´Ã¼¿¡¼­ ´Ð³×ÀÓ°¡Á®¿Í¼­ °øÁö»çÇ× ±Û¾´ÀÌ¿¡ ³Ö°í
-		String notice_writer_id = (String) req.getSession().getAttribute("member_id"); //¼¼¼Ç°´Ã¼¿¡¼­ id°¡Á®¿Í¼­ °øÁö»çÇ×À» ¾´ »ç¶÷ id¿¡ ³Ö´Â´Ù.
-		//parameter¸¦ ÅëÇØ °ªÀ» À§ °´Ã¼¿¡ ³Ö´Â´Ù
+		String notice_writer = (String) req.getSession().getAttribute("member_nick");  //ï¿½ï¿½ï¿½Ç°ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½Ì¿ï¿½ ï¿½Ö°ï¿½
+		String notice_writer_id = (String) req.getSession().getAttribute("member_id"); //ï¿½ï¿½ï¿½Ç°ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ idï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ idï¿½ï¿½ ï¿½Ö´Â´ï¿½.
+		//parameterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ö´Â´ï¿½
 		notice.setNotice_no(noticeDao.selectNoticeno());
 		notice.setNotice_title(req.getParameter("notice_title"));
-		notice.setNotice_writer(notice_writer); //±Û¾´ ´Ð³×ÀÓ
+		notice.setNotice_writer(notice_writer); //ï¿½Û¾ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½
 		notice.setNotice_content(req.getParameter("notice_content"));
-		notice.setMember_id(notice_writer_id); //±Û¾´»ç¶÷ id
+		notice.setMember_id(notice_writer_id); //ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ id
 		
 		
-		//°ªÀ» ³ÖÀº °´Ã¼¸¦ insert¸Þ¼Òµå·Î º¸³½´Ù.
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ insertï¿½Þ¼Òµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		noticeDao.insert(notice);
 		
 		
@@ -126,13 +126,11 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		if( !loginId.equals(writer)) {
 			
-			return false;
-			//·Î±×ÀÎ¾ÆÀÌµð¶û ±Û¾´ÀÌ¶û ´Ù¸£´Ù¸é
-			
+			return false;	
 		} 
 		
 		return true;
-		//·Î±×ÀÎ ¾ÆÀÌµð¶û ±Û¾´ÀÌ¶û °°´Ù¸é 
+	
 
 	}
 	

@@ -271,7 +271,7 @@ public class FreeDaoImpl implements FreeDao {
 			ps.setString(4, board.getFree_board_writer());
 			ps.setInt(5, board.getFree_board_comment_no());
 			ps.setInt(6, board.getFree_board_file_idx());
-			ps.setString(7, board.getFree_board_writer());
+			ps.setString(7, board.getMember_id());
 
 
 			ps.executeUpdate();

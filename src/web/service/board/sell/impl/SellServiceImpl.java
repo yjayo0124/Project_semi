@@ -186,7 +186,7 @@ public class SellServiceImpl implements SellService{
 					}
 					
 					//작성자id 처리
-					sellboard.setWriter((String) req.getSession().getAttribute("member_id"));
+					sellboard.setWriter((String) req.getSession().getAttribute("member_nick"));
 					
 				} else {
 					UUID uuid = UUID.randomUUID();

@@ -37,6 +37,11 @@ $(document).ready(function() {
 </script>
 
 <style type="text/css">
+a:link { text-decoration:none; color:black;}
+a:visited { text-decoration:none;color:black;}
+a:active {text-decoration:none; color:black; }
+a:hover { text-decoration:none; color:black;}
+
 .main {
 	margin: 0 auto;
 	padding: 8px 10px 0;
@@ -182,6 +187,7 @@ $(document).ready(function() {
 				<br>
 				<h4>작성일 : ${board.festival_writtendate }</h4>
 			</div>
+			<c:if test="${member_group == 1 }">
 			<div class="title_right">
 				<div class="title_right_top"></div>
 				<div class="title_right_bottom">
@@ -189,6 +195,7 @@ $(document).ready(function() {
 					<button class="title_button" id="btnDelete">삭제</button>
 				</div>
 			</div>
+			</c:if>
 		</div>
 
 		<br>

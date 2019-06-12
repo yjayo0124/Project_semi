@@ -25,4 +25,19 @@ public interface ClubDao {
 	
 	public void insert(ClubBoard clubBoard);
 	
+	public boolean checkClub(String member_id);
+	
+	public boolean checkIdByClub(String member_id, int club_no);
+	
+	public void join(String member_id, int club_no);
+	
+	public void updateMember(String member_id, int club_no);
+	
+	public void updateNullMember(String member_id);
+	
+	public void delete(String member_id);
+	
+	public boolean checkjoin(String member_id);
+	
+	public boolean checkleave(String member_id, int club_no);
 }

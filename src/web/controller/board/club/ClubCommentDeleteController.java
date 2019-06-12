@@ -32,7 +32,7 @@ public class ClubCommentDeleteController extends HttpServlet {
 		if(param!= null && !"".equals(param)) {
 			club_comment_no = Integer.parseInt(param);
 		}
-		System.out.println(club_comment_no);
+		
 		ClubComment clubComment = new ClubComment();
 		clubComment.setClub_comment_no(club_comment_no);
 		

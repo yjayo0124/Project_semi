@@ -153,13 +153,17 @@ table, th {
 	height: 100px;
 	width: 100px;
 }
+.container{
+	margin-top: 40px;
+	min-width: 1080px;
+}
 
 
 </style>
 
 <div class="wrap">
 
-<div class="container" style="margin-top:40px;">
+<div class="container">
 <div style="margin-top : 100px; ">
 
 <h1>자랑게시판</h1>
@@ -187,7 +191,7 @@ table, th {
 <tbody>
 <c:forEach items="${list}" var="i">
 	<tr>
-		<td>${i.boast_board_no }</td>
+		<td>${i.lnum }</td>
 		
 		<td><a href="/board/boast/view?boast_board_no=${i.boast_board_no }" class="openMask">${i.boast_board_title }</a></td>
 		<td>${i.boast_board_writer }</td>

@@ -196,19 +196,22 @@ max-width: initial;
 		<c:forEach items="${list }" var="i">
 			<div class="col-xs-6 col-md-4 text-center lead">
 				<a href="/board/search/view?latitude=${i.latitude }&hardness=${i.hardness}">
-				<button type="button" "class="btn btn-default btn-sm" id="btnSearchView" style="width:220px; height: 220px;">		
+				<c:if test="${res!=0 }">
+				<button type="button" class="btn btn-default btn-sm" id="btnSearchView" style="width:220px; height: 220px;">		
 				<strong>${i.fshlcNm }</strong>
 				<div>${i.kdfsh }</div>
 				<div>${i.useCharge }</div>
 				<div id="name">${i.insttNm }</div>
 				<br>
 				</button>
+				</c:if>
 				</a>
 	
 			</div>
 		</c:forEach>
 
 </div>
+<c:if test="${res==0 }"><div style="text-align:center" >조회된 결과값이 없습니다</div></c:if>
 </div>
 
 

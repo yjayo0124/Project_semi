@@ -29,6 +29,7 @@
 	margin-top: 20px ;
 }
 #hr {
+	width: 1000px ;
 	margin-left: 450px ;
 	margin-right: 450px ; 
 	margin-top: 0px ;
@@ -56,17 +57,12 @@
 }
 #btnList {
 	float: right ;
-	margin-right: 460px ;
+	margin-right: 500px ;
 }
 #next , #back {
-	margin-left: 600px ;
+	margin-left: 500px ;
 }
-#hr2 {
-	margin-left: 450px ;
-	margin-right: 450px ; 
-	margin-top: 3px ;
-	margin-bottom: 3px ;
-}
+
 a:link , a:visited , a:active , a:hover {
 	color: black ;
 }
@@ -74,6 +70,13 @@ a:link , a:visited , a:active , a:hover {
 #content {
 	width: 1600px ;
 }
+#hr2 {
+	width: 950px ;
+	margin-left : 480px ;
+	margin-top : 3px ;
+	margin-bottom: 3px ;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -121,8 +124,11 @@ $(document).ready(function() {
 	border: solid 2px;
 	border-radius: 1px;
 }
+#text_content {
+	width: 900px ;
+	margin-left : 500px ;
 
-
+}
 </style>
 <br>
 <div id = "title">
@@ -133,8 +139,9 @@ $(document).ready(function() {
 <button id = "btnUpdate">수정</button>
 </c:if>
 </div><div style="clear: both;"></div>
+<div style="width: 1000px ;">
 <hr id = "hr"><br>
-
+</div>
 <div id = "content">
 <div id = "img">
 	<img src="/fishupload/${ fishInfo.fish_storedname }" alt="Fishing" width="470px;" height="410px;">
@@ -148,43 +155,43 @@ $(document).ready(function() {
 	</div><div style="clear: both;"></div>
 </div>
 <br>
-<div style="text-align: center;">
-${ fishInfo.fish_content }
+<div id = text_content>
+
+<pre style="white-space: pre-wrap ;">${ fishInfo.fish_content }</pre>
+
 </div>
-<div>
+<div style="width: 1900px ;">
 <button id = "btnList">목록</button>
 </div><div style="clear: both;"></div>
 <br>
 <div id = "page">
 
-
-<hr id = "hr2">
+<div><hr id = hr2 ></div>
 <div id = "next">
 <c:if test="${prev_next.next eq 0 }">
 	다음글없음
 </c:if>
 <c:if test="${prev_next.next ne 0 }">
-	<a href="/board/fish/info/detail?fish_no=${prev_next.next }">
+	다음글 : <a href="/board/fish/info/detail?fish_no=${prev_next.next }">
 	${prev_next_name.next }
 	</a>
 </c:if>
 </div>
 
+<div><hr id = hr2 ></div>
 
-<hr id = "hr2">
 <div id = "back">
 <c:if test="${prev_next.prev eq 0 }">
 	이전글없음
 </c:if>
 <c:if test="${prev_next.prev ne 0 }">
-<a href="/board/fish/info/detail?fish_no=${prev_next.prev}">
+이전글 : <a href="/board/fish/info/detail?fish_no=${prev_next.prev}">
 	${prev_next_name.prev }
 	</a>
 </c:if>
 </div>
-<hr id = "hr2">
+<div><hr id = hr2 ></div>
+
 </div>
-
-
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

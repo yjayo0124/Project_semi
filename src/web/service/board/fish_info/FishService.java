@@ -58,4 +58,5 @@ public interface FishService {
 	
 	public HashMap getPrevNextName(FishInfo fishInfo);
 	
+	public int getBoardNo();
 }

@@ -27,7 +27,10 @@ public class ClubDetailController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
+		HttpSession session = req.getSession();
+		String member_id = (String)session.getAttribute("member_id");
+		
 		Club club = new Club();
 
 		String clubno = req.getParameter("club_no");
@@ -36,6 +39,17 @@ public class ClubDetailController extends HttpServlet {
 			club_no = Integer.parseInt(clubno);
 		}
 		club.setClub_no(club_no);
+		
+		boolean check = clubDao.checkIdByClub(member_id, club_no);
+		req.setAttribute("check", check);
+		
+		boolean checkjoin = clubDao.checkjoin(member_id);
+		req.setAttribute("checkjoin", checkjoin);
+		
+		boolean checkleave = clubDao.checkleave(member_id, club_no);
+		req.setAttribute("checkleave", checkleave);
+		
+		
 
 		clubDao.selectClubByClubno(club);
 
@@ -75,8 +89,6 @@ public class ClubDetailController extends HttpServlet {
 		clubBoard.setClub_board_writer(club_board_writer);
 		clubBoard.setClub_board_title(club_board_title);
 		clubBoard.setClub_board_content(club_board_content);
-		
-		System.out.println(clubBoard.getClub_board_title());
 		
 		clubDao.insert(clubBoard);
 

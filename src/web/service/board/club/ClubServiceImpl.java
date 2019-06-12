@@ -22,7 +22,7 @@ public class ClubServiceImpl implements ClubService {
 	public ClubPaging getCurpage(HttpServletRequest req) {
 		
 		String param = req.getParameter("club_tag");
-		int club_tag = 0;
+		int club_tag = 1;
 		if(param!=null && !"".equals(param)) {
 			club_tag = Integer.parseInt(param);
 		}

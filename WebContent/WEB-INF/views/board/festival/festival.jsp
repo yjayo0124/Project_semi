@@ -36,6 +36,11 @@ $(document).ready(function() {
 </script>
 
 <style type="text/css">
+a:link { text-decoration:none; color:black;}
+a:visited { text-decoration:none;color:black;}
+a:active {text-decoration:none; color:black; }
+a:hover { text-decoration:none; color:black;}
+
 .main {
 	margin: 0 auto;
     padding: 8px 10px 0;
@@ -198,9 +203,11 @@ a {
 		<br>
 </c:forEach>
 		<br><br>
+		<c:if test="${member_group == 1 }">
 		<div style="padding-right:50px;">
 		<button style="float: right;" id="btnWrite">글쓰기</button>
 		</div>
+		</c:if>
 	</div>
 <c:import url="/WEB-INF/views/layout/festival/festival_paging.jsp" />
 </body>

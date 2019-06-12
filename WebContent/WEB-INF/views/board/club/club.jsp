@@ -65,6 +65,11 @@
 
 
 <style type="text/css">
+a:link { text-decoration:none; color:black;}
+a:visited { text-decoration:none;color:black;}
+a:active {text-decoration:none; color:black; }
+a:hover { text-decoration:none; color:black;}
+
 .main {
 	margin: 0 auto;
 	padding: 8px 10px 0;
@@ -253,10 +258,6 @@
 	border: solid 2px;
 	border-radius: 1px;
 }
-a {
-	color: black;
-	text-decoration: none;
-}
 </style>
 
 </head>
@@ -393,15 +394,13 @@ a {
 							<div class="lately_detail">${i.membercnt}명 가입 중</div>
 						</div>
 					</div>
-					</c:forEach>
-					
-					
-						
+					</c:forEach>		
 				</div>
-				
+				<c:if test="${check eq true || member_group == 1 }">
 				<div style="float:left; width:1200px; height:50px; text-align: right; padding-right:50px;">
 					<button id="btncreate">등록하기</button>
 				</div>
+				</c:if>
 				<div class="paging_bar">
 				<c:import url="/WEB-INF/views/layout/club/club_paging.jsp" />
 				</div>

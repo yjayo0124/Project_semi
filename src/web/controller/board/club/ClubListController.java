@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import web.dao.club.ClubDao;
 import web.dao.club.ClubDaoImpl;
@@ -23,6 +24,11 @@ public class ClubListController extends HttpServlet {
 	private ClubDao clubDao = new ClubDaoImpl();
        
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		HttpSession session = req.getSession();
+		String member_id = (String)session.getAttribute("member_id");
+		boolean check = clubDao.checkClub(member_id);
+		req.setAttribute("check", check);
 		
 		ClubPaging paging = clubService.getCurpage(req);
 		req.setAttribute("paging", paging);

@@ -263,4 +263,211 @@ public class ClubDaoImpl implements ClubDao {
 		}
 	}
 
+	@Override
+	public boolean checkClub(String member_id) {
+		boolean check = false;
+
+		String sql ="";
+		sql += "SELECT club_no";
+		sql += " FROM member_detail";
+		sql += " WHERE  member_id = ? ";
+		
+
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setString(1, member_id);
+			rs= ps.executeQuery();
+
+			while(rs.next()) {
+				if(rs.getString("club_no") == null) {
+					check = true;
+				} else {
+					check = false;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return check;
+	}
+
+	@Override
+	public boolean checkIdByClub(String member_id, int club_no) {
+		int count = 0;
+		boolean check = false;
+
+		String sql ="";
+		sql += "SELECT count(*)";
+		sql += " FROM club_member";
+		sql += " WHERE  club_no = ? AND member_id = ? ";
+		
+
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1, club_no);
+			ps.setString(2, member_id);
+			rs= ps.executeQuery();
+
+			while(rs.next()) {
+				count = rs.getInt(1);
+				if(count != 0) {
+					check = true;
+				} else {
+					check = false;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return check;
+	}
+
+	@Override
+	public void join(String member_id, int club_no) {
+		
+		String sql ="";
+		sql+="INSERT INTO club_member(club_member_no, club_no, member_id)";
+		sql+=" VALUES (club_member_seq.nextval, ?, ?)";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, club_no);
+			ps.setString(2, member_id);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateMember(String member_id, int club_no) {
+		
+		String sql ="";
+		sql+="update member_detail set club_no = ?";
+		sql+=" WHERE member_id = ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, club_no);
+			ps.setString(2, member_id);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateNullMember(String member_id) {
+		
+		String sql ="";
+		sql+="update member_detail set club_no = ?";
+		sql+=" WHERE member_id = ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, 0);
+			ps.setString(2, member_id);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	@Override
+	public void delete(String member_id) {
+		
+		String sql ="";
+		sql+="DELETE club_member WHERE member_id = ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member_id);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public boolean checkjoin(String member_id) {
+		int count = 0;
+		boolean check = false;
+
+		String sql ="";
+		sql += "SELECT club_no";
+		sql += " FROM member_detail";
+		sql += " WHERE member_id = ? ";
+		
+
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setString(1, member_id);
+			rs= ps.executeQuery();
+
+			while(rs.next()) {
+				count = rs.getInt(1);
+				if(count == 0) {
+					check = true;
+				} else {
+					check = false;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return check;
+	}
+
+	@Override
+	public boolean checkleave(String member_id, int club_no) {
+		int count = 0;
+		boolean check = false;
+
+		String sql ="";
+		sql += "SELECT club_no";
+		sql += " FROM club_member";
+		sql += " WHERE member_id = ? ";
+		
+
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setString(1, member_id);
+			rs= ps.executeQuery();
+
+			while(rs.next()) {
+				count = rs.getInt(1);
+				if(count == club_no) {
+					check = true;
+				} else {
+					check = false;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return check;
+	}
+	
 }

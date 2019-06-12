@@ -259,7 +259,7 @@ public class BoastDaoImpl implements BoastDao{
 			ps.setString(4, board.getBoast_board_writer());
 			ps.setInt(5, board.getBoast_board_comment_no());
 			ps.setInt(6, board.getBoast_board_file_idx());
-			ps.setString(7, board.getBoast_board_writer());
+			ps.setString(7, board.getMember_id());
 
 
 			ps.executeUpdate();

@@ -187,7 +187,8 @@ public class BuyServiceImpl implements BuyService{
 					}
 					
 					//작성자id 처리
-					buyboard.setWriter((String) req.getSession().getAttribute("member_id"));
+					buyboard.setWriter((String) req.getSession().getAttribute("member_nick"));
+//					buyboard.setMemberid((String) req.getSession().getAttribute("member_nick"));
 					
 				} else {
 					UUID uuid = UUID.randomUUID();

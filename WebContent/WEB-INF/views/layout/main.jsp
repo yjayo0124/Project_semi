@@ -91,7 +91,7 @@
 	<br>
 	<br>
 	<br>
-	<div id="search" style="margin: auto;"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
+	<div id="search" style="width: 800px; margin: auto;"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
 	<br>
 	<br>
 	<br>

@@ -187,7 +187,7 @@ function deleteComment(commentNo) {
 <h5 class="pull-left">작성일 : ${viewBoard.writtendate }</h5>
 <div class="text-right">	
 	<button id="btnList" >목록</button>
-	<c:if test="${member_nick eq viewBoard.writer }">
+	<c:if test="${member_id eq viewBoard.writer }">
 	<button id="btnUpdate" >수정</button>
 	<button id="btnDelete" >삭제</button>
 	</c:if>

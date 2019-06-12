@@ -16,6 +16,63 @@ $(document).ready(function(){
 
 })
 
+function onChange(){
+	var gubun = document.getElementById("insttNm1").options[document.getElementById("insttNm1").selectedIndex].value;
+	var img = "";
+
+	if( gubun == "서울특별시") {
+		img = "<img src='/imgs/map/seoul.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "인천광역시") {
+		img = "<img src='/imgs/map/incheon.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "대전광역시") {
+		img = "<img src='/imgs/map/daejun.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}
+	else if(gubun == "광주광역시") {
+		img = "<img src='/imgs/map/gwangju.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "대구광역시") {
+		img = "<img src='/imgs/map/daegu.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}
+	else if(gubun == "울산광역시") {
+		img = "<img src='/imgs/map/ulsan.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "부산광역시") {
+		img = "<img src='/imgs/map/busan.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "경기도") {
+		img = "<img src='/imgs/map/gyeonggi.png'>"
+			document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "강원도") {
+		img = "<img src='/imgs/map/gangwon.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "충청북도") {
+		img = "<img src='/imgs/map/chungbuk.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "충청남도") {
+		img = "<img src='/imgs/map/chungnam.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "전라북도") {
+		img = "<img src='/imgs/map/junbuk.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "전라남도") {
+		img = "<img src='/imgs/map/junnam.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "경상북도") {
+		img = "<img src='/imgs/map/gyeongbuk.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "경상남도") {
+		img = "<img src='/imgs/map/gyeongnam.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}else if(gubun == "제주특별자치도") {
+		img = "<img src='/imgs/map/jeju.png'>"
+		document.getElementById("map-img").innerHTML = img;
+	}
+
+}
 
 	
 function gugunSelect(e){
@@ -83,14 +140,19 @@ function gugunSelect(e){
 
 .map_box{
 
-max-width: 300px;
+/* max-width: 300px; */
 max-heigh: 100%;
 overflow: hidden;
 
 }
 
 
+.map-img{
 
+overflow : hidden;
+
+
+}
 
 
 #btnSearchSubmit{
@@ -109,26 +171,24 @@ overflow: hidden;
 
 </style>
 
-<div class="row">
 <div class="col-md-12 text-center" style="padding: 20px;" >
 <h2>낚시터 정보 검색</h2>
 </div>
 
-<div>
+<div class="row">
 
 <div class="col-md-3" style="border: 1px solid #ccc;">
-	<div class="map_box" style="height: 200px; width: 250px; background-color: #fff ">
-		<img src="/imgs/map.png" style=" height: 100%; overflow: hidden;">		
+	<div class="map_box" style="height: 200px; width: 210px; background-color: #fff ">
+		<span id="map-img" class="map-img" style="margin-left : -15px;"><img  src="/imgs/map/map3.png"></span>	
 	</div>
 </div>
-
-<div class="col-md-9" id="search" style="border: 1px solid #ccc; background-color: #fff;  padding: 35px; height: 238px;">
+<div class="col-md-9" id="search" style="border: 1px solid #ccc; background-color: #fff;  padding: 35px; height: 202px;">
 <form action="/board/search" method="POST" class="form-horizontal">	
 	<div class="form-group">
 		<label class="form-label col-md-2" for="insttNm1"> 시/도</label>
 		<div class="col-md-10">
-		<select class="fsearch_select" name="insttNm1" id="insttNm1" onchange="gugunSelect(this)">
-			<option value="">시/도 선택</option>
+		<select class="fsearch_select" name="insttNm1" id="insttNm1" onchange="gugunSelect(this); onChange();">
+			<option value="X">시/도 선택</option>
 			<option value="서울특별시">서울</option>
 			<option value="인천광역시">인천</option>
 			<option value="대전광역시">대전</option>
@@ -172,18 +232,12 @@ overflow: hidden;
 		<div class="col-md-10">
 		<input type="text" id="fshlcNm" name="fshlcNm" class="search_input" value=""></div>
 	</div>
+	<div style=" text-align: right;">
+	<button id="btnSearchSubmit">검색하기</button>
+	</div>
 </form>
 
-<div style=" text-align: right;">
-<button id="btnSearchSubmit">검색하기</button>
-</div>
 
 </div>
 </div>
 
-
-
-
-
-
-</div> <!-- row  -->

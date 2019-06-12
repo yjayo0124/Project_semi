@@ -132,7 +132,6 @@ public class BoastServiceImpl implements BoastService{
 					
 					board.setBoast_board_writer((String) req.getSession().getAttribute("member_nick"));
 					board.setMember_id((String) req.getSession().getAttribute("member_id"));
-					
 				} else {
 					UUID uuid = UUID.randomUUID();
 					//System.out.println(uuid);

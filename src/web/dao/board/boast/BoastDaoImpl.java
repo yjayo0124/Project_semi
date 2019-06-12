@@ -30,28 +30,34 @@ public class BoastDaoImpl implements BoastDao{
 
 		
 		sql += "SELECT * FROM (";
-		sql += " 	SELECT rownum rnum, B.* FROM (";
+		sql += "  SELECT rownum rnum, D.* FROM (";
+		sql += " 	SELECT rownum lnum, B.* FROM (";
 		sql += " 	 SELECT boast_board_no, boast_board_title, boast_board_content, boast_board_writer, ";
 		sql += "     boast_board_hit, boast_board_written_date, boast_board_comment_no, boast_board_file_idx, member_id ";
 		sql += " 	 FROM Boast_Board	";
 		sql	+= "     WHERE boast_board_title LIKE '%'||?||'%' ";
-		sql	+= "     ORDER BY boast_board_no DESC";
+		sql	+= "     ORDER BY boast_board_no";
 		sql += " 	) B";
-		sql += " 	ORDER BY rnum";
+		sql += " 	ORDER BY lnum DESC";
+		sql += " ) D";
+		sql += " ORDER BY rnum";
 		sql += " ) ";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 		
 		} else if (paging.getSelect().equals("boast_board_content")) {
 			
 			sql += "SELECT * FROM (";
-			sql += " 	SELECT rownum rnum, B.* FROM (";
+			sql += "  SELECT rownum rnum, D.* FROM (";
+			sql += " 	SELECT rownum lnum, B.* FROM (";
 			sql += " 	 SELECT boast_board_no, boast_board_title, boast_board_content, boast_board_writer, ";
 			sql += "     boast_board_hit, boast_board_written_date, boast_board_comment_no, boast_board_file_idx, member_id ";
 			sql += " 	 FROM Boast_Board	";
 			sql	+= "     WHERE boast_board_content LIKE '%'||?||'%' ";
-			sql	+= "     ORDER BY boast_board_no DESC";
+			sql	+= "     ORDER BY boast_board_no";
 			sql += " 	) B";
-			sql += " 	ORDER BY rnum";
+			sql += " 	ORDER BY lnum DESC";
+			sql += " ) D";
+			sql += " ORDER BY rnum";
 			sql += " ) ";
 			sql += " WHERE rnum BETWEEN ? AND ?";
 
@@ -70,6 +76,7 @@ public class BoastDaoImpl implements BoastDao{
 			while(rs.next()) {
 				BoastBoard board = new BoastBoard();
 				
+				board.setLnum(rs.getInt("lnum"));
 				board.setBoast_board_no(rs.getInt("boast_board_no"));
 				board.setBoast_board_title( rs.getString("boast_board_title") );
 				board.setBoast_board_content( rs.getString("boast_board_content") );

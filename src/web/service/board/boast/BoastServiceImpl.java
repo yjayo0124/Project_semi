@@ -168,8 +168,10 @@ public class BoastServiceImpl implements BoastService{
 			
 			if(board.getBoast_board_title()==null ||"".equals(board.getBoast_board_title())) {
 				board.setBoast_board_title("(제목없음)");
-				
-				board.setBoast_board_writer((String) req.getSession().getAttribute("member_id"));
+
+				board.setMember_id((String) req.getSession().getAttribute("member_id"));
+				board.setBoast_board_writer((String) req.getSession().getAttribute("Boast_board_writer"));				
+
 			}
 			
 			boastDao.insert(board);
@@ -257,8 +259,8 @@ public class BoastServiceImpl implements BoastService{
 						if( "boast_board_content".equals( item.getFieldName() ) ) {
 							board.setBoast_board_content( item.getString("utf-8") );
 						}
-						
-						board.setBoast_board_writer((String) req.getSession().getAttribute("boast_board_writer"));
+						board.setMember_id((String) req.getSession().getAttribute("member_id"));
+						board.setBoast_board_writer((String) req.getSession().getAttribute("Boast_board_writer"));
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
 					}

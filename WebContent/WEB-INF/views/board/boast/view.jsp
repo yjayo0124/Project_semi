@@ -155,6 +155,15 @@ border-radius: 1px;
 	border: solid 2px;
 	border-radius: 1px;
 }
+.sumnail{
+	
+	
+	margin : 50px;
+	margin-bottom : 15px;
+	width: 40%;
+	float : left;
+	position : relative; 
+}
 </style>
 
 <h3 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -187,6 +196,9 @@ border-radius: 1px;
 
 <div class = "notice">
 ${viewBoard.boast_board_content }<br>
+</div>
+<div class="sumnail" >
+<img src="/upload/${boardFile.boast_board_stored_name}" alt="이미지없음" width="350px" height="350px"></img>
 </div>
 <%-- <img src="/upload/${boardFile.boast_board_stored_name}" alt="첨부파일없음" width="350px" height="350px"></img> --%>
 

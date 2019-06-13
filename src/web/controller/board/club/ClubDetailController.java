@@ -50,6 +50,7 @@ public class ClubDetailController extends HttpServlet {
 		req.setAttribute("checkleave", checkleave);
 		
 		
+		
 
 		clubDao.selectClubByClubno(club);
 
@@ -68,30 +69,8 @@ public class ClubDetailController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		//세션 얻어 오기
-		HttpSession session = req.getSession();
-
-		String clubno = req.getParameter("club_no");
-		int club_no = 0;
-		if(clubno!= null && !"".equals(clubno)) {
-			club_no = Integer.parseInt(clubno);
-		}
-
-		String member_id = (String)session.getAttribute("member_id");
-		String club_board_writer = (String)session.getAttribute("member_nick");
-		String club_board_title = req.getParameter("title");
-		String club_board_content = req.getParameter("content");
-		
-		ClubBoard clubBoard = new ClubBoard();
-		clubBoard.setClub_no(club_no);
-		clubBoard.setMember_id(member_id);
-		clubBoard.setClub_board_writer(club_board_writer);
-		clubBoard.setClub_board_title(club_board_title);
-		clubBoard.setClub_board_content(club_board_content);
-		
-		clubDao.insert(clubBoard);
-
+			
+		int club_no = clubService.write(req);
 
 
 		resp.sendRedirect("/board/club/detail?club_no="+club_no);

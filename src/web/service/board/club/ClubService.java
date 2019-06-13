@@ -13,5 +13,7 @@ public interface ClubService {
 	public ClubPaging getCurpage(HttpServletRequest req);
 	
 	public ClubPaging getBoardCurpage(HttpServletRequest req, int club_no);
+	
+	public int write(HttpServletRequest req);
 
 }

@@ -13,4 +13,6 @@ public interface ClubCommentDao {
 	
 	public void delete (ClubComment clubComment);
 	
+	public void deleteBoard(int club_board_no);
+	
 }

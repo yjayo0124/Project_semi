@@ -433,13 +433,14 @@ section {
 }
 
 .board_content p {
+	width: 456px;
 	font-size: 14px;
 	line-height: 1.43;
 }
 
 .board_content img {
-	width: 494px;
-	height: 246px;
+	max-width: 456px;
+	height:auto;
 	text-align: center;
 	border: 1px solid rgba(0, 0, 0, .05);
 	border-radius: 2px;
@@ -476,7 +477,15 @@ section {
 }
 
 .board_title {
-	height: 40px;
+	float:left;
+	width : 80%;
+	height: 30px;
+}
+.delete_btn {
+	float:left;
+	text-align:right;
+	width: 20%
+	
 }
 
 .paging_bar {
@@ -585,6 +594,18 @@ a:link    { text-decoration:none; color:black }
 a:visited { text-decoration:none; color:black }
 a:hover   { text-decoration:none; color:black }
 a:active  { text-decoration:none; color:black }
+
+.board_write_title {
+	padding:10px;
+	margin-top:20px;
+	margin-bottom:3px;
+	width: 100%;
+	background-color: #f5f5f5;
+	height:50px; border: 1px solid;
+	border-color: #bbb;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
 </style>
 
 
@@ -602,7 +623,7 @@ a:active  { text-decoration:none; color:black }
 						<span><strong>${club.club_title }</strong></span>
 					</div>
 					<div class="club_info">
-						<div class="club_membercnt">멤버 : ${club.membercnt }명</div>
+						<div class="club_membercnt" id="membercnt">멤버 : ${club.membercnt }명</div>
 						<div class="club_leader">리더 : ${club.member_id }</div>
 					</div>
 					
@@ -641,10 +662,19 @@ a:active  { text-decoration:none; color:black }
 				<c:forEach items="${list}" var="i" varStatus="status">
 					<div class="board_list">
 						<div class="board_info">
+							<div style="width:100%; height: 30px;">
 							<div class="board_title">
 								<strong>${i.club_board_title }</strong>
 							</div>
+							<c:if test="${member_nick == i.club_board_writer || member_group == 1}">
+							<div class="delete_btn">
+								<a href="/board/club/boardDelete?club_board_no=${i.club_board_no }&club_no=${club.club_no}">삭제</a>
+							</div>
+							</c:if>
+							</div>
+							<div style="width: 100%; height: 20px;">
 							<strong>${i.club_board_writer }</strong><br>
+							</div>
 							<div style="padding-top: 3px; border-bottom: 1px solid;">
 								<label>작성일 : ${i.club_board_writedate }</label>
 							</div>
@@ -713,11 +743,11 @@ a:active  { text-decoration:none; color:black }
 
 				<c:if test="${check eq true || member_group == 1 }">
 				<div class="board_write">
-					<form action="/board/club/detail" method="post" enctype="multipart">
-						<div class="board_title">
-							제목: <input type="text" name="title">
+					<form action="/board/club/detail" method="post" enctype="multipart/form-data">
+						<div class="board_write_title">
+							제목: <input type="text" name="title" style="width:480px;">
 						</div>
-						<textarea name="content" id="summernote" value=""></textarea>
+						<textarea name="content" id="summernote"></textarea>
 						<div class="buttons">
 							<input type="hidden" name="club_no" value="${club.club_no }">
 							<input type="submit" value="작성하기">

@@ -40,4 +40,12 @@ public interface ClubDao {
 	public boolean checkjoin(String member_id);
 	
 	public boolean checkleave(String member_id, int club_no);
+	
+	public void delete(ClubBoard clubBoard);
+	
+	public void membercntIncrese(int club_no);
+	
+	public void membercntReduced(int club_no);
+	
+	public int SelectmembercntByclubno(int club_no);
 }

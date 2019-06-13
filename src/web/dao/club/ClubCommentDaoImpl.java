@@ -85,7 +85,6 @@ public class ClubCommentDaoImpl implements ClubCommentDao{
 		sql += " WHERE club_comment_no = ?";
 		try {
 			ps= conn.prepareStatement(sql);
-			System.out.println(clubComment.getClub_comment_no());
 			ps.setInt(1, clubComment.getClub_comment_no());
 			ps.executeUpdate();
 
@@ -94,6 +93,22 @@ public class ClubCommentDaoImpl implements ClubCommentDao{
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void deleteBoard(int club_board_no) {
+		String sql ="";
+		sql += "DELETE FROM club_comment";
+		sql += " WHERE club_board_no = ?";
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1, club_board_no);
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

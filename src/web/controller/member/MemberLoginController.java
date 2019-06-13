@@ -1,6 +1,8 @@
 package web.controller.member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import web.dto.MemberDetail;
 import web.service.member.MemberService;
@@ -27,8 +31,11 @@ public class MemberLoginController extends HttpServlet {
 	
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		PrintWriter pw =resp.getWriter();
 		
 		//세션 얻어 오기
 		HttpSession session = req.getSession();
@@ -51,10 +58,17 @@ public class MemberLoginController extends HttpServlet {
 			session.setAttribute("member_phone", member.getMember_phone());
 			session.setAttribute("member_code", member.getMember_code());
 			session.setAttribute("member_email", member.getMember_email());
-			
 			session.setAttribute("member_group", member.getMember_group());
-		}
+			
+			JSONObject obj = new JSONObject();
+			obj.put("login", login);
+			
+			pw.println(obj);
+		}else {
 		
-		resp.sendRedirect("/main");
+		JSONObject obj = new JSONObject();
+		obj.put("login", login);
+		pw.println(obj);
 	}
+}
 }

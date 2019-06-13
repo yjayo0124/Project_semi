@@ -22,6 +22,7 @@ public class ClubLeaveController extends HttpServlet {
     
 	private ClubDao clubDao = new ClubDaoImpl();
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -37,10 +38,13 @@ public class ClubLeaveController extends HttpServlet {
 			club_no = Integer.parseInt(clubno);
 		}
 		
+		clubDao.membercntReduced(club_no);
+		int membercnt = clubDao.SelectmembercntByclubno(club_no);
 		clubDao.updateNullMember(member_id);
 		clubDao.delete(member_id);
 		
 		JSONObject obj = new JSONObject();
+		obj.put("membercnt", membercnt);
 		pw.println(obj);
 		
 	}

@@ -469,5 +469,85 @@ public class ClubDaoImpl implements ClubDao {
 
 		return check;
 	}
+
+	@Override
+	public void delete(ClubBoard clubBoard) {
+		
+		String sql ="";
+		sql += "DELETE FROM club_board";
+		sql += " WHERE club_board_no = ?";
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1, clubBoard.getClub_board_no());
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void membercntIncrese(int club_no) {
+		String sql ="";
+		sql+="update club set membercnt = membercnt + 1";
+		sql+=" WHERE club_no = ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, club_no);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void membercntReduced(int club_no) {
+		
+		String sql ="";
+		sql+="update club set membercnt = membercnt - 1";
+		sql+=" WHERE club_no = ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, club_no);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public int SelectmembercntByclubno(int club_no) {
+		int membercnt = 0;
+		
+		String sql ="";
+		sql += "SELECT membercnt";
+		sql += " FROM club";
+		sql += " WHERE club_no = ?";
+		
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1,club_no);
+			rs= ps.executeQuery();
+
+			while(rs.next()) {
+				membercnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return membercnt;
+	}
 	
 }

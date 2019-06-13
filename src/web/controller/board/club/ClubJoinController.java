@@ -22,6 +22,7 @@ public class ClubJoinController extends HttpServlet {
 	private ClubDao clubDao = new ClubDaoImpl();
 
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -35,11 +36,13 @@ public class ClubJoinController extends HttpServlet {
 		if(clubno!= null && !"".equals(clubno)) {
 			club_no = Integer.parseInt(clubno);
 		}
-		
+		clubDao.membercntIncrese(club_no);
+		int membercnt = clubDao.SelectmembercntByclubno(club_no);
 		clubDao.updateMember(member_id, club_no);
 		clubDao.join(member_id, club_no);
 		
 		JSONObject obj = new JSONObject();
+		obj.put("membercnt", membercnt);
 		pw.println(obj);
 		
 	}

@@ -283,7 +283,7 @@ padding: 15px;
 		</c:forEach>
 
 </div>
-<c:if test="${res==0 }"><div style="text-align:center" >조회된 결과값이 없습니다</div></c:if>
+<c:if test="${res==0 }"><div style="text-align:center" ><strong>조회된 결과값이 없습니다</strong></div></c:if>
 </div>
 
 

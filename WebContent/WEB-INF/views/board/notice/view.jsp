@@ -41,6 +41,10 @@ $(document).ready(function(){
 
 <style type="text/css">
 
+.notice {
+	font-size : 18px;
+}
+
 .btnupdown {
 	float:left;
 	padding-left:20px;
@@ -60,14 +64,14 @@ $(document).ready(function(){
 	padding-left : 200px;
 	padding-top: 12px;
 }
-#btnlist {
-	width: 80px;
-	height: 40px;
-	background: #474e60;
-	font-size: 13px;
-	color: #fff;
-	border: solid 2px;
-	border-radius: 1px;
+#btnList {
+width: 80px;
+height: 40px;
+background: #474e60;
+font-size: 13px;
+color: #fff;
+border: solid 2px;
+border-radius: 1px;
 }
 #btnUpdate{
 	width: 80px;
@@ -89,36 +93,42 @@ $(document).ready(function(){
 }
 </style>
 
-<div>
-<div class="container" style="margin-top: 50px; margin-bottom: 350px;">
-<table class="table" style="border: 1px solid #ccc;">
-	<tr>
-		<td class="info">글번호</td><td colspan="3"><%=notice.getNotice_no() %></td>
- 	</tr>
- 	<tr>
-		<td class="info">제목</td><td colspan="3"><%=notice.getNotice_title() %></td>
-	</tr>
-	<tr>
-		<td class="info">조회수</td><td><%=notice.getNotice_hit() %></td>
-	</tr>
-	<tr>
-		<td class="info">작성일</td><td colspan="3"><%=notice.getNotice_written_date() %></td>
-	</tr>
-	<tr>
-		<td colspan="4"><%=notice.getNotice_content() %></td>
-	</tr>
-</table>
 
-<br>
-<div class="text-center">	
+<div class="container" style="margin-top: 50px; margin-bottom: 350px;">
+
+<h4 class="pull-left">공지사항</h4>
+<div class="clearfix"></div>
+<hr>
+
+<div class="total">
+	<h1 class="pull-left"><%=notice.getNotice_title() %></h1><br><br><br><br>
+	<h5 class="pull-left">작성일 : <%=notice.getNotice_written_date() %></h5>	
+	<h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회수<%=notice.getNotice_hit() %></h5>
+	<h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 글번호 : <%=notice.getNotice_no() %></h5>
+	
+	<div class="text-right">
 	<button id="btnList">목록</button>
+	
 	<c:if test="${writer_check eq true }">
 		<button id="btnUpdate" >수정</button>
 		<button id="btnDelete" class="btn btn-danger">삭제</button>
 	</c:if>
+	</div>
+	<hr>
+	
+	<div class="notice">
+	<%=notice.getNotice_content() %>
+	</div>
+
 </div>
 
 <br>
+
+
+<br>
+
+
+<hr>
 <div class="row" >
 	<div class="btnupdown col-md-0.5"><img src="/imgs/after.png" class="btnafter"></div>
 	<div class="listtext col-md-11.5"><a href="/board/notice/view?notice_no=${next.notice_no }">${next.notice_title}</a></div>
@@ -129,7 +139,6 @@ $(document).ready(function(){
 </div>
 </div>
 
-</div>
 
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

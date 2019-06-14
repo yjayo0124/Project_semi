@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
+
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.2.4.js"></script>
@@ -48,10 +49,22 @@
 	margin-right: 45px;
 }
 
-
-
+/* .show-on-scroll { visibility: hidden; }
+.show-on-scroll.shown { visibility: visible; }
+ */
 
 </style>
+
+<script type="text/javascript">
+
+/* $(window).scroll(function() {
+	  var $el = $('.show-on-scroll');
+	  
+	  if($(this).scrollTop() >= 800) $el.addClass('shown');
+	  else $el.removeClass('shown');
+	}); */
+
+</script>
 
 <!-- header -->
 <c:import url="/WEB-INF/views/layout/header.jsp" />
@@ -86,7 +99,7 @@
 <br>
 <br>
 
-<section class="mid" style="width: 1000px; margin: 0 auto;">
+<section class="mid show-on-scroll" style="width: 1000px; margin: 0 auto;">
 	<br>
 	<br>
 	<br>

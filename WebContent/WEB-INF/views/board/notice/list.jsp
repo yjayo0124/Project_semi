@@ -97,6 +97,9 @@ table, th {
 <c:import url="/WEB-INF/views/board/notice/paging.jsp" />
 <br>
 <div class="form-inline text-center">
+<select class="form-control form-control-sm" name="select" id="select">
+	<option value="free_board_title" selected>제목</option>
+</select>
 	<input class="form-control" type="text" id="search" />
 	<button id="btnSearch" class="btn">검색</button>
 </div> 

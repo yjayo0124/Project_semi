@@ -79,7 +79,7 @@ border-radius: 1px;
 </c:if>
 
 <br><br>
-<table class="table table-striped table-hover table-condensed" style="margin-top: 20px;">
+<table class="table table-hover table-condensed" style="margin-top: 20px;">
 
 <thead  style="background: #337AB7; color: white;">
 	<tr>

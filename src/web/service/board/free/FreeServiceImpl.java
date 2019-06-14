@@ -200,10 +200,12 @@ public class FreeServiceImpl implements FreeService{
 			board.setFree_board_no(boardno);
 			
 			if(board.getFree_board_title()==null || "".equals(board.getFree_board_title())) {
-				board.setFree_board_title("(�젣紐⑹뾾�쓬)");
+				board.setFree_board_title("(제목없음)");
 
 				//�옉�꽦�옄id 泥섎━
-				board.setFree_board_writer((String) req.getSession().getAttribute("member_id"));
+				board.setFree_board_writer((String) req.getSession().getAttribute("member_nick"));
+				board.setMember_id((String) req.getSession().getAttribute("member_id"));
+
 			}
 
 			freeDao.insert(board);

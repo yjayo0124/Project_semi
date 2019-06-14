@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import web.dto.MemberDetail;
 import web.service.member.MemberService;
@@ -34,9 +35,16 @@ public class MemberDeleteController extends HttpServlet {
 		System.out.println(member.getMember_id());
 		memberService.deleteMemberByMemberid(member);
 
-
+		//세션 얻어오기
+		HttpSession session = req.getSession();
 		
-   		resp.sendRedirect("/main");
+		//세션 지우기
+		session.invalidate();
+		
+		//main으로 돌아가기
+		resp.sendRedirect("/main");
+		
+   		
    		
 		
 	}

@@ -104,7 +104,7 @@
 	box-sizing: border-box;
 		position:absolute;
 	top:700px;
-	left:730px;
+	left:890px;
 	height:57px;
 }
 
@@ -120,7 +120,7 @@
 	box-sizing: border-box;
 		position:absolute;
 	top:700px;
-	left:920px;
+	left:1060px;
 	height:57px;
 }
 
@@ -193,21 +193,25 @@
 
 <h3 style="margin-top:70px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-마이페이지</h3>
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;
+회원탈퇴</h3>
 <hr>
 
 <div class="next1" ><a href="/member/update?member_id=${member_id }">회원정보수정</a></div>
 <div class="next2" ><a href="/member/mypagedelete">회원탈퇴</a></div>
+<div class="next2" ><a href="/member/log?member_id=${member_id }">로그인기록</a></div>
 	
 	
-	
+<div id="deleteform">	
 <form action="/member/delete" method="post" class="form2">
 <input type="hidden" name="member_id" value=${member.member_id }>
 
 <div class="pass_check" style="text-align : center;">
 <br><br><br><br><br><br>
-<h3 id="title">회원탈퇴하시겠습니까?</h3>
+<h3 id="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원탈퇴하시겠습니까?</h3>
 
 	<button id="btnDelete" class="btn_type1" >
 		탈퇴
@@ -218,7 +222,7 @@
 
 	<button id="btnCancel" class="btn_type2">취소</button>
 
-
+</div>
 
 
 

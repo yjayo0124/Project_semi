@@ -25,7 +25,7 @@ public class BoastViewController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		System.out.println(22);
 		//게시글 번호 파싱
 		BoastBoard viewBoard = boardService.getBoardno(req);
 		

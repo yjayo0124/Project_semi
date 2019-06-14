@@ -100,7 +100,7 @@ public class FishUpdateController extends HttpServlet {
 		file.setFish_originname(mul.getOriginalFileName("upfile"));
 		file.setFish_storedname(mul.getFilesystemName("upfile"));
 
-		System.out.println("ooooooLLLL:::::::::::"+ file );
+		//System.out.println("ooooooLLLL:::::::::::"+ file );
 		fishFileDao.insert(file);
 		fishFileDao.deleteWithoutInsert(file);
 		req.setAttribute("file", file);

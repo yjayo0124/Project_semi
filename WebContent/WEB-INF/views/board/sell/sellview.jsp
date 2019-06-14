@@ -145,6 +145,13 @@ function deleteComment(commentNo) {
 	});
 }
 
+function button_event(){
+	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+	    document.form.submit();
+	}else{   //취소
+	    return;
+	}
+	}
 
 </script>
 
@@ -156,7 +163,7 @@ function deleteComment(commentNo) {
 	<button id="btnList">목록</button>
 	<c:if test="${member_id eq viewBoard.writer }">
 	<button id="btnUpdate">수정</button>
-	<button id="btnDelete">삭제</button>
+<input type="button" id = "btnDelete" value="삭제" onclick="button_event();">
 	</c:if>
 </div>
 <hr>

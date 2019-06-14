@@ -61,7 +61,7 @@ public class NoticeListController extends HttpServlet {
 		//---------------------------------����ڵ� üũ�ѵ� �������̸� 1/ �Ϲݻ�����̸� 0�� ���� req�� ����!!
 		
 		
-		//view����
+
 		req.getRequestDispatcher("/WEB-INF/views/board/notice/list.jsp").forward(req, resp);
 	
 	}

@@ -50,6 +50,11 @@
 </script>
 
 <style type="text/css">
+a:link { text-decoration:none; color:black;}
+a:visited { text-decoration:none;color:black;}
+a:active {text-decoration:none; color:black; }
+a:hover { text-decoration:none; color:black;}
+
 .main {
 	margin: 0 auto;
 	padding: 8px 10px 0;
@@ -181,14 +186,15 @@
 			<label>썸네일 이미지 : <input type="file" name="upfile"/></label><br><br>
 			<div class="content">
 				<div class="content_middle">
-					<textarea name="content" id="summernote" value=""></textarea>
+					<textarea name="content" id="summernote" ></textarea>
 				</div>
 			</div>
-			
+			<c:if test="${member_group == 1 }">
 			<div class="bottom_btn">
 			<input class="btn_write" type="submit" value="작성">
 			<button class="btn_cancel">취소</button>
 			</div>
+			</c:if>
 		</form>
 	</div>
 	<br><br><br>

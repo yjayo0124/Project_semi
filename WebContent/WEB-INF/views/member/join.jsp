@@ -192,7 +192,7 @@ var ch_phone=false;
 					}
 				})
 		$('#member_gender').blur(function() {
-			if ($('select[name=gender]').val() == '0') {
+			if ($('select[name=member_gender]').val() === "0") {
 
 				$('#genderMsg').show();
 				ch_gender=false;

@@ -11,7 +11,19 @@
 #map{
 	height: 300px;
 	/* width: 400px; */
+	
 }
+
+#btnBack {
+   width: 100px;
+   height: 40px;
+   background: #474e60;
+   font-size: 13px;
+   color: #fff;
+   border: solid 2px;
+   border-radius: 1px;
+}
+
 
 </style>
 <script type="text/javascript">
@@ -52,35 +64,35 @@ $(document).ready(function(){
 <div class="col-md-8">
 <table class="table" style="border: 0.5px solid #ccc;">
 	<tr>
-		<th class="success" style="width: 30%;">상호명</th>
+		<th  style="width: 30%; background-color: #dddfe6;">상호명</th>
 		<th style="width: 70%;">${res.fshlcNm }</th>
 	</tr>
 	<tr>
-		<th class="success" style="width: 30%;">도로명주소</th>
+		<th  style="width: 30%; background-color: #dddfe6;">도로명주소</th>
 		<th style="width: 70%;">${res.rdnmadr }</th>
 	</tr>
 	<tr>
-		<th class="success" style="width: 30%;">지번주소</th>
+		<th  style="width: 30%; background-color: #dddfe6;">지번주소</th>
 		<th style="width: 70%;">${res.lnmadr }</th>
 	</tr>
 	<tr>
-		<th class="success" style="width: 30%;">전화번호</th>
+		<th  style="width: 30%; background-color: #dddfe6;">전화번호</th>
 		<th style="width: 70%;">${res.fshlcPhoneNumber }</th>
 	</tr>
 	<tr>
-		<th class="success" style="width: 30%;">주요어종</th>
+		<th  style="width: 30%; background-color: #dddfe6;">주요어종</th>
 		<th style="width: 70%;">${res.kdfsh }</th>
 	</tr>
 	<tr>
-		<th class="success" style="width: 30%;">이용요금&nbsp;(원)</th>
+		<th  style="width: 30%; background-color: #dddfe6;">이용요금&nbsp;(원)</th>
 		<th style="width: 70%;">${res.useCharge }</th>
 	</tr>
 	<tr>
-		<th class="success" style="width: 30%;">편익시설현황</th>
+		<th style="width: 30%; background-color: #dddfe6;">편익시설현황</th>
 		<th style="width: 70%;">${res.cvntl }</th>
 	</tr>
 	<tr>
-		<th class="success" style="width: 30%;">주변관광</th>
+		<th style="width: 30%; background-color: #dddfe6;">주변관광</th>
 		<th style="width: 70%;">${res.cfrTrrsrt }</th>
 	</tr>	
 </table>

@@ -397,11 +397,11 @@ public class MemberDaoImpl implements MemberDao{
 	public int selectCntAll(String search) {
 
 		
-		String sql = " ";
-		sql += " SELECT count(*) FROM member_detail";
+		String sql = "";
+		sql += "SELECT count(*) FROM member_detail";
 		sql += " WHERE member_id LIKE '%'||?||'%'";
-		
-		int totalCount = 0; 
+		sql += " AND member_group=0";
+		int totalCount = 0;
 		
 		try {
 			ps = conn.prepareStatement(sql);

@@ -396,7 +396,7 @@ a:hover { text-decoration:none; color:black;}
 					</div>
 					</c:forEach>		
 				</div>
-				<c:if test="${check eq true || member_group == 1 }">
+				<c:if test="${check eq true && member_group == 0 }">
 				<div style="float:left; width:1200px; height:50px; text-align: right; padding-right:50px;">
 					<button id="btncreate">등록하기</button>
 				</div>

@@ -449,10 +449,11 @@ section {
 .board_writebtn {
 	width: 100%;
 	height: 50px;
-	padding-top: 5px;
+	padding-top: 25px;
 	text-align: center;
 	margin-bottom: 20px;
 	display: block;
+	border-top: 1px solid #f0f0f0;
 }
 
 .board_writebtn button {
@@ -769,33 +770,6 @@ a:active  { text-decoration:none; color:black }
 		</div>
 
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>

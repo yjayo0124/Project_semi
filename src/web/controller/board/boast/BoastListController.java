@@ -25,7 +25,7 @@ public class BoastListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		System.out.println(11);
 		BoastPaging paging = boardService.getCurPage(req);
 		
 		//MODEL로 Paging 객체 넣기
@@ -53,9 +53,9 @@ public class BoastListController extends HttpServlet {
 				BoastFile boardFile = boardService.viewFile(viewBoard);
 				req.setAttribute("boardFile", boardFile);
 				
-				BoastComment comment = new BoastComment() ;
-				List<BoastComment> commentList = boardService.getCommentList(viewBoard) ;
-				req.setAttribute( "commentList" , commentList ) ; 
+//				BoastComment comment = new BoastComment() ;
+//				List<BoastComment> commentList = boardService.getCommentList(viewBoard) ;
+//				req.setAttribute( "commentList" , commentList ) ; 
 				
 				
 		//회원에게만 버튼 보이도록 하는 값 res 

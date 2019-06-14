@@ -3,8 +3,6 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
-
 <script type="text/javascript">
 $(document).ready(function() {
 	//목록버튼 동작
@@ -22,38 +20,29 @@ $(document).ready(function() {
 		$(location).attr("href", "/board/boast/delete?boast_board_no=${viewBoard.boast_board_no }");
 
 	});
-	
-	
-	// 댓글 입력
-	$("#btnCommInsert").click(function() {
-
-		$form = $("<form>").attr({
-			action: "/boast/comment/insert",
-			method: "post"
-		}).append(
-			$("<input>").attr({
-				type:"hidden",
-				name:"boast_board_no",
-				value:"${viewBoard.boast_board_no }"
-			})
-		).append(
-			$("<input>").attr({
-				type:"hidden",
-				name:"member_nick",
-				value:"${sessionScope.member_nick }"
-			})
-		).append(
-			$("<textarea>")
-				.attr("name", "boast_content")
-				.css("display", "none")
-				.text($("#commentContent").val())
-		);
-		$(document.body).append($form);
-		$form.submit();
-		
-	});
 
 });
+
+//댓글 작성
+function insertComment(boast_board_no) {
+	
+	$.ajax({
+		type: "post"
+		, url: "/boast/comment/insert"
+		, dataType: "html"
+		, data: {
+			boast_board_no: ${viewBoard.boast_board_no } ,
+			boast_content: $("#comment_content").val()
+		}
+		, success: function(data){
+			$("#commentBody").html(data) ;
+		}
+		, error: function(e) {
+			console.log("error");
+			console.log(e);
+		}
+	});
+}
 
 	//댓글 삭제
 	function deleteComment(boast_board_comment_no) {
@@ -78,7 +67,16 @@ $(document).ready(function() {
 			}
 		});
 	}
+
 	
+	
+	function button_event(){
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+		    document.form.submit();
+		}else{   //취소
+		    return;
+		}
+		}
 
 </script>
 
@@ -189,7 +187,7 @@ border-radius: 1px;
 	<c:if test="${member_id eq viewBoard.member_id }">
 
 	<button id="btnUpdate">수정</button>
-	<button id="btnDelete">삭제</button>
+<input type="button" id = "btnDelete" value="삭제" onclick="button_event();">
 	</c:if>
 </div>
 <hr>
@@ -250,21 +248,22 @@ ${viewBoard.boast_board_content }<br>
  
 <!-- 댓글 리스트 -->
 <table class="table table-striped table-hover table-condensed "
-style=" width:1300px; margin-top:300px;">
+style=" width:1100px; margin-top:300px;">
 <thead>
 <tr>
-	<th style="width: 10%;"></th>
-	<th style="width: 50%;"></th>
-	<th style="width: 20%;"></th>
-	<th style="width: 5%;"></th>
+	<th style="width: 10%;">Num</th>
+	<th style="width: 50%;">Comment</th>
+	<th style="width: 15%;">ID</th>
+	<th style="width: 10%;">Date</th>
+	<th style="width: 5%">Delete</th>
 </tr>
 </thead>
 <tbody id="commentBody">
 <c:forEach items="${commentList }" var="comment">
 <tr data-commentno="${comment.boast_board_comment_no }">
 	<td>${comment.rnum }</td>
-	<td>${comment.member_id }</td><!-- 닉네임으로 해도 좋음 -->
-	<td>${comment.boast_content }</td>
+	<td>${comment.boast_content }</td><!-- 닉네임으로 해도 좋음 -->
+	<td>${comment.member_id }</td>
 	<td>${comment.boast_comment_written_date }</td>
 	<td>     <!-- comment 객체의 member_id에 member_nick을 insert했기 때문에 이렇게 비교 -->
 		<c:if test="${sessionScope.member_nick eq comment.member_id }">
@@ -290,9 +289,9 @@ style=" width:1300px; margin-top:300px;">
 <c:if test="${login }">
 <!-- 댓글 입력 -->
 <div class="form-inline text-center">
-	<input type="text" size="10" class="form-control" id="commentWriter" value="${member_nick }" readonly="readonly"/>
-	<textarea rows="2" cols="60" class="form-control" id="commentContent" placeholder="내용을 입력해 주세요"></textarea>
-	<button id="btnCommInsert" class="btn btn-default">입력</button>
+	<input type="text" size="10" class="form-control" name="member_id" id="member_id" value="${member_nick }" readonly="readonly"/>
+	<textarea rows="2" cols="60" class="form-control" name="comment_content" id="comment_content" placeholder="내용을 입력해 주세요"></textarea>
+	<input type="button" name="insertComment" id="insertComment" class="btn btn-default" onclick="insertComment();" value="작성">
 </div>	<!-- 댓글 입력 end -->
 </c:if>
  

@@ -95,6 +95,14 @@ $(document).ready(function() {
 	
 });
 
+function button_event(){
+	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+	    document.form.submit();
+	}else{   //취소
+	    return;
+	}
+	}
+
 </script>
 <style>
 #btnList {
@@ -135,7 +143,7 @@ $(document).ready(function() {
 <font id = "head">물고기 정보</font>
 <font id = "date">작성일 : ${ fishInfo.fish_written_date }</font>
 <c:if test="${res eq 1 }">
-<button id = "btnDelete">삭제</button>
+<input type="button" id = "btnDelete" value="삭제" onclick="button_event();">
 <button id = "btnUpdate">수정</button>
 </c:if>
 </div><div style="clear: both;"></div>

@@ -89,17 +89,15 @@ $(document).ready(function() {
 		$(location).attr("href", "/board/fish/info/update?fish_no=${fishInfo.fish_no}");
 	});	
 	
-	$("#btnDelete").click(function() {
-		$(location).attr("href", "/board/fish/info/delete?fish_no=${fishInfo.fish_no}");
-	});	
+	
 	
 });
 
 function button_event(){
 	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-	    document.form.submit();
-	}else{   //취소
-	    return;
+	$(location).attr("href", "/board/fish/info/delete?fish_no=${fishInfo.fish_no}");
+	}else {   //취소
+	    return ;
 	}
 	}
 

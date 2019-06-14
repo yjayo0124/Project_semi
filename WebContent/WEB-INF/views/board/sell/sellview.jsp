@@ -109,10 +109,6 @@ $(document).ready(function() {
 		$(location).attr("href", "/sell/update?boardno=${viewBoard.boardno }");
 	});
 
-	//삭제버튼 동작
-	$("#btnDelete").click(function() {
-		$(location).attr("href", "/sell/delete?boardno=${viewBoard.boardno }");
-	});
 	
 	
 	
@@ -178,7 +174,7 @@ function deleteComment(commentNo) {
 
 function button_event(){
 	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-	    document.form.submit();
+		$(location).attr("href", "/sell/delete?boardno=${viewBoard.boardno }");
 	}else{   //취소
 	    return;
 	}

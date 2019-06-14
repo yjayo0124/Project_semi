@@ -3,7 +3,6 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
 <script type="text/javascript">
 $(document).ready(function() {
 	//목록버튼 동작
@@ -21,7 +20,6 @@ $(document).ready(function() {
 		$(location).attr("href", "/board/boast/delete?boast_board_no=${viewBoard.boast_board_no }");
 
 	});
-	
 
 });
 
@@ -155,6 +153,15 @@ border-radius: 1px;
 	border: solid 2px;
 	border-radius: 1px;
 }
+.sumnail{
+	
+	
+	margin : 50px;
+	margin-bottom : 15px;
+	width: 40%;
+	float : left;
+	position : relative; 
+}
 </style>
 
 <h3 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -176,7 +183,9 @@ border-radius: 1px;
 
 <div class="text-right">	
 	<button id="btnList">목록</button>
-	<c:if test="${member_id eq viewBoard.boast_board_writer }">
+
+	<c:if test="${member_id eq viewBoard.member_id }">
+
 	<button id="btnUpdate">수정</button>
 <input type="button" id = "btnDelete" value="삭제" onclick="button_event();">
 	</c:if>
@@ -185,6 +194,9 @@ border-radius: 1px;
 
 <div class = "notice">
 ${viewBoard.boast_board_content }<br>
+</div>
+<div class="sumnail" >
+<img src="/upload/${boardFile.boast_board_stored_name}" alt="이미지없음" width="350px" height="350px"></img>
 </div>
 <%-- <img src="/upload/${boardFile.boast_board_stored_name}" alt="첨부파일없음" width="350px" height="350px"></img> --%>
 
@@ -253,8 +265,8 @@ style=" width:1100px; margin-top:300px;">
 	<td>${comment.boast_content }</td><!-- 닉네임으로 해도 좋음 -->
 	<td>${comment.member_id }</td>
 	<td>${comment.boast_comment_written_date }</td>
-	<td>
-		<c:if test="${sessionScope.member_id eq comment.member_id }">
+	<td>     <!-- comment 객체의 member_id에 member_nick을 insert했기 때문에 이렇게 비교 -->
+		<c:if test="${sessionScope.member_nick eq comment.member_id }">
 		<button class="btn btn-default btn-xs"
 			onclick="deleteComment(${comment.boast_board_comment_no });">삭제</button>
 		</c:if>

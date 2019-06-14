@@ -130,8 +130,8 @@ public class BoastServiceImpl implements BoastService{
 						e.printStackTrace();
 					}
 					
-					board.setBoast_board_writer((String) req.getSession().getAttribute("member_id"));
-					
+					board.setBoast_board_writer((String) req.getSession().getAttribute("member_nick"));
+					board.setMember_id((String) req.getSession().getAttribute("member_id"));
 				} else {
 					UUID uuid = UUID.randomUUID();
 					//System.out.println(uuid);
@@ -168,8 +168,10 @@ public class BoastServiceImpl implements BoastService{
 			
 			if(board.getBoast_board_title()==null ||"".equals(board.getBoast_board_title())) {
 				board.setBoast_board_title("(제목없음)");
-				
-				board.setBoast_board_writer((String) req.getSession().getAttribute("member_id"));
+
+				board.setMember_id((String) req.getSession().getAttribute("member_id"));
+				board.setBoast_board_writer((String) req.getSession().getAttribute("Boast_board_writer"));				
+
 			}
 			
 			boastDao.insert(board);
@@ -257,8 +259,8 @@ public class BoastServiceImpl implements BoastService{
 						if( "boast_board_content".equals( item.getFieldName() ) ) {
 							board.setBoast_board_content( item.getString("utf-8") );
 						}
-						
-						board.setBoast_board_writer((String) req.getSession().getAttribute("boast_board_writer"));
+						board.setMember_id((String) req.getSession().getAttribute("member_id"));
+						board.setBoast_board_writer((String) req.getSession().getAttribute("Boast_board_writer"));
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
 					}
@@ -317,12 +319,12 @@ public class BoastServiceImpl implements BoastService{
 		}
 		
 		String boast_board_no = (String) req.getParameter("boast_board_no");
-		String member_id = (String) req.getParameter("member_id");
+		String member_nick = (String) req.getParameter("member_nick");
 		String boast_content = (String) req.getParameter("boast_content");
 		
 		BoastComment comment = new BoastComment() ;
 		comment.setBoast_board_no( Integer.parseInt( boast_board_no ) ) ;
-		comment.setMember_id(member_id);
+		comment.setMember_id(member_nick);
 		comment.setBoast_content(boast_content);
 		
 		return comment;

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.dao.member.MemberDao;
+import web.dao.member.MemberDaoImpl;
 import web.service.board.sell.face.SellService;
 import web.service.board.sell.impl.SellServiceImpl;
 import web.util.Paging;
@@ -20,6 +22,7 @@ public class SellListController extends HttpServlet {
        
 		
 	private SellService sellservice = new SellServiceImpl();
+	private MemberDao memberDao = new MemberDaoImpl();
 	
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,6 +36,16 @@ public class SellListController extends HttpServlet {
     	List list = sellservice.getList(paging);
     	
     	req.setAttribute("list", list);
+    	
+    	
+    	int res = 0;
+    	
+    	if( req.getSession().getAttribute("member_id") != null) {
+    		
+    		res = 1;
+    	}
+    	
+    	req.setAttribute("res", res);
     	
     	
     	// VIEW 지정

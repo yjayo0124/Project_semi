@@ -45,6 +45,11 @@ table, th {
    border-radius: 1px;
 }
 
+#btnBox {
+	top: 0;
+	bottom: 0;
+	margin-left: 1050px;
+}
 
 </style>
 
@@ -59,13 +64,13 @@ table, th {
 
 
 <c:if test="${res eq 1 }"><!-- 1이면 보이는 버튼  -->
-<div style="padding-right:50px;">
-		<button style="float: right;" id="btnWrite">글쓰기</button>
+<div id= "btnBox">
+	<button style="float: right;" id="btnWrite">글쓰기</button>
 </div>
 </c:if>
 
-<br>
-<table class="table table-hover table-condensed ">
+<br><br>
+<table class="table table-hover table-condensed" style="margin-top:20px;">
 <thead  style="background: #337AB7; color: white;">
 	<tr>
 		<th style="width: 10%;">번호</th>
@@ -92,6 +97,9 @@ table, th {
 <c:import url="/WEB-INF/views/board/notice/paging.jsp" />
 <br>
 <div class="form-inline text-center">
+<select class="form-control form-control-sm" name="select" id="select">
+	<option value="free_board_title" selected>제목</option>
+</select>
 	<input class="form-control" type="text" id="search" />
 	<button id="btnSearch" class="btn">검색</button>
 </div> 

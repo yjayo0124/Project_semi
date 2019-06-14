@@ -16,6 +16,7 @@
 	
 	
 	margin : 50px;
+	margin-bottom : 15px;
 	width: 40%;
 	float : left;
 	position : relative; 
@@ -27,7 +28,9 @@
 }
 
 .notice {
+	margin-bottom : 30px;
 	font-size : 18px;
+	
 }
 
 #hr {
@@ -63,6 +66,31 @@ border-radius: 1px;
 	border: solid 2px;
 	border-radius: 1px;
 }
+
+#user{
+
+	font-size : 25px;
+}
+
+#trash{
+	
+	font-size : 15px;
+	margin-right: 10px;
+}
+
+#trashbtn{
+	padding-left: 0px;
+	padding-right: 0px;
+	height: 21px;
+	width: 19px;
+	border-right-width:0px;
+	border-left-width: 0px;
+	border-top-width:0px;
+	border-bottom-width:0px;
+	background: white;
+}	
+	
+
 </style>
 
 
@@ -161,7 +189,7 @@ function button_event(){
 <h5 class="pull-left">작성일 : ${viewBoard.writtendate }</h5>
 <div class="text-right">	
 	<button id="btnList">목록</button>
-	<c:if test="${member_id eq viewBoard.writer }">
+	<c:if test="${member_nick eq viewBoard.writer }">
 	<button id="btnUpdate">수정</button>
 <input type="button" id = "btnDelete" value="삭제" onclick="button_event();">
 	</c:if>
@@ -235,17 +263,13 @@ function button_event(){
 * 고가의 물품(휴대폰,전자기기)등만 판매하고 최근(1주일 내) 게시글만 있을 때<br> 
 * 해외직구로 면세받은 물품을 판매하는 행위는 불법입니다.<br>
 </div>
+<br><br><br>
+<hr>
 
+<div class="content">
+${viewBoard.content }
+</div>
 
-
-<table class="table table-bordered">
-
-
-<tr><td colspan="4">${viewBoard.content }</td></tr>
-
-
-
-</table>
 
 
 <%-- 다운로드 굳이 필요없음 
@@ -259,7 +283,7 @@ function button_event(){
 
  
 <!-- 댓글 리스트 -->
-<table class="table table-striped table-hover table-condensed">
+<table class="table table-condensed">
 <thead>
 <tr class="success">
 	<th style="width: 5%;">번호</th>
@@ -273,13 +297,14 @@ function button_event(){
 <c:forEach items="${commentList }" var="comment">
 <tr data-commentno="${comment.commentNo }">
 	<td>${comment.rnum }</td>
-	<td>${comment.userid }</td><!-- 닉네임으로 해도 좋음 -->
+	<td><span class="glyphicon glyphicon-user " id="user" ></span>${member_nick }</td><!-- 닉네임으로 해도 좋음 -->
 	<td>${comment.content }</td>
 	<td>${comment.writtenDate }</td>
 	<td>
 		<c:if test="${sessionScope.member_id eq comment.userid }">
-		<button class="btn btn-default btn-xs"
-			onclick="deleteComment(${comment.commentNo });">삭제</button>
+		<button id="trashbtn"><span class="glyphicon glyphicon-trash" id="trash" onclick="deleteComment(${comment.commentNo });">
+		</span>
+		</button>
 		</c:if>
 	</td>
 	

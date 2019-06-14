@@ -57,7 +57,16 @@ public class BoastListController extends HttpServlet {
 //				List<BoastComment> commentList = boardService.getCommentList(viewBoard) ;
 //				req.setAttribute( "commentList" , commentList ) ; 
 				
-		
+				
+		//회원에게만 버튼 보이도록 하는 값 res 
+		int res = 0;
+		    	
+		if( req.getSession().getAttribute("member_id") != null) {
+		    		
+		    res = 1;
+		}
+		    	
+		req.setAttribute("res", res);
 		
 		req.getRequestDispatcher("/WEB-INF/views/board/boast/list.jsp").forward(req, resp);
 	

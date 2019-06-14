@@ -142,34 +142,56 @@ table, th {
     
     overflow: scroll;
  }
-#btnWrite{
-	display: scroll; 
-	position: fixed;
-	margin-left: 800px;
-	bottom: 100px;
-	left: 50%;
-}
+
+
+
+
 #writeimg{
 	height: 100px;
 	width: 100px;
 }
+.container{
+	margin-top: 40px;
+	min-width: 1080px;
+}
 
+#btnWrite {
+width: 100px;
+height: 40px;
+background: #474e60;
+font-size: 13px;
+color: #fff;
+border: solid 2px;
+border-radius: 1px;
+}
+
+#btnBox {
+	
+	top: 0;
+	bottom: 0;
+	
+	
+	margin-left: 1050px;
+}
 
 </style>
 
 <div class="wrap">
 
-<div class="container" style="margin-top:40px;">
+<div class="container">
 <div style="margin-top : 100px; ">
 
 <h1>자랑게시판</h1>
 </div>
 <hr>
 
+<c:if test="${res eq 1 }">
+<div id="btnBox">
+	<button style="float: right;" id="btnWrite">글쓰기</button>
+</div>
+</c:if>
 
-
-<a id="btnWrite" href="/board/boast/write"><img id="writeimg" src="/imgs/write.png"></a>
-
+<br><br>
 <table class="table table-hover table-condensed" style="margin-top:20px;">
 
 
@@ -187,7 +209,7 @@ table, th {
 <tbody>
 <c:forEach items="${list}" var="i">
 	<tr>
-		<td>${i.boast_board_no }</td>
+		<td>${i.lnum }</td>
 		
 		<td><a href="/board/boast/view?boast_board_no=${i.boast_board_no }" class="openMask">${i.boast_board_title }</a></td>
 		<td>${i.boast_board_writer }</td>

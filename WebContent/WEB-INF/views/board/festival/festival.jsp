@@ -36,11 +36,15 @@ $(document).ready(function() {
 </script>
 
 <style type="text/css">
+a:link { text-decoration:none; color:black;}
+a:visited { text-decoration:none;color:black;}
+a:active {text-decoration:none; color:black; }
+a:hover { text-decoration:none; color:black;}
+
 .main {
 	margin: 0 auto;
     padding: 8px 10px 0;
-    width: 1080px;
-    text-align: left;
+    width: 1170px;
     zoom: 1;
 }
 #title {
@@ -74,57 +78,33 @@ padding-inline-start: 0px;
 }
 
 .event {
-	text-align: center;
-	width: 950px;
-	height: 300px;
+	width: 1170px;
+	height: 378px;
 	margin: 0 auto;
 }
 
 .event_img {
-	float: left;
-	width: 400px;
-	height: 300px;
-	border: solid 1px;
+	float:left;
+	width: 298px;
+	height: 378px;
+	border: none;
 	border-color: rgba(33, 33, 33, 0.25);
 	overflow: hidden;
 }
 
 .event_content {
-	float: left;
-	width: 550px;
-	height: 300px;
-	background-color: #E0E0E0;
+	width: 872px;
+	height: 378px;
+    padding: 60px;
+    float: left;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
 }
-.event_title {
-	height:100px;
-	line-height: 100px;
-	font-size: 20pt;
-}
-.event_text {
-	height:150px;
-	padding-top:10px;
-	padding-left:30px;
-	padding-right:30px;
-	padding-bottom:10px;
-}
-.event_bottom {
-	height:50px;
-	line-height: 50px;
-}
-.event_date{
-	float:left;
-	width: 85%;
-	height: 50px;
-	line-height: 50px;
-	font-size: 15pt;
-}
-.event_detail {
-	float:left;
-	width: 15%;
-	height: 50px;
-	line-height: 50px;
-	background-color: #757575;
-}
+
+
 .div_img {
 	width:100%;
 	height: 100%
@@ -138,9 +118,9 @@ color: #fff;
 border: solid 2px;
 border-radius: 1px;
 }
-a {
-	color: black;
-	text-decoration: none;
+
+.title {
+
 }
 </style>
 </head>
@@ -168,7 +148,6 @@ a {
 			</div>
 
 			<div class="event_content">
-				<div class="event_title">
 					<c:choose>
 						<c:when test="${fn:length(i.festival_title) > 15}">
 							<span>${fn:substring(i.festival_title,0,14)}....</span>
@@ -177,8 +156,6 @@ a {
 							<span>${i.festival_title }</span>
 						</c:otherwise>
 					</c:choose>
-				</div>
-				<div class="event_text">
 				 <c:choose>
 				 	 <c:when test="${fn:length(i.festival_content) > 200}">
 				 	 	<span>${fn:substring(i.festival_content,0,199)}....</span>
@@ -187,20 +164,18 @@ a {
 						<span>${i.festival_content }</span>
 					</c:otherwise>
 				</c:choose>
-				</div>
-				<div class="event_bottom">
 					<div class="event_date">${i.festival_start } ~ ${i.festival_end }</div>
-					<div class="event_detail"><a href="/board/festival/detail?festival_board_no=${i.festival_board_no }" style="color: white;">상세보기</a></div>
-					<div></div>
-				</div>
+					<a href="/board/festival/detail?festival_board_no=${i.festival_board_no }"><strong>상세보기</strong></a>
 			</div>
 		</div>
 		<br>
 </c:forEach>
 		<br><br>
+		<c:if test="${member_group == 1 }">
 		<div style="padding-right:50px;">
 		<button style="float: right;" id="btnWrite">글쓰기</button>
 		</div>
+		</c:if>
 	</div>
 <c:import url="/WEB-INF/views/layout/festival/festival_paging.jsp" />
 </body>

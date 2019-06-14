@@ -156,7 +156,7 @@ body {
 	</div>
 	<br>
 	<div>
-		<h1><a href="/main"><img src="/imgs/logo2.png"></a></h1>
+		<h1><a href="/main"><img src="/imgs/logo_02.png"></a></h1>
 		<br><br><br>
 	</div>
 

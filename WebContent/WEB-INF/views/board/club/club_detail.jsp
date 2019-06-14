@@ -78,6 +78,12 @@
 
 		});
 		
+		$("#btnlogin").click(function() {
+
+			$(location).attr("href", "/member/login");
+
+		});
+		
 		if(${club.club_tag } == 1) {
 			$("#more_tag").html("여행에 대해 더보기");
 			
@@ -112,6 +118,47 @@
 			} else if (${club.club_tag } == 6) {
 				$("#more_tag").attr("href", "/board/club?club_tag=6");
 			}
+		});
+		
+		$("#btnjoin").click(function() {
+			
+			$.ajax({
+				type: "post"
+				, url: "/board/club/join"
+				, dataType : "json"   
+					, data: {
+						club_no : ${club.club_no}
+					}
+				, success: function(data){
+					
+					alert("가입성공");
+					location.reload();
+					
+				}
+				, error: function(request,status,error) {
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		});
+		
+		$("#btnleave").click(function() {
+			
+			$.ajax({
+				type: "post"
+				, url: "/board/club/leave"
+				, dataType : "json"   
+					, data: {
+						club_no : ${club.club_no}
+					}
+				, success: function(data){
+					
+					alert("탈퇴성공");
+					location.reload();
+				}
+				, error: function(request,status,error) {
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
 		});
 
 });
@@ -178,15 +225,28 @@ function ListComment(club_board_no, div) {
 			$('#' + divs).html(" ");
 			
 			for(var i=0; i<data.comment.length; i++) {
-			$('#' + divs).append("<div class='comment'>"+
-					"<div>"+
-					"<div class='writer'><strong>"+data.comment[i].club_comment_writer +"</strong></div>"+
-					"<div class='delete_comment'><a href='javascript:void(0);' onclick='deleteComment(\""+club_board_no+"\",\""+div+"\",\""+data.comment[i].club_comment_no+"\")'>삭제</a>"+
-					"</div>"+
-					"<div class='comment_content'>"+
-					"<p>"+data.comment[i].club_comment_content +"</p>"+
-					"</div>"+
-				"</div>");
+				var userid = String(data.comment[i].member_id);
+				var memberid =  '<%=(String)session.getAttribute("member_id")%>';
+				
+				if(userid == memberid) {
+				$('#' + divs).append("<div class='comment'>"+
+						"<div>"+
+						"<div class='writer'><strong>"+data.comment[i].club_comment_writer +"</strong></div>"+
+						"<div class='delete_comment'><a href='javascript:void(0);' onclick='deleteComment(\""+club_board_no+"\",\""+div+"\",\""+data.comment[i].club_comment_no+"\")'>삭제</a>"+
+						"</div>"+
+						"<div class='comment_content'>"+
+						"<p>"+data.comment[i].club_comment_content +"</p>"+
+						"</div>"+
+					"</div>");
+				} else {
+					$('#' + divs).append("<div class='comment'>"+
+							"<div>"+
+							"<div class='writer'><strong>"+data.comment[i].club_comment_writer +"</strong></div><br>"+
+							"<div class='comment_content'>"+
+							"<p>"+data.comment[i].club_comment_content +"</p>"+
+							"</div>"+
+						"</div>");
+				}
 			}
 		}
 		, error: function(request,status,error) {
@@ -242,6 +302,11 @@ function deleteComment(club_board_no, div, club_comment_no) {
 
 
 <style type="text/css">
+a:link { text-decoration:none; color:black;}
+a:visited { text-decoration:none;color:black;}
+a:active {text-decoration:none; color:black; }
+a:hover { text-decoration:none; color:black;}
+
 .main {
 	margin: 0 auto;
 	padding: 8px 10px 0;
@@ -368,13 +433,14 @@ section {
 }
 
 .board_content p {
+	width: 456px;
 	font-size: 14px;
 	line-height: 1.43;
 }
 
 .board_content img {
-	width: 494px;
-	height: 246px;
+	max-width: 456px;
+	height:auto;
 	text-align: center;
 	border: 1px solid rgba(0, 0, 0, .05);
 	border-radius: 2px;
@@ -383,10 +449,11 @@ section {
 .board_writebtn {
 	width: 100%;
 	height: 50px;
-	padding-top: 5px;
+	padding-top: 25px;
 	text-align: center;
 	margin-bottom: 20px;
 	display: block;
+	border-top: 1px solid #f0f0f0;
 }
 
 .board_writebtn button {
@@ -411,7 +478,15 @@ section {
 }
 
 .board_title {
-	height: 40px;
+	float:left;
+	width : 80%;
+	height: 30px;
+}
+.delete_btn {
+	float:left;
+	text-align:right;
+	width: 20%
+	
 }
 
 .paging_bar {
@@ -520,6 +595,18 @@ a:link    { text-decoration:none; color:black }
 a:visited { text-decoration:none; color:black }
 a:hover   { text-decoration:none; color:black }
 a:active  { text-decoration:none; color:black }
+
+.board_write_title {
+	padding:10px;
+	margin-top:20px;
+	margin-bottom:3px;
+	width: 100%;
+	background-color: #f5f5f5;
+	height:50px; border: 1px solid;
+	border-color: #bbb;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
 </style>
 
 
@@ -537,12 +624,28 @@ a:active  { text-decoration:none; color:black }
 						<span><strong>${club.club_title }</strong></span>
 					</div>
 					<div class="club_info">
-						<div class="club_membercnt">멤버 : ${club.membercnt }명</div>
+						<div class="club_membercnt" id="membercnt">멤버 : ${club.membercnt }명</div>
 						<div class="club_leader">리더 : ${club.member_id }</div>
 					</div>
+					
+					<c:if test="${check eq false && member_group == 0 && checkjoin eq true}">
 					<div class="club_join">
 						<button id="btnjoin">가입하기</button>
 					</div>
+					</c:if>
+					
+					<c:if test="${check eq true && member_group == 0  && checkleave eq true}">
+					<div class="club_join">
+						<button id="btnleave">탈퇴하기</button>
+					</div>
+					</c:if>
+					
+					<c:if test="${empty login }">
+					<div class="club_join">
+						<button id="btnlogin">로그인</button>
+					</div>
+					</c:if>
+					
 				</div>
 			</aside>
 
@@ -560,10 +663,19 @@ a:active  { text-decoration:none; color:black }
 				<c:forEach items="${list}" var="i" varStatus="status">
 					<div class="board_list">
 						<div class="board_info">
+							<div style="width:100%; height: 30px;">
 							<div class="board_title">
 								<strong>${i.club_board_title }</strong>
 							</div>
+							<c:if test="${member_nick == i.club_board_writer || member_group == 1}">
+							<div class="delete_btn">
+								<a href="/board/club/boardDelete?club_board_no=${i.club_board_no }&club_no=${club.club_no}">삭제</a>
+							</div>
+							</c:if>
+							</div>
+							<div style="width: 100%; height: 20px;">
 							<strong>${i.club_board_writer }</strong><br>
+							</div>
 							<div style="padding-top: 3px; border-bottom: 1px solid;">
 								<label>작성일 : ${i.club_board_writedate }</label>
 							</div>
@@ -589,11 +701,12 @@ a:active  { text-decoration:none; color:black }
 						<div id="boardcomment${status.index}">
 							<div id="boardcom${status.index}"></div>
 
-
+							<c:if test="${check eq true || member_group == 1 }">
 							<div class="board_writebtn" id="commentwrite${status.index}">
 								<button
 									onclick="viewwritecomment('commentwrite${status.index}','writecomment${status.index}')">댓글작성</button>
 							</div>
+							</c:if>
 
 							<div id="writecomment${status.index}" style="display: none;">
 								<div class="comment_write">
@@ -623,17 +736,19 @@ a:active  { text-decoration:none; color:black }
 					</div>
 				</c:forEach>
 
-
+				<c:if test="${check eq true || member_group == 1 }">
 				<div class="board_writebtn">
 					<button id="btn_write">글쓰기</button>
 				</div>
+				</c:if>
 
+				<c:if test="${check eq true || member_group == 1 }">
 				<div class="board_write">
-					<form action="/board/club/detail" method="post" enctype="multipart">
-						<div class="board_title">
-							제목: <input type="text" name="title">
+					<form action="/board/club/detail" method="post" enctype="multipart/form-data">
+						<div class="board_write_title">
+							제목: <input type="text" name="title" style="width:480px;">
 						</div>
-						<textarea name="content" id="summernote" value=""></textarea>
+						<textarea name="content" id="summernote"></textarea>
 						<div class="buttons">
 							<input type="hidden" name="club_no" value="${club.club_no }">
 							<input type="submit" value="작성하기">
@@ -643,7 +758,8 @@ a:active  { text-decoration:none; color:black }
 						<button id="btn_cancle" style="margin-left: 5px;">취소</button>
 					</div>
 				</div>
-
+				</c:if>
+				
 				<div class="paging_bar">
 					<c:import url="/WEB-INF/views/layout/club/clubBoard_paging.jsp" />
 				</div>
@@ -654,33 +770,6 @@ a:active  { text-decoration:none; color:black }
 		</div>
 
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>

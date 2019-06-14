@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
+
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.2.4.js"></script>
@@ -39,12 +40,7 @@
 	
 }
 
-#search{
-	width:786px;
-	height: 101px;
-	
 
-}
 
 
 .img-circle{
@@ -53,10 +49,22 @@
 	margin-right: 45px;
 }
 
-
-
+/* .show-on-scroll { visibility: hidden; }
+.show-on-scroll.shown { visibility: visible; }
+ */
 
 </style>
+
+<script type="text/javascript">
+
+/* $(window).scroll(function() {
+	  var $el = $('.show-on-scroll');
+	  
+	  if($(this).scrollTop() >= 800) $el.addClass('shown');
+	  else $el.removeClass('shown');
+	}); */
+
+</script>
 
 <!-- header -->
 <c:import url="/WEB-INF/views/layout/header.jsp" />
@@ -68,25 +76,9 @@
 <div id="slider" style="width: 100%; height: 500px;">
 <c:import url="/WEB-INF/views/layout/slider2.jsp" />
 </div>
-	<br>
-	<br>
 </div>
 </div>
-<section class="mid">
-	<br>
-	<br>
-	<br>
-	<br>
-	<h2 style="font-stretch: normal; text-align: center; margin: 0;">800+ Fishing Spots</h2>
-	<div id="search" style="margin: auto;"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-</section>
-	<br>
-	<br>
+
 	<br>
 	<div class="middle" style="width: 1000px; margin: 0 auto;">
 	<div class="row">
@@ -104,6 +96,22 @@
 		</div>
 	</div>
 </div>
+<br>
+<br>
+
+<section class="mid show-on-scroll" style="width: 1000px; margin: 0 auto;">
+	<br>
+	<br>
+	<br>
+	<br>
+	<div id="search" style="width: 800px; margin: auto;"><c:import url="/WEB-INF/views/layout/search.jsp"/></div>		
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</section>
+
 
 
 

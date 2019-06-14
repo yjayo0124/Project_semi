@@ -15,11 +15,6 @@ $(document).ready(function() {
 		$(location).attr("href", "/board/boast/update?boast_board_no=${viewBoard.boast_board_no }");
 	});
 
-	//삭제버튼 동작
-	$("#btnDelete").click(function() {
-		$(location).attr("href", "/board/boast/delete?boast_board_no=${viewBoard.boast_board_no }");
-
-	});
 
 });
 
@@ -72,7 +67,7 @@ function insertComment(boast_board_no) {
 	
 	function button_event(){
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-		    document.form.submit();
+			$(location).attr("href", "/board/boast/delete?boast_board_no=${viewBoard.boast_board_no }");
 		}else{   //취소
 		    return;
 		}

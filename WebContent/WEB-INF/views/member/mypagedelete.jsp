@@ -118,8 +118,8 @@
 	cursor: pointer;
 	box-sizing: border-box;
 	position:absolute;
-	top:527px;
-	left:1030px;
+	top:625px;
+	left:1120px;
 	height:57px;
 
 }
@@ -180,11 +180,12 @@
 <h3 style="margin-top:70px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-마이페이지</h3>
+회원탈퇴</h3>
 <hr>
 
 <div class="next1" ><a href="/member/update?member_id=${member_id }">회원정보수정</a></div>
 <div class="next2" ><a href="/member/mypagedelete">회원탈퇴</a></div>
+<div class="next2" ><a href="/member/log?member_id=${member_id }">로그인기록</a></div>
 
 <form action="/member/mypagedelete?member_id=${member.member_id } " method="post" class="form2">
 	<div class="join_content">

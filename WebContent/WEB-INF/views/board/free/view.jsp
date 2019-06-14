@@ -177,7 +177,7 @@ border-radius: 1px;
 <h5 class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${viewBoard.free_board_hit }  </h5>
 <div class="text-right">	
 	<button id="btnList">목록</button>
-	<c:if test="${member_nick eq viewBoard.free_board_writer }">
+	<c:if test="${member_id eq viewBoard.member_id}">
 	<button id="btnUpdate">수정</button>
 	<button id="btnDelete">삭제</button>
 	</c:if>

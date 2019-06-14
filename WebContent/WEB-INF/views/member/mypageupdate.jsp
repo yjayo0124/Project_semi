@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -288,11 +290,12 @@ $(document).ready(function() {
 <h3 style="margin-top:70px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-마이페이지</h3>
+회원정보수정</h3>
 <hr>
 
 <div class="next1" ><a href="/member/update?member_id=${member_id }" >회원정보수정</a></div>
 <div class="next2" ><a href="/member/mypagedelete">회원탈퇴</a></div>
+ <div class="next2" ><a href="/member/log?member_id=${member_id }">로그인기록</a></div>
 
 
 
@@ -316,13 +319,13 @@ $(document).ready(function() {
 
 		<div class="row_group">
 			<h3 class="join_title">
-				<label for="pw1">비밀번호</label>
+				<label for="pw1">새로운 비밀번호</label>
 			</h3>
 			<span class="intext"> <input type="password" id="member_pw"
 				name="member_pw1" class="inputtext" maxlength="20" />
 			</span> <span class="error" id="pwMsg1" role="alert"> 필수 정보입니다 </span>
 			<h3 class="join_title">
-				<label for="pw2">비밀번호 확인</label>
+				<label for="pw2">새로운 비밀번호 확인</label>
 			</h3>
 			<span class="intext"> <input type="password" id="member_pw2"
 				name="member_pw2" class="inputtext" maxlength="20"

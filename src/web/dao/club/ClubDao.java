@@ -48,4 +48,6 @@ public interface ClubDao {
 	public void membercntReduced(int club_no);
 	
 	public int SelectmembercntByclubno(int club_no);
+	
+	public int selectClubnoByMemberId(String member_id);
 }

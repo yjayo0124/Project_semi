@@ -279,7 +279,7 @@ public class ClubDaoImpl implements ClubDao {
 			rs= ps.executeQuery();
 
 			while(rs.next()) {
-				if(rs.getString("club_no") == null) {
+				if(rs.getInt("club_no") == 0) {
 					check = true;
 				} else {
 					check = false;
@@ -548,6 +548,32 @@ public class ClubDaoImpl implements ClubDao {
 		}
 
 		return membercnt;
+	}
+
+	@Override
+	public int selectClubnoByMemberId(String member_id) {
+		
+		String sql ="";
+		sql += "SELECT club_no";
+		sql += " FROM club";
+		sql += " WHERE member_id = ?";
+		int club_no = 0;
+		
+
+		try {
+			ps= conn.prepareStatement(sql);
+			ps.setString(1,member_id);
+			rs= ps.executeQuery();
+
+			while(rs.next()) {
+				club_no = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return club_no;
 	}
 	
 }

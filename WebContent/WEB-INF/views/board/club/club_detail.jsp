@@ -231,7 +231,7 @@ function ListComment(club_board_no, div) {
 				if(userid == memberid) {
 				$('#' + divs).append("<div class='comment'>"+
 						"<div>"+
-						"<div class='writer'><strong>"+data.comment[i].club_comment_writer +"</strong></div>"+
+						"<div class='writer'><strong>작성자 : "+data.comment[i].club_comment_writer +"</strong></div>"+
 						"<div class='delete_comment'><a href='javascript:void(0);' onclick='deleteComment(\""+club_board_no+"\",\""+div+"\",\""+data.comment[i].club_comment_no+"\")'>삭제</a>"+
 						"</div>"+
 						"<div class='comment_content'>"+
@@ -319,7 +319,6 @@ a:hover { text-decoration:none; color:black;}
 
 aside {
 	width: 208px;
-	height: 300px;
 	margin-right: 18px;
 }
 
@@ -348,15 +347,14 @@ section {
 
 .club_name {
 	width: 100%;
-	height: 40px;
 	padding-top: 13px;
 	text-align: center;
 	font-size: 20px;
 }
 
 .club_info {
+	font-size:13px;
 	width: 100%;
-	height: 30px;
 }
 
 .club_membercnt {
@@ -365,14 +363,16 @@ section {
 	height: 100%;
 	text-align: center;
 	padding-top: 5px;
+	margin-bottom: 5px;
 }
 
 .club_leader {
 	float: left;
 	width: 50%;
 	height: 100%;
-	text-align: center;
+	text-align: left;
 	padding-top: 5px;
+	margin-bottom: 5px;
 }
 
 .club_join {
@@ -553,6 +553,7 @@ section {
 
 .comment_content p {
 	margin: 0px;
+	margin-top: 3px;
 }
 
 .writer {

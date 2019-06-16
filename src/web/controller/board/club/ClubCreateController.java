@@ -88,6 +88,10 @@ public class ClubCreateController extends HttpServlet {
 		club.setClub_include(content);
 		
 		clubDao.insert(club);
+		int club_no = clubDao.selectClubnoByMemberId(member_id);
+		clubDao.updateMember(member_id, club_no);
+		clubDao.join(member_id, club_no);
+		clubDao.membercntIncrese(club_no);
 		
 		resp.sendRedirect("/board/club");
 	}

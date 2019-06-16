@@ -36,10 +36,10 @@ public class ClubJoinController extends HttpServlet {
 		if(clubno!= null && !"".equals(clubno)) {
 			club_no = Integer.parseInt(clubno);
 		}
-		clubDao.membercntIncrese(club_no);
 		int membercnt = clubDao.SelectmembercntByclubno(club_no);
 		clubDao.updateMember(member_id, club_no);
 		clubDao.join(member_id, club_no);
+		clubDao.membercntIncrese(club_no);
 		
 		JSONObject obj = new JSONObject();
 		obj.put("membercnt", membercnt);

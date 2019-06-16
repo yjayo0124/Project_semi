@@ -91,7 +91,7 @@ a:hover { text-decoration:none; color:black;}
 .content_middle {
 	text-align: center;
 	margin: 0 auto;
-	width: 1000px;
+	width: 800px;
 	height: auto;
 }
 
@@ -183,8 +183,7 @@ a:hover { text-decoration:none; color:black;}
 	<div class="main">
 		<div class="title">
 			<div class="title_left">
-				<h3>${board.festival_title }</h3>
-				<br>
+				<h2 style="margin-bottom: 30px;">${board.festival_title }</h2>
 				<h4>작성일 : ${board.festival_writtendate }</h4>
 			</div>
 			<c:if test="${member_group == 1 }">
@@ -233,27 +232,8 @@ a:hover { text-decoration:none; color:black;}
 		<div class="board_list_btn">
 			<button class="list_btn" id="btnlist">목록</button>
 		</div>
-		
-		<div class="board_list">
-			<div class="after_list">
-				<div class="btnupdown"><img src="/imgs/after.png" class="btnafter"></div>
-				<div class="listtext">다음 글 제목 : </div>
-			</div>
-			
-			<div class="before_list">
-					<div class="btnupdown"><img src="/imgs/before.png" class="btnbefore"></div>
-					<div class="listtext">이전 글 제목 : </div>
-			</div>
-		</div>
-
-
-
-
-
-
-
 	</div>
-	<br><br><br><br>
+	<br><br><br><br><br><br>
 </body>
 </html>
 

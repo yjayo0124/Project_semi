@@ -38,10 +38,10 @@ public class ClubLeaveController extends HttpServlet {
 			club_no = Integer.parseInt(clubno);
 		}
 		
-		clubDao.membercntReduced(club_no);
 		int membercnt = clubDao.SelectmembercntByclubno(club_no);
 		clubDao.updateNullMember(member_id);
 		clubDao.delete(member_id);
+		clubDao.membercntReduced(club_no);
 		
 		JSONObject obj = new JSONObject();
 		obj.put("membercnt", membercnt);

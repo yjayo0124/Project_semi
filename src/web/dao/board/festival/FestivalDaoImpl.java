@@ -71,7 +71,7 @@ public class FestivalDaoImpl implements FestivalDao{
 		//�뙆�씪�뾽濡쒕뱶 湲곕줉 議고쉶荑쇰━
 		String sql = "";
 		sql+="SELECT * FROM (	SELECT rownum rnum, B.* FROM (";
-		sql+="	SELECT C.festival_board_no, C.festival_title, C.festival_content, C.festival_start, C.festival_end, C.festival_writtendate, d.festival_storedname FROM Festival_Board C, festivalfile D";
+		sql+="	SELECT C.festival_board_no, C.festival_title, C.festival_content, C.festival_start, C.festival_end, C.festival_fee, C.festival_writtendate, d.festival_storedname FROM Festival_Board C, festivalfile D";
 		sql+="	WHERE C.festival_board_no = d.festival_board_no AND sysdate <= festival_end ORDER BY festival_board_no DESC) B ORDER BY rnum";
 		sql+="	) Festival_Board";
 		sql+=" WHERE rnum BETWEEN ? AND ?";
@@ -97,6 +97,7 @@ public class FestivalDaoImpl implements FestivalDao{
 				String end = rs.getString("festival_end");
 				end = end.substring(0,10);
 				board.setFestival_end(end);
+				board.setFestival_fee(rs.getString("festival_fee"));
 				board.setFestival_writtendate(rs.getDate("festival_writtendate"));
 				board.setFestival_storedname(rs.getString("festival_storedname"));
 
@@ -118,7 +119,7 @@ public class FestivalDaoImpl implements FestivalDao{
 		//�뙆�씪�뾽濡쒕뱶 湲곕줉 議고쉶荑쇰━
 		String sql = "";
 		sql+="SELECT * FROM (	SELECT rownum rnum, B.* FROM (";
-		sql+="	SELECT C.festival_board_no, C.festival_title, C.festival_content, C.festival_start, C.festival_end, C.festival_writtendate, d.festival_storedname FROM Festival_Board C, festivalfile D";
+		sql+="	SELECT C.festival_board_no, C.festival_title, C.festival_content, C.festival_start, C.festival_end, C.festival_fee, C.festival_writtendate, d.festival_storedname FROM Festival_Board C, festivalfile D";
 		sql+="	WHERE C.festival_board_no = d.festival_board_no AND sysdate > C.festival_end ORDER BY festival_board_no DESC) B ORDER BY rnum";
 		sql+="	) Festival_Board";
 		sql+=" WHERE rnum BETWEEN ? AND ?";
@@ -144,6 +145,7 @@ public class FestivalDaoImpl implements FestivalDao{
 				String end = rs.getString("festival_end");
 				end = end.substring(0,10);
 				board.setFestival_end(end);
+				board.setFestival_fee(rs.getString("festival_fee"));
 				board.setFestival_writtendate(rs.getDate("festival_writtendate"));
 				board.setFestival_storedname(rs.getString("festival_storedname"));
 

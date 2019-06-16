@@ -335,8 +335,26 @@ a:hover { text-decoration:none; color:black;}
 							<div class="pop_img"><img src="/upload/${pop[0].club_storedname }"class="img-circle pop_image"></div>
 							
 							<div class="pop_clubcontent">
-								<div class="pop_clubname"><strong>${pop[0].club_title }</strong></div>
-								<div class="pop_clubinclude"><a href="/board/club/detail?club_no=${pop[0].club_no }">${pop[0].club_include }</a></div>
+								<div class="pop_clubname">
+									<c:choose>
+											<c:when test="${fn:length(pop[0].club_title) > 15}">
+												<strong>${fn:substring(pop[0].club_title,0,14)}....</strong>
+											</c:when>
+											<c:otherwise>
+												<strong>${pop[0].club_title }</strong>
+											</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="pop_clubinclude">										
+										<c:choose>
+				 	 						<c:when test="${fn:length(pop[0].club_include) > 56}">
+				 	 							<a href="/board/club/detail?club_no=${pop[0].club_no }"><c:out value="${fn:substring(pop[0].club_include,0,55)}"/>....</a>
+											</c:when>
+											<c:otherwise>
+												<a href="/board/club/detail?club_no=${pop[0].club_no }"><c:out value="${pop[0].club_include}"/></a>
+											</c:otherwise>
+										</c:choose>
+								</div>
 								<div class="pop_clubdetail">${pop[0].membercnt }명 가입 중</div>
 							</div>
 						
@@ -346,8 +364,26 @@ a:hover { text-decoration:none; color:black;}
 							<div class="pop_img"><img src="/upload/${pop[1].club_storedname }"class="img-circle pop_image"></div>
 							
 							<div class="pop_clubcontent">
-								<div class="pop_clubname"><strong>${pop[1].club_title }</strong></div>
-								<div class="pop_clubinclude"><a href="/board/club/detail?club_no=${pop[1].club_no }">${pop[1].club_include }</a></div>
+								<div class="pop_clubname">
+									<c:choose>
+											<c:when test="${fn:length(pop[1].club_title) > 15}">
+												<strong>${fn:substring(pop[1].club_title,0,14)}....</strong>
+											</c:when>
+											<c:otherwise>
+												<strong>${pop[1].club_title }</strong>
+											</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="pop_clubinclude">
+									<c:choose>
+				 	 						<c:when test="${fn:length(pop[1].club_include) > 56}">
+				 	 							<a href="/board/club/detail?club_no=${pop[1].club_no }"><c:out value="${fn:substring(pop[1].club_include,0,55)}"/>....</a>
+											</c:when>
+											<c:otherwise>
+												<a href="/board/club/detail?club_no=${pop[1].club_no }"><c:out value="${pop[1].club_include}"/></a>
+											</c:otherwise>
+										</c:choose>
+								</div>
 								<div class="pop_clubdetail">${pop[1].membercnt }명 가입 중</div>
 							</div>
 							
@@ -359,8 +395,26 @@ a:hover { text-decoration:none; color:black;}
 							<div class="pop_img"><img src="/upload/${pop[2].club_storedname }"class="img-circle pop_image"></div>
 							
 							<div class="pop_clubcontent">
-								<div class="pop_clubname"><strong>${pop[2].club_title }</strong></div>
-								<div class="pop_clubinclude"><a href="/board/club/detail?club_no=${pop[2].club_no }">${pop[2].club_include }</a></div>
+								<div class="pop_clubname">
+									<c:choose>
+											<c:when test="${fn:length(pop[2].club_title) > 15}">
+												<strong>${fn:substring(pop[2].club_title,0,14)}....</strong>
+											</c:when>
+											<c:otherwise>
+												<strong>${pop[2].club_title }</strong>
+											</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="pop_clubinclude">
+									<c:choose>
+				 	 						<c:when test="${fn:length(pop[2].club_include) > 56}">
+				 	 							<a href="/board/club/detail?club_no=${pop[2].club_no }"><c:out value="${fn:substring(pop[2].club_include,0,55)}"/>....</a>
+											</c:when>
+											<c:otherwise>
+												<a href="/board/club/detail?club_no=${pop[2].club_no }"><c:out value="${pop[2].club_include}"/></a>
+											</c:otherwise>
+									</c:choose>
+								</div>
 								<div class="pop_clubdetail">${pop[2].membercnt }명 가입 중</div>
 							</div>
 						
@@ -370,8 +424,26 @@ a:hover { text-decoration:none; color:black;}
 							<div class="pop_img"><img src="/upload/${pop[3].club_storedname }"class="img-circle pop_image"></div>
 							
 							<div class="pop_clubcontent">
-								<div class="pop_clubname"><strong>${pop[3].club_title }</strong></div>
-								<div class="pop_clubinclude"><a href="/board/club/detail?club_no=${pop[3].club_no }">${pop[3].club_include }</a></div>
+								<div class="pop_clubname">
+									<c:choose>
+											<c:when test="${fn:length(pop[3].club_title) > 15}">
+												<strong>${fn:substring(pop[3].club_title,0,14)}....</strong>
+											</c:when>
+											<c:otherwise>
+												<strong>${pop[3].club_title }</strong>
+											</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="pop_clubinclude">
+									<c:choose>
+				 	 						<c:when test="${fn:length(pop[3].club_include) > 56}">
+				 	 							<a href="/board/club/detail?club_no=${pop[3].club_no }"><c:out value="${fn:substring(pop[3].club_include,0,55)}"/>....</a>
+											</c:when>
+											<c:otherwise>
+												<a href="/board/club/detail?club_no=${pop[3].club_no }"><c:out value="${pop[3].club_include}"/></a>
+											</c:otherwise>
+										</c:choose>
+								</div>
 								<div class="pop_clubdetail">${pop[3].membercnt }명 가입 중</div>
 							</div>
 						
@@ -383,14 +455,32 @@ a:hover { text-decoration:none; color:black;}
 						<div class="pop_title"><strong>최근 등록된 동호회</strong></div>
 					</div>
 					
-					<c:forEach items="${list}" var="i">
+					<c:forEach items="${list}" var="i" varStatus="status">
 					<div class="lately_list">
 						<div class="lately_img">
 							<img src="/upload/${i.club_storedname }" class="lately_image img-rounded">
 						</div>
 						<div class="lately_content">
-							<div class="lately_title"><strong>${i.club_title }</strong></div>
-							<div class="lately_include"><a href="/board/club/detail?club_no=${i.club_no }">${i.club_include }</a></div>
+							<div class="lately_title">
+								<c:choose>
+											<c:when test="${fn:length(i.club_title) > 15}">
+												<strong>${fn:substring(i.club_title,0,14)}....</strong>
+											</c:when>
+											<c:otherwise>
+												<strong>${i.club_title }</strong>
+											</c:otherwise>
+									</c:choose>
+							</div>
+							<div class="lately_include">
+								<c:choose>
+				 	 					<c:when test="${fn:length(i.club_include) > 56}">
+				 	 						<a href="/board/club/detail?club_no=${i.club_no }"><c:out value="${fn:substring(i.club_include,0,55)}"/>....</a>
+										</c:when>
+										<c:otherwise>
+											<a href="/board/club/detail?club_no=${i.club_no }"><c:out value="${i.club_include}"/></a>
+										</c:otherwise>
+								</c:choose>
+							</div>
 							<div class="lately_detail">${i.membercnt}명 가입 중</div>
 						</div>
 					</div>

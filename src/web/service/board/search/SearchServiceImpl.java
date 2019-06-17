@@ -23,7 +23,7 @@ import web.dto.Search;
 public class SearchServiceImpl implements SearchService{
 
 	private static String FIRST_URL = "http://api.data.go.kr/openapi/fshlc-info-std?";	
-	private static String KEY = "serviceKey=xkoM0fFVJiv9hmvG8chBcmLjxoUgAY%2FayOgAS3tZL%2F%2BCqJ7XBPCVVS%2BZcz3L%2FK9BJo4Hg87FRHlEBZYMR9DDIg%3D%3D";
+	private static String KEY = "serviceKey=?";
 	
 	@Override
 	public List result(HttpServletRequest req, HttpServletResponse resp) {

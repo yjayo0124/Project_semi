@@ -49,7 +49,7 @@ $(document).ready(function(){
 		}
 	      
 	   </script>
-	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3gnxHyQJmWhz0seVyFEdSSMQHDAEDpbg&callback=initMap"
+	 <script src="https://maps.googleapis.com/maps/api/APIKEY"
 	    async defer></script>
 
 <div class="container" style="width:1000px; margin-bottom: 80px;">
